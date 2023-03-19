@@ -529,9 +529,9 @@ var/world_topic_spam_protect_time = world.timeofday
 
 	s += "<b>[station_name()]</b>";
 	s += " ("
-	s += "<a href=\"http://\">" //Change this to wherever you want the hub to link to.
+//	s += "<a href=\"http://\">" //Change this to wherever you want the hub to link to.
 //	s += "[game_version]"
-	s += "Default"  //Replace this with something else. Or ever better, delete it and uncomment the game version.
+	s += "<b>vore</b> among other things"  //Replace this with something else. Or ever better, delete it and uncomment the game version.
 	s += "</a>"
 	s += ")"
 
@@ -550,7 +550,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 	features += config.persistence_disabled ? "persistence disabled" : "persistence enabled"
 
-	features += config.persistence_ignore_mapload ? "persistence mapload disabled" : "persistence mapload enabled"
+//	features += config.persistence_ignore_mapload ? "persistence mapload disabled" : "persistence mapload enabled"
 
 	if (config && config.allow_vote_mode)
 		features += "vote"
