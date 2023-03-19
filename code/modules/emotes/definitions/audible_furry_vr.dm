@@ -159,6 +159,10 @@
   emote_message_3p = "laughs"
   emote_sound = 'sound/voice/moth/moth_laugh.ogg'
 
+/decl/emote/audible/fart
+    key = "fart"
+    emote_message_3p = "farts!"
+    emote_sound = 'sound/effects/fart1.ogg'
 
 /decl/emote/audible/gyoh
     key = "gyoh"

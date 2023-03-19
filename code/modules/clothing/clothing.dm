@@ -299,7 +299,7 @@
 	gender = PLURAL //Carn: for grammarically correct text-parsing
 	w_class = ITEMSIZE_SMALL
 	icon = 'icons/inventory/hands/item.dmi'
-	siemens_coefficient = 0.9
+	siemens_coefficient = 0
 	blood_sprite_state = "bloodyhands"
 	var/wired = 0
 	var/obj/item/weapon/cell/cell = 0
@@ -427,7 +427,7 @@
 	icon = 'icons/inventory/hands/item.dmi'
 	gender = NEUTER
 	species_restricted = list("exclude", SPECIES_DIONA)
-	siemens_coefficient = 1
+	siemens_coefficient = 0.3
 	glove_level = 1
 	fingerprint_chance = 100
 	punch_force = 2
@@ -592,7 +592,7 @@
 		)
 	desc = "Comfortable-looking shoes."
 	gender = PLURAL //Carn: for grammarically correct text-parsing
-	siemens_coefficient = 0.9
+	siemens_coefficient = 0.3
 	body_parts_covered = FEET
 	slot_flags = SLOT_FEET
 	blood_sprite_state = "shoeblood"
@@ -629,13 +629,6 @@
 	if(usr.stat || usr.restrained() || usr.incapacitated())
 		return
 
-	//CHOMPEdit begin
-	if(istype(usr, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = usr
-		if(H.ability_flags & 0x1)
-			to_chat(usr, "<span class='warning'>You cannot do that while phase shifted.</span>")
-			return
-	//CHOMPEdit end
 
 	holding.forceMove(get_turf(usr))
 
@@ -738,7 +731,7 @@
 	blood_sprite_state = "suitblood" //Defaults to the suit's blood overlay, so that some blood renders instead of no blood.
 
 	var/taurized = FALSE
-	siemens_coefficient = 0.9
+	siemens_coefficient = 0.3
 	w_class = ITEMSIZE_NORMAL
 	preserve_item = 1
 	equip_sound = 'sound/items/jumpsuit_equip.ogg'

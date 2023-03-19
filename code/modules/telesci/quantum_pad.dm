@@ -8,12 +8,12 @@
 	idle_power_usage = 200
 	active_power_usage = 5000
 	circuit = /obj/item/weapon/circuitboard/quantumpad
-	var/teleport_cooldown = 400 //30 seconds base due to base parts
+	var/teleport_cooldown = 400 //30 seconds base due to base parts... how does 400 deciseconds equal 30 seconds?
 	var/teleport_speed = 50
 	var/last_teleport //to handle the cooldown
 	var/teleporting = 0 //if it's in the process of teleporting
 	var/power_efficiency = 1
-	var/boosted = 0 // do we teleport mecha?
+	var/boosted = 1 // do we teleport mecha?
 	var/obj/machinery/power/quantumpad/linked_pad
 
 	//mapping
@@ -65,11 +65,6 @@
 		return
 
 	if(istype(I, /obj/item/device/multitool))
-		//VOREStation Addition Start
-		if(istype(get_area(src), /area/shuttle))
-			to_chat(user, "<span class='warning'>This is too unstable a platform for \the [src] to operate on!</span>")
-			return
-		//VOREStation Addition End
 		if(panel_open)
 			var/obj/item/device/multitool/M = I
 			M.connectable = src
@@ -82,7 +77,7 @@
 				to_chat(user, "<span class='notice'>You link [src] to the one in [I]'s buffer.</span>")
 				update_icon()
 				return 1
-	
+
 	if(istype(I, /obj/item/device/quantum_pad_booster))
 		var/obj/item/device/quantum_pad_booster/booster = I
 		visible_message("[user] violently jams [booster] into the side of [src]. [src] beeps, quietly.", \
@@ -129,14 +124,6 @@
 		return
 	if(panel_open)
 		to_chat(user, "<span class='warning'>The panel must be closed before operating this machine!</span>")
-		return
-
-	if(istype(get_area(src), /area/shuttle))
-		to_chat(user, "<span class='warning'>This is too unstable a platform for \the [src] to operate on!</span>")
-		//VOREStation Addition Start
-		if(linked_pad)
-			linked_pad.linked_pad = null
-		//VOREStation Addition End
 		return
 
 	if(!powernet)
@@ -186,11 +173,6 @@
 	update_icon()
 	if(!linked_pad)
 		return
-	//VOREStation Addition Start
-	if(istype(get_area(src), /area/shuttle))
-		to_chat(user, "<span class='warning'>This is too unstable a platform for \the [src] to operate on!</span>")
-		return
-	//VOREStation Addition End
 	playsound(src, 'sound/weapons/flash.ogg', 25, 1)
 	teleporting = 1
 

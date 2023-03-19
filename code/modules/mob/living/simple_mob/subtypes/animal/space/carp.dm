@@ -59,7 +59,7 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
 
 	var/knockdown_chance = 15
-	
+
 	can_be_drop_prey = FALSE //CHOMP Add
 
 /mob/living/simple_mob/animal/space/carp/apply_melee_effects(var/atom/A)
@@ -68,6 +68,24 @@
 		if(prob(knockdown_chance))
 			L.Weaken(3)
 			L.visible_message(span("danger", "\The [src] knocks down \the [L]!"))
+
+/mob/living/simple_mob/animal/space/carp/init_vore()
+	if(!voremob_loaded)
+		return
+	.=..()
+	var/obj/belly/B = vore_selected
+	B.name = "Stomach"
+	B.desc = "In a flash of ravenous teeth, the vicious carp wastes no time devouring you completely, stuffing you deeper and deeper into it's pink throat. The enveloping walls undulate and squeeze on you, drowning you in it's slimy gastric liquids and sounds as the carp enjoys it's new meal."
+	B.vore_sound = "Tauric Swallow"
+	B.release_sound = "Pred Escape"
+	B.fancy_vore = 1
+	B.digest_brute = 0.5
+	B.digest_burn = 1
+	B.digestchance = 20
+	B.absorbchance = 5
+	B.escapechance = 20
+	B.belly_fullscreen = "exotic_squish"
+	B.colorization_enabled = FALSE
 
 // Subtypes.
 
@@ -118,6 +136,25 @@
 	icon_expected_height = 64
 
 	meat_amount = 15
+	vore_default_mode = DM_DIGEST
+
+/mob/living/simple_mob/animal/space/carp/large/huge/init_vore()
+	if(!voremob_loaded)
+		return
+	.=..()
+	var/obj/belly/B = vore_selected
+	B.name = "Stomach"
+	B.desc = "You're trapped in the belly of giant carp, while roomier than one might expect, it is still uncomfortably cramped as you're forced to lay out in some places and bend at other. The rippling walls of flesh cling fast, smearing your form with digestive juices with every pulse and the smell of fish is naturally always present as it works on making a meal out of you."
+	B.vore_sound = "Tauric Swallow"
+	B.release_sound = "Pred Escape"
+	B.fancy_vore = 1
+	B.digest_brute = 2
+	B.digest_burn = 3
+	B.digestchance = 30
+	B.absorbchance = 5
+	B.escapechance = 20
+	B.belly_fullscreen = "exotic_squish"
+	B.colorization_enabled = FALSE
 
 
 /mob/living/simple_mob/animal/space/carp/holographic

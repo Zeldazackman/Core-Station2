@@ -1,26 +1,26 @@
 /datum/trait/positive/linguist
 	name = "Master Linguist"
 	desc = "You are a master of languages! For whatever reason you might have, you are able to learn many more languages than others. Your language cap is 12 slots."
-	cost = 2
+	cost = 0
 	var_changes = list("num_alternate_languages" = 15)
 	var_changes_pref = list("extra_languages" = 12)
 
 /datum/trait/positive/darksight
 	name = "Darksight"
 	desc = "Allows you to see a short distance in the dark. (Half the screen)."
-	cost = 1
+	cost = 0
 	var_changes = list("darksight" = 4)  //CHOMP Edit
 
 /datum/trait/positive/darksight_plus
 	name = "Darksight, Major"
 	desc = "Allows you to see in the dark for the whole screen."
-	cost = 2
+	cost = 0
 	var_changes = list("darksight" = 8)
 
 /datum/trait/positive/densebones
 	name = "Dense Bones"
 	desc = "Your bones (or robotic limbs) are more dense or stronger then what is considered normal. It is much harder to fracture your bones, yet pain from fractures is much more intense. Bones require 50% more damage to break, and deal 2x pain on break."
-	cost = 3
+	cost = 0
 	excludes = list(/datum/trait/negative/hollow)
 
 /datum/trait/positive/densebones/apply(var/datum/species/S,var/mob/living/carbon/human/H)
@@ -33,19 +33,19 @@
 /datum/trait/positive/lowpressureres
 	name = "Pressure Resistance, Low"
 	desc = "Your body is more resistant to low pressures. Pretty simple."
-	cost = 3
+	cost = 0
 	var_changes = list("hazard_low_pressure" = HAZARD_LOW_PRESSURE*0.66, "warning_low_pressure" = WARNING_LOW_PRESSURE*0.66, "minimum_breath_pressure" = 16*0.66)
 
 /datum/trait/positive/highpressureres
 	name = "Pressure Resistance, High"
 	desc = "Your body is more resistant to high pressures. Pretty simple."
-	cost = 3
+	cost = 0
 	var_changes = list("hazard_high_pressure" = HAZARD_HIGH_PRESSURE*1.5, "warning_high_pressure" = WARNING_HIGH_PRESSURE*1.5)
 
 /datum/trait/positive/photosynth
 	name = "Photosynthesis"
 	desc = "Your body is able to produce nutrition from being in light."
-	cost = 3
+	cost = 0
 	var_changes = list("photosynthesizing" = TRUE)
 	can_take = ORGANICS|SYNTHETICS //Synths actually use nutrition, just with a fancy covering.
 
@@ -72,7 +72,7 @@
 /datum/trait/positive/more_blood_extreme
 	name = "Blood Volume, Very High"
 	desc = "You have 150% more blood."
-	cost = 4
+	cost = 3
 	var_changes = list("blood_volume" = 1400)
 	excludes = list(/datum/trait/positive/more_blood,/datum/trait/negative/less_blood,/datum/trait/negative/less_blood_extreme)
 	can_take = ORGANICS
@@ -80,7 +80,7 @@
 /datum/trait/positive/heavyweight
 	name = "Heavyweight"
 	desc = "You are more heavyweight or otherwise more sturdy than most species, and as such, more resistant to knockdown effects and stuns. Stuns are only half as effective on you, and neither players nor mobs can trade places with you or bump you out of the way."
-	cost = 2
+	cost = 1
 	var_changes = list("stun_mod" = 0.75, "weaken_mod" = 0.75) // Stuns are 75% as effective - a stun of 3 seconds will be 2 seconds after rounding. Set to 0.75 to make a 3 second stun 2 seconds.(Weaken is used alongside stun to prevent aiming.)
 
 /datum/trait/positive/heavyweight/apply(var/datum/species/S,var/mob/living/carbon/human/H)
@@ -91,7 +91,7 @@
 /datum/trait/positive/table_passer
 	name = "Table Passer"
 	desc = "You move over or under tables with ease of a Teshari."
-	cost = 2
+	cost = 1
 
 /datum/trait/positive/table_passer/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
@@ -107,12 +107,12 @@
 /datum/trait/positive/absorbent
 	name = "Absorbent"
 	desc = "You are able to clean messes just by walking over them, and gain nutrition from doing so!"
-	cost = 1
+	cost = 0
 	special_env = TRUE
 	excludes = list(/datum/trait/negative/slipperydirt)
 
 /datum/trait/positive/endurance_high
-	cost = 3
+	cost = 0
 	excludes = list(/datum/trait/positive/endurance_very_high, /datum/trait/positive/endurance_extremely_high) // CHOMPEdit: Increased Endurance.
 	// excludes = list(/datum/trait/positive/brute_resist, /datum/trait/positive/minor_brute_resist, /datum/trait/positive/minor_burn_resist, /datum/trait/positive/burn_resist)
 	// Tankiness at the cost of severe downsides should be allowed - we have a large number of negatives that hurt hard, but you can't take many positives.
@@ -167,7 +167,7 @@
 /datum/trait/positive/adrenaline_rush
 	name = "Adrenaline Rush"
 	desc = "When you get critically damaged, you'll have an adrenaline rush before going down, giving you another chance to finish the fight, or get to safety."
-	cost = 6
+	cost = 3
 	special_env = TRUE
 	can_take = ORGANICS
 	var/last_adrenaline_rush
@@ -257,22 +257,22 @@
 // TANKINESS LETS GOOOOOOOOO
 /datum/trait/positive/burn_resist_plus // Equivalent to Burn Weakness Major, cannot be taken at the same time.
 	name = "Burn Resist, Major"
-	desc = "Adds 40% resistance to burn damage sources."
-	cost = 3 // Exact Opposite of Burn Weakness Major, except Weakness Major is 50% incoming, this is -40% incoming.
-	var_changes = list("burn_mod" = 0.6)
+	desc = "Adds 60% resistance to burn damage sources."
+	cost = 2 // Exact Opposite of Burn Weakness Major, except Weakness Major is 50% incoming, this is -40% incoming.
+	var_changes = list("burn_mod" = 0.4)
 	excludes = list(/datum/trait/positive/burn_resist, /datum/trait/positive/minor_burn_resist)
 
 /datum/trait/positive/brute_resist_plus // Equivalent to Brute Weakness Major, cannot be taken at the same time.
 	name = "Brute Resist, Major"
-	desc = "Adds 40% resistance to brute damage sources."
-	cost = 3 // Exact Opposite of Brute Weakness Major, except Weakness Major is 50% incoming, this is -40% incoming.
-	var_changes = list("brute_mod" = 0.6)
+	desc = "Adds 60% resistance to brute damage sources."
+	cost = 2 // Exact Opposite of Brute Weakness Major, except Weakness Major is 50% incoming, this is -40% incoming.
+	var_changes = list("brute_mod" = 0.4)
 	excludes = list(/datum/trait/positive/brute_resist, /datum/trait/positive/minor_brute_resist)
 
 /datum/trait/positive/endurance_very_high
 	name = "High Endurance, Major"
 	desc = "Increases your maximum total hitpoints to 150. You require 300 damage in total to die, compared to 200 normally. You will still go into crit after losing 150 HP, compared to crit at 100 HP."
-	cost = 6 // This should cost a LOT, because your total health becomes 300 to be fully dead, rather than 200 normally, or 250 for High Endurance. HE costs 3, double it here.
+	cost = 2 // This should cost a LOT, because your total health becomes 300 to be fully dead, rather than 200 normally, or 250 for High Endurance. HE costs 3, double it here.
 	var_changes = list("total_health" = 150)
 	excludes = list(/datum/trait/positive/endurance_high, /datum/trait/positive/endurance_extremely_high)
 
@@ -284,7 +284,7 @@
 /datum/trait/positive/endurance_extremely_high
 	name = "High Endurance, Extreme"
 	desc = "Increases your maximum total hitpoints to 175. You require 350 damage in total to die, compared to 200 normally. You will still go into crit after losing 175 HP, compared to crit at 100 HP."
-	cost = 9 // This should cost a LOT, because your total health becomes 350 to be fully dead, rather than 200 normally, or 250 for High Endurance. HE costs 3, this costs 3x it.
+	cost = 4 // This should cost a LOT, because your total health becomes 350 to be fully dead, rather than 200 normally, or 250 for High Endurance. HE costs 3, this costs 3x it.
 	var_changes = list("total_health" = 175)
 	excludes = list(/datum/trait/positive/endurance_high, /datum/trait/positive/endurance_very_high)
 
@@ -296,52 +296,52 @@
 /datum/trait/positive/pain_tolerance_minor // Minor Pain Tolerance, 10% reduced pain
 	name = "Pain Tolerance, Minor"
 	desc = "You are slightly more resistant to pain than most, and experience 10% less pain from all sources."
-	cost = 1
+	cost = 0
 	var_changes = list("pain_mod" = 0.9)
 
 /datum/trait/positive/pain_tolerance
 	name = "Pain Tolerance"
 	desc = "You are noticeably more resistant to pain than most, and experience 20% less pain from all sources."
-	cost = 2
+	cost = 1
 	var_changes = list("pain_mod" = 0.8)
 
 /datum/trait/positive/pain_tolerance_advanced // High Pain Intolerance is 50% incoming pain, but this is 40% reduced incoming pain.
 	name = "Pain Tolerance, Major"
 	desc = "You are extremely resistant to pain sources, and experience 40% less pain from all sources."
-	cost = 3 // Equivalent to High Pain Intolerance, but less pain resisted for balance reasons.
+	cost = 2 // Equivalent to High Pain Intolerance, but less pain resisted for balance reasons.
 	var_changes = list("pain_mod" = 0.6)
 
 
 /datum/trait/positive/improved_biocompat
 	name = "Improved Biocompatibility"
 	desc = "Your body is naturally (or artificially) more receptive to healing chemicals without being vulnerable to the 'bad stuff'. You heal more efficiently from most chemicals, with no other drawbacks. Remember to note this down in your medical records! Chems heal for 20% more."
-	cost = 2
+	cost = 1
 	var_changes = list("chem_strength_heal" = 1.2)
 
 /datum/trait/positive/photoresistant_plus // YW added Trait
 	name = "Photoresistance, Major"
 	desc = "Decreases stun duration from flashes and other light-based stuns and disabilities by 50%."
-	cost = 2
+	cost = 1
 	var_changes = list("flash_mod" = 0.5)
 
 /datum/trait/positive/speed_fast_minor
 	name = "Haste, Minor"
 	desc = "Allows you to move a little bit faster on average than baseline."
-	cost = 2
+	cost = 0
 	var_changes = list("slowdown" = -0.25)
 	excludes = list(/datum/trait/positive/hardy_extreme,/datum/trait/positive/hardy_plus,/datum/trait/positive/speed_fast)
 
 /datum/trait/positive/hardy_extreme
 	name = "Hardy, Extreme"
 	desc = "Allows you to carry heavy equipment with no slowdown at all."
-	cost = 3
+	cost = 1
 	var_changes = list("item_slowdown_mod" = 0.0)
 	excludes = list(/datum/trait/positive/speed_fast,/datum/trait/positive/speed_fast_minor,/datum/trait/positive/hardy,/datum/trait/positive/hardy_plus)
 
 /datum/trait/positive/bloodsucker_plus
 	name = "Evolved Bloodsucker"
 	desc = "Makes you able to gain nutrition by draining blood as well as eating food. To compensate, you get fangs that can be used to drain blood from prey."
-	cost = 1
+	cost = 0
 	var_changes = list("organic_food_coeff" = 0.5) // Hopefully this works???
 	excludes = list(/datum/trait/neutral/bloodsucker)
 

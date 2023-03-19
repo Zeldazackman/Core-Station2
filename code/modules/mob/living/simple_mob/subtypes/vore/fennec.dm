@@ -32,8 +32,18 @@
 	icon = 'icons/mob/vore.dmi'
 
 	faction = "fennec"
-	maxHealth = 30
-	health = 30
+	maxHealth = 120
+	health = 120
+
+	min_oxy = 0	//Fenncs kept dying randomly on virgo four, this should be a coverall
+	max_oxy = 0
+	min_tox = 0
+	max_tox = 0
+	min_co2 = 0
+	max_co2 = 0
+	min_n2 = 0
+	max_n2 = 0
+	minbodytemp = 0
 
 	response_help = "pats"
 	response_disarm = "gently pushes aside"
@@ -58,12 +68,12 @@
 	vore_pounce_chance = 40
 	vore_default_mode = DM_HOLD
 	vore_icons = SA_ICON_LIVING
-	
+
 /mob/living/simple_mob/vore/fennec/init_vore() // CHOMPEdit - Allow for customizing bellies on vorecritters
 	if(!voremob_loaded)
 		return
 	. = ..()
-	
+
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
 	B.desc = "Warm, slick, and wet. You're somewhere hot, tight, and very cramped, unless you happen to somehow be smaller than the fennec you're in! It's hard to see, as rippling pink walls clench and smother over your form. If you don't want to be here, a newspaper from a friend ought to get you out. ...right?"
@@ -72,6 +82,7 @@
 	B.fancy_vore = 1							// CHOMPedit - Fancy Vore Sounds
 	B.belly_fullscreen_color = "#c47cb4" 		// CHOMPedit - Belly Fullscreen
 	B.belly_fullscreen = "anim_belly" 			// CHOMPedit - Belly Fullscreen
+	B.disable_hud = TRUE						// CHOMPedit - Disable HUD when inside belly
 
 /datum/say_list/fennec
 	speak = list("SKREEEE!","Chrp?","Ararrrararr.")
@@ -140,7 +151,9 @@
 	add_overlay(bigshadow)
 
 /mob/living/simple_mob/vore/fennec/huge/init_vore()
-	..()
+	if(!voremob_loaded)
+		return
+	.=..()
 	var/obj/belly/B = vore_selected
 	B.name = "Stomach"
 	B.desc = "The slimy wet insides of a rather large fennec! Not quite as clean as the fen on the outside."

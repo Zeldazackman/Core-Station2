@@ -30,7 +30,7 @@
 	default_pixel_x = -16
 
 	has_hands = 1
-	
+
 	can_be_drop_prey = FALSE //CHOMP Add
 
 // Nomnomn
@@ -41,6 +41,18 @@
 	vore_pounce_chance = 50
 	vore_default_mode = DM_HOLD
 	vore_icons = SA_ICON_LIVING
+
+/mob/living/simple_mob/vore/weretiger/init_vore()
+	if(!voremob_loaded)
+		return
+	.=..()
+	var/obj/belly/B = vore_selected
+	B.vore_sound = "Tauric Swallow"
+	B.release_sound = "Pred Escape"
+	B.fancy_vore = 1
+	B.vore_verb = "slurp"
+	B.contamination_color = "yellow"
+	B.contamination_flavor = "Arcid"
 
 /datum/say_list/weretiger
 	speak = list("Gruff.","ROAR!","Growl.")

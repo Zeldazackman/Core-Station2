@@ -48,7 +48,6 @@
 	icon_state = "medbriefcase"
 	w_class = ITEMSIZE_NORMAL
 	max_w_class = ITEMSIZE_NORMAL
-	can_hold = list(/obj/item/weapon/gun/projectile/cell_loaded/medical,/obj/item/ammo_magazine/cell_mag/medical,/obj/item/ammo_casing/microbattery/medical)
 
 /obj/item/weapon/storage/secure/briefcase/nerd_pack_med/New()
 	..()
@@ -64,7 +63,6 @@
 	icon_state = "medbriefcase"
 	w_class = ITEMSIZE_NORMAL
 	max_w_class = ITEMSIZE_NORMAL
-	can_hold = list(/obj/item/weapon/gun/projectile/cell_loaded/medical,/obj/item/ammo_magazine/cell_mag/medical,/obj/item/ammo_casing/microbattery/medical)
 
 /obj/item/weapon/storage/secure/briefcase/nerd_pack_cmo/New()
 	..()

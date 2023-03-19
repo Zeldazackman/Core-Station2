@@ -19,8 +19,8 @@
 #define ANNOUNCER_NAME "Facility PA"
 
 //For custom species
-#define STARTING_SPECIES_POINTS 1 //CHOMPEdit
-#define MAX_SPECIES_TRAITS 6	//CHOMPEdit - Cap positive traits at 6, given negatives are unlimited.
+#define STARTING_SPECIES_POINTS 7 //CHOMPEdit
+#define MAX_SPECIES_TRAITS 10	//CHOMPEdit - Cap positive traits at 6, given negatives are unlimited.
 
 // Xenochimera thing mostly
 #define REVIVING_NOW		-1

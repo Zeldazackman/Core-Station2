@@ -14,7 +14,7 @@
 	var/mob/living/owner				//Reference to the owner
 	var/mob/living/bound_mob			//Reference to our bound mob
 	var/spawn_mob_type					//The kind of mob an inactive crystal will try to spawn when activated
-	var/activate_cooldown = 30 SECONDS	//How long do we wait between unleashing and recalling
+	var/activate_cooldown = 10 SECONDS	//How long do we wait between unleashing and recalling
 	var/last_activate					//Automatically set by things that try to move the bound mob or capture things
 	var/empty_icon = "empty"
 	var/full_icon = "full"
@@ -514,14 +514,15 @@
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
 
 /obj/item/capture_crystal/basic
+	capture_chance_modifier = 5
 
 /obj/item/capture_crystal/great
 	name = "great capture crystal"
-	capture_chance_modifier = 1.5
+	capture_chance_modifier = 15
 
 /obj/item/capture_crystal/ultra
 	name = "ultra capture crystal"
-	capture_chance_modifier = 2
+	capture_chance_modifier = 25
 
 /obj/item/capture_crystal/master
 	name = "master capture crystal"

@@ -21,9 +21,9 @@
 },
 {
 "url": "https://files.catbox.moe/qn5tdv.mp3",
-"title": "Tin Tin on the Moon (Remix)",
+"title": "Tin Tin on the Moon (Noisemaker's Remix)",
 "duration": 2450,
-"artist": "Jeroen Tel (Remixed by Cuboos)",
+"artist": "Jeroen Tel (Remixed by Noisemaker)",
 "secret": false,
 "lobby": false,
 "jukebox": true,
@@ -320,16 +320,6 @@
 "genre": "Pop"
 },
 {
-"url": "https://files.catbox.moe/q5c942.m4a",
-"title": "Moonlight Sonata",
-"duration": 8990,
-"artist": "Ludwig van Beethoven",
-"secret": false,
-"lobby": false,
-"jukebox": true,
-"genre": "Classical and Orchestral"
-},
-{
 "url": "https://files.catbox.moe/rlutyi.m4a",
 "title": "We Built This City",
 "duration": 2960,
@@ -338,16 +328,6 @@
 "lobby": false,
 "jukebox": true,
 "genre": "Rock"
-},
-{
-"url": "https://files.catbox.moe/1rgsqr.m4a",
-"title": "A Night on Bald Mountain",
-"duration": 6830,
-"artist": "Modest Mussorgsky",
-"secret": false,
-"lobby": false,
-"jukebox": true,
-"genre": "Classical and Orchestral"
 },
 {
 "url": "https://files.catbox.moe/frq3un.m4a",
@@ -825,7 +805,7 @@
 "duration": 1170,
 "artist": "Hector",
 "secret": false,
-"lobby": false,
+"lobby": true,
 "jukebox": true,
 "genre": "Electronic"
 },
@@ -835,7 +815,7 @@
 "duration": 2200,
 "artist": "Garoad",
 "secret": false,
-"lobby": false,
+"lobby": true,
 "jukebox": true,
 "genre": "Electronic"
 },
@@ -1650,136 +1630,6 @@
 "genre": "Classical and Orchestral"
 },
 {
-"url": "https://files.catbox.moe/zab3he.mp3",
-"title": "Concord",
-"duration": 1850,
-"artist": "NicolArmarfi & Blue123",
-"secret": false,
-"lobby": false,
-"jukebox": true,
-"genre": "Classical and Orchestral"
-},
-{
-"url": "https://files.catbox.moe/e52gys.mp3",
-"title": "Clair de Lune",
-"duration": 3570,
-"artist": "Claude Debussy",
-"secret": false,
-"lobby": false,
-"jukebox": true,
-"genre": "Classical and Orchestral"
-},
-{
-"url": "https://files.catbox.moe/e7nk9a.mp3",
-"title": "Gymnopedie No.1",
-"duration": 1870,
-"artist": "Erik Satie",
-"secret": false,
-"lobby": false,
-"jukebox": true,
-"genre": "Classical and Orchestral"
-},
-{
-"url": "https://files.catbox.moe/wf7jr8.mp3",
-"title": "Johans Waltz",
-"duration": 2860,
-"artist": "Andreas Waldetoft",
-"secret": false,
-"lobby": false,
-"jukebox": true,
-"genre": "Classical and Orchestral"
-},
-{
-"url": "https://files.catbox.moe/15ybh9.mp3",
-"title": "Handel This",
-"duration": 890,
-"artist": "Andreas Waldetoft",
-"secret": false,
-"lobby": false,
-"jukebox": true,
-"genre": "Classical and Orchestral"
-},
-{
-"url": "https://files.catbox.moe/0294ze.m4a",
-"title": "Lohengrin: Prelude",
-"duration": 5930,
-"artist": "Richard Wagner",
-"secret": false,
-"lobby": false,
-"jukebox": true,
-"genre": "Classical and Orchestral"
-},
-{
-"url": "https://files.catbox.moe/xgq1tr.m4a",
-"title": "Concerto Grosso no. 10 in B Minor - Allegro",
-"duration": 2150,
-"artist": "Antonio Vivaldi",
-"secret": false,
-"lobby": false,
-"jukebox": true,
-"genre": "Classical and Orchestral"
-},
-{
-"url": "https://files.catbox.moe/vxe2qt.m4a",
-"title": "Ancient Stones",
-"duration": 2850,
-"artist": "Jeremy Soule",
-"secret": false,
-"lobby": false,
-"jukebox": true,
-"genre": "Classical and Orchestral"
-},
-{
-"url": "https://files.catbox.moe/8bdxq3.m4a",
-"title": "Secunda",
-"duration": 1230,
-"artist": "Jeremy Soule",
-"secret": false,
-"lobby": false,
-"jukebox": true,
-"genre": "Classical and Orchestral"
-},
-{
-"url": "https://files.catbox.moe/lqgoiv.m4a",
-"title": "Far Horizons",
-"duration": 3310,
-"artist": "Jeremy Soule",
-"secret": false,
-"lobby": false,
-"jukebox": true,
-"genre": "Classical and Orchestral"
-},
-{
-"url": "https://files.catbox.moe/azzap9.mp3",
-"title": "Time of Change",
-"duration": 2020,
-"artist": "FlybyNo",
-"secret": false,
-"lobby": false,
-"jukebox": true,
-"genre": "Classical and Orchestral"
-},
-{
-"url": "https://files.catbox.moe/m67gzk.m4a",
-"title": "Dreamer's Rest",
-"duration": 2380,
-"artist": "Vindsvept",
-"secret": false,
-"lobby": false,
-"jukebox": true,
-"genre": "Classical and Orchestral"
-},
-{
-"url": "https://files.catbox.moe/tnx2fb.mp3",
-"title": "Moment of Decision",
-"duration": 2430,
-"artist": "NicolArmarfi",
-"secret": false,
-"lobby": false,
-"jukebox": true,
-"genre": "Classical and Orchestral"
-},
-{
 "url": "https://files.catbox.moe/c7yeau.mp3",
 "title": "In My Dreams",
 "duration": 2600,
@@ -2285,8 +2135,8 @@
 "duration": 3330,
 "artist": "Chris Hadfield",
 "secret": false,
-"lobby": false,
-"jukebox": false,
+"lobby": true,
+"jukebox": true,
 "genre": "Pop"
 },
 {

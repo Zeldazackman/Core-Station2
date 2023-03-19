@@ -41,7 +41,7 @@
 
 	say_list_type = /datum/say_list/panther
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive
-	
+
 	can_be_drop_prey = FALSE //CHOMP Add
 
 // Activate Noms!

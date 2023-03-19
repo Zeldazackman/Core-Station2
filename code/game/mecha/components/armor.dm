@@ -217,10 +217,10 @@
 	name = "strange mecha plating"
 	step_delay = 2
 	//Chompedit start  Trying to make this armor decent, without making it OP.
-	damage_minimum = 12
-	minimum_penetration = 10
+	damage_minimum = 20
+	minimum_penetration = 25
 	//Chompedit end
-	
+
 	damage_absorption = list(
 		"brute"=0.7,
 		"fire"=0.7,

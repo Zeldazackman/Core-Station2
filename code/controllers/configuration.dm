@@ -6,21 +6,21 @@ var/list/gamemode_cache = list()
 
 	var/static/nudge_script_path = "nudge.py"  // where the nudge.py script is located
 
-	var/static/log_ooc = 0						// log OOC channel
-	var/static/log_access = 0					// log login/logout
-	var/static/log_say = 0						// log client say
-	var/static/log_admin = 0					// log admin actions
+	var/static/log_ooc = 1						// log OOC channel
+	var/static/log_access = 1					// log login/logout
+	var/static/log_say = 1						// log client say
+	var/static/log_admin = 1					// log admin actions
 	var/static/log_debug = 1					// log debug output
-	var/static/log_game = 0					// log game events
+	var/static/log_game = 1					// log game events
 	var/static/log_vote = 0					// log voting
-	var/static/log_whisper = 0					// log client whisper
-	var/static/log_emote = 0					// log emotes
-	var/static/log_attack = 0					// log attack messages
+	var/static/log_whisper = 1					// log client whisper
+	var/static/log_emote = 1					// log emotes
+	var/static/log_attack = 1					// log attack messages
 	var/static/log_adminchat = 0				// log admin chat messages
 	var/static/log_adminwarn = 0				// log warnings admins get about bomb construction and such
-	var/static/log_pda = 0						// log pda messages
+	var/static/log_pda = 1						// log pda messages
 	var/static/log_hrefs = 0					// logs all links clicked in-game. Could be used for debugging and tracking down exploits
-	var/static/log_runtime = 0					// logs world.log to a file
+	var/static/log_runtime = 1					// logs world.log to a file
 	var/static/log_world_output = 0			// log to_world_log(messages)
 	var/static/log_graffiti = 0					// logs graffiti
 	var/static/sql_enabled = 0					// for sql switching
@@ -93,7 +93,7 @@ var/list/gamemode_cache = list()
 	var/static/cult_ghostwriter = 1               //Allows ghosts to write in blood in cult rounds...
 	var/static/cult_ghostwriter_req_cultists = 10 //...so long as this many cultists are active.
 
-	var/static/character_slots = 10				// The number of available character slots
+	var/static/character_slots = 16				// The number of available character slots
 	var/static/loadout_slots = 3					// The number of loadout slots per character
 
 	var/static/max_maint_drones = 5				//This many drones can spawn,
@@ -243,7 +243,7 @@ var/list/gamemode_cache = list()
 
 	var/persistence_disabled = FALSE
 	var/persistence_ignore_mapload = FALSE
-	
+
 	var/allow_byond_links = 1	//CHOMP Edit turned this on
 	var/allow_discord_links = 1	//CHOMP Edit turned this on
 	var/allow_url_links = 1				// honestly if I were you i'd leave this one off, only use in dire situations //CHOMP Edit: pussy.
@@ -280,11 +280,11 @@ var/list/gamemode_cache = list()
 	var/static/sqlite_feedback_cooldown = 0 // How long one must wait, in days, to submit another feedback form. Used to help prevent spam, especially with privacy active. 0 = No limit.
 	var/static/sqlite_feedback_min_age = 0 // Used to block new people from giving feedback. This metric is very bad but it can help slow down spammers.
 
-	var/static/defib_timer = 10 // How long until someone can't be defibbed anymore, in minutes.
-	var/static/defib_braindamage_timer = 2 // How long until someone will get brain damage when defibbed, in minutes. The closer to the end of the above timer, the more brain damage they get.
+	var/static/defib_timer = 10080 // How long until someone can't be defibbed anymore, in minutes.
+	var/static/defib_braindamage_timer = 2880 // How long until someone will get brain damage when defibbed, in minutes. The closer to the end of the above timer, the more brain damage they get.
 
 	// disables the annoying "You have already logged in this round, disconnect or be banned" popup for multikeying, because it annoys the shit out of me when testing.
-	var/static/disable_cid_warn_popup = FALSE
+	var/static/disable_cid_warn_popup = TRUE
 
 	// whether or not to use the nightshift subsystem to perform lighting changes
 	var/static/enable_night_shifts = FALSE
@@ -294,12 +294,12 @@ var/list/gamemode_cache = list()
 
 	var/static/vgs_access_identifier = null	// VOREStation Edit - VGS
 	var/static/vgs_server_port = null	// VOREStation Edit - VGS
-	
+
 	var/disable_webhook_embeds = FALSE
-	
-	
+
+
 	var/static/list/jukebox_track_files
-	
+
 	var/static/suggested_byond_version
 	var/static/suggested_byond_build
 
@@ -553,10 +553,10 @@ var/list/gamemode_cache = list()
 
 				if ("githuburl")
 					config.githuburl = value
-									
+
 				if ("discordurl")
 					config.discordurl = value
-				
+
 				if ("guest_jobban")
 					config.guest_jobban = 1
 
@@ -961,7 +961,7 @@ var/list/gamemode_cache = list()
 
 				if("enable_night_shifts")
 					config.enable_night_shifts = TRUE
-						
+
 				if("jukebox_track_files")
 					config.jukebox_track_files = splittext(value, ";")
 
@@ -1043,7 +1043,7 @@ var/list/gamemode_cache = list()
 
 				if("use_loyalty_implants")
 					config.use_loyalty_implants = 1
-					
+
 				if("loadout_whitelist")
 					config.loadout_whitelist = text2num(value)
 

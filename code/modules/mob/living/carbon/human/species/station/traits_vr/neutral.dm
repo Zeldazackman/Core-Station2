@@ -33,7 +33,7 @@
 	can_take = ORGANICS
 	excludes = list(/datum/trait/neutral/hotadapt)
 	can_take = ORGANICS // CHOMP edit
-	
+
 /datum/trait/neutral/hotadapt
 	name = "Temp. Adapted, Heat"
 	desc = "You are able to withstand much hotter temperatures than other species, and can even be comfortable in extremely hot environments. You are also more vulnerable to cold environments, and have a higher body temperature as a consequence of these adaptations."
@@ -418,7 +418,7 @@
 	cost = 0
 	custom_only = FALSE
 	var_changes = list("spice_mod" = 0.25) // 25% as effective if spice_mod is set to 1. If it's not 1 in species.dm, update this!
-	
+
 // Alcohol Traits Start Here, from negative to positive.
 /datum/trait/neutral/alcohol_intolerance_advanced
 	name = "Liver of Air"

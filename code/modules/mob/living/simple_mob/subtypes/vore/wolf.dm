@@ -32,23 +32,25 @@
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive
 	catalogue_data = list(/datum/category_item/catalogue/fauna/wolf)
-	
+
 	can_be_drop_prey = FALSE //CHOMP Add
 
 // Activate Noms!
 /mob/living/simple_mob/animal/wolf
 	vore_active = 1
 	vore_icons = SA_ICON_LIVING
-	
+
 /mob/living/simple_mob/animal/wolf/init_vore() // CHOMPEdit - Allow for customizing bellies on vorecritters
 	if(!voremob_loaded)
 		return
 	. = ..()
-	
+
 	var/obj/belly/B = vore_selected
 	B.vore_sound = "Tauric Swallow"				// CHOMPedit - Fancy Vore Sounds
 	B.release_sound = "Pred Escape"				// CHOMPedit - Fancy Vore Sounds
 	B.fancy_vore = 1							// CHOMPedit - Fancy Vore Sounds
+	B.contamination_color = "yellow"
+	B.contamination_flavor = "Arcid"
 	B.belly_fullscreen_color = "#c47cb4" 		// CHOMPedit - Belly Fullscreen
 	B.belly_fullscreen = "anim_belly" 			// CHOMPedit - Belly Fullscreen
 

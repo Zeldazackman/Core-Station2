@@ -7,8 +7,8 @@
 	icon = 'icons/mob/vore.dmi'
 
 	harm_intent_damage = 5
-	melee_damage_lower = 2
-	melee_damage_upper = 5
+	melee_damage_lower = 0
+	melee_damage_upper = 0
 
 	response_help = "pets"
 	response_disarm = "gently baps"
@@ -34,7 +34,7 @@
 		"catgirlblack",
 		"catgirlbrown"
 	)
-	
+
 	can_be_drop_prey = FALSE //CHOMP Add
 
 /mob/living/simple_mob/vore/catgirl/New()
@@ -48,13 +48,25 @@
 // Activate Noms!
 /mob/living/simple_mob/vore/catgirl
 	vore_active = 1
-	vore_bump_chance = 5
+	vore_bump_chance = 25
 	vore_pounce_chance = 50
 	vore_standing_too = 1
 	vore_ignores_undigestable = 0 // Catgirls just want to eat yoouuu
 	vore_default_mode = DM_HOLD // Chance that catgirls just wanna bellycuddle yoouuuu!
-	vore_digest_chance = 25 // But squirming might make them gurgle...
+	vore_digest_chance = 15 // But squirming might make them gurgle...
 	vore_icons = SA_ICON_LIVING | SA_ICON_REST
+
+/mob/living/simple_mob/vore/catgirl/init_vore()
+	if(!voremob_loaded)
+		return
+	.=..()
+	var/obj/belly/B = vore_selected
+	B.vore_sound = "Tauric Swallow"
+	B.release_sound = "Pred Escape"
+	B.fancy_vore = 1
+	B.vore_verb = "greedily devour"
+	B.contamination_color = "yellow"
+	B.contamination_flavor = "Arcid"
 
 /datum/say_list/catgirl
 	speak = list("Meow!","Esp!","Purr!","HSSSSS","Mew?","Nya~")
@@ -62,4 +74,4 @@
 	emote_see = list("shakes her head","shivers","stretches","grooms herself")
 
 /datum/ai_holder/simple_mob/passive/catgirl
-	base_wander_delay = 8
+	base_wander_delay = 6

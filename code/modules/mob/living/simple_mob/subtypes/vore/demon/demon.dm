@@ -46,7 +46,7 @@
 	var/shift_state = AB_SHIFT_NONE
 	var/last_shift = 0
 	var/is_shifting = FALSE
-	
+
 	can_be_drop_prey = FALSE //CHOMP Add
 
 /mob/living/simple_mob/vore/demon/init_vore()

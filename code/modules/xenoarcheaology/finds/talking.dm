@@ -5,7 +5,7 @@
 	var/last_talk_time = 0
 	var/atom/holder_atom
 	var/talk_interval = 50
-	var/talk_chance = 10
+	var/talk_chance = 2
 
 /datum/talking_atom/New(atom/holder)
 	holder_atom = holder

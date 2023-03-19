@@ -119,13 +119,13 @@
 	icon_state = "alienpistol"
 	item_state = "alienpistol"
 	fire_delay = 9 //CHOMPedit changed cooldown from 10 to 9.
-	charge_cost = 380 // CHOMPedit changed from 480 to 380. Aka five shots to six shots.
+	charge_cost = 240 // Ten shots.
 
 	projectile_type = /obj/item/projectile/beam/precursor //CHOMPedit changed beam type
 	cell_type = /obj/item/weapon/cell/device/weapon/recharge/alien // Self charges.
 	origin_tech = list(TECH_COMBAT = 8, TECH_MAGNET = 7)
 	modifystate = "alienpistol"
-	battery_lock = 1 //CHOMPedit adds battery lock.
+	battery_lock = 0 //CHOMPedit adds battery lock.
 	move_delay = 0 // CHOMPEdit: Pistols have move_delay of 0
 
 
@@ -263,8 +263,8 @@
 	projectile_type = /obj/item/projectile/beam/heavylaser/cannon
 	battery_lock = 1
 	fire_delay = 20
-	w_class = ITEMSIZE_HUGE //CHOMP Edit. Lol a cannon used to be just large size? Are you kidding me? A CANNON.
-	one_handed_penalty = 90 // The thing's heavy and huge.
+	w_class = ITEMSIZE_LARGE //CHOMP Edit. Lol a cannon used to be just large size? Are you kidding me? A CANNON.
+	one_handed_penalty = 40 // The thing's heavy and huge.
 	accuracy = 45
 	charge_cost = 400 //CHOMP Edit. Let's give this thing some more shots, seeing as it needs to be recharged at a charger.
 
@@ -308,11 +308,11 @@
 	action_button_name = "Use Scope"
 	//Begin CHOMPstation Edit for making this thing not trash
 	//battery_lock = 0
-	charge_cost = 360 
-	fire_delay = 40
+	charge_cost = 200
+	fire_delay = 10
 	force = 10
-	w_class = ITEMSIZE_HUGE // So it can't fit in a backpack.
-	accuracy = -30 //shooting at the hip
+	w_class = ITEMSIZE_LARGE // So it can't fit in a backpack.
+	accuracy = -5 //shooting at the hip
 	scoped_accuracy = 100
 	one_handed_penalty = 60 // The weapon itself is heavy, and the long barrel makes it hard to hold steady with just one hand.
 	//End CHOMP Edit.
@@ -338,12 +338,12 @@
 	projectile_type = /obj/item/projectile/beam/sniper
 	slot_flags = SLOT_BACK
 	action_button_name = "Aim Down Sights"
-	charge_cost = 1300
-	fire_delay = 20
+	charge_cost = 400
+	fire_delay = 5
 	force = 8
-	w_class = ITEMSIZE_HUGE //CHOMP Edit.
-	accuracy = 10
-	scoped_accuracy = 15
+	w_class = ITEMSIZE_LARGE //CHOMP Edit.
+	accuracy = 50
+	scoped_accuracy = 100
 	charge_meter = FALSE
 	var/scope_multiplier = 1.5
 
@@ -363,10 +363,10 @@
 	description_fluff = "A modern design produced by a small company operating out of Saint Columbia, based on the antique mono-rifle 'Rainy Day Special' design."
 	icon_state = "cmono"
 	item_state = "cshotgun"
-	charge_cost = 1000
+	charge_cost = 200
 	force = 12
-	accuracy = 0
-	scoped_accuracy = 20
+	accuracy = 75
+	scoped_accuracy = 100
 
 // Laser scattergun, proof of concept.
 
@@ -379,5 +379,5 @@
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 1, TECH_MATERIAL = 4)
 
 	projectile_type = /obj/item/projectile/scatter/laser
-	w_class = ITEMSIZE_HUGE //CHOMP Edit.
+	w_class = ITEMSIZE_LARGE //CHOMP Edit.
 	slot_flags = SLOT_BELT|SLOT_BACK //CHOMP Edit because you can still holster it despite it not fitting in a backpack.

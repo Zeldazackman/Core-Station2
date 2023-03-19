@@ -17,7 +17,8 @@
 	name = "Medibot"
 	desc = "A little medical robot. He looks somewhat underwhelmed."
 	icon_state = "medibot0"
-	req_one_access = list(access_robotics, access_medical)
+	alpha = 100 //Let's not let the space carp endlessly attack them shall we?
+	req_one_access = list(access_talon) //Since people cannot be trusted not to turn them off for no viable reason...
 	botcard_access = list(access_medical, access_morgue, access_surgery, access_chemistry, access_virology, access_genetics)
 	max_frustration = 7	//CHOMPEdit
 
@@ -25,12 +26,12 @@
 
 	//AI vars
 	var/last_newpatient_speak = 0
-	var/vocal = 1
+	var/vocal = 0
 
 	//Healing vars
 	var/obj/item/weapon/reagent_containers/glass/reagent_glass = null //Can be set to draw from this for reagents.
 	var/injection_amount = 15 //How much reagent do we inject at a time?
-	var/heal_threshold = 10 //Start healing when they have this much damage in a category
+	var/heal_threshold = 0.1 //Start healing when they have this much damage in a category
 	var/use_beaker = 0 //Use reagents in beaker instead of default treatment agents.
 	var/treatment_brute = "tricordrazine"
 	var/treatment_oxy = "tricordrazine"
@@ -38,7 +39,7 @@
 	var/treatment_tox = "tricordrazine"
 	var/treatment_virus = "spaceacillin"
 	var/treatment_emag = "toxin"
-	var/declare_treatment = 0 //When attempting to treat a patient, should it notify everyone wearing medhuds?
+	var/declare_treatment = 1 //When attempting to treat a patient, should it notify everyone wearing medhuds?
 
 	// Are we tipped over?
 	var/is_tipped = FALSE
@@ -113,7 +114,7 @@
 	for(var/mob/living/carbon/human/H in view(7, src)) // Time to find a patient!
 		if(confirmTarget(H))
 			target = H
-			if(last_newpatient_speak + 30 SECONDS < world.time)
+			if(last_newpatient_speak + 10 SECONDS < world.time)
 				if(vocal)
 					var/message_options = list(
 						"Hey, [H.name]! Hold on, I'm coming." = 'sound/voice/medbot/mcoming.ogg',
@@ -150,7 +151,7 @@
 		global_announcer.autosay("[src] is treating <b>[H]</b> in <b>[location]</b>", "[src]", "Medical")
 	busy = 1
 	update_icons()
-	if(do_mob(src, H, 30))
+	if(do_mob(src, H, 10))
 		if(t == 1)
 			reagent_glass.reagents.trans_to_mob(H, injection_amount, CHEM_BLOOD)
 		else

@@ -34,8 +34,8 @@
 	maxHealth = 150
 	health = 150
 
-	melee_damage_lower = 8
-	melee_damage_upper = 16
+	melee_damage_lower = 1
+	melee_damage_upper = 2
 	grab_resist = 100
 	see_in_dark = 8
 
@@ -69,7 +69,7 @@
 
 	say_list_type = /datum/say_list/rat
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/rat
-	
+
 	can_be_drop_prey = FALSE //CHOMP Add
 
 /mob/living/simple_mob/vore/aggressive/rat/init_vore()
@@ -82,8 +82,12 @@
 	B.vore_sound = "Tauric Swallow"				// CHOMPedit - Fancy Vore Sounds
 	B.release_sound = "Pred Escape"				// CHOMPedit - Fancy Vore Sounds
 	B.fancy_vore = 1							// CHOMPedit - Fancy Vore Sounds
+	B.vore_verb = "quickly devour"
+	B.contamination_color = "beige"
+	B.contamination_flavor = "Smelly"
 	B.belly_fullscreen_color = "#c47cb4" 		// CHOMPedit - Belly Fullscreen
 	B.belly_fullscreen = "anim_belly" 			// CHOMPedit - Belly Fullscreen
+	B.disable_hud = TRUE
 
 	B.emote_lists[DM_HOLD] = list(
 		"As time passes, the massive rat’s stomach slowly churns and squeezes down around you, packing you into an easier to carry bundle amidst that oddly soothing massage.",

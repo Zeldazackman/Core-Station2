@@ -290,7 +290,7 @@
 			"Gamma Librae",
 			"Gliese 667 C",
 			"LHS 1140",
-			"Phact",			
+			"Phact",
 			/* fictional systems from Polaris and other sources*/
 			"Zhu Que",
 			"Oasis",
@@ -949,8 +949,8 @@
 	destination_names = list()
 
 /datum/lore/organization/tsc/ftu
-	name = "Free Trade Union"
-	short_name = "Trade Union "
+	name = "RAID SHADOW LEGENDS"
+	short_name = "RAID SHADOW LEGENDS "
 	acronym = "FTU"
 	desc = "The Free Trade Union is different from other tran-stellars in that they are not just a company, but they are a big conglomerate of various traders and merchants from all over the galaxy. They control a sizable fleet of vessels of various sizes which are given autonomy from the central command to engage in trading. They also host a fleet of combat vessels which respond directly to the central command for defending traders when necessary. They are in control of many large scale 'freeport' trade stations across the known galaxy, even in non-human space. Generally, they are multi-purpose stations but they always keep areas filled with duty-free shops, where almost anything you can imagine can be found - so long as it's not outrageously illegal or hideously expensive.<br><br>They are the creators of the Tradeband language, created specially for being a lingua franca where every merchant can understand each other independent of language or nationality.<br><br>The Union doesn't maintain a particularly large fleet of its own, preferring to rely on contracted independent traders that are allowed to use their own designations and identifiers, but the ships it does operate fly under the names of historic merchants."
 	history = "The Free Trade Union was created in 2410 by Issac Adler, a merchant, economist, and owner of a small fleet of ships. At this time the \"Free Merchants\" were in decay because of the high taxes and tariffs that were generally applied on the products that they tried to import or export. Another issue was that big trans-stellar corporations were constantly blocking their products to prospective buyers in order to form their monopolies. Issac decided to organize the \"Free Merchants\" into a legitimate organization to lobby and protest against the unfair practices of the major corporations and the governments that were in their pocket. At the same time, they wanted to organize and sell their things at better prices. The organization started relatively small but by 2450 it became one of the biggest conglomerates with a significant amount of the merchants of the galaxy being a part of the FTU. At the same time, the Free Trade Union started to popularize tradeband in the galaxy as the language of business. Around 2500, the majority of independent merchants were part of the FTU with significant influence on the galactic scale. They have started to invest in colonization efforts in order to take early claim of the frontier systems as the best choice for frontier traders."
@@ -1297,7 +1297,7 @@
 	work = "news media"
 	headquarters = ""
 	motto = "News from all across the spectrum"
-	
+
 	ship_prefixes = list("OBV" = "an investigation", "OBV" = "a distribution", "OBV" = "a journalism", "OBV" = "a general operations")
 	destination_names = list(
 			"Oculus HQ"
@@ -1312,7 +1312,7 @@
 	work = "catering, food, drinks"
 	headquarters = "Alpha Centauri"
 	motto = "The largest brands of food and drink - most of them are Centauri."
-	
+
 	ship_prefixes = list("CPTV" = "a transport", "CPCV" = "a catering", "CPRV" = "a resupply", "CPV" = "a general operations")
 	destination_names = list(
 			"Centauri Provisions HQ",
@@ -1329,7 +1329,7 @@
 	work = "catering, food, drinks"
 	headquarters = ""
 	motto = "Engine designs, emergency generators, and old memories"
-	
+
 	ship_prefixes = list("EETV" = "a transport", "EERV" = "a research", "EEV" = "a general operations")
 	destination_names = list(
 			"Einstein HQ"
@@ -1344,7 +1344,7 @@
 	work = "starship construction"
 	headquarters = ""
 	motto = "We build it - you fly it"
-	
+
 	ship_prefixes = list("WATV" = "a transport", "WARV" = "a repair", "WAV" = "a general operations")
 	destination_names = list(
 			"Wulf Aeronautics HQ",
@@ -1361,7 +1361,7 @@
 	work = "luxury goods"
 	headquarters = ""
 	motto = ""
-	
+
 	ship_prefixes = list("GETV" = "a transport", "GECV" = "a luxury catering", "GEV" = "a general operations")
 	//precious stones
 	ship_names = list(
@@ -1437,7 +1437,7 @@
 	work = "salvage and shipbreaking"
 	headquarters = "N/A"
 	motto = "one man's trash is another man's treasure"
-	
+
 	ship_prefixes = list("CSV" = "a salvage", "CRV" = "a recovery", "CTV" = "a transport", "CSV" = "a shipbreaking", "CHV" = "a towing")
 	//mostly-original, maybe some references, and more than a few puns
 	ship_names = list(
@@ -1972,7 +1972,7 @@
 	destination_names = list(
 			)
 	*/
-	
+
 /datum/lore/organization/other/uekatish
 	name = "Ue-Katish Pirates"
 	short_name = ""
@@ -1986,7 +1986,7 @@
 	lawful = FALSE
 	hostile = TRUE
 	autogenerate_destination_names = TRUE
-	
+
 	ship_prefixes = list("Ue-Katish pirate" = "a raiding", "Ue-Katish bandit" = "a raiding", "Ue-Katish raider" = "a raiding", "Ue-Katish enforcer" = "an enforcement")
 	ship_names = list(
 			"Keqxuer'xeu's Prize",
@@ -2173,7 +2173,7 @@
 			"a classified location"
 			)
 			// autogen will add a lot of other places as well.
-			
+
 /datum/lore/organization/gov/almachi
 	name = "Almach Association"
 	short_name = "Almachi "
@@ -2233,7 +2233,7 @@
 			"Alar-Selna, Arrakthiir",
 			"a minor colony in Arrakthiir",
 			"a Coalition outpost in Arrakthiir",
-			"a tajaran colony in Mesomori",			
+			"a tajaran colony in Mesomori",
 			"a Coalition outpost in Mesomori",
 			"a mining base in Mesomori"
 			)
@@ -2712,7 +2712,7 @@
 	//probably a more elegant (read: fancier) way to do the second part but fuck it, this works just fine
 
 /datum/lore/organization/gov/altevian_hegemony
-	name = "The Altevian Hegemony" 
+	name = "The Altevian Hegemony"
 	short_name = "Altevian Hegemony "
 	acronym = "AH"
 	desc = "The Altevians are a space-faring race of rodents that resemble Earth-like rats. They do not have a place they call home in terms of a planet, and instead have massive multiple-kilometer-long colony-ships that are constantly on the move and typically keep operations outside of known populated systems to not eat the resources from others. Their primary focus is trade and slavage operations and can be expected to be seen around both densely populated and empty systems for their work."

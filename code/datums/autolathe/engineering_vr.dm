@@ -73,3 +73,11 @@
 /datum/category_item/autolathe/engineering/arf_generator
 	name = "atmospheric field generator electronics"
 	path =/obj/item/weapon/circuitboard/arf_generator
+
+/datum/category_item/autolathe/engineering/rcd_ammo_large
+	name = "high-capacity matter cartridge"
+	path =/obj/item/weapon/rcd_ammo/large
+
+/datum/category_item/autolathe/engineering/rcd_electric
+	name = "electric rapid construction device"
+	path =/obj/item/weapon/rcd/electric

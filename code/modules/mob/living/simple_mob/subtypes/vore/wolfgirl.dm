@@ -17,13 +17,13 @@
 	response_harm = "hits"
 
 	harm_intent_damage = 8
-	melee_damage_lower = 7
-	melee_damage_upper = 7
+	melee_damage_lower = 0
+	melee_damage_upper = 0
 	attacktext = list("slashed")
 
 	say_list_type = /datum/say_list/wolfgirl
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate/cooperative/wolfgirl
-	
+
 	can_be_drop_prey = FALSE //CHOMP Add
 
 // Activate Noms!
@@ -31,6 +31,20 @@
 	vore_active = 1
 	vore_pounce_chance = 40
 	vore_icons = SA_ICON_LIVING
+
+/mob/living/simple_mob/vore/wolfgirl/init_vore()
+	if(!voremob_loaded)
+		return
+	.=..()
+	var/obj/belly/B = vore_selected
+	B.vore_sound = "Tauric Swallow"
+	B.release_sound = "Pred Escape"
+	B.fancy_vore = 1
+	B.vore_verb = "slurp"
+	B.contamination_color = "yellow"
+	B.contamination_flavor = "Arcid"
+	B.belly_fullscreen_color = "#c47cb4"
+	B.belly_fullscreen = "anim_belly"
 
 /datum/ai_holder/simple_mob/retaliate/cooperative/wolfgirl/on_hear_say(mob/living/speaker, message)
 
@@ -66,6 +80,9 @@
 
 	if(findtext(message, "Fuyu"))
 		delayed_say(pick("You know my sister?!", "Is she causing problems again?"), speaker)
+
+	if(findtext(message, "Ree"))
+		delayed_say(pick("Fucking normies get off my board REEE!!"), speaker)
 
 
 /datum/say_list/wolfgirl

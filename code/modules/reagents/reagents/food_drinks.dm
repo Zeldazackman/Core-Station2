@@ -93,7 +93,7 @@
 			messaged = 1
 
 		//Raw coatings will sometimes cause vomiting. 75% chance of this happening.
-		if(prob(75))
+		if(prob(5))
 			M.vomit()
 	..()
 
@@ -970,7 +970,7 @@
 	if(alien == IS_SLIME && water_based)
 		M.adjustToxLoss(removed * 2)
 	*/ //VOREStation Removal End
-	
+
 /datum/reagent/drink/overdose(var/mob/living/carbon/M, var/alien) //Add special interactions here in the future if desired.
 	..()
 
@@ -3234,7 +3234,7 @@
 	glass_desc = "Damn, the bartender even stirred it, not shook it."
 
 	allergen_type = ALLERGEN_FRUIT //Made from gin(fruit) and vermouth(fruit)
-  
+
 /datum/reagent/ethanol/cuba_libre
 	name = "Cuba Libre"
 	id = "cubalibre"

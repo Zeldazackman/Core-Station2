@@ -4,7 +4,7 @@
 
 //ChompEdit begins
 
-/obj/item/weapon/rig/breacher  
+/obj/item/weapon/rig/breacher
 	name = "\improper NT breacher chassis control module"
 	desc = "A cheap NT knock-off of an Unathi battle-rig. Uses softer, but lighter, armour plating, producing a still-useful suit"
 	suit_type = "\improper NT breacher"
@@ -15,7 +15,7 @@
 	offline_slowdown = 5
 	vision_restriction = 0  //This is dumb as hell and should be 0 if we want the suit to be even vaguely useful.
 	offline_vision_restriction = 2 //This actually serves as a good weakness for them, making them vulnerable to Ion weapons.
-	siemens_coefficient = 0.75
+	siemens_coefficient = 0
 	allowed = list(
 		/obj/item/weapon/gun,
 		/obj/item/device/flashlight,
@@ -34,7 +34,7 @@
 	icon_state = "breacher_rig"
 	armor = list(melee = 90, bullet = 90, laser = 90, energy = 90, bomb = 90, bio = 100, rad = 80) //Takes TEN TIMES as much damage to stop someone in a breacher. In exchange, it's slow.
 	vision_restriction = 0
-	siemens_coefficient = 0.2
+	siemens_coefficient = 0
 	slowdown = 6
 	offline_slowdown = 10
 
@@ -62,7 +62,7 @@
 	armor = list(melee = 60, bullet = 50, laser = 40, energy = 15, bomb = 30, bio = 100, rad = 50)
 	flags = PHORONGUARD
 	item_flags = THICKMATERIAL
-	siemens_coefficient = 0.2
+	siemens_coefficient = 0
 	offline_slowdown = 2.5
 	allowed = list(
 		/obj/item/weapon/gun,
@@ -164,7 +164,7 @@
 	item_flags = THICKMATERIAL
 	siemens_coefficient = 0
 	offline_slowdown = 2.5
-	slowdown = 0 
+	slowdown = 0
 	emp_protection = 40 //change this to 30 if too high.
 
 	req_one_access = list()
@@ -186,7 +186,7 @@
 	/obj/item/rig_module/device/plasmacutter,
 	/obj/item/rig_module/device/rcd,
 	/obj/item/rig_module/vision/meson
-	)  
+	)
 
 //ChompEdit Ends
 
@@ -203,7 +203,7 @@
 	item_flags = THICKMATERIAL
 	siemens_coefficient = 0.5
 	offline_slowdown = 5
-	slowdown = 0 
+	slowdown = 0
 	emp_protection = 40 //change this to 30 if too high.
 
 	req_one_access = list()
@@ -216,5 +216,5 @@
 	air_type = /obj/item/weapon/tank/vox
 
 	max_heat_protection_temperature = FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
-	
+
 	//ChompEdit Ends

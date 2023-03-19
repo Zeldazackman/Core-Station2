@@ -60,7 +60,7 @@ var/global/list/moth_amount = 0 // Chompstation Addition, Rykka waz here. *pawst
 	var/shock_chance = 10 // Beware
 	var/powerdraw = 100000 // previous value 150000 // CHOMPStation Addition, Rykka waz here. *pawstamp*
 	var/tracked = FALSE
-	
+
 	can_be_drop_prey = FALSE //CHOMP Add
 
 /datum/say_list/solargrub
@@ -128,7 +128,7 @@ var/global/list/moth_amount = 0 // Chompstation Addition, Rykka waz here. *pawst
 	vore_bump_emote = "applies minimal effort to try and slurp up"
 	vore_active = 1
 	vore_capacity = 1
-	vore_pounce_chance = 0 //grubs only eat incapacitated targets
+	vore_pounce_chance = 10 //grubs only eat incapacitated targets
 	vore_default_mode = DM_DIGEST
 
 /mob/living/simple_mob/vore/solargrub/apply_melee_effects(var/atom/A)
@@ -181,6 +181,8 @@ var/global/list/moth_amount = 0 // Chompstation Addition, Rykka waz here. *pawst
 	B.vore_sound = "Tauric Swallow"				// CHOMPedit - Fancy Vore Sounds
 	B.release_sound = "Pred Escape"				// CHOMPedit - Fancy Vore Sounds
 	B.fancy_vore = 1							// CHOMPedit - Fancy Vore Sounds
+	B.contamination_color = "yellow"
+	B.contamination_flavor = "Arcid"
 	B.belly_fullscreen_color = "#baca24" 		// CHOMPedit - Belly Fullscreen
 	B.belly_fullscreen = "anim_belly" 			// CHOMPedit - Belly Fullscreen
 

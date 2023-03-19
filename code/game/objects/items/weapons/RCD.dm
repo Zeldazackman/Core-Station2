@@ -31,7 +31,7 @@
 	var/make_rwalls = FALSE // If true, when building walls, they will be reinforced.
 /* VOREStation Removal - Unused
 /obj/item/weapon/rcd/Initialize()
-	
+
 	src.spark_system = new /datum/effect/effect/system/spark_spread
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
@@ -307,12 +307,12 @@
 	item_state = "rcdammo"
 	w_class = ITEMSIZE_SMALL
 	origin_tech = list(TECH_MATERIAL = 2)
-	matter = list(DEFAULT_WALL_MATERIAL = 30000,MAT_GLASS = 15000)
+	matter = list(DEFAULT_WALL_MATERIAL = 3000,MAT_GLASS = 1500)
 	var/remaining = RCD_MAX_CAPACITY / 3
 
 /obj/item/weapon/rcd_ammo/large
 	name = "high-capacity matter cartridge"
 	desc = "Do not ingest."
-	matter = list(DEFAULT_WALL_MATERIAL = 45000,MAT_GLASS = 22500)
+	matter = list(DEFAULT_WALL_MATERIAL = 4000,MAT_GLASS = 2250)
 	origin_tech = list(TECH_MATERIAL = 4)
 	remaining = RCD_MAX_CAPACITY

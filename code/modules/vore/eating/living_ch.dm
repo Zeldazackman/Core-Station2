@@ -1,8 +1,8 @@
 ///////////////////// Mob Living /////////////////////
 /mob/living
 	var/list/vore_organs_reagents = list()	//Reagent datums in vore bellies in a mob
-	var/receive_reagents = FALSE			//Pref for people to avoid others transfering reagents into them.
-	var/give_reagents = FALSE				//Pref for people to avoid others taking reagents from them.
+	var/receive_reagents = TRUE			//Pref for people to avoid others transfering reagents into them.
+	var/give_reagents = TRUE				//Pref for people to avoid others taking reagents from them.
 	var/vore_footstep_volume = 0			//Variable volume for a mob, updated every 5 steps where a footstep hasnt occurred.
 	var/vore_footstep_chance = 0
 	var/vore_footstep_volume_cooldown = 0	//goes up each time a step isnt heard, and will proc update of list of viable bellies to determine the most filled and loudest one to base audio on.

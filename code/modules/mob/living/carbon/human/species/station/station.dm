@@ -77,7 +77,7 @@
 	max_age = 260
 
 	economic_modifier = 10
-	
+
 	male_scream_sound = list ('sound/effects/mob_effects/una_scream1.ogg','sound/effects/mob_effects/una_scream2.ogg') //CHOMPedit added unathi scream
 	female_scream_sound = list ('sound/effects/mob_effects/una_scream1.ogg','sound/effects/mob_effects/una_scream2.ogg') //CHOMPedit
 
@@ -243,7 +243,7 @@
 	base_color = "#333333"
 
 	reagent_tag = IS_TAJARA
-	allergens = ALLERGEN_STIMULANT
+	allergens = ALLERGEN_COFFEE
 
 	move_trail = /obj/effect/decal/cleanable/blood/tracks/paw
 

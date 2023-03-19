@@ -10,6 +10,7 @@
 	icon = 'icons/obj/device_vr.dmi'
 	icon_state = "podzu" // podzu_o, headpod, zuman
 
+	var/hacked = 0 // Whether to show the hidden songs or not
 	var/loop_mode = JUKEMODE_PLAY_ONCE	// Behavior when finished playing a song
 	var/datum/track/current_track		// Current track playing
 	var/mob/living/listener				// Person whomst is listening to us
@@ -161,7 +162,7 @@
 
 // UI
 /obj/item/device/walkpod/proc/getTracksList()
-	return SSmedia_tracks.jukebox_tracks
+	return hacked ? SSmedia_tracks.all_tracks : SSmedia_tracks.jukebox_tracks
 
 /obj/item/device/walkpod/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -267,3 +268,8 @@
 	item_state = "headphones_on"
 	w_class = ITEMSIZE_SMALL
 	slot_flags = SLOT_HEAD
+
+/obj/item/device/walkpod/unlocked
+	name = "rooted PodZu music player"
+	desc = "A portable music player now with extra songs and an added bonus of a voided warranty!"
+	hacked = TRUE

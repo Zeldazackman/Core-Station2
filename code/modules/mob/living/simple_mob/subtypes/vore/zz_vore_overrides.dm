@@ -153,7 +153,7 @@
 	vore_active = 1
 	// NO VORE SPRITES
 	//specific_targets = 0 // Targeting UNLOCKED //VOREStation Removal - Incompatable
-	vore_max_size = RESIZE_TINY
+	vore_max_size = RESIZE_HUGE
 
 /* //VOREStation AI Temporary removal
 /mob/living/simple_mob/animal/passive/cat/PunchTarget()
@@ -198,7 +198,7 @@
 /mob/living/simple_mob/animal/passive/fox
 	vore_active = 1
 	// NO VORE SPRITES
-	vore_max_size = RESIZE_TINY
+	vore_max_size = RESIZE_HUGE
 
 /mob/living/simple_mob/animal/passive/fox/renault
 	vore_ignores_undigestable = 0

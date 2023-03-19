@@ -194,7 +194,7 @@
 /mob/living/simple_mob/vore/demonAI/attackby()
     playsound(src, 'sound/misc/demonlaugh.ogg', 50, 1)
     ..()
-    
+
 /mob/living/simple_mob/vore/demonAI/gibspam
 
 /mob/living/simple_mob/vore/demonAI/gibspam/apply_bonus_melee_damage(atom/A, damage_amount)

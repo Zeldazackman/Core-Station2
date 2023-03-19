@@ -43,13 +43,13 @@
 /datum/trait/negative/deep_sleeper
 	name = "Deep Sleeper"
 	desc = "When you fall asleep, it takes you four times as long to wake up."
-	cost = -1
+	cost = -2
 	var_changes = list("waking_speed" = 0.25)
 
 /datum/trait/negative/low_blood_sugar
 	name = "Low Blood Sugar"
 	desc = "If you let your nutrition get too low, you will start to experience adverse affects including hallucinations, unconsciousness, and weakness"
-	cost = -1
+	cost = -2
 	special_env = TRUE
 
 /datum/trait/negative/low_blood_sugar/handle_environment_special(var/mob/living/carbon/human/H)
@@ -74,7 +74,7 @@
 /datum/trait/negative/blindness
 	name = "Permanently blind"
 	desc = "You are blind. For whatever reason, nothing is able to change this fact, not even surgery. WARNING: YOU WILL NOT BE ABLE TO SEE ANY POSTS USING THE ME VERB, ONLY SUBTLE AND DIALOGUE ARE VIEWABLE TO YOU, YOU HAVE BEEN WARNED."
-	cost = -8
+	cost = -10
 	special_env = TRUE
 	custom_only = FALSE
 
@@ -147,7 +147,7 @@
 /datum/trait/negative/agoraphobia
 	name = "Agoraphobia"
 	desc = "You very much dislike being in crowded places. When in the company of more than two other people, you start to panic and experience adverse effects."
-	cost = -3
+	cost = -4
 	var/warning_cap = 400
 	var/hallucination_cap = 25
 	var/escalation_speed = 0.8
@@ -261,7 +261,7 @@
 /datum/trait/negative/lonely
 	name = "Minor loneliness vulnerability"
 	desc = "You're very prone to loneliness! Being alone for extended periods of time causes adverse effects. Most mobs will cure this loneliness as long as they aren't hostile."
-	cost = -1
+	cost = -2
 	var/warning_cap = 400
 	var/only_people = FALSE
 	var/hallucination_cap = 25
@@ -272,7 +272,7 @@
 /datum/trait/negative/lonely/major
 	name = "Major loneliness vulnerability"
 	desc = "You're extremely prone to loneliness! Being alone for extended periods of time causes adverse effects. Most mobs won't be enough to cure this loneliness, you need other social beings."
-	cost = -3
+	cost = -4
 	warning_cap = 300
 	hallucination_cap = 50
 	escalation_speed = 1.3

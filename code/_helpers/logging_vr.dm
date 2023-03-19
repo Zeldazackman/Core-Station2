@@ -1,8 +1,7 @@
 /proc/log_nsay(text, inside, mob/speaker)
 	if (config.log_say)
 		WRITE_LOG(diary, "NSAY (NIF:[inside]): [speaker.simple_info_line()]: [html_decode(text)]")
-	//CHOMPEdit Begin
-	if(speaker.client)
+	/*if(speaker.client)
 		if(!SSdbcore.IsConnected())
 			establish_db_connection()
 			if(!SSdbcore.IsConnected())
@@ -13,14 +12,13 @@
 			log_debug("Error during logging: "+query_insert.ErrorMsg())
 			qdel(query_insert)
 			return
-		qdel(query_insert)
-	//CHOMPEdit End
+		qdel(query_insert)*/
 
 /proc/log_nme(text, inside, mob/speaker)
 	if (config.log_emote)
 		WRITE_LOG(diary, "NME (NIF:[inside]): [speaker.simple_info_line()]: [html_decode(text)]")
-	//CHOMPEdit Begin
-	if(speaker.client)
+
+	/*if(speaker.client)
 		if(!SSdbcore.IsConnected())
 			establish_db_connection()
 			if(!SSdbcore.IsConnected())
@@ -31,14 +29,10 @@
 			log_debug("Error during logging: "+query_insert.ErrorMsg())
 			qdel(query_insert)
 			return
-		qdel(query_insert)
-	//CHOMPEdit End
+		qdel(query_insert)*/
 
 /proc/log_subtle(text, mob/speaker)
-	if (config.log_emote)
-		WRITE_LOG(diary, "SUBTLE: [speaker.simple_info_line()]: [html_decode(text)]")
-	//CHOMPEdit Begin
-	if(speaker.client)
+	/*if(speaker.client)
 		if(!SSdbcore.IsConnected())
 			establish_db_connection()
 			if(!SSdbcore.IsConnected())
@@ -49,5 +43,6 @@
 			log_debug("Error during logging: "+query_insert.ErrorMsg())
 			qdel(query_insert)
 			return
-		qdel(query_insert)
-	//CHOMPEdit End
+		qdel(query_insert)*/
+	if (config.log_emote)
+		WRITE_LOG(diary, "SUBTLE: [speaker.simple_info_line()]: [html_decode(text)]")

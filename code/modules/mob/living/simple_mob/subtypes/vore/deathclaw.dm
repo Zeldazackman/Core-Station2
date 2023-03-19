@@ -65,9 +65,9 @@
 	vore_capacity = 2
 	vore_max_size = RESIZE_HUGE
 	vore_min_size = RESIZE_SMALL
-	vore_pounce_chance = 0 // Beat them into crit before eating.
+	vore_pounce_chance = 15
 	vore_icons = SA_ICON_LIVING
-	
+
 	can_be_drop_prey = FALSE //CHOMP Add
 
 /mob/living/simple_mob/vore/aggressive/deathclaw/Login()

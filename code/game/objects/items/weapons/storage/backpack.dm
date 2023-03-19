@@ -57,13 +57,13 @@
 	name = "dufflebag of holding"
 	var/tilted = 0
 	icon_state = "holdingduffle"
-	
+
 /obj/item/weapon/storage/backpack/holding/duffle/Initialize()
 	. = ..()
 	if(prob(50))
 		icon_state = "[icon_state]_tilted"
 		tilted = 1
-	
+
 /obj/item/weapon/storage/backpack/holding/duffle/verb/tilt()
 	set name = "Adjust Duffelbag Angle"
 	set desc = "Adjust the angle of your dufflebag for cosmetic effect"
@@ -179,17 +179,17 @@
 	name = "dufflebag"
 	desc = "A large dufflebag for holding extra things."
 	icon_state = "duffle"
-	slowdown = 0.5
+	slowdown = -0.5
 	var/tilted = 0
 	var/can_tilt = 1
 	max_storage_space = INVENTORY_DUFFLEBAG_SPACE
-	
+
 /obj/item/weapon/storage/backpack/dufflebag/Initialize()
 	. = ..()
 	if(prob(50))
 		icon_state = "[icon_state]_tilted"
 		tilted = 1
-	
+
 /obj/item/weapon/storage/backpack/dufflebag/verb/tilt()
 	set name = "Adjust Duffelbag Angle"
 	set desc = "Adjust the angle of your dufflebag for cosmetic effect"

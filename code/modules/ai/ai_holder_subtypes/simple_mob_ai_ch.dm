@@ -11,3 +11,7 @@
 	if(holder.Adjacent(A))
 		holder.IMove(get_step(holder, pick(alldirs)))
 		holder.face_atom(A)
+
+/datum/ai_holder/simple_mob/melee/pack_mob/nyria
+	hostile = FALSE
+	retaliate = TRUE

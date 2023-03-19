@@ -16,7 +16,7 @@
 	pocketable = TRUE
 
 	var/insert_delay = 0 SECONDS
-	var/remove_delay = 2 SECONDS
+	var/remove_delay = 0 SECONDS //These things are barely even used as is and the previous nerf made the few people using pouches just say screw it and go back to using a bluespace trash-bag.
 
 /obj/item/weapon/storage/pouch/stall_insertion(obj/item/W, mob/user)
 	// No delay if you have the pouch in your hands
@@ -49,14 +49,12 @@
 	desc = "This storage pouch can be used to provide a good amount of additional storage for quick access."
 	icon_state = "large_generic"
 	max_storage_space = ITEMSIZE_COST_SMALL*6
-	remove_delay = 3 SECONDS //VOREStation Add: Slightly more cumbersome
 
 /obj/item/weapon/storage/pouch/small
 	name = "storage pouch (small)"
 	desc = "This storage pouch can be used to provide a small amount of additional storage for quick access."
 	icon_state = "small_generic"
 	max_storage_space = ITEMSIZE_COST_SMALL*2
-	remove_delay = 1 SECOND //VOREStation Add: Slightly less cumbersome
 
 /obj/item/weapon/storage/pouch/ammo
 	name = "storage pouch (ammo)"
@@ -216,6 +214,6 @@
 	name = "storage pouch of holding"
 	desc = "This storage pouch can be used to provide some additional storage for quick access. Seems to use extradimensional storage!"
 	icon_state = "holdingpouch"
-	max_storage_space = INVENTORY_POUCH_SPACE*2 //VOREStation Edit: Consistency with normal bags of holding
+	max_storage_space = INVENTORY_STANDARD_SPACE*2
 
 #undef INVENTORY_POUCH_SPACE

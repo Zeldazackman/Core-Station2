@@ -43,12 +43,12 @@
 	special_attack_min_range = 1
 	special_attack_max_range = 5
 	special_attack_cooldown = 100
-	
+
 	can_be_drop_prey = FALSE //CHOMP Add
 
 // Pepe is love, not hate.
 /mob/living/simple_mob/vore/aggressive/frog/New()
-	if(rand(1,1000000) == 1)
+	if(rand(1,100) == 1)
 		name = "rare Pepe"
 		desc = "You found a rare Pepe. Screenshot for good luck."
 	..()
@@ -71,8 +71,20 @@
 // Activate Noms!
 /mob/living/simple_mob/vore/aggressive/frog
 	vore_active = 1
-	vore_pounce_chance = 50
+	vore_pounce_chance = 40
 	vore_icons = SA_ICON_LIVING
+
+/mob/living/simple_mob/vore/aggressive/frog/init_vore()
+	if(!voremob_loaded)
+		return
+	.=..()
+	var/obj/belly/B = vore_selected
+	B.vore_sound = "Tauric Swallow"
+	B.release_sound = "Pred Escape"
+	B.fancy_vore = 1
+	B.contamination_color = "lime"
+	B.contamination_flavor = "Smelly"
+	B.belly_fullscreen = "a_tumby"
 
 /mob/living/simple_mob/vore/aggressive/frog/space
 	name = "space frog"

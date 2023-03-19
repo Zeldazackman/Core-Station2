@@ -1,9 +1,4 @@
-var/bluespace_item_types = newlist(/obj/item/weapon/storage/backpack/holding,
-/obj/item/weapon/storage/bag/trash/holding,
-/obj/item/weapon/storage/pouch/holding,
-/obj/item/weapon/storage/belt/utility/holding,
-/obj/item/weapon/storage/belt/medical/holding
-)
+var/bluespace_item_types = newlist(/obj/item/weapon/storage/backpack/holding) //Why are you like this, who hurt you?
 
 //wrapper
 /proc/do_teleport(ateleatom, adestination, aprecision=0, afteleport=1, aeffectin=null, aeffectout=null, asoundin=null, asoundout=null, local=TRUE, bohsafe=FALSE) //CHOMPStation Edit

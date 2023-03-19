@@ -87,12 +87,16 @@
 	w_class = ITEMSIZE_SMALL
 	var/pred_ckey
 	var/pred_name
+	var/prey_ckey
+	var/prey_name
 
 /obj/item/weapon/digestion_remains/Initialize(var/mapload, var/mob/living/pred, var/mob/living/prey) //CHOMPEdit
 	. = ..()
 	if(!mapload)
 		pred_ckey = pred?.ckey
 		pred_name = pred?.name
+		prey_ckey = prey?.ckey
+		prey_name = prey?.name
 		if(prey && isliving(prey) && prey.size_multiplier != 1) //CHOMPAdd
 			icon_scale_x = prey.size_multiplier
 			icon_scale_y = prey.size_multiplier

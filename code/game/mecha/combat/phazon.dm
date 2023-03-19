@@ -5,7 +5,7 @@
 	initial_icon = "phazon"
 	step_in = 1
 	dir_in = 1 //Facing North.
-	step_energy_drain = 3
+	step_energy_drain = 2
 	health = 250		//God this is low  //Chompedit, increased it a bit.
 	maxhealth = 250		//Don't forget to update the /old variant if  you change this number.  //Chompedit, increased health.
 	deflect_chance = 30
@@ -19,11 +19,11 @@
 	max_equip = 4
 
 //Chompedit start
-	max_hull_equip = 2  
-	max_weapon_equip = 2
-	max_utility_equip = 3
-	max_universal_equip = 2
-	max_special_equip = 2
+	max_hull_equip = 4
+	max_weapon_equip = 4
+	max_utility_equip = 4
+	max_universal_equip = 3
+	max_special_equip = 3
 //Chompedit end
 	encumbrance_gap = 2
 
@@ -89,9 +89,9 @@
 	initial_icon = "janus"
 	step_in = 1
 	dir_in = 1 //Facing North.
-	step_energy_drain = 3
-	health = 350
-	maxhealth = 350
+	step_energy_drain = 2
+	health = 450
+	maxhealth = 450
 	deflect_chance = 30
 	inherent_damage_absorption = list("brute"=0.6,"fire"=0.7,"bullet"=0.7,"laser"=0.9,"energy"=0.7,"bomb"=0.5)
 	max_temperature = 10000
@@ -101,11 +101,11 @@
 	force = 20
 	phasing_energy_drain = 300
 //Chompedit start
-	max_hull_equip = 2
-	max_weapon_equip = 3
-	max_utility_equip = 3
+	max_hull_equip = 4
+	max_weapon_equip = 4
+	max_utility_equip = 4
 	max_universal_equip = 4
-	max_special_equip = 2
+	max_special_equip = 4
 //Chompedit end
 	phasing_possible = TRUE
 	switch_dmg_type_possible = TRUE

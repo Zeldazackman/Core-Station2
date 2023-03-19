@@ -10,8 +10,8 @@
 	icon = 'icons/mob/vore.dmi'
 
 	faction = "redpanda" //stop naming stuff vaguely
-	maxHealth = 30
-	health = 30
+	maxHealth = 9030
+	health = 9030
 
 	meat_amount = 2
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat

@@ -180,8 +180,6 @@
 	persist_storable = FALSE
 /obj/item/device/radio
 	persist_storable = FALSE
-/obj/item/device/encryptionkey
-	persist_storable = FALSE
 /obj/item/weapon/storage			//There are lots of things that have stuff that we may not want people to just have. And this is mostly intended for a single thing.
 	persist_storable = FALSE		//And it would be annoying to go through and consider all of them, so default to disabled.
 /obj/item/weapon/storage/backpack	//But we can enable some where it makes sense. Backpacks and their variants basically never start with anything in them, as an example.
@@ -190,49 +188,13 @@
 	persist_storable = FALSE
 /obj/item/weapon/cmo_disk_holder
 	persist_storable = FALSE
-/obj/item/device/defib_kit/compact/combat
-	persist_storable = FALSE
-/obj/item/clothing/glasses/welding/superior
-	persist_storable = FALSE
-/obj/item/clothing/shoes/magboots/adv
-	persist_storable = FALSE
-/obj/item/weapon/rig
-	persist_storable = FALSE
-/obj/item/clothing/head/helmet/space/void
-	persist_storable = FALSE
-/obj/item/clothing/suit/space/void
-	persist_storable = FALSE
 /obj/item/weapon/grab
 	persist_storable = FALSE
 /obj/item/weapon/grenade
 	persist_storable = FALSE
-/obj/item/weapon/hand_tele
-	persist_storable = FALSE
-/obj/item/weapon/paper
-	persist_storable = FALSE
 /obj/item/weapon/backup_implanter
 	persist_storable = FALSE
-/obj/item/weapon/disk/nuclear
-	persist_storable = FALSE
-/obj/item/weapon/gun/energy/locked		//These are guns with security measures on them, so let's say the box won't let you put them in there.
-	persist_storable = FALSE			//(otherwise explo will just put their locker/vendor guns into it every round)
 /obj/item/device/retail_scanner
-	persist_storable = FALSE
-/obj/item/weapon/telecube
-	persist_storable = FALSE
-/obj/item/weapon/reagent_containers/glass/bottle/adminordrazine
-	persist_storable = FALSE
-/obj/item/weapon/gun/energy/sizegun/admin
-	persist_storable = FALSE
-/obj/item/stack
-	persist_storable = FALSE
-/obj/item/weapon/book
-	persist_storable = FALSE
-/obj/item/weapon/melee/cursedblade
-	persist_storable = FALSE
-/obj/item/weapon/circuitboard/mecha/imperion
-	persist_storable = FALSE
-/obj/item/device/paicard
 	persist_storable = FALSE
 /obj/item/organ
 	persist_storable = FALSE
@@ -253,6 +215,4 @@
 /obj/item/weapon/spacecash
 	persist_storable = FALSE
 /obj/item/weapon/spacecasinocash
-	persist_storable = FALSE
-/obj/item/device/personal_shield_generator
 	persist_storable = FALSE

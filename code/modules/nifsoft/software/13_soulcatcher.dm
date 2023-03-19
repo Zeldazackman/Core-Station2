@@ -13,9 +13,8 @@
 	name = "Soulcatcher"
 	desc = "A mind storage and processing system capable of capturing and supporting human-level minds in a small VR space."
 	list_pos = NIF_SOULCATCHER
-	cost = 100 //If I wanna trap people's minds and lood them, then by god I'll do so.
+	cost = 10 //If I wanna trap people's minds and lood them, then by god I'll do so.
 	wear = 0
-	p_drain = 0.01
 
 	var/setting_flags = (NIF_SC_ALLOW_EARS|NIF_SC_ALLOW_EYES|NIF_SC_BACKUPS|NIF_SC_PROJECTING)
 	var/list/brainmobs = list()

@@ -1,7 +1,7 @@
 /mob/living/simple_mob
 	//speech sounds
 	var/list/speech_sounds = list()
-	var/speech_chance = 75 //mobs can be a bit more emotive than carbon/humans
+	var/speech_chance = 25 //mobs can be a bit more emotive than carbon/humans
 	var/speech_sound_enabled = TRUE
 
 	//vars for vore_icons toggle control
