@@ -66,12 +66,14 @@
 	vore_default_item_mode = IM_DIGEST
 
 /mob/living/simple_mob/vore/squirrel/init_vore()
-	..()
+	if(!voremob_loaded)
+		return
+	.=..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
 	B.digest_mode = DM_SELECT
-	B.mode_flags = DM_FLAG_THICKBELLY
-	B.belly_fullscreen = "yet_another_tumby"
+	B.mode_flags = 12
+	B.belly_fullscreen = "VBO_fleshs"
 	B.digest_brute = 1
 	B.digest_burn = 1
 	B.escapechance = 35
