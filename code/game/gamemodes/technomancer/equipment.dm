@@ -132,6 +132,7 @@
 	desc = "Can hold more than you'd expect."
 	icon_state = "ems"
 	max_w_class = ITEMSIZE_HUGE // Can hold normal sized items.
+	w_class = ITEMSIZE_HUGE
 	storage_slots = 28
 	max_storage_space = ITEMSIZE_COST_NORMAL * 64
 

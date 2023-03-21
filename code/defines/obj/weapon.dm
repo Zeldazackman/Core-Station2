@@ -384,7 +384,7 @@
 	icon_state = "RPED"
 	item_icons = list(slot_l_hand_str = 'icons/vore/custom_items_left_hand_yw.dmi', slot_r_hand_str = 'icons/vore/custom_items_right_hand_yw.dmi') //YW add - RPED sprite
 	item_state = "RPED"
-	w_class = ITEMSIZE_HUGE
+	w_class = ITEMSIZE_NORMAL
 	can_hold = list(/obj/item/weapon/stock_parts)
 	storage_slots = 50
 	use_to_pickup = TRUE
