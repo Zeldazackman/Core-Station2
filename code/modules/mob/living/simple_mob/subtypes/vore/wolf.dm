@@ -34,6 +34,12 @@
 	catalogue_data = list(/datum/category_item/catalogue/fauna/wolf)
 
 	can_be_drop_prey = FALSE //CHOMP Add
+	// CHOMPAdd: :c
+	species_sounds = "Canine"
+	pain_emote_1p = list("yelp", "whine", "bark", "growl")
+	pain_emote_3p = list("yelps", "whines", "barks", "growls")
+	// CHOMPAdd End
+
 
 // Activate Noms!
 /mob/living/simple_mob/animal/wolf
