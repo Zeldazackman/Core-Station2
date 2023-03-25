@@ -24,7 +24,7 @@
 	excludes = list(/datum/trait/negative/hollow)
 
 /datum/trait/positive/densebones/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..(S,H)
+	..()
 	for(var/obj/item/organ/external/organ in H.organs)
 		if(istype(organ))
 			organ.min_broken_damage *= 1.5
@@ -93,9 +93,10 @@
 	desc = "You move over or under tables with ease of a Teshari."
 	cost = 1
 
-/datum/trait/positive/table_passer/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+/datum/trait/positive/table_passer/apply(var/datum/species/S,var/mob/living/carbon/human/H, var/list/trait_prefs)
 	..()
-	H.pass_flags = PASSTABLE
+	if (trait_prefs?["pass_table"] || !trait_prefs)
+		H.pass_flags |= PASSTABLE
 	H.verbs |= /mob/living/proc/toggle_pass_table
 
 /datum/trait/positive/grappling_expert
@@ -251,7 +252,7 @@
 	cost = 1
 
 /datum/trait/positive/insect_sting/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..(S,H)
+	..()
 	H.verbs |= /mob/living/proc/insect_sting
 
 // TANKINESS LETS GOOOOOOOOO
@@ -277,7 +278,7 @@
 	excludes = list(/datum/trait/positive/endurance_high, /datum/trait/positive/endurance_extremely_high)
 
 /datum/trait/positive/endurance_very_high/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..(S,H)
+	..()
 	H.setMaxHealth(S.total_health)
 
 
@@ -289,7 +290,7 @@
 	excludes = list(/datum/trait/positive/endurance_high, /datum/trait/positive/endurance_very_high)
 
 /datum/trait/positive/endurance_extremely_high/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..(S,H)
+	..()
 	H.setMaxHealth(S.total_health)
 
 // CHOMPNote: Reshuffling traits to match our current upstream, VORE.
@@ -346,7 +347,7 @@
 	excludes = list(/datum/trait/neutral/bloodsucker)
 
 /datum/trait/positive/bloodsucker_plus/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..(S,H)
+	..()
 	H.verbs |= /mob/living/carbon/human/proc/bloodsuck
 
 /datum/trait/positive/sonar
@@ -355,7 +356,7 @@
 	cost = 1
 
 /datum/trait/positive/sonar/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..(S,H)
+	..()
 	H.verbs |= /mob/living/carbon/human/proc/sonar_ping
 
 /datum/trait/positive/toxin_gut
@@ -364,5 +365,5 @@
 	cost = 1
 
 /datum/trait/positive/toxin_gut/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..(S,H)
+	..()
 	H.toxin_gut = TRUE
