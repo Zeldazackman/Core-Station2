@@ -2,7 +2,7 @@
 	desc = "This was a mistake"
 	name = "fart shoes"
 	icon_state = "clown"
-	slowdown = SHOES_SLOWDOWN+0.5
+	slowdown = -1
 	force = 0
 	var/footstep = 1	//used for squeeks whilst walking
 	species_restricted = null

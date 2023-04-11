@@ -10,6 +10,8 @@ var/list/_silicon_default_emotes = list(
 	/decl/emote/audible/synth/boop,
 	/decl/emote/audible/synth/robochirp,
 	/decl/emote/audible/synth/security,
+	/decl/emote/audible/fart,
+	/decl/emote/audible/ree,
 	/decl/emote/audible/synth/security/halt
 )
 

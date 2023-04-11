@@ -9,6 +9,7 @@
 	melee_miss_chance = 25
 
 	makes_dirt = FALSE
+	allowmobvore = FALSE
 
 	var/temperature_range = 40			// How close will they get to environmental temperature before their body stops changing its heat
 

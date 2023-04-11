@@ -72,7 +72,7 @@ GLOBAL_LIST_INIT(pitcher_plant_lure_messages, list(
 	vore_icons = 1
 	vore_capacity = 1
 	vore_pounce_chance = 0 //Plants only eat people who stumble into them.
-	swallowTime = 3 //3 deciseconds. This is intended to be nearly instant, e.g. victim trips and falls in.
+	swallowTime = 10 //3 deciseconds. This is intended to be nearly instant, e.g. victim trips and falls in.
 	vore_ignores_undigestable = 0
 	vore_default_mode = DM_DIGEST
 
@@ -82,11 +82,11 @@ GLOBAL_LIST_INIT(pitcher_plant_lure_messages, list(
 	.=..()
 	var/obj/belly/B = vore_selected
 	B.desc	= "You leaned a little too close to the pitcher plant, stumbling over the lip and splashing into a puddle of liquid filling the bottom of the cramped pitcher. You squirm madly, righting yourself and scrabbling at the walls in vain as the slick surface offers no purchase. The dim light grows dark as the pitcher's cap lowers, silently sealing the exit. With a sinking feeling you realize you won't be able to push the exit open even if you could somehow climb that high, leaving you helplessly trapped in the slick, tingling fluid. ((You can't escape this mob without help but you may use OOC Escape if you wish.))"
-	B.digest_burn = 0.5
-	B.digest_brute = 0
+	B.digest_burn = 2
+	B.digest_brute = 1
 	B.vore_verb = "trip"
 	B.name = "pitcher"
-	B.mode_flags = DM_FLAG_THICKBELLY
+	B.mode_flags = 140
 	B.wet_loop = 0 //As nice as the fancy internal sounds are this is a plant.
 	B.digestchance = 0
 	B.escapechance = 0
@@ -95,6 +95,11 @@ GLOBAL_LIST_INIT(pitcher_plant_lure_messages, list(
 	B.release_sound = "Pred Escape"
 	B.contamination_color = "purple"
 	B.contamination_flavor = "Wet"
+	B.belly_fullscreen = "VBO_belly7"
+	B.belly_fullscreen_color = "#72ff00"
+	B.belly_fullscreen_color2 = "#237b00"
+	B.belly_fullscreen_color3 = "#823232"
+	B.belly_fullscreen_color4 = "#FFFFFF"
 //Why is it we have all these customizeable belly options which nobody ever alters for mobs?
 
 	B.emote_lists[DM_HOLD] = list(

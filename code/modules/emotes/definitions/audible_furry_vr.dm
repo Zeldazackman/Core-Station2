@@ -164,6 +164,11 @@
     emote_message_3p = "farts!"
     emote_sound = 'sound/effects/fart1.ogg'
 
+/decl/emote/audible/ree
+    key = "ree"
+    emote_message_3p = "Reeeees!"
+    emote_sound = 'sound/effects/Ree.ogg'
+
 /decl/emote/audible/gyoh
     key = "gyoh"
     emote_message_3p = "gyohs."
