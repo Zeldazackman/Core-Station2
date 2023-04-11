@@ -423,6 +423,13 @@ emp_act
 
 	if(istype(AM,/obj/))
 		var/obj/O = AM
+		if(stat != DEAD && istype(O,/obj/item) && trash_catching && vore_selected) //CHOMPADD Start
+			var/obj/item/I = O
+			if(adminbus_trash || is_type_in_list(I,edible_trash) && I.trash_eatable && !is_type_in_list(I,item_vore_blacklist))
+				visible_message("<span class='warning'>[I] is thrown directly into [src]'s [lowertext(vore_selected.name)]!</span>")
+				I.throwing = 0
+				I.forceMove(vore_selected)
+				return //CHOMPADD End
 		if(in_throw_mode && speed <= THROWFORCE_SPEED_DIVISOR)	//empty active hand and we're in throw mode
 			if(canmove && !restrained())
 				if(isturf(O.loc))
@@ -434,6 +441,10 @@ emp_act
 
 		var/dtype = O.damtype
 		var/throw_damage = O.throwforce*(speed/THROWFORCE_SPEED_DIVISOR)
+
+		if(species && species.throwforce_absorb_threshold >= throw_damage)
+			visible_message("<b>\The [O]</b> simply bounces off of [src]'s body!")
+			return
 
 		var/zone
 		if (istype(O.thrower, /mob/living))

@@ -13,7 +13,7 @@
 	icon_gib = "syndicate_gib"
 
 	faction = "syndicate"
-	movement_cooldown = 4
+	movement_cooldown = 1
 
 	status_flags = 0
 
@@ -286,8 +286,7 @@
 
 	ai_holder_type = /datum/ai_holder/simple_mob/merc/ranged/sniper
 
-	//ranged_attack_delay = 2.5 SECONDS // CHOMPStation Removal: Ranged attack delay is stupid.
-	ranged_cooldown_time = 2 SECONDS // CHOMPStation Add: Use this for sniper cooldown instead.
+	ranged_attack_delay = 2.5 SECONDS // CHOMPStation Removal: Ranged attack delay is stupid.//CHOMPStation ReRemoval: Instant kill hitscan is stupid.
 
 	loot_list = list(/obj/item/sniper_rifle_part/barrel = 50,
 		/obj/item/sniper_rifle_part/stock = 50,
@@ -362,7 +361,7 @@
 	icon_state = "syndicatemeleespace"
 	icon_living = "syndicatemeleespace"
 
-	movement_cooldown = 0
+	movement_cooldown = -1
 
 	armor = list(melee = 60, bullet = 50, laser = 30, energy = 15, bomb = 35, bio = 100, rad = 100)	// Same armor as their voidsuit
 
@@ -387,7 +386,7 @@
 	icon_state = "syndicaterangedpsace"
 	icon_living = "syndicaterangedpsace"
 
-	movement_cooldown = 0
+	movement_cooldown = -1
 
 	min_oxy = 0
 	max_oxy = 0

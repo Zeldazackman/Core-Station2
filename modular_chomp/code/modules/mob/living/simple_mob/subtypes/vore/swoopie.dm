@@ -20,6 +20,7 @@
 	adminbus_trash = TRUE //You know what, sure whatever. It's not like anyone's gonna be taking this bird on unga trips to be their gamer backpack, which kinda was the main reason for the trash eater restrictions in the first place anyway.
 	faction = "neutral"
 	say_list_type = /datum/say_list/swoopie
+	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
 	var/static/list/crew_creatures = list(	/mob/living/simple_mob/protean_blob,
 											/mob/living/simple_mob/slime/promethean)
 
@@ -93,7 +94,6 @@
 	B.desc = "SNAP! You have been sucked up into the big synthbird's beak, the powerful vacuum within the bird roaring somewhere beyond the abyssal deep gullet hungrily gaping before you, eagerly sucking you deeper inside towards a long bulgy ride down the bird's vacuum hose of a neck!"
 	B.autotransferlocation = "vacuum hose"
 	B.autotransfer_max_amount = 0
-	B.autotransferwait = 60
 
 	vore_selected = B
 

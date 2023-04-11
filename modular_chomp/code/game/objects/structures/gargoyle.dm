@@ -22,7 +22,10 @@
 	var/image/tail_image
 	var/tail_alt = TAIL_UPPER_LAYER
 
-/obj/structure/gargoyle/Initialize(mapload, var/mob/living/carbon/human/H)
+	var/can_revert = TRUE
+	var/was_rayed = FALSE
+
+/obj/structure/gargoyle/Initialize(mapload, var/mob/living/carbon/human/H, var/ident_ovr, var/mat_ovr, var/adj_ovr, var/tint_ovr, var/revert = TRUE, var/discard_clothes)
 	. = ..()
 	if (isspace(loc) || isopenspace(loc))
 		anchored = FALSE
@@ -42,6 +45,18 @@
 		if (copytext_char(adjective, -1) != "s")
 			adjective += "s"
 	gargoyle = H
+
+	if (H.get_effective_size(TRUE) < 0.5) // "So small! I can step over it!"
+		density = FALSE
+
+	if (ident_ovr)
+		identifier = ident_ovr
+	if (mat_ovr)
+		material = mat_ovr
+	if (adj_ovr)
+		adjective = adj_ovr
+	if (tint_ovr)
+		tint = tint_ovr
 
 	if (H.tail_style?.clip_mask_state)
 		tail_lower_dirs.Cut()
@@ -75,6 +90,8 @@
 	var/list/other_layers = HUMAN_OTHER_LAYERS
 	for (var/i = 1; i <= length(H.overlays_standing); i++)
 		if (i in other_layers)
+			continue
+		if (discard_clothes && !(i in body_layers))
 			continue
 		if (istype(H.overlays_standing[i], /image) && (i in body_layers))
 			var/image/old_image = H.overlays_standing[i]
@@ -114,9 +131,27 @@
 	H.updatehealth()
 	H.canmove = 0
 
+	can_revert = revert
+
+	START_PROCESSING(SSprocessing, src)
+
 /obj/structure/gargoyle/Destroy()
-	unpetrify()
+	STOP_PROCESSING(SSprocessing, src)
+	if (!gargoyle)
+		return ..()
+	if (can_revert)
+		unpetrify(deleting = TRUE)
+	else
+		visible_message("<span class='warning'>The [identifier] loses shape and crumbles into a pile of [material]!</span>")
+		qdel(gargoyle)
 	. = ..()
+
+/obj/structure/gargoyle/process()
+	if (!gargoyle)
+		qdel(src)
+	if (gargoyle.loc != src)
+		can_revert = TRUE //something's gone wrong, they escaped, lets not qdel them
+		unpetrify(FALSE)
 
 /obj/structure/gargoyle/examine_icon()
 	var/icon/examine_icon = ..()
@@ -136,7 +171,7 @@
 		. += stored_examine
 	return
 
-/obj/structure/gargoyle/proc/unpetrify(var/deal_damage = TRUE)
+/obj/structure/gargoyle/proc/unpetrify(var/deal_damage = TRUE, var/deleting = FALSE)
 	if (!gargoyle)
 		return
 	var/datum/component/gargoyle/comp = gargoyle.GetComponent(/datum/component/gargoyle)
@@ -144,6 +179,9 @@
 		comp.cooldown = world.time + (15 SECONDS)
 		comp.statue = null
 		comp.transformed = FALSE
+	else
+		if (was_rayed)
+			gargoyle.verbs -= /mob/living/carbon/human/proc/gargoyle_transformation
 	if (gargoyle.loc == src)
 		gargoyle.forceMove(loc)
 		gargoyle.transform = transform
@@ -172,6 +210,9 @@
 	gargoyle.updatehealth()
 	alpha = 0
 	gargoyle.visible_message("<span class='warning'>[gargoyle]'s skin rapidly reverts, returning them to normal!</span>", "<span class='warning'>Your skin reverts, freeing your movement once more![hurtmessage]</span>")
+	gargoyle = null
+	if (!deleting)
+		qdel(src)
 
 /obj/structure/gargoyle/return_air()
 	return return_air_for_internal_lifeform()
@@ -184,6 +225,8 @@
 	return air
 
 /obj/structure/gargoyle/proc/damage(var/damage)
+	if (was_rayed)
+		return //gargoyle quick regenerates, the others don't, so let's not have them getting too damaged
 	obj_integrity = min(obj_integrity-damage, max_integrity)
 	if(obj_integrity <= 0)
 		qdel(src)
@@ -196,7 +239,7 @@
 	visible_message("<span class='danger'>[user] [attack_message] the [src]!</span>")
 	damage(damage)
 
-/obj/structure/gargoyle/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+/obj/structure/gargoyle/attackby(var/obj/item/weapon/W as obj, var/mob/living/user as mob)
 	if(W.is_wrench())
 		if (isspace(loc) || isopenspace(loc))
 			to_chat(user, "<span class='warning'>You can't anchor that here!</span>")
@@ -206,6 +249,15 @@
 		if (do_after(user, (2 SECONDS) * W.toolspeed, target = src))
 			to_chat("<span class='notice'>You [anchored ? "un" : ""]anchor the [src].</span>")
 			anchored = !anchored
+	else if(!isrobot(user) && gargoyle && gargoyle.vore_selected && gargoyle.trash_catching)
+		if(istype(W,/obj/item/weapon/grab || /obj/item/weapon/holder))
+			gargoyle.vore_attackby(W, user)
+			return
+		if(gargoyle.adminbus_trash || is_type_in_list(W,edible_trash) && W.trash_eatable && !is_type_in_list(W,item_vore_blacklist))
+			to_chat(user, "<span class='warning'>You slip [W] into [gargoyle]'s [lowertext(gargoyle.vore_selected.name)] .</span>")
+			user.drop_item()
+			W.forceMove(gargoyle.vore_selected)
+			return
 	else if (!(W.flags & NOBLUDGEON))
 		user.setClickCooldown(user.get_attack_speed(W))
 		if(W.damtype == BRUTE || W.damtype == BURN)
@@ -219,5 +271,24 @@
 	. = ..()
 	if(. && tail_image)
 		cut_overlay(tail_image)
-		tail_image.layer = (dir in tail_lower_dirs) ? TAIL_LOWER_LAYER : tail_alt
+		tail_image.layer = BODY_LAYER + ((dir in tail_lower_dirs) ? TAIL_LOWER_LAYER : tail_alt)
 		add_overlay(tail_image)
+
+/obj/structure/gargoyle/hitby(atom/movable/AM as mob|obj,var/speed = THROWFORCE_SPEED_DIVISOR)
+	if(istype(AM,/obj/item) && gargoyle && gargoyle.vore_selected && gargoyle.trash_catching)
+		var/obj/item/I = AM
+		if(gargoyle.adminbus_trash || is_type_in_list(I,edible_trash) && I.trash_eatable && !is_type_in_list(I,item_vore_blacklist))
+			gargoyle.hitby(AM, speed)
+			return
+	else if(istype(AM,/mob/living) && gargoyle)
+		var/mob/living/L = AM
+		if(gargoyle.throw_vore && L.throw_vore && gargoyle.can_be_drop_pred && L.can_be_drop_prey)
+			var/drop_prey_temp = FALSE
+			if(gargoyle.can_be_drop_prey)
+				drop_prey_temp = TRUE
+				gargoyle.can_be_drop_prey = FALSE //Making sure the original gargoyle body is not the one getting throwvored instead.
+			gargoyle.hitby(L, speed)
+			if(drop_prey_temp)
+				gargoyle.can_be_drop_prey = TRUE
+			return
+	return ..()
