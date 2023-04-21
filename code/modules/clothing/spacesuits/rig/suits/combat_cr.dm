@@ -67,7 +67,7 @@
 		/obj/item/rig_module/pat_module,
 		/obj/item/rig_module/power_sink,
 		/obj/item/rig_module/electrowarfare_suite,
-		/obj/item/rig_module/chem_dispenser/combat
+		/obj/item/rig_module/chem_dispenser/combat,
 		/obj/item/rig_module/chem_dispenser/injector/advanced,
 		/obj/item/rig_module/rescue_pharm,
 		/obj/item/rig_module/device/defib,
