@@ -14,3 +14,9 @@
 	vore_active = 0
 	vore_bump_chance = 0
 	vore_pounce_chance = 0
+
+//Haha, nothing quite like having someone fall into a spider that instantly gibs itself instantly afterwards
+/mob/living/simple_mob/animal/giant_spider
+	vore_active = 0
+	vore_bump_chance = 0
+	vore_pounce_chance = 0
