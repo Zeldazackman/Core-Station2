@@ -172,10 +172,12 @@
 	if(reagents.total_volume)
 		for(var/mob/living/L in contents)
 			if(L.digestable && digest_mode == DM_DIGEST)
-				reagents.trans_to(L, reagents.total_volume, 0.1 / (LAZYLEN(contents) ? LAZYLEN(contents) : 1), FALSE)
-			vore_fx(L, TRUE)
+				if(reagents.total_volume)
+					reagents.trans_to(L, reagents.total_volume, 0.1 / (LAZYLEN(contents) ? LAZYLEN(contents) : 1), FALSE)
+			vore_fx(L, FALSE, reagents.total_volume)
 		for(var/obj/item/I in contents)
-			reagents.trans_to(I, reagents.total_volume, 0.1 / (LAZYLEN(contents) ? LAZYLEN(contents) : 1), FALSE)
+			if(reagents.total_volume)
+				reagents.trans_to(I, reagents.total_volume, 0.1 / (LAZYLEN(contents) ? LAZYLEN(contents) : 1), FALSE)
 
 /obj/belly/proc/GenerateBellyReagents()
 	if(isrobot(owner))
@@ -470,3 +472,12 @@
 	for(var/A in contents)
 		if(isliving(A))
 			vore_fx(A,1)
+
+/obj/belly/deserialize(var/list/data)
+	..()
+	STOP_PROCESSING(SSbellies, src)
+	STOP_PROCESSING(SSobj, src)
+	if(speedy_mob_processing)
+		START_PROCESSING(SSobj, src)
+	else
+		START_PROCESSING(SSbellies, src)

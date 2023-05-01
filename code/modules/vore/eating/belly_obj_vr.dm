@@ -55,6 +55,7 @@
 	var/emote_active = TRUE					// Are we even giving emotes out at all or not?
 	var/next_emote = 0						// When we're supposed to print our next emote, as a world.time
 	var/selective_preference = DM_DIGEST	// Which type of selective bellymode do we default to?
+	var/is_feedable = TRUE					// If this belly shows up in belly selections for others. //CHOMPAdd
 
 	// Generally just used by AI
 	var/autotransferchance = 0 				// % Chance of prey being autotransferred to transfer location
@@ -288,7 +289,8 @@
 	"slow_brutal",
 	"sound_volume",
 	"speedy_mob_processing",
-	"egg_name", //CHOMP end of variables from CHOMP
+	"egg_name",
+	"is_feedable", //CHOMP end of variables from CHOMP
 	"egg_type",
 	"save_digest_mode"
 	)
@@ -324,6 +326,9 @@
 // Called whenever an atom enters this belly
 /obj/belly/Entered(atom/movable/thing, atom/OldLoc)
 	. = ..()  //CHOMPEdit Start
+	if(!owner)
+		thing.forceMove(get_turf(src))
+		return
 	if(owner && istype(owner.loc,/turf/simulated) && !cycle_sloshed && reagents.total_volume > 0)
 		var/turf/simulated/T = owner.loc
 		var/S = pick(T.vorefootstep_sounds["human"])
@@ -441,7 +446,7 @@
 			for(var/count in I.d_mult to 1 step 0.25)
 				I.add_overlay(I.d_stage_overlay, TRUE) //CHOMPEdit end
 
-/obj/belly/proc/vore_fx(mob/living/L, var/update)
+/obj/belly/proc/vore_fx(mob/living/L, var/update, var/severity = 0) //CHOMPEdit
 	if(!istype(L))
 		return
 	if(!L.client)
@@ -453,8 +458,9 @@
 		L.clear_fullscreen("belly")
 	if(belly_fullscreen)
 		if(colorization_enabled)
-			var/obj/screen/fullscreen/F = L.overlay_fullscreen("belly", /obj/screen/fullscreen/belly) //CHOMPEdit Start: preserving save data
+			var/obj/screen/fullscreen/F = L.overlay_fullscreen("belly", /obj/screen/fullscreen/belly, severity) //CHOMPEdit Start: preserving save data
 			F.icon = file("modular_chomp/icons/mob/vore_fullscreens/[belly_fullscreen].dmi")
+			F.cut_overlays()
 			var/image/I = image(F.icon, belly_fullscreen) //Would be cool if I could just include color and alpha in the image define so we don't have to copy paste
 			I.color = belly_fullscreen_color
 			I.alpha = belly_fullscreen_alpha
@@ -480,9 +486,11 @@
 				I.alpha = max(150, min(custom_max_volume, 255)) - (255 - belly_fullscreen_alpha)
 				I.pixel_y = -450 + (450 / custom_max_volume * reagents.total_volume)
 				F.add_overlay(I)
+			F.update_for_view(L.client.view)
 		else
-			var/obj/screen/fullscreen/F = L.overlay_fullscreen("belly", /obj/screen/fullscreen/belly/fixed) //preserving save data
+			var/obj/screen/fullscreen/F = L.overlay_fullscreen("belly", /obj/screen/fullscreen/belly/fixed, severity) //preserving save data
 			F.icon = file("modular_chomp/icons/mob/vore_fullscreens/[belly_fullscreen].dmi")
+			F.cut_overlays()
 			F.add_overlay(image(F.icon, belly_fullscreen))
 			F.add_overlay(image(F.icon, belly_fullscreen+"-2"))
 			F.add_overlay(image(F.icon, belly_fullscreen+"-3"))
@@ -496,7 +504,9 @@
 				I.color = reagentcolor
 				I.alpha = max(150, min(custom_max_volume, 255)) - (255 - belly_fullscreen_alpha)
 				I.pixel_y = -450 + (450 / custom_max_volume * reagents.total_volume)
-				F.add_overlay(I) //CHOMPEdit End
+				F.add_overlay(I)
+			F.update_for_view(L.client.view)
+			 //CHOMPEdit End
 	else
 		L.clear_fullscreen("belly")
 
@@ -510,11 +520,11 @@
 		return
 	if(!L.client)
 		return
-
 	if(belly_fullscreen)
 		if(colorization_enabled)
-			var/obj/screen/fullscreen/F = L.overlay_fullscreen("belly", /obj/screen/fullscreen/belly) //CHOMPedit Start: preserving save data
+			var/obj/screen/fullscreen/F = L.overlay_fullscreen("belly", /obj/screen/fullscreen/belly, reagents.total_volume) //CHOMPedit Start: preserving save data
 			F.icon = file("modular_chomp/icons/mob/vore_fullscreens/[belly_fullscreen].dmi")
+			F.cut_overlays()
 			var/image/I = image(F.icon, belly_fullscreen)
 			I.color = belly_fullscreen_color
 			I.alpha = belly_fullscreen_alpha
@@ -540,8 +550,10 @@
 				I.alpha = max(150, min(custom_max_volume, 255)) - (255 - belly_fullscreen_alpha)
 				I.pixel_y = -450 + (450 / custom_max_volume * reagents.total_volume)
 				F.add_overlay(I)
+			F.update_for_view(L.client.view)
 		else
-			var/obj/screen/fullscreen/F = L.overlay_fullscreen("belly", /obj/screen/fullscreen/belly/fixed) //preserving save data
+			var/obj/screen/fullscreen/F = L.overlay_fullscreen("belly", /obj/screen/fullscreen/belly/fixed, reagents.total_volume) //preserving save data
+			F.cut_overlays()
 			F.add_overlay(image(F.icon, belly_fullscreen))
 			F.add_overlay(image(F.icon, belly_fullscreen+"-2"))
 			F.add_overlay(image(F.icon, belly_fullscreen+"-3"))
@@ -555,7 +567,8 @@
 				I.color = reagentcolor
 				I.alpha = max(150, min(custom_max_volume, 255)) - (255 - belly_fullscreen_alpha)
 				I.pixel_y = -450 + (450 / custom_max_volume * reagents.total_volume)
-				F.add_overlay(I) //CHOMPEdit End
+				F.add_overlay(I)
+			F.update_for_view(L.client.view)//CHOMPEdit End
 	else
 		L.clear_fullscreen("belly")
 
@@ -1000,7 +1013,7 @@
 		else
 			qdel(M)
 	if(isanimal(owner))
-		owner.update_transform()
+		owner.update_icon()
 	//CHOMPEdit End
 
 // Handle a mob being absorbed
@@ -1502,7 +1515,8 @@
 	dupe.slow_digestion = slow_digestion
 	dupe.slow_brutal = slow_brutal
 	dupe.sound_volume = sound_volume
-	dupe.egg_name = egg_name //CHOMP end of variables from CHOMP
+	dupe.egg_name = egg_name
+	dupe.is_feedable = is_feedable //CHOMP end of variables from CHOMP
 
 	dupe.belly_fullscreen = belly_fullscreen
 	dupe.disable_hud = disable_hud
