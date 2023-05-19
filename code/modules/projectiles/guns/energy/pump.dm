@@ -70,7 +70,7 @@
 	unacidable = TRUE
 
 	var/recharging = 0
-	var/phase_power = 75
+	var/phase_power = 300
 
 	projectile_type = /obj/item/projectile/beam/blue
 
@@ -136,7 +136,7 @@
 	icon_state = "phcarbinekill"
 	item_state = "energykill"
 	item_icons = list(slot_l_hand_str = 'icons/mob/items/lefthand_guns.dmi', slot_r_hand_str = 'icons/mob/items/righthand_guns.dmi')
-	phase_power = 150
+	phase_power = 600
 
 	modifystate = "phcarbinekill"
 	firemodes = list(
@@ -182,7 +182,7 @@
 	accuracy = -15 //better than most snipers but still has penalty
 	scoped_accuracy = 40
 	one_handed_penalty = 50 // The weapon itself is heavy, and the long barrel makes it hard to hold steady with just one hand.
-	phase_power = 150 //efficient crank charger
+	phase_power = 600 //efficient crank charger
 	fire_sound = null
 	charge_cost = 600
 	fire_delay = 35
@@ -228,7 +228,7 @@
 	description_fluff = null
 	icon_state = "holdoutkill"
 	item_state = null
-	phase_power = 100
+	phase_power = 400
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	w_class = ITEMSIZE_SMALL
 	charge_cost = 600
@@ -256,7 +256,7 @@
 	description_fluff = null
 	icon_state = "handbowkill"
 	item_state = null
-	phase_power = 100
+	phase_power = 400
 	w_class = ITEMSIZE_SMALL
 	charge_cost = 600
 	modifystate = "handbowkill"
