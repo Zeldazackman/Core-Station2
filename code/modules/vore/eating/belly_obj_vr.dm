@@ -55,6 +55,7 @@
 	var/emote_active = TRUE					// Are we even giving emotes out at all or not?
 	var/next_emote = 0						// When we're supposed to print our next emote, as a world.time
 	var/selective_preference = DM_DIGEST	// Which type of selective bellymode do we default to?
+	var/eating_privacy_local = "default"	//Overrides eating_privacy_global if not "default". Determines if attempt/success messages are subtle/loud
 	var/is_feedable = TRUE					// If this belly shows up in belly selections for others. //CHOMPAdd
 
 	// Generally just used by AI
@@ -296,7 +297,8 @@
 	"egg_name",
 	"is_feedable", //CHOMP end of variables from CHOMP
 	"egg_type",
-	"save_digest_mode"
+	"save_digest_mode",
+	"eating_privacy_local"
 	)
 
 	if (save_digest_mode == 1)
@@ -605,9 +607,21 @@
 	if(!ishuman(owner))
 		owner.update_icons()
 
+	//Determines privacy
+	var/privacy_range = world.view
+	//var/privacy_volume = 100
+	switch(eating_privacy_local) //Third case of if("loud") not defined, as it'd just leave privacy_range and volume untouched
+		if("default")
+			if(owner.eating_privacy_global)
+				privacy_range = 1
+				//privacy_volume = 25
+		if("subtle")
+			privacy_range = 1
+			//privacy_volume = 25
+
 	//Print notifications/sound if necessary
 	if(!silent && count)
-		owner.visible_message("<font color='green'><b>[owner] [release_verb] everything from their [lowertext(name)]!</b></font>")
+		owner.visible_message("<font color='green'><b>[owner] [release_verb] everything from their [lowertext(name)]!</b></font>", range = privacy_range)
 		var/soundfile
 		if(!fancy_vore)
 			soundfile = classic_release_sounds[release_sound]
@@ -673,11 +687,23 @@
 	if(!ishuman(owner))
 		owner.update_icons()
 
+	//Determines privacy
+	var/privacy_range = world.view
+	//var/privacy_volume = 100
+	switch(eating_privacy_local) //Third case of if("loud") not defined, as it'd just leave privacy_range and volume untouched
+		if("default")
+			if(owner.eating_privacy_global)
+				privacy_range = 1
+				//privacy_volume = 25
+		if("subtle")
+			privacy_range = 1
+			//privacy_volume = 25
+
 	//Print notifications/sound if necessary
 	if(istype(M, /mob/observer)) //CHOMPEdit
 		silent = TRUE
 	if(!silent)
-		owner.visible_message("<font color='green'><b>[owner] [release_verb] [M] from their [lowertext(name)]!</b></font>")
+		owner.visible_message("<font color='green'><b>[owner] [release_verb] [M] from their [lowertext(name)]!</b></font>",range = privacy_range)
 		var/soundfile
 		if(!fancy_vore)
 			soundfile = classic_release_sounds[release_sound]
@@ -970,10 +996,12 @@
 			Prey.bloodstr.trans_to_holder(Pred.ingested, Prey.bloodstr.total_volume, 0.5, TRUE) // Copy=TRUE because we're deleted anyway //CHOMPEdit Start
 			Prey.ingested.trans_to_holder(Pred.ingested, Prey.ingested.total_volume, 0.5, TRUE) // Therefore don't bother spending cpu
 			Prey.touching.del_reagent("stomacid") //Don't need this stuff in our bloodstream.
+			Prey.touching.del_reagent("diet_stomacid") //Don't need this stuff in our bloodstream.
 			Prey.touching.del_reagent("cleaner") //Don't need this stuff in our bloodstream.
 			Prey.touching.trans_to_holder(Pred.ingested, Prey.touching.total_volume, 0.5, TRUE) // On updating the prey's reagents
 		else if(M.reagents)
 			M.reagents.del_reagent("stomacid") //Don't need this stuff in our bloodstream.
+			M.reagents.del_reagent("diet_stomacid") //Don't need this stuff in our bloodstream.
 			M.reagents.del_reagent("cleaner") //Don't need this stuff in our bloodstream.
 			M.reagents.trans_to_holder(Pred.ingested, M.reagents.total_volume, 0.5, TRUE) //CHOMPEdit End
 
@@ -1059,6 +1087,7 @@
 		Prey.bloodstr.trans_to_holder(Pred.ingested, Prey.bloodstr.total_volume, copy = TRUE)
 		Prey.ingested.trans_to_holder(Pred.ingested, Prey.ingested.total_volume, copy = TRUE)
 		Prey.touching.del_reagent("stomacid") //CHOMPEdit Don't need this stuff in our bloodstream.
+		Prey.touching.del_reagent("diet_stomacid") //CHOMPEdit Don't need this stuff in our bloodstream.
 		Prey.touching.del_reagent("cleaner") //CHOMPEdit Don't need this stuff in our bloodstream.
 		Prey.touching.trans_to_holder(Pred.ingested, Prey.touching.total_volume, copy = TRUE)
 		// TODO - Find a way to make the absorbed prey share the effects with the pred.
@@ -1534,6 +1563,7 @@
 	dupe.emote_active = emote_active
 	dupe.selective_preference = selective_preference
 	dupe.save_digest_mode = save_digest_mode
+	dupe.eating_privacy_local = eating_privacy_local
 
 	//// Object-holding variables
 	//struggle_messages_outside - strings
