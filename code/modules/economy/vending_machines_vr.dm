@@ -930,6 +930,7 @@
 					/obj/item/clothing/under/suit_jacket/checkered/skirt = 5,
 					/obj/item/clothing/under/suit_jacket/tan = 5,
 					/obj/item/clothing/under/suit_jacket/tan/skirt = 5,
+					/obj/item/clothing/under/rank/neo_civvie_gorka = 5,
 					/obj/item/clothing/suit/storage/toggle/labcoat/neo_leather = 5,
 					/obj/item/clothing/suit/neo_gorka = 5,
 					/obj/item/clothing/suit/storage/toggle/labcoat/neo_civ_dep = 5,
@@ -1259,6 +1260,7 @@
 					/obj/item/weapon/storage/pill_bottle/dice = 5,
 					/obj/item/weapon/storage/pill_bottle/dice_nerd = 5,
 					/obj/item/weapon/melee/umbrella/random = 10,
+					/obj/item/weapon/picnic_blankets_carried = 10,
 					/obj/item/weapon/deck/schnapsen = 5,
 					/obj/item/weapon/deck/egy = 5)
 	prices = list(/obj/item/weapon/cane = 100,
@@ -1272,6 +1274,7 @@
 					/obj/item/weapon/storage/pill_bottle/dice = 100,
 					/obj/item/weapon/storage/pill_bottle/dice_nerd = 100,
 					/obj/item/weapon/melee/umbrella/random = 100,
+					/obj/item/weapon/picnic_blankets_carried = 100,
 					/obj/item/weapon/deck/schnapsen = 100,
 					/obj/item/weapon/deck/egy = 100)
 	premium = list(/obj/item/toy/bosunwhistle = 1)
