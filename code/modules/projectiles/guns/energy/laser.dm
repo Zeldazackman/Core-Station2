@@ -8,7 +8,7 @@
 	wielded_item_state = "laser-wielded"
 	fire_delay = 8
 	slot_flags = SLOT_BELT|SLOT_BACK
-	w_class = ITEMSIZE_HUGE //CHOMP Edit
+	w_class = ITEMSIZE_NORMAL //CHOMP Edit
 	force = 10
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
 	matter = list(MAT_STEEL = 2000)
@@ -258,7 +258,7 @@
 	icon_state = "lasercannon"
 	item_state = null
 	wielded_item_state = "mhdhowitzer-wielded" //Placeholder
-	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3, TECH_POWER = 3)
+	origin_tech = list(TECH_COMBAT = 7, TECH_MATERIAL = 7, TECH_POWER = 7)
 	slot_flags = SLOT_BELT|SLOT_BACK
 	projectile_type = /obj/item/projectile/beam/heavylaser/cannon
 	battery_lock = 1
@@ -289,7 +289,7 @@
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 3, TECH_MAGNET = 2)
 	projectile_type = /obj/item/projectile/beam/xray
 	charge_cost = 200
-	w_class = ITEMSIZE_HUGE //CHOMP Edit.
+	w_class = ITEMSIZE_NORMAL //CHOMP Edit.
 
 /obj/item/weapon/gun/energy/sniperrifle
 	name = "marksman energy rifle"
@@ -341,7 +341,7 @@
 	charge_cost = 400
 	fire_delay = 5
 	force = 8
-	w_class = ITEMSIZE_LARGE //CHOMP Edit.
+	w_class = ITEMSIZE_NORMAL //CHOMP Edit.
 	accuracy = 50
 	scoped_accuracy = 100
 	charge_meter = FALSE
@@ -379,5 +379,5 @@
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 1, TECH_MATERIAL = 4)
 
 	projectile_type = /obj/item/projectile/scatter/laser
-	w_class = ITEMSIZE_LARGE //CHOMP Edit.
+	w_class = ITEMSIZE_NORMAL //CHOMP Edit.
 	slot_flags = SLOT_BELT|SLOT_BACK //CHOMP Edit because you can still holster it despite it not fitting in a backpack.
