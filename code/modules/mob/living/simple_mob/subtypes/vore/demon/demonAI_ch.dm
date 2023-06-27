@@ -63,6 +63,7 @@
 	var/is_shifting = FALSE
 
 	can_pain_emote = FALSE
+	injury_enrages = TRUE
 
 /mob/living/simple_mob/vore/demonAI/init_vore()
 	if(!voremob_loaded)
