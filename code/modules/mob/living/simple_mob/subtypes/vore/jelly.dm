@@ -6,7 +6,7 @@
 	their soft exterior does not lend itself well to combat."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/animal/space/jelly
+/mob/living/simple_mob/vore/jelly
 	name = "jelly blob"
 	desc = "Some sort of undulating blob of slime!"
 	catalogue_data = list(/datum/category_item/catalogue/fauna/jelly)
@@ -32,8 +32,17 @@
 
 	can_be_drop_prey = FALSE //CHOMP Add
 
+	min_oxy = 0
+	max_oxy = 0
+	min_tox = 0
+	max_tox = 0
+	min_co2 = 0
+	max_co2 = 0
+	min_n2 = 0
+	max_n2 = 0
+	minbodytemp = 0
+
 // Activate Noms!
-/mob/living/simple_mob/animal/space/jelly
 	vore_active = 1
 	vore_pounce_chance = 10
 	vore_icons = SA_ICON_LIVING
@@ -43,7 +52,7 @@
 	vore_default_item_mode = IM_HOLD
 	swallowTime = 2 SECONDS // Hungry little bastards.
 
-/mob/living/simple_mob/animal/space/jelly/init_vore()
+/mob/living/simple_mob/vore/jelly/init_vore()
 	if(!voremob_loaded)
 		return
 	.=..()
@@ -71,7 +80,7 @@
 	speak_chance = 8
 
 // Talon's Pet, Wiggleblob!
-/mob/living/simple_mob/animal/space/jelly/wiggleblob
+/mob/living/simple_mob/vore/jelly/wiggleblob
 	name = "Mr. Wiggleblob."
 	desc = "Mr. Wiggleblob! The official mascot of the Talon. So huggable. So squishable. Just try not to get eaten!"
 	size_multiplier = 1.2
