@@ -99,7 +99,6 @@
 	maxHealth = 200
 	health = 200
 	meat_amount = 10 //He a thicc
-	tame_chance = 25
 
 	say_list_type = /datum/say_list/zorgoia/kiriga
 	vore_pounce_chance = 50	//I said he would eat ass
