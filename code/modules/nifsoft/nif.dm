@@ -287,7 +287,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 			install_done = world.time + 1 MINUTE
 			notify("Welcome back, [owner]! Performing quick-calibration...")
 		else if(!owner)
-			install_done = world.time + 15 MINUTES // CHOMPedit: Install time from 35 minutes to 15 minutes.
+			install_done = world.time + 5 MINUTES // CHOMPedit: Install time from 35 minutes to 15 minutes.
 			notify("Adapting to new user...")
 			sleep(5 SECONDS)
 			notify("Adjoining optic [human.isSynthetic() ? "interface" : "nerve"], please be patient.",TRUE)
@@ -297,7 +297,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 			stat = NIF_TEMPFAIL
 			return FALSE
 
-	var/percent_done = (world.time - (install_done - (15 MINUTES))) / (15 MINUTES) //CHOMPedit: 35 minutes down to 15 minutes.
+	var/percent_done = (world.time - (install_done - (5 MINUTES))) / (5 MINUTES) //CHOMPedit: 35 minutes down to 15 minutes.
 
 	if(human.client)
 		human.client.screen.Add(global_hud.whitense) //This is the camera static
