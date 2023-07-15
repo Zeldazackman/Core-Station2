@@ -5,7 +5,7 @@
 	req_one_access = list()
 	seal_delay = 5
 	armor = list(melee = 40, bullet = 35, laser = 35, energy = 75, bomb = 75, bio = 100, rad = 100)
-	slowdown = 0.5
+	slowdown = -0.5
 	offline_vision_restriction = 1
 	siemens_coefficient= 0
 	seal_delay = 5
@@ -54,7 +54,7 @@
 	req_one_access = list()
 	seal_delay = 5
 	armor = list(melee = 80, bullet = 70, laser = 60, energy = 15, bomb = 80, bio = 100, rad = 60)
-	slowdown = 0
+	slowdown = -0.5
 	offline_vision_restriction = 1
 	siemens_coefficient= 0
 	seal_delay = 5
