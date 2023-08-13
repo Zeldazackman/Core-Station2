@@ -311,13 +311,15 @@
 	if(!canremove)
 		return
 
+	//CHOMPEdit start - move these around so that nonhumans can actually click-drag guns at all
+	if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech. why?
+		return
+
+	if (!( istype(over_object, /obj/screen) ))
+		return ..()
+
 	if (ishuman(usr) || issmall(usr)) //so monkeys can take off their backpacks -- Urist
-
-		if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech. why?
-			return
-
-		if (!( istype(over_object, /obj/screen) ))
-			return ..()
+	//CHOMPEdit End
 
 		//makes sure that the thing is equipped, so that we can't drag it into our hand from miles away.
 		//there's got to be a better way of doing this.

@@ -291,12 +291,17 @@ Proc for attack log creation, because really why not
 	if(progbar)
 		qdel(progbar)
 
-/atom/proc/living_mobs(var/range = world.view)
+/atom/proc/living_mobs(var/range = world.view, var/count_held = FALSE) //CHOMPEdit Start
 	var/list/viewers = oviewers(src,range)
+	if(count_held)
+		viewers = viewers(src,range)
 	var/list/living = list()
 	for(var/mob/living/L in viewers)
 		living += L
-
+		if(count_held)
+			for(var/obj/item/weapon/holder/H in L.contents)
+				if(istype(H.held_mob, /mob/living))
+					living += H.held_mob //CHOMPEdit End
 	return living
 
 /atom/proc/human_mobs(var/range = world.view)
