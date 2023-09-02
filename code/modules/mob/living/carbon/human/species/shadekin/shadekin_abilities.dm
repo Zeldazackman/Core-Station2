@@ -41,6 +41,9 @@
 	if((get_area(src).flags & PHASE_SHIELDED))	//CHOMPAdd - Mapping tools to control phasing
 		to_chat(src,"<span class='warning'>This area is preventing you from phasing!</span>")
 		return FALSE
+	
+	if(ability_flags & AB_PHASE_SHIFTING)
+		return FALSE
 
 	var/brightness = T.get_lumcount() //Brightness in 0.0 to 1.0
 	darkness = 1-brightness //Invert
@@ -124,8 +127,9 @@
 	//Shifting in
 	if(ability_flags & AB_PHASE_SHIFTED)
 		ability_flags &= ~AB_PHASE_SHIFTED
+		ability_flags |= AB_PHASE_SHIFTING
 		mouse_opacity = 1
-		name = real_name
+		name = get_visible_name()
 		for(var/obj/belly/B as anything in vore_organs)
 			B.escapable = initial(B.escapable)
 
@@ -158,6 +162,8 @@
 				if(istype(target) && target.devourable && target.can_be_drop_prey && vore_selected)
 					target.forceMove(vore_selected)
 					to_chat(target,"<span class='warning'>\The [src] phases in around you, [vore_selected.vore_verb]ing you into their [vore_selected.name]!</span>")
+		
+		ability_flags &= ~AB_PHASE_SHIFTING
 
 		//Affect nearby lights
 		var/destroy_lights = 0
@@ -190,9 +196,10 @@
 	//Shifting out
 	else
 		ability_flags |= AB_PHASE_SHIFTED
+		ability_flags |= AB_PHASE_SHIFTING
 		mouse_opacity = 0
 		custom_emote(1,"phases out!")
-		name = "Something"
+		name = get_visible_name()
 		hovering = TRUE
 
 		for(var/obj/belly/B as anything in vore_organs)
@@ -215,6 +222,7 @@
 		incorporeal_move = TRUE
 		density = FALSE
 		force_max_speed = TRUE
+		ability_flags &= ~AB_PHASE_SHIFTING
 	SK.doing_phase = FALSE //CHOMPEdit - Prevent bugs when spamming phase button
 
 //CHOMPEdit start - gentle phasing for carbonkin
