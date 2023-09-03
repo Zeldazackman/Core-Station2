@@ -184,7 +184,9 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/vore
 
 /mob/living/simple_mob/animal/space/carp/large/huge/vorny/init_vore()
-	..()
+	if(!voremob_loaded)
+		return
+	.=..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
 	B.desc = "You've been swallowed whole and alive by a massive white carp! The stomach around you is oppressively tight, squeezing and grinding wrinkled walls across your body, making it hard to make any movement at all. The chamber is flooded with fluids that completely overwhelm you."
@@ -193,7 +195,7 @@
 	B.digest_brute = 2
 	B.digest_burn = 2
 	B.digest_oxy = 1
-	B.digestchance = 100
+	B.digestchance = 35
 	B.absorbchance = 0
 	B.escapechance = 3
 	B.selective_preference = DM_DIGEST
