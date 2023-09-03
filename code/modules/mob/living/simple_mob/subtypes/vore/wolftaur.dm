@@ -68,16 +68,21 @@
 	base_wander_delay = 8
 
 /mob/living/simple_mob/vore/wolftaur/init_vore()
-	..()
+	if(!voremob_loaded)
+		return
+	.=..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
 	B.desc = "After a gruelling compressive traversal down through the taur's gullet, you briefly get deposited in an oppressively tight stomach at it's humanoid waist. However, the wolf has little interest in keeping you here, instead treating you as a mere snack, an orifice opens beneath you and you're soon dragged deeper into her depths. Soon you're splashing into an active, waiting caustic slurry, and the world around you drops as though you're trapped in a hammock. The taur's underbelly sags with your weight, and you feel a heavy pat from the woman outside settling in to make the most of her meal."
 	B.mode_flags = DM_FLAG_THICKBELLY
-	B.belly_fullscreen = "yet_another_tumby"
+	B.contamination_color = "yellow"
+	B.contamination_flavor = "Arcid"
+	B.belly_fullscreen_color = "#c47cb4"
+	B.belly_fullscreen = "acid"
 	B.digest_brute = 2
 	B.digest_burn = 2
 	B.digest_oxy = 1
-	B.digestchance = 100
+	B.digestchance = 25
 	B.absorbchance = 0
 	B.escapechance = 5
 	B.selective_preference = DM_DIGEST
