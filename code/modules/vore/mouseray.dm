@@ -98,18 +98,22 @@
 			var/datum/ai_holder/our_AI = ourmob.ai_holder
 			our_AI.set_stance(STANCE_IDLE)
 		M.tf_mob_holder = null
-		ourmob.ckey = M.ckey
+		var/ourmob_ckey  //CHOMPEdit Start
+		if(ourmob.ckey)
+			ourmob_ckey = ourmob.ckey
 		var/turf/get_dat_turf = get_turf(target)
 		ourmob.loc = get_dat_turf
 		ourmob.forceMove(get_dat_turf)
-		ourmob.vore_selected = M.vore_selected
-		M.vore_selected = null
-		for(var/obj/belly/B as anything in M.vore_organs)
-			B.loc = ourmob
-			B.forceMove(ourmob)
-			B.owner = ourmob
-			M.vore_organs -= B
-			ourmob.vore_organs += B
+		if(!ourmob.ckey)
+			ourmob.vore_selected = M.vore_selected
+			M.vore_selected = null
+			for(var/obj/belly/B as anything in M.vore_organs)
+				B.loc = ourmob
+				B.forceMove(ourmob)
+				B.owner = ourmob
+				M.vore_organs -= B
+				ourmob.vore_organs += B
+		ourmob.ckey = M.ckey
 
 		ourmob.Life(1)
 		if(ishuman(M))
@@ -118,7 +122,13 @@
 					continue
 				M.drop_from_inventory(W)
 
-		qdel(target)
+		if(M.tf_form == ourmob)
+			if(ourmob_ckey)
+				M.ckey = ourmob_ckey
+			ourmob.tf_form = M
+			M.forceMove(ourmob)
+		else
+			qdel(target) //CHOMPEdit End
 		return
 	else
 		if(M.stat == DEAD)	//We can let it undo the TF, because the person will be dead, but otherwise things get weird.
@@ -186,19 +196,22 @@
 		var/datum/ai_holder/our_AI = ourmob.ai_holder
 		our_AI.set_stance(STANCE_IDLE)
 	tf_mob_holder = null
-	ourmob.ckey = ckey
+	var/ourmob_ckey  //CHOMPEdit Start
+	if(ourmob.ckey)
+		ourmob_ckey = ourmob.ckey
 	var/turf/get_dat_turf = get_turf(src)
 	ourmob.loc = get_dat_turf
 	ourmob.forceMove(get_dat_turf)
-	ourmob.vore_selected = vore_selected
-	vore_selected = null
-	for(var/obj/belly/B as anything in vore_organs)
-		B.loc = ourmob
-		B.forceMove(ourmob)
-		B.owner = ourmob
-		vore_organs -= B
-		ourmob.vore_organs += B
-
+	if(!ourmob.ckey)
+		ourmob.vore_selected = vore_selected
+		vore_selected = null
+		for(var/obj/belly/B as anything in vore_organs)
+			B.loc = ourmob
+			B.forceMove(ourmob)
+			B.owner = ourmob
+			vore_organs -= B
+			ourmob.vore_organs += B
+	ourmob.ckey = ckey
 	ourmob.Life(1)
 
 	if(ishuman(src))
@@ -207,7 +220,13 @@
 				continue
 			src.drop_from_inventory(W)
 
-	qdel(src)
+	if(tf_form == ourmob)
+		if(ourmob_ckey)
+			src.ckey = ourmob_ckey
+		ourmob.tf_form = src
+		src.forceMove(ourmob)
+	else
+		qdel(src) //CHOMPEdit End
 
 
 /mob/living/proc/handle_tf_holder()
@@ -309,18 +328,22 @@
 			var/datum/ai_holder/our_AI = ourmob.ai_holder
 			our_AI.set_stance(STANCE_IDLE)
 		M.tf_mob_holder = null
-		ourmob.ckey = M.ckey
+		var/ourmob_ckey  //CHOMPEdit Start
+		if(ourmob.ckey)
+			ourmob_ckey = ourmob.ckey
 		var/turf/get_dat_turf = get_turf(target)
 		ourmob.loc = get_dat_turf
 		ourmob.forceMove(get_dat_turf)
-		ourmob.vore_selected = M.vore_selected
-		M.vore_selected = null
-		for(var/obj/belly/B as anything in M.vore_organs)
-			B.loc = ourmob
-			B.forceMove(ourmob)
-			B.owner = ourmob
-			M.vore_organs -= B
-			ourmob.vore_organs += B
+		if(!ourmob.ckey)
+			ourmob.vore_selected = M.vore_selected
+			M.vore_selected = null
+			for(var/obj/belly/B as anything in M.vore_organs)
+				B.loc = ourmob
+				B.forceMove(ourmob)
+				B.owner = ourmob
+				M.vore_organs -= B
+				ourmob.vore_organs += B
+		ourmob.ckey = M.ckey
 
 		ourmob.Life(1)
 
@@ -330,7 +353,13 @@
 					continue
 				M.drop_from_inventory(W)
 
-		qdel(target)
+		if(M.tf_form == ourmob)
+			if(ourmob_ckey)
+				M.ckey = ourmob_ckey
+			ourmob.tf_form = M
+			M.forceMove(ourmob)
+		else
+			qdel(target) //CHOMPEdit End
 		firer.visible_message("<span class='notice'>\The [shot_from] boops pleasantly.</span>")
 		return
 	else
