@@ -51,7 +51,7 @@
 	vore_default_contamination_color = "yellow"
 	vore_default_item_mode = IM_HOLD
 	swallowTime = 2 SECONDS // Hungry little bastards.
-
+/*
 /mob/living/simple_mob/vore/jelly/init_vore()
 	if(!voremob_loaded)
 		return
@@ -69,9 +69,9 @@
 	B.digestchance = 15
 	B.absorbchance = 5
 	B.escapechance = 25
-	B.belly_fullscreen = "acid"
-	B.colorization_enabled = FALSE
-
+	//B.belly_fullscreen = "acid"
+	//B.colorization_enabled = FALSE
+*/
 /datum/say_list/jelly
 	emote_hear = list("squishes","spluts","splorts","sqrshes","makes slime noises")
 	emote_see = list("undulates quietly")

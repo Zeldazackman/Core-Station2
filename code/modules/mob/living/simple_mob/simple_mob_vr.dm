@@ -277,6 +277,8 @@
 	can_be_drop_pred = TRUE // Mobs will eat anyone that decides to drop/slip into them by default.
 	B.colorization_enabled = TRUE
 	B.belly_fullscreen = "VBO_fleshs"
+	B.belly_fullscreen_color = "#823232" //Chompedit
+	B.belly_fullscreen_color2 = "#823232" //Chompedit
 
 /mob/living/simple_mob/Bumped(var/atom/movable/AM, yes)
 	if(tryBumpNom(AM))

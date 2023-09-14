@@ -69,6 +69,7 @@
 			L.Weaken(3)
 			L.visible_message(span("danger", "\The [src] knocks down \the [L]!"))
 
+/*
 /mob/living/simple_mob/animal/space/carp/init_vore()
 	if(!voremob_loaded)
 		return
@@ -84,9 +85,9 @@
 	B.digestchance = 20
 	B.absorbchance = 5
 	B.escapechance = 20
-	B.belly_fullscreen = "exotic_squish"
-	B.colorization_enabled = FALSE
-
+	//B.belly_fullscreen = "exotic_squish"
+	//B.colorization_enabled = FALSE
+*/
 // Subtypes.
 
 // Won't wander away.

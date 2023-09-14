@@ -75,7 +75,7 @@
 	B.name = "stomach"
 	B.digest_mode = DM_SELECT
 	B.mode_flags = 12
-	B.belly_fullscreen = "VBO_fleshs"
+	//B.belly_fullscreen = "VBO_fleshs"
 	B.digest_brute = 1
 	B.digest_burn = 1
 	B.escapechance = 35

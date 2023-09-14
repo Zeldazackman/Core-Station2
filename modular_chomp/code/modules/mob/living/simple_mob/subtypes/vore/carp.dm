@@ -5,11 +5,11 @@
 	var/obj/belly/B = vore_selected
 	B.name = "Stomach"
 	B.desc = "The toothy jaws of the space carp gnash down around your body while its throat opens up to suck you inside. The vicious attack is too swift for you to stop it. You're dragged down its short esophagus, then dumped into its muscular digestive system. Your body curls tight in the cramped confines of its slimy stomach; pushing aside a caustic mixture of other unrecognizable detritus. You realize the soupy chime consists of past explorers who went missing long ago. If you can't push your way back up to freedom, your fate will be the same."
-	B.mode_flags = DM_FLAG_THICKBELLY
+	B.mode_flags = DM_FLAG_THICKBELLY | DM_FLAG_NUMBING | DM_FLAG_LEAVEREMAINS | DM_FLAG_AFFECTWORN
 	B.digest_brute = 0.5
 	B.digest_burn = 0.5
 	B.escapechance = 20
-	B.belly_fullscreen = "anim_belly"
+	B.belly_fullscreen = "exotic_squish"
 	B.belly_fullscreen_color = "#660021"
 	B.belly_fullscreen_color2 = "#660021"
 	B.fancy_vore = 1
