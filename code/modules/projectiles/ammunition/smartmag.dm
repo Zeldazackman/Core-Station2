@@ -5,7 +5,7 @@
 	icon_state = "smartmag-empty"
 	desc = "A Hephaestus Industries brand Smart Magazine. It uses advanced matter manipulation technology to create bullets from energy. Simply present your loaded gun or magazine to the Smart Magazine."
 	multiple_sprites = 1
-	max_ammo = 5
+	max_ammo = 30
 	mag_type = MAGAZINE
 
 	caliber = null 	 //Set later
@@ -14,11 +14,11 @@
 
 	can_remove_ammo = FALSE	// Interferes with batteries
 
-	var/production_time = 6 SECONDS		// Delay in between bullets forming
+	var/production_time = 3 SECONDS		// Delay in between bullets forming
 	var/last_production_time = 0		// Used in determining if we should make a new bullet
 	var/production_cost = null			// Set when an ammo type is scanned in
 	var/production_modifier = 2			// Multiplier on the ammo_casing's matter cost
-	var/production_delay = 75			// If we're in a gun, how long since it last shot do we need to wait before making bullets?
+	var/production_delay = 35			// If we're in a gun, how long since it last shot do we need to wait before making bullets?
 
 	var/obj/item/weapon/gun/holding_gun = null	// What gun are we in, if any?
 
