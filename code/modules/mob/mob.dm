@@ -12,7 +12,8 @@
 		client.screen = list()
 	if(mind && mind.current == src)
 		spellremove(src)
-	ghostize()
+	if(!istype(src,/mob/observer)) //CHOMPEdit
+		ghostize() //CHOMPEdit
 	QDEL_NULL(plane_holder)
 	..()
 	return QDEL_HINT_HARDDEL_NOW
@@ -46,6 +47,7 @@
 	return ..()
 
 /mob/proc/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
+	var/time = say_timestamp()
 
 	if(!client && !teleop)	return
 
@@ -68,9 +70,12 @@
 	if(stat == UNCONSCIOUS || sleeping > 0)
 		to_chat(src, "<span class='filter_notice'><I>... You can almost hear someone talking ...</I></span>")
 	else
-		to_chat(src,msg)
-		if(teleop)
+		if(client.prefs.chat_timestamp)
+			to_chat(src,"[time] [msg]")
+		else if(teleop)
 			to_chat(teleop, create_text_tag("body", "BODY:", teleop.client) + "[msg]")
+		else
+			to_chat(src,msg)
 	return
 
 // Show a message to all mobs and objects in sight of this one
