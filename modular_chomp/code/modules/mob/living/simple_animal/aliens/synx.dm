@@ -827,7 +827,7 @@
 
 /mob/living/simple_mob/animal/synx/ai/pet/greed/synth
 
-
+/*
 ▓███▓     ▓▓▓     ▓▓▓     ▓▓▓     ▓▓▓     ▓███▓
  ▓▓   ▓▓▓█ ▓▓  ▓▓█ ▓▓  ▓▓█ ▓▓  ▓▓█ ▓▓  ▓▓█ ▓▓   ▓▓▓█
 ▓      ▓▓▓▓     ▓▓▓     ▓▓▓     ▓▓▓     ▓▓▓      ▓▓▓▓
@@ -851,7 +851,7 @@
          ▓     █▓▓▓     ▓▓▓     ▓▓▓     █▓▓▓
          ▓     █▓▓▓     ▓▓▓     ▓▓▓     █▓▓▓
            ▓█▓██▓▓▓█▓█▓█▓▓▓█▓█▓█▓▓▓█▓█▓██▓▓▓
-
+*/
 	icon_state = "synx_C_living"
 	icon_living = "synx_C_living"
 	icon_dead = "synx_C_dead"
