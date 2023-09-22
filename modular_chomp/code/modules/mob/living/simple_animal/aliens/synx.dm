@@ -177,7 +177,7 @@
 	)
 	B.mode_flags = DM_FLAG_NUMBING	//Prey are more docile when it doesn't hurt.
 
-/* //OC-insert mob removals. Commenting out instead of full removal as there's some good detail here.
+//OC-insert mob removals. Commenting out instead of full removal as there's some good detail here.
 /mob/living/simple_mob/animal/synx/ai/pet/asteri/init_vore()
 	if(!voremob_loaded)
 		return
@@ -203,7 +203,7 @@
 	"The constant fatal massage pulls you under, your conciousness fading away as you're drawn into a numb, permanent sleep. The body you leave behind is put to good use as a few extra pounds on the synx's frame, its now-wider hips making it just a little harder to squeeze through the vents it's so fond of.",
 	"The synx's body gleefully takes what's left of your life, Asteri's usually-repressed sadism overwhelmed with a sinister satisfaction in snuffing you out as your liquefied remains gush into a bit more heft on the parasite's emaciated frame.",
 	)
-*/
+
 
 /mob/living/simple_mob/animal/synx/New() //this is really cool. Should be able to ventcrawl canonicaly, contort, and make random speech.
 //some things should be here that arent tho.
@@ -807,7 +807,7 @@
 	swallowTime = 10 SECONDS //Much more time to run
 
 //Commenting out OC content as to fit with content policy while I'm at it-- it won't work with the modular system anyways currently. Sorry, Shark!! I might try to add in a back marking category at some point so Greed can be recreated here at least, though. -Azel
-/*/mob/living/simple_mob/animal/synx/ai/pet/greed
+/mob/living/simple_mob/animal/synx/ai/pet/greed
 	name = "Greed"
 	desc = "A cold blooded, genderless, parasitic eel from the more distant and stranger areas of the cosmos. black, perpetually grinning and possessing a hunger as enthusiastic and endless as humanity's sense of exploration.. This one has the name Greed burnt into its back, the burnt in name seems to be luminescent making it harder for it to blend into the dark."
 	//icon= //icon= would just set what DMI we are using, we already have our special one set.
@@ -827,7 +827,7 @@
 
 /mob/living/simple_mob/animal/synx/ai/pet/greed/synth
 
-/*
+
 ▓███▓     ▓▓▓     ▓▓▓     ▓▓▓     ▓▓▓     ▓███▓
  ▓▓   ▓▓▓█ ▓▓  ▓▓█ ▓▓  ▓▓█ ▓▓  ▓▓█ ▓▓  ▓▓█ ▓▓   ▓▓▓█
 ▓      ▓▓▓▓     ▓▓▓     ▓▓▓     ▓▓▓     ▓▓▓      ▓▓▓▓
@@ -851,7 +851,7 @@
          ▓     █▓▓▓     ▓▓▓     ▓▓▓     █▓▓▓
          ▓     █▓▓▓     ▓▓▓     ▓▓▓     █▓▓▓
            ▓█▓██▓▓▓█▓█▓█▓▓▓█▓█▓█▓▓▓█▓█▓██▓▓▓
-*/
+
 	icon_state = "synx_C_living"
 	icon_living = "synx_C_living"
 	icon_dead = "synx_C_dead"
@@ -897,7 +897,7 @@
 	speak = list( )
 	//Vore Section
 	vore_capacity = 2
-*/
+
 /mob/living/simple_mob/animal/synx/ai/pet/clown
 	//hostile = 1
 	poison_chance = 100
