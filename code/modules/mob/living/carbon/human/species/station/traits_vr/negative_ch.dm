@@ -9,6 +9,7 @@
 	name = "Dirt Vulnerability"
 	desc = "Even the tiniest particles of dirt give you uneasy footing, even through several layers of footwear."
 	cost = -5
+	custom_only = FALSE
 	var_changes = list("dirtslip" = TRUE)
 	excludes = list(/datum/trait/positive/absorbent)
 
@@ -16,6 +17,7 @@
 	name = "Low Blood Volume"
 	desc = "You have 33.3% less blood volume compared to most species, making you more prone to blood loss issues."
 	cost = -3
+	custom_only = FALSE
 	var_changes = list("blood_volume" = 375)
 	excludes = list(/datum/trait/negative/less_blood_extreme,/datum/trait/positive/more_blood,/datum/trait/positive/more_blood_extreme)
 	can_take = ORGANICS
@@ -24,6 +26,7 @@
 	name = "Low Blood Volume, Extreme"
 	desc = "You have 60% less blood volume compared to most species, making you much more prone to blood loss issues."
 	cost = -5
+	custom_only = FALSE
 	var_changes = list("blood_volume" = 224)
 	excludes = list(/datum/trait/negative/less_blood,/datum/trait/positive/more_blood,/datum/trait/positive/more_blood_extreme)
 	can_take = ORGANICS
@@ -32,24 +35,28 @@
 	name = "Scrawny"
 	desc = "You have a much harder time breaking free of grabs as well as creating and holding onto grabs on other people."
 	cost = -2
+	custom_only = FALSE
 	var_changes = list("grab_resist_divisor_victims" = 0.5, "grab_resist_divisor_self" = 3, "grab_power_victims" = 1, "grab_power_self" = -1)
 
 /datum/trait/negative/extreme_slowdown
 	name = "Slowdown, Extreme"
 	desc = "You move EXTREMELY slower than baseline"
 	cost = -8
+	custom_only = FALSE
 	var_changes = list("slowdown" = 4.0)
 
 /datum/trait/negative/deep_sleeper
 	name = "Deep Sleeper"
 	desc = "When you fall asleep, it takes you four times as long to wake up."
-	cost = -2
+	cost = -4
+	custom_only = FALSE
 	var_changes = list("waking_speed" = 0.25)
 
 /datum/trait/negative/low_blood_sugar
 	name = "Low Blood Sugar"
 	desc = "If you let your nutrition get too low, you will start to experience adverse affects including hallucinations, unconsciousness, and weakness"
 	cost = -2
+	custom_only = FALSE
 	special_env = TRUE
 
 /datum/trait/negative/low_blood_sugar/handle_environment_special(var/mob/living/carbon/human/H)
@@ -85,6 +92,7 @@
 	name = "Episodic hallucinations."
 	desc = "You have a condition which causes you to spontaneously have hallucinations! Luckily for you, in the modern space age, our doctors have solutions for you, just make sure you don't forget to take your pills."
 	cost = -3
+	custom_only = FALSE
 	special_env = TRUE
 	can_take = ORGANICS
 	var/hallucination_max = 60
@@ -148,6 +156,7 @@
 	name = "Agoraphobia"
 	desc = "You very much dislike being in crowded places. When in the company of more than two other people, you start to panic and experience adverse effects."
 	cost = -4
+	custom_only = FALSE
 	var/warning_cap = 400
 	var/hallucination_cap = 25
 	var/escalation_speed = 0.8
@@ -269,6 +278,7 @@
 	name = "Minor loneliness vulnerability"
 	desc = "You're very prone to loneliness! Being alone for extended periods of time causes adverse effects. Most mobs will cure this loneliness as long as they aren't hostile."
 	cost = -2
+	custom_only = FALSE
 	var/warning_cap = 400
 	var/only_people = FALSE
 	var/hallucination_cap = 25
@@ -280,6 +290,7 @@
 	name = "Major loneliness vulnerability"
 	desc = "You're extremely prone to loneliness! Being alone for extended periods of time causes adverse effects. Most mobs won't be enough to cure this loneliness, you need other social beings."
 	cost = -4
+	custom_only = FALSE
 	warning_cap = 300
 	hallucination_cap = 50
 	escalation_speed = 1.3
@@ -389,6 +400,7 @@
 	name = "Glass Endurance"
 	desc = "Your body is very fragile. Reduces your maximum hitpoints to 25. Beware sneezes. You require only 50 damage in total to die, compared to 200 normally. You will go into crit after losing 25 HP, compared to crit at 100 HP."
 	cost = -12 // Similar to Very Low Endurance, this straight up will require you NEVER getting in a fight. This is extremely crippling. I salute the madlad that takes this.
+	custom_only = FALSE
 	var_changes = list("total_health" = 25)
 
 /datum/trait/negative/endurance_glass/apply(var/datum/species/S,var/mob/living/carbon/human/H)
@@ -399,6 +411,7 @@
 	name = "Reduced Biocompatibility, Minor"
 	desc = "For whatever reason, you're one of the unlucky few who don't get as much benefit from modern-day chemicals. Remember to note this down in your medical records! Chems are only 80% as effective on you!"
 	cost = -2
+	custom_only = FALSE
 	var_changes = list("chem_strength_heal" = 0.8)
 	can_take = ORGANICS
 
@@ -406,6 +419,7 @@
 	name = "Reduced Biocompatibility"
 	desc = "For whatever reason, you're one of the unlucky few who don't get as much benefit from modern-day chemicals. Remember to note this down in your medical records! Chems are only 60% as effective on you!"
 	cost = -4
+	custom_only = FALSE
 	var_changes = list("chem_strength_heal" = 0.6)
 	can_take = ORGANICS
 
@@ -413,6 +427,7 @@
 	name = "Reduced Biocompatibility, Major"
 	desc = "For whatever reason, you're one of the unlucky few who don't get as much benefit from modern-day chemicals. Remember to note this down in your medical records! Chems are only 30% as effective on you!"
 	cost = -8
+	custom_only = FALSE
 	var_changes = list("chem_strength_heal" = 0.3)
 	can_take = ORGANICS
 
@@ -421,12 +436,14 @@
 	name = "Photosensitivity"
 	desc = "You have trouble dealing with sudden flashes of light, taking some time for you to recover. The effects of flashes from cameras and security equipment leaves you stunned for some time. 50% increased stun duration from flashes."
 	cost = -1
+	custom_only = FALSE
 	var_changes = list("flash_mod" = 1.5)
 
 /datum/trait/negative/light_sensitivity_plus
 	name = "Photosensitivity, Major"
 	desc = "You have trouble dealing with sudden flashes of light, taking quite a long time for you to be able to recover. The effects of flashes from cameras and security equipment leave you stunned for some time. 100% (2x) stun duration from flashes."
 	cost = -2
+	custom_only = FALSE
 	var_changes = list("flash_mod" = 2.0)
 
 
@@ -434,6 +451,7 @@
 	name = "Haemophilia, Major"
 	desc = "Some say that when it rains, it pours.  Unfortunately, this is also true for yourself if you get cut. You bleed much faster than average, at 3x the normal rate." // CHOMPEdit: More Trait Feedback for players.
 	cost = -3
+	custom_only = FALSE
 	can_take = ORGANICS
 
 /datum/trait/negative/haemophilia_plus/apply(var/datum/species/S,var/mob/living/carbon/human/H)
@@ -444,12 +462,14 @@
 	name = "Pain Intolerance"
 	desc = "You are frail and sensitive to pain. You experience 25% more pain from all sources."
 	cost = -2
+	custom_only = FALSE
 	var_changes = list("pain_mod" = 1.2) // CHOMPEdit: Makes this exact opposite of Pain Tolerance Basic.
 
 /datum/trait/negative/pain_intolerance_advanced
 	name = "Pain Intolerance, Major"
 	desc = "You are highly sensitive to all sources of pain, and experience 50% more pain."
 	cost = -3
+	custom_only = FALSE
 	var_changes = list("pain_mod" = 1.5) //this makes you extremely vulnerable to most sources of pain, a stunbaton bop or shotgun beanbag will do around 90 agony, almost enough to drop you in one hit. CHOMPEdit: This really should cost more if it's this bad.
 
 
@@ -457,4 +477,5 @@
 	name = "Sensitive Biochemistry"
 	desc = "Your biochemistry is a little delicate, rendering you more susceptible to both deadly toxins and the more subtle ones. You'll probably want to list this in your medical records, and perhaps in your exploitable info as well. Toxin damages and knockout drugs are 25% stronger on you."
 	cost = -1
+	custom_only = FALSE
 	var_changes = list("chem_strength_tox" = 1.25)

@@ -5,30 +5,35 @@
 	name = "Slowdown"
 	desc = "Allows you to move slower on average than baseline."
 	cost = -3
+	custom_only = FALSE
 	var_changes = list("slowdown" = 0.5)
 
 /datum/trait/negative/speed_slow_plus
 	name = "Slowdown, Major"
 	desc = "Allows you to move MUCH slower on average than baseline."
 	cost = -5
+	custom_only = FALSE
 	var_changes = list("slowdown" = 1.0)
 
 /datum/trait/negative/weakling
 	name = "Weakling"
 	desc = "Causes heavy equipment to slow you down more when carried."
 	cost = -2
+	custom_only = FALSE
 	var_changes = list("item_slowdown_mod" = 1.5)
 
 /datum/trait/negative/weakling_plus
 	name = "Weakling, Major"
 	desc = "Allows you to carry heavy equipment with much more slowdown."
 	cost = -3
+	custom_only = FALSE
 	var_changes = list("item_slowdown_mod" = 2.0)
 
 /datum/trait/negative/endurance_low
 	name = "Low Endurance"
 	desc = "Reduces your maximum total hitpoints to 75.  You require only 150 damage in total to die, compared to 200 normally. You will go into crit after losing 75 HP, compared to crit at 100 HP." // CHOMPEdit: Clarity for players' sake.
 	cost = -4  //Chompedit makes you a lot squishier, should not be only 2 points.  (based on the brute and burn vulnerability costs)
+	custom_only = FALSE
 	var_changes = list("total_health" = 75)
 
 /datum/trait/negative/endurance_low/apply(var/datum/species/S,var/mob/living/carbon/human/H)
@@ -39,6 +44,7 @@
 	name = "Low Endurance, Major"
 	desc = "Reduces your maximum total hitpoints to 50.  You require only 100 damage in total to die, compared to 200 normally. You will go into crit after losing 50 HP, compared to crit at 100 HP." // CHOMPEdit: Clarity for players' sake.
 	cost = -8 //Teshari HP. This makes the person a lot more suseptable to getting stunned, killed, etc.  //Chompedit: Has no business being only 3 points, while others that function similarly but are nowhere near as crippling are 3 as well.
+	custom_only = FALSE
 	var_changes = list("total_health" = 50)
 
 /datum/trait/negative/endurance_very_low/apply(var/datum/species/S,var/mob/living/carbon/human/H)
@@ -49,48 +55,56 @@
 	name = "Brute Weakness, Minor"
 	desc = "Increases damage from brute damage sources by 15%"
 	cost = -2
+	custom_only = FALSE
 	var_changes = list("brute_mod" = 1.15)
 
 /datum/trait/negative/brute_weak
 	name = "Brute Weakness"
 	desc = "Increases damage from brute damage sources by 20%"
 	cost = -3
+	custom_only = FALSE
 	var_changes = list("brute_mod" = 1.2)
 
 /datum/trait/negative/brute_weak_plus
 	name = "Brute Weakness, Major"
 	desc = "Increases damage from brute damage sources by 50%"
 	cost = -4
+	custom_only = FALSE
 	var_changes = list("brute_mod" = 1.5)
 
 /datum/trait/negative/minor_burn_weak
 	name = "Burn Weakness, Minor"
 	desc = "Increases damage from burn damage sources by 15%"
 	cost = -2
+	custom_only = FALSE
 	var_changes = list("burn_mod" = 1.15)
 
 /datum/trait/negative/burn_weak
 	name = "Burn Weakness"
 	desc = "Increases damage from burn damage sources by 20%"
 	cost = -3
+	custom_only = FALSE
 	var_changes = list("burn_mod" = 1.2)
 
 /datum/trait/negative/burn_weak_plus
 	name = "Burn Weakness, Major"
 	desc = "Increases damage from burn damage sources by 50%"
 	cost = -4
+	custom_only = FALSE
 	var_changes = list("burn_mod" = 1.5)
 
 /datum/trait/negative/conductive
 	name = "Conductive"
 	desc = "Increases your susceptibility to electric shocks by 25%"
 	cost = -3 //CHOMPEdit
+	custom_only = FALSE
 	var_changes = list("siemens_coefficient" = 1.25) //This makes you a lot weaker to tasers.
 
 /datum/trait/negative/conductive_plus
 	name = "Conductive, Major"
 	desc = "Increases your susceptibility to electric shocks by 100%"
 	cost = -4 //CHOMPEdit
+	custom_only = FALSE
 	var_changes = list("siemens_coefficient" = 2.0) //This makes you extremely weak to tasers.
 	custom_only = FALSE
 	varchange_type = TRAIT_VARCHANGE_LESS_BETTER
@@ -99,6 +113,7 @@
 	name = "Haemophilia" // CHOMPEdit: Trait List Organization
 	desc = "When you bleed, you bleed a LOT. Double the bloodloss rate." // CHOMPEdit: More Trait Feedback for players.
 	cost = -2
+	custom_only = FALSE
 	var_changes = list("bloodloss_rate" = 2)
 	can_take = ORGANICS
 	custom_only = FALSE
@@ -108,6 +123,7 @@
 	name = "Hollow Bones/Aluminum Alloy"
 	desc = "Your bones and robot limbs are much easier to break."
 	cost = -4 // increased due to medical intervention needed.
+	custom_only = FALSE
 
 /datum/trait/negative/hollow/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
@@ -119,6 +135,7 @@
 	name = "Lightweight"
 	desc = "Your light weight and poor balance make you very susceptible to unhelpful bumping. Think of it like a bowling ball versus a pin. (STOP TAKING THIS AS SECURITY! We're MRP, so expect to lose your junk immediately, especially in events. - Love, Admins)" //CHOMP Edit btw
 	cost = -2
+	custom_only = FALSE
 	var_changes = list("lightweight" = 1)
 	custom_only = FALSE
 
@@ -126,11 +143,13 @@
 	name = "Neural Hypersensitivity"
 	desc = "Your nerves are particularly sensitive to physical changes, leading to experiencing twice the intensity of pain and pleasure alike. Makes all pain effects twice as strong, and occur at half as much damage."
 	cost = -2
+	custom_only = FALSE
 	var_changes = list("trauma_mod" = 2)
 	can_take = ORGANICS
 
 /datum/trait/negative/breathes
 	cost = -2
+	custom_only = FALSE
 	can_take = ORGANICS
 
 /datum/trait/negative/breathes/phoron

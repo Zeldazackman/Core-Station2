@@ -11,6 +11,7 @@
 	name = "Succubus Bite"
 	desc = "Allows you to inject your prey with poison, much like a venemous snake."
 	cost = 0
+	custom_only = FALSE
 
 /datum/trait/neutral/succubus_bite/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
@@ -20,18 +21,21 @@
 	name = "Growing"
 	desc = "After you consume enough nutrition, you start to slowly grow while metabolizing nutrition faster."
 	cost = 0
+	custom_only = FALSE
 	var_changes = list("grows" = TRUE)
 
 /datum/trait/neutral/nutritionshrink
 	name = "Shrinking"
 	desc = "If you don't eat enough, your body starts shrinking to make up the difference!"
 	cost = 0
+	custom_only = FALSE
 	var_changes = list("shrinks" = TRUE)
 
 /datum/trait/neutral/mudking
 	name = "Mudking"
 	desc = "Somehow you are so filthy that tiles get dirty four times as quick from you walking on them."
 	cost = 0
+	custom_only = FALSE
 	var_changes = list("mudking" = TRUE)
 
 /datum/trait/neutral/singularity_metabolism
@@ -45,6 +49,7 @@
 	name = "Hard Feet"	// Free protection 4 ur pawbs
 	desc = "Makes your nice clawed, scaled, hooved, armored, or otherwise just awfully calloused feet immune to glass shards."
 	cost = 0 //CHOMP Edit
+	custom_only = FALSE
 	var_changes = list("flags" = NO_MINOR_CUT) //Checked the flag is only used by shard stepping.
 
 /datum/trait/neutral/big_mouth
@@ -135,6 +140,7 @@
 	name ="Slippery Reflexes"
 	desc = "Your reflexes are quick enough to react to slippery surfaces. You are not immune though."
 	cost = 0
+	custom_only = FALSE
 
 /datum/trait/neutral/slip_reflex/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
