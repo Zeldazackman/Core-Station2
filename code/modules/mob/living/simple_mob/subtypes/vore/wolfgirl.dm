@@ -38,6 +38,9 @@
 	vore_pounce_chance = 40
 	vore_icons = SA_ICON_LIVING
 
+/datum/ai_holder/simple_mob/retaliate/cooperative/wolfgirl
+	belly_attack = FALSE
+
 /mob/living/simple_mob/vore/wolfgirl/init_vore()
 	if(!voremob_loaded)
 		return
