@@ -21,7 +21,7 @@
 			created_name = t
 		return
 
-	if(W.is_wrench())
+	if(W.has_tool_quality(TOOL_WRENCH))
 		switch(state)
 			if(CONSTRUCTION_UNANCHORED)
 				state = CONSTRUCTION_WRENCHED
@@ -41,8 +41,8 @@
 				to_chat(user, "<span class='warning'>\The [src] needs to be unwelded.</span>")
 		return
 
-	if(istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = W
+	if(W.has_tool_quality(TOOL_WELDER))
+		var/obj/item/weapon/weldingtool/WT = W.get_welder()
 		switch(state)
 			if(CONSTRUCTION_UNANCHORED)
 				to_chat(user, "<span class='warning'>The refinforcing bolts need to be secured.</span>")
