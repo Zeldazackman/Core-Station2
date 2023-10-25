@@ -1,6 +1,6 @@
 /mob
-	var/receive_reagents = FALSE			//Pref for people to avoid others transfering reagents into them.
-	var/give_reagents = FALSE				//Pref for people to avoid others taking reagents from them.
+	var/receive_reagents = TRUE			//Pref for people to avoid others transfering reagents into them.
+	var/give_reagents = TRUE				//Pref for people to avoid others taking reagents from them.
 
 	// CHOMP vore icons refactor (Now on mob)
 	var/vore_capacity = 0				// Maximum capacity, -1 for unlimited

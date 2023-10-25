@@ -4,7 +4,7 @@
 	var/feeding = TRUE					// Can the mob be vorishly force fed or fed to others?
 	var/absorbable = TRUE				// Are you allowed to absorb this person?
 	var/resizable = TRUE				// Can other people resize you? (Usually ignored for self-resizes)
-	var/digest_leave_remains = FALSE	// Will this mob leave bones/skull/etc after the melty demise?
+	var/digest_leave_remains = TRUE	// Will this mob leave bones/skull/etc after the melty demise?
 	var/allowmobvore = TRUE				// Will simplemobs attempt to eat the mob?
 	//var/allow_inbelly_spawning = FALSE	// Will we even bother with attempts of someone to spawn in in one of our bellies? // CHOMPedit: use our code instead of upstream's recoding of our code
 	var/obj/belly/vore_selected			// Default to no vore capability.
@@ -19,12 +19,12 @@
 	var/drop_vore = TRUE				//Enabled by default since you have to enable drop pred/prey to do this anyway
 	var/throw_vore = TRUE				//Enabled by default since you have to enable drop pred/prey to do this anyway
 	var/food_vore = TRUE				//Enabled by default since you have to enable drop pred/prey to do this anyway
-	var/can_be_drop_prey = FALSE
-	var/can_be_drop_pred = FALSE
-	var/allow_spontaneous_tf = FALSE	// Obviously.
+	var/can_be_drop_prey = TRUE
+	var/can_be_drop_pred = TRUE
+	var/allow_spontaneous_tf = TRUE	// Obviously.
 	var/show_vore_fx = TRUE				// Show belly fullscreens
-	var/latejoin_vore = FALSE			//CHOMPedit: If enabled, latejoiners can spawn into this, assuming they have a client
-	var/latejoin_prey = FALSE			//CHOMPedit: If enabled, latejoiners can spawn ontop of and instantly eat the victim
+	var/latejoin_vore = TRUE			//CHOMPedit: If enabled, latejoiners can spawn into this, assuming they have a client
+	var/latejoin_prey = TRUE			//CHOMPedit: If enabled, latejoiners can spawn ontop of and instantly eat the victim
 	var/noisy_full = FALSE				//CHOMPedit: Enables belching when a mob has overeaten
 	var/selective_preference = DM_DEFAULT	// Preference for selective bellymode
 	var/eating_privacy_global = FALSE //Makes eating attempt/success messages only reach for subtle range if true, overwritten by belly-specific var
