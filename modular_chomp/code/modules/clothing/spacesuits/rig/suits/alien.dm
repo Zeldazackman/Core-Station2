@@ -31,7 +31,7 @@
 	flags = PHORONGUARD
 	item_flags = THICKMATERIAL
 	siemens_coefficient = 0
-	offline_slowdown = 2.5
+	offline_slowdown = 1.5
 	slowdown = 0
 	emp_protection = 40 //change this to 30 if too high.
 
@@ -64,8 +64,8 @@
 	armor = list (melee = 60, bullet = 50, laser = 40, energy = 10, bomb = 20, bio = 100, rad = 50) //CE suit values but shuffled to a tighter focus on the job hazards
 	flags = PHORONGUARD
 	item_flags = THICKMATERIAL
-	siemens_coefficient = 0.5
-	offline_slowdown = 5
+	siemens_coefficient = 0
+	offline_slowdown = 2
 	slowdown = 0
 	emp_protection = 40 //change this to 30 if too high.
 
