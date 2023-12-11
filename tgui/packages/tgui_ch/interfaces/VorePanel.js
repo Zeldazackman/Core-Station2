@@ -49,7 +49,7 @@ const digestModeToPreyMode = {
  *   show_liq, liq_interacts, liq_reagent_gen, liq_reagent_type, liq_reagent_name,
  *   liq_reagent_transfer_verb, liq_reagent_nutri_rate, liq_reagent_capacity, liq_sloshing, liq_reagent_addons,
  *   show_liq_fullness, liq_messages, liq_msg_toggle1, liq_msg_toggle2, liq_msg_toggle3, liq_msg_toggle4,
- *   liq_msg_toggle5, liq_msg1, liq_msg2, liq_msg3, liq_msg4, liq_msg5, sound_volume, egg_name, recycling, entrance_logs, item_digest_logs, noise_freq,
+ *   liq_msg_toggle5, liq_msg1, liq_msg2, liq_msg3, liq_msg4, liq_msg5, sound_volume, egg_name, recycling, storing_nutrition, entrance_logs, item_digest_logs, noise_freq,
  *   custom_reagentcolor, custom_reagentalpha, liquid_overlay, max_liquid_level, mush_overlay, reagent_touches, mush_color, mush_alpha, max_mush, min_mush, item_mush_val,
  *   metabolism_overlay, metabolism_mush_ratio, max_ingested, custom_ingested_color, custom_ingested_alpha
  *
@@ -538,6 +538,162 @@ const VoreSelectedBellyDescriptions = (props, context) => {
           content="Absorbed Struggle Message (inside)"
         />
       </LabeledList.Item>
+      <LabeledList.Item label="Escape Messages">
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'escap' })
+          }
+          content="Escape Attempt Message (to prey)"
+        />
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'escao' })
+          }
+          content="Escape Attempt Message (to you)"
+        />
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'escp' })
+          }
+          content="Escape Message (to prey)"
+        />
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'esco' })
+          }
+          content="Escape Message (to you)"
+        />
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'escout' })
+          }
+          content="Escape Message (outside)"
+        />
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'escip' })
+          }
+          content="Escape Item Message (to prey)"
+        />
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'escio' })
+          }
+          content="Escape Item Message (to you)"
+        />
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'esciout' })
+          }
+          content="Escape Item Message (outside)"
+        />
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'escfp' })
+          }
+          content="Escape Fail Message (to prey)"
+        />
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'escfo' })
+          }
+          content="Escape Fail Message (to you)"
+        />
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'aescap' })
+          }
+          content="Absorbed Escape Attempt Message (to prey)"
+        />
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'aescao' })
+          }
+          content="Absorbed Escape Attempt Message (to you)"
+        />
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'aescp' })
+          }
+          content="Absorbed Escape Message (to prey)"
+        />
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'aesco' })
+          }
+          content="Absorbed Escape Message (to you)"
+        />
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'aescout' })
+          }
+          content="Absorbed Escape Message (outside)"
+        />
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'aescfp' })
+          }
+          content="Absorbed Escape Fail Message (to prey)"
+        />
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'aescfo' })
+          }
+          content="Absorbed Escape Fail Message (to you)"
+        />
+      </LabeledList.Item>
+      <LabeledList.Item label="Transfer Messages">
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'trnspp' })
+          }
+          content="Primary Transfer Message (to prey)"
+        />
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'trnspo' })
+          }
+          content="Primary Transfer Message (to you)"
+        />
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'trnssp' })
+          }
+          content="Secondary Transfer Message (to prey)"
+        />
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'trnsso' })
+          }
+          content="Secondary Transfer Message (to you)"
+        />
+      </LabeledList.Item>
+      <LabeledList.Item label="Interaction Chance Messages">
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'stmodp' })
+          }
+          content="Interaction Chance Digest Message (to prey)"
+        />
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'stmodo' })
+          }
+          content="Interaction Chance Digest Message (to you)"
+        />
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'stmoap' })
+          }
+          content="Interaction Chance Absorb Message (to prey)"
+        />
+        <Button
+          onClick={() =>
+            act('set_attribute', { attribute: 'b_msgs', msgtype: 'stmoao' })
+          }
+          content="Interaction Chance Absorb Message (to you)"
+        />
+      </LabeledList.Item>
       <LabeledList.Item label="Bellymode Messages">
         <Button
           onClick={() =>
@@ -689,6 +845,7 @@ const VoreSelectedBellyOptions = (props, context) => {
     egg_type,
     egg_name,
     recycling,
+    storing_nutrition,
     entrance_logs,
     item_digest_logs,
     selective_preference,
@@ -892,6 +1049,16 @@ const VoreSelectedBellyOptions = (props, context) => {
               icon={recycling ? 'toggle-on' : 'toggle-off'}
               selected={recycling}
               content={recycling ? 'Enabled' : 'Disabled'}
+            />
+          </LabeledList.Item>
+          <LabeledList.Item label="Storing Nutrition">
+            <Button
+              onClick={() =>
+                act('set_attribute', { attribute: 'b_storing_nutrition' })
+              }
+              icon={storing_nutrition ? 'toggle-on' : 'toggle-off'}
+              selected={storing_nutrition}
+              content={storing_nutrition ? 'Storing' : 'Absorbing'}
             />
           </LabeledList.Item>
           <LabeledList.Item label="Entrance Logs">
@@ -1457,6 +1624,14 @@ const VoreSelectedBellyInteractions = (props, context) => {
               content={interacts.escapechance + '%'}
               onClick={() =>
                 act('set_attribute', { attribute: 'b_escapechance' })
+              }
+            />
+          </LabeledList.Item>
+          <LabeledList.Item label="Absorbed Escape Chance">
+            <Button
+              content={interacts.escapechance_absorbed + '%'}
+              onClick={() =>
+                act('set_attribute', { attribute: 'b_escapechance_absorbed' })
               }
             />
           </LabeledList.Item>
