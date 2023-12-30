@@ -1,7 +1,7 @@
 /mob/living/simple_mob/vore/jelly
 	swallowTime = 1 SECONDS
 	vore_active = 1
-	vore_capacity = 3
+	vore_capacity = 1
 	vore_default_mode = DM_DIGEST
 	vore_icons = SA_ICON_LIVING
 	vore_bump_chance = 100 //Don't want to be eaten, just don't get eaten.
@@ -26,6 +26,7 @@
 	B.contamination_color = "green"
 	B.item_digest_mode = IM_HOLD
 	B.belly_fullscreen = "acid"
+	B.belly_fullscreen_alpha = "220"
 	B.belly_fullscreen_color = "#823232"
 	B.belly_fullscreen_color2 = "#823232"
 	B.fancy_vore = 1
