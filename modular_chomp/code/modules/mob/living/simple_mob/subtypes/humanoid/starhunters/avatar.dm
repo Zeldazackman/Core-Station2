@@ -1,5 +1,6 @@
 /mob/living/simple_mob/humanoid/starhunter/hunter/clone
 	name = "Avatar Of The Serpent"
+	icon_living = "avatar"
 	icon_state = "avatar"
 	health = 15
 	maxHealth = 15
@@ -8,6 +9,7 @@
 
 /mob/living/simple_mob/humanoid/starhunter/hunter/avatar
 	name = "Avatar Of The Serpent"
+	icon_living = "avatar"
 	icon_state = "avatar"
 	health = 1000 //50 hits from 20 damage
 	maxHealth = 1000 //50 hits from 20 damage
