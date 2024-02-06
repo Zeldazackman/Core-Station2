@@ -250,6 +250,7 @@
 					prob(1);/obj/item/clothing/suit/storage/vest/heavy/merc,
 					prob(2);/obj/item/device/sleevemate,
 					prob(1);/obj/item/device/bodysnatcher,
+					prob(1);/obj/item/device/mindbinder, //CHOMPAdd
 					prob(1);/obj/item/weapon/cell/hyper,
 					prob(1);/obj/item/weapon/disk/nifsoft/compliance,
 					prob(1);/obj/item/weapon/implanter/compliance,

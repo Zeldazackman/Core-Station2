@@ -165,12 +165,12 @@
 	name = "storage pouch (flares)"
 	desc = "This storage pouch can be used to provide some additional storage for quick access. Can only hold flares and glowsticks."
 	icon_state = "flare"
-	storage_slots = 5
+	storage_slots = 14
 	can_hold = list(/obj/item/device/flashlight/flare, /obj/item/device/flashlight/glowstick)
 /obj/item/weapon/storage/pouch/flares/full_flare
-	starts_with = list(/obj/item/device/flashlight/flare = 5)
+	starts_with = list(/obj/item/device/flashlight/flare = 14)
 /obj/item/weapon/storage/pouch/flares/full_glow
-	starts_with = list(/obj/item/device/flashlight/glowstick = 5)
+	starts_with = list(/obj/item/device/flashlight/glowstick = 14)
 
 /obj/item/weapon/storage/pouch/flares/update_icon()
 	cut_overlays()
