@@ -112,6 +112,7 @@
 /obj/belly/flipper
 	autotransferchance = 50
 	autotransferwait = 150
+	autotransfer_enabled = 1
 	escapable = 1
 	escapechance = 100
 	escapetime = 30

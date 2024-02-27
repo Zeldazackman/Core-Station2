@@ -55,6 +55,7 @@
 /obj/belly/lugia
 	autotransferchance = 50
 	autotransferwait = 150
+	autotransfer_enabled = 1
 	escapable = 1
 	escapechance = 50
 	escapetime = 30

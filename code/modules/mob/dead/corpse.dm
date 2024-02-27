@@ -107,6 +107,8 @@
 			M.update_wing_showing()
 	M.real_name = generateCorpseName()
 	M.set_stat(DEAD) //Kills the new mob
+	M.digest_leave_remains = TRUE
+	M.can_be_drop_prey = TRUE
 	if(corpsesynthtype > 0)
 		if(!corpsesynthbrand)
 			corpsesynthbrand = "Unbranded"

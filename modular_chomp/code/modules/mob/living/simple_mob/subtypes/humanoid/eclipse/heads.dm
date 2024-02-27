@@ -14,6 +14,7 @@
 
 /mob/living/simple_mob/humanoid/eclipse/head/security
 	name = "Eclipse Head Of Security"
+	icon_living = "fleetsec"
 	icon_state = "fleetsec"
 	projectiletype = /obj/item/projectile/energy/flamecrystal
 	special_attack_cooldown = 10 SECONDS
@@ -98,6 +99,7 @@
 /obj/item/projectile/energy/flamecrystal
 	name = "Flame Crystal"
 	icon = 'modular_chomp/icons/mob/eclipse.dmi' //commiting sin
+	icon_living = "firecrystal"
 	icon_state = "firecrystal"
 	damage = 15
 	armor_penetration = 40 //Large pointy crystal
@@ -123,6 +125,7 @@
 
 /mob/living/simple_mob/humanoid/eclipse/head/scientist
 	name = "Eclipse Lead Researcher"
+	icon_living = "fleetsci"
 	icon_state = "fleetsci"
 	health = 30
 	special_attack_cooldown = 5 SECONDS
@@ -199,6 +202,7 @@
 
 /mob/living/simple_mob/humanoid/eclipse/head/captain
 	name = "Eclipse Expedition Leader"
+	icon_living = "captain"
 	icon_state = "captain"
 
 	loot_list = list(/obj/item/slime_extract/dark = 20,
@@ -328,6 +332,7 @@
 
 /mob/living/simple_mob/humanoid/eclipse/head/shade
 	name = "???"
+	icon_living = "shade"
 	icon_state = "shade"
 	health = 300
 	maxHealth = 300 //18 20 damage shots
