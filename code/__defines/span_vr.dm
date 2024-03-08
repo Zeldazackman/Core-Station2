@@ -22,14 +22,19 @@
 #define span_srvradio(str) ("<span class='srvradio'>" + str + "</span>")
 #define span_expradio(str) ("<span class='expradio'>" + str + "</span>")
 
+#define span_binary(str) ("<span class='binarysay'>" + str + "</span>")
+#define span_hivemind(str) ("<span class='hivemind'>" + str + "</span>")
+
 #define span_name(str) ("<span class='name'>" + str + "</span>")
 #define span_say(str) ("<span class='say'>" + str + "</span>")
 #define span_alert(str) ("<span class='alert'>" + str + "</span>")
 #define span_ghostalert(str) ("<span class='ghostalert'>" + str + "</span>")
+#define span_npc_say(str) ("<span class='npcsay'>" + str + "</span>")
 
 
 #define span_emote(str) ("<span class='emote'>" + str + "</span>")
 #define span_emote_subtle(str) ("<span class='emotesubtle'>" + str + "</span>")
+#define span_npc_emote(str) ("<span class='npcemote'>" + str + "</span>")
 
 #define span_attack(str) ("<span class='attack'>" + str + "</span>")
 #define span_moderate(str) ("<span class='moderate'>" + str + "</span>")
@@ -88,6 +93,7 @@
 #define span_red(str) ("<span class='red'>" + str + "</span>")
 #define span_orange(str) ("<span class='orange'>" + str + "</span>")
 #define span_blue(str) ("<span class='blue'>" + str + "</span>")
+#define span_boldannounce(str) ("<span class='boldannounce'>" + str + "</span>") // CHOMPEdit - Boldannounce
 #define span_green(str) ("<span class='green'>" + str + "</span>")
 #define span_purple(str) ("<span class='purple'>" + str + "</span>")
 #define span_yellow(str) ("<span class='yellow'>" + str + "</span>")

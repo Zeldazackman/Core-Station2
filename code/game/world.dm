@@ -1,6 +1,19 @@
 #define RECOMMENDED_VERSION 513
+// CHOMPedit Start - Tracy
+/proc/prof_init()
+	var/lib
+
+	switch(world.system_type)
+		if(MS_WINDOWS) lib = "prof.dll"
+		if(UNIX) lib = "libprof.so"
+		else CRASH("unsupported platform")
+
+	var/init = LIBCALL(lib, "init")()
+	if("0" != init) CRASH("[lib] init error: [init]")
+// CHOMPedit End
 
 /world/New()
+	//prof_init() // CHOMPedit - Uncomment to enable Tracy. Requires https://github.com/mafemergency/byond-tracy/
 	world_startup_time = world.timeofday
 	rollover_safety_date = world.realtime - world.timeofday // 00:00 today (ish, since floating point error with world.realtime) of today
 	to_world_log("Map Loading Complete")
@@ -13,8 +26,9 @@
 	debug_log = start_log("[log_path]-debug.log")
 	//VOREStation Edit End
 
-	// CHOMPedit Start - Better Changelogs
-	var/latest_changelog = file("/html/changelogs_ch/archive/" + time2text(world.timeofday, "YYYY-MM") + ".yml")
+	//changelog_hash = md5('html/changelog.html') //used for telling if the changelog has changed recently //Chomp REMOVE
+	//ChompADD Start - Better Changelogs
+	var/latest_changelog = file("html/changelogs_ch/archive/" + time2text(world.timeofday, "YYYY-MM") + ".yml")
 	changelog_hash = fexists(latest_changelog) ? md5(latest_changelog) : 0 //for telling if the changelog has changed recently
 	//Newsfile
 	var/savefile/F = new(NEWSFILE)
@@ -25,12 +39,12 @@
 		var/body
 		F["body"] >> body
 		servernews_hash = md5("[title]" + "[body]")
-	// CHOMPADD End
+	//ChompADD End
 
 	if(byond_version < RECOMMENDED_VERSION)
 		to_world_log("Your server's byond version does not meet the recommended requirements for this server. Please update BYOND")
 
-	TgsNew()
+	TgsNew(new /datum/tgs_event_handler/impl, TGS_SECURITY_TRUSTED) // CHOMPEdit - tgs event handler
 	VgsNew() // VOREStation Edit - VGS
 
 	config.post_load()
@@ -56,7 +70,7 @@
 	// CHOMPStation Addition: Spaceman DMM Debugging
 	var/debug_server = world.GetConfig("env", "AUXTOOLS_DEBUG_DLL")
 	if (debug_server)
-		call(debug_server, "auxtools_init")()
+		LIBCALL(debug_server, "auxtools_init")()
 		enable_debugging()
 	// CHOMPStation Add End
 
@@ -532,6 +546,24 @@ var/world_topic_spam_protect_time = world.timeofday
 				var/ckey = copytext(line, 1, length(line)+1)
 				var/datum/mentor/M = new /datum/mentor(ckey)
 				M.associate(GLOB.directory[ckey])
+	else // CHOMPedit Start - Implementing loading mentors from database
+		establish_db_connection()
+		if(!SSdbcore.IsConnected())
+			error("Failed to connect to database in load_mentors().")
+			log_misc("Failed to connect to database in load_mentors().")
+			return
+
+		var/datum/db_query/query = SSdbcore.NewQuery("SELECT ckey, mentor FROM erro_mentor") //CHOMPEdit TGSQL
+		query.Execute()
+		while(query.NextRow())
+			var/ckey = query.item[1]
+			var/mentor = query.item[2]
+
+			if(mentor)
+				var/datum/mentor/M = new /datum/mentor(ckey)
+				M.associate(GLOB.directory[ckey])
+		qdel(query)
+	// COMPedit End
 
 /world/proc/update_status()
 	var/s = ""
@@ -541,9 +573,9 @@ var/world_topic_spam_protect_time = world.timeofday
 
 	s += "<b>[station_name()]</b>";
 	s += " ("
-//	s += "<a href=\"https://\">" //Change this to wherever you want the hub to link to.
+	s += "<a href=\"https://\">" //Change this to wherever you want the hub to link to.
 //	s += "[game_version]"
-	s += "<b>vore</b> among other things"  //Replace this with something else. Or ever better, delete it and uncomment the game version.
+	s += "Default"  //Replace this with something else. Or ever better, delete it and uncomment the game version.
 	s += "</a>"
 	s += ")"
 
@@ -562,7 +594,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 	features += config.persistence_disabled ? "persistence disabled" : "persistence enabled"
 
-//	features += config.persistence_ignore_mapload ? "persistence mapload disabled" : "persistence mapload enabled"
+	features += config.persistence_ignore_mapload ? "persistence mapload disabled" : "persistence mapload enabled"
 
 	if (config && config.allow_vote_mode)
 		features += "vote"
@@ -600,7 +632,7 @@ var/failed_old_db_connections = 0
 		to_world_log("SQL connection disabled in config.")
 	else if(establish_db_connection())//CHOMPEdit Begin
 		to_world_log("Feedback database connection established.")
-		var/DBQuery/query_truncate = SSdbcore.NewQuery("TRUNCATE erro_dialog")
+		var/datum/db_query/query_truncate = SSdbcore.NewQuery("TRUNCATE erro_dialog")
 		var/num_tries = 0
 		while(!query_truncate.Execute() && num_tries<5)
 			num_tries++
@@ -608,14 +640,14 @@ var/failed_old_db_connections = 0
 		if(num_tries==5)
 			log_admin("ERROR TRYING TO CLEAR erro_dialog")
 		qdel(query_truncate)
-		/*var/DBQuery/query_truncate2 = SSdbcore.NewQuery("TRUNCATE erro_attacklog")
+		var/datum/db_query/query_truncate2 = SSdbcore.NewQuery("TRUNCATE erro_attacklog")
 		num_tries = 0
 		while(!query_truncate2.Execute() && num_tries<5)
 			num_tries++
 
 		if(num_tries==5)
 			log_admin("ERROR TRYING TO CLEAR erro_attacklog")
-		qdel(query_truncate2)*/
+		qdel(query_truncate2)
 	else
 		to_world_log("Feedback database connection failed.")
 	//CHOMPEdit End
@@ -639,7 +671,7 @@ var/failed_old_db_connections = 0
 	if ( . )
 		failed_db_connections = 0	//If this connection succeeded, reset the failed connections counter.
 		//CHOMPEdit Begin
-		var/DBQuery/query_truncate = dbcon.NewQuery("TRUNCATE erro_dialog")
+		var/datum/db_query/query_truncate = dbcon.NewQuery("TRUNCATE erro_dialog")
 		var/num_tries = 0
 		while(!query_truncate.Execute() && num_tries<5)
 			num_tries++
@@ -808,7 +840,7 @@ var/global/game_id = null
 /world/Del()
 	var/debug_server = world.GetConfig("env", "AUXTOOLS_DEBUG_DLL")
 	if (debug_server)
-		call(debug_server, "auxtools_shutdown")()
+		LIBCALL(debug_server, "auxtools_shutdown")()
 	. = ..()
 
 // CHOMPStation Add End: Spaceman DMM Debugger

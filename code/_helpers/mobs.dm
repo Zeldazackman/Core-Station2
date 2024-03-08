@@ -120,10 +120,26 @@ Proc for attack log creation, because really why not
 	var/user_str = key_name(user)
 	var/target_str = key_name(target)
 
-	if(ismob(user))
-		user.attack_log += text("\[[time_stamp()]\] [span_red("Attacked [target_str]: [what_done]")]")
+	if(ismob(user)) //CHOMPEdit Begin
+		if(SSdbcore.Connect())
+			user.attack_log += text("\[[time_stamp()]\] [span_red("Attacked [target_str]: [what_done]")]")
+			var/datum/db_query/query_insert = SSdbcore.NewQuery("INSERT INTO erro_attacklog (id, time, ckey, mob, message) VALUES (null, NOW(), :t_ckey, :t_mob, :t_content)", list("t_ckey" = user.ckey, "t_mob" = user.real_name, "t_content" = "<font color='red'>Attacked [target_str]: [what_done]</font>"))
+			spawn() //Change this to a spawn so it doesn't hold us up
+				query_insert.Execute(async=use_async)
+				qdel(query_insert)
+		//if(SSdbcore.Connect())
+		//	rustg_sql_query_async(SSdbcore.connection, "INSERT INTO erro_attacklog (id, time, ckey, mob, message) VALUES (null, NOW(), :t_ckey, :t_mob, :t_content)", json_encode(list("t_ckey" = user.ckey, "t_mob" = user.real_name, "t_content" = "<font color='red'>Attacked [target_str]: [what_done]</font>")))
 	if(ismob(target))
-		target.attack_log += text("\[[time_stamp()]\] [span_orange("Attacked by [user_str]: [what_done]")]")
+		if(SSdbcore.Connect())
+			target.attack_log += text("\[[time_stamp()]\] [span_orange("Attacked by [user_str]: [what_done]")]")
+			var/datum/db_query/query_insert = SSdbcore.NewQuery("INSERT INTO erro_attacklog (id, time, ckey, mob, message) VALUES (null, NOW(), :t_ckey, :t_mob, :t_content)", list("t_ckey" = target.ckey, "t_mob" = target.real_name, "t_content" = "<font color='orange'>Attacked by [user_str]: [what_done]</font>"))
+			spawn() //Change this to a spawn so it doesn't hold us up
+				if(query_insert)
+					query_insert.Execute(async=use_async)
+				qdel(query_insert)
+		//if(SSdbcore.Connect())
+		//	rustg_sql_query_async(SSdbcore.connection, "INSERT INTO erro_attacklog (id, time, ckey, mob, message) VALUES (null, NOW(), :t_ckey, :t_mob, :t_content)", json_encode(list("t_ckey" = target.ckey, "t_mob" = target.real_name, "t_content" = "<font color='orange'>Attacked by [user_str]: [what_done]</font>")))
+	//CHOMPEdit End
 	log_attack(user_str,target_str,what_done)
 	if(admin_notify)
 		msg_admin_attack("[key_name_admin(user)] vs [target_str]: [what_done]")

@@ -1281,8 +1281,8 @@
 
 		if(hallucination)
 			if(hallucination >= 20 && !(species.flags & (NO_POISON|IS_PLANT|NO_HALLUCINATION)) )
-				if(prob(3))
-					fake_attack(src)
+				//if(prob(3)) //ChompREMOVE fake_attacker - EXTREME image qdel usage.
+					//fake_attack(src) //ChompREMOVE fake_attacker - EXTREME image qdel usage.
 				if(!handling_hal)
 					spawn handle_hallucinations() //The not boring kind!
 				if(client && prob(5))
@@ -1779,12 +1779,14 @@
 	if(isturf(loc) && rand(1,1000) == 1)
 		var/turf/T = loc
 		if(T.get_lumcount() <= LIGHTING_SOFT_THRESHOLD)
+			/* CHOMPEdit Start
 			//VOREStation Add Start
 			if(text2num(time2text(world.timeofday, "MM")) == 4)
 				if(text2num(time2text(world.timeofday, "DD")) == 1)
 					playsound_local(src,pick(scawwySownds),50, 0)
 					return
 			//VOREStation Add End
+			*/ // CHOMPedit End
 			playsound_local(src,pick(scarySounds),50, 1, -1)
 
 /mob/living/carbon/human/handle_stomach()

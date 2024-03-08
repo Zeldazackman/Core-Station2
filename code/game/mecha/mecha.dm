@@ -540,7 +540,7 @@
 	if(equipment?.len)
 		. += "It's equipped with:"
 		for(var/obj/item/mecha_parts/mecha_equipment/ME in equipment)
-			. += "\icon[ME][bicon(ME)] [ME]"
+			. += "[icon2html(ME,user.client)] [ME]"
 
 /obj/mecha/proc/drop_item()//Derpfix, but may be useful in future for engineering exosuits.
 	return
@@ -2443,7 +2443,7 @@
 /obj/mecha/proc/occupant_message(message as text)
 	if(message)
 		if(src.occupant && src.occupant.client)
-			to_chat(src.occupant, "\icon[src][bicon(src)] [message]")
+			to_chat(src.occupant, "[icon2html(src, src.occupant.client)] [message]")
 	return
 
 /obj/mecha/proc/log_message(message as text,red=null)
@@ -2584,7 +2584,7 @@
 		if(!in_range(src, usr))	return
 		var/mob/user = top_filter.getMob("user")
 		if(user)
-			var/new_pressure = tgui_input_number(user,"Input new output pressure","Pressure setting",internal_tank_valve)
+			var/new_pressure = tgui_input_number(user,"Input new output pressure","Pressure setting",internal_tank_valve, round_value=FALSE)
 			if(new_pressure)
 				internal_tank_valve = new_pressure
 				to_chat(user, "The internal pressure valve has been set to [internal_tank_valve]kPa.")

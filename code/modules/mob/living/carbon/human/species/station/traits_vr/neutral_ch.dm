@@ -37,6 +37,7 @@
 	cost = 0
 	custom_only = FALSE
 	var_changes = list("mudking" = TRUE)
+	custom_only = FALSE
 
 /datum/trait/neutral/singularity_metabolism
 	name = "Metabolism, Singularity"
