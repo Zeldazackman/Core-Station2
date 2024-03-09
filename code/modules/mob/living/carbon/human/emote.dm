@@ -334,7 +334,9 @@ var/list/_simple_mob_default_emotes = list(
 	/decl/emote/audible/mgeow,
 	/decl/emote/audible/xenogrowl,
 	/decl/emote/audible/xenohiss,
-	/decl/emote/audible/xenopurr
+	/decl/emote/audible/xenopurr,
+	/decl/emote/audible/gwah,
+	/decl/emote/audible/wawa
 	//CHOMP Add end
 	)
 	//VOREStation Add End
