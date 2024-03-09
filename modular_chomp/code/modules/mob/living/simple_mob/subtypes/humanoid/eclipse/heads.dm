@@ -99,7 +99,6 @@
 /obj/item/projectile/energy/flamecrystal
 	name = "Flame Crystal"
 	icon = 'modular_chomp/icons/mob/eclipse.dmi' //commiting sin
-	icon_living = "firecrystal"
 	icon_state = "firecrystal"
 	damage = 15
 	armor_penetration = 40 //Large pointy crystal

@@ -5,6 +5,21 @@
 		return TRUE
 	return ..()
 
+//CHOMPEdit Start - General ability check
+/mob/living/carbon/human/proc/shadekin_ability_check()
+	var/datum/species/shadekin/SK = species
+	if(!istype(SK))
+		to_chat(src, "<span class='warning'>Only a shadekin can use that!</span>")
+		return FALSE
+	else if(stat)
+		to_chat(src, "<span class='warning'>Can't use that ability in your state!</span>")
+		return FALSE
+	else if((ability_flags & AB_DARK_RESPITE || has_modifier_of_type(/datum/modifier/dark_respite)) && !(ability_flags & AB_PHASE_SHIFTED))
+		to_chat(src, "<span class='warning'>You can't use that so soon after an emergency warp!</span>")
+		return FALSE
+	return TRUE
+//CHOMPEdit End
+
 /////////////////////
 ///  PHASE SHIFT  ///
 /////////////////////
