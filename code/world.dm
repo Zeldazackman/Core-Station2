@@ -14,4 +14,4 @@
 	area = /area/space
 	view = "15x15"
 	cache_lifespan = 7
-	fps = 20 // If this isnt hard-defined, anything relying on this variable before world load will cry a lot
+	fps = 40 // If this isnt hard-defined, anything relying on this variable before world load will cry a lot
