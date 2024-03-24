@@ -26,7 +26,7 @@
 	B.contamination_color = "green"
 	B.item_digest_mode = IM_HOLD
 	B.belly_fullscreen = "acid"
-	B.belly_fullscreen_alpha = "220"
+	B.belly_fullscreen_alpha = 245
 	B.belly_fullscreen_color = "#823232"
 	B.belly_fullscreen_color2 = "#823232"
 	B.fancy_vore = 1
