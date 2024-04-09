@@ -89,6 +89,7 @@
 				)
 
 	can_be_drop_prey = FALSE //CHOMP Add
+	glow_override = TRUE
 
 /mob/living/simple_mob/vore/oregrub/lava
 	name = "mature lavagrub"
@@ -145,6 +146,8 @@
 	if(. == 0 && !is_dead())
 		set_light(2.5, 1, COLOR_ORANGE)
 		return 1
+	else if(is_dead())
+		glow_override = FALSE
 
 /mob/living/simple_mob/vore/oregrub/lava/death()
 	set_light(0)

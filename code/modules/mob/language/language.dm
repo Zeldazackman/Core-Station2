@@ -132,7 +132,7 @@
 /datum/language/proc/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
 	log_say("(HIVE) [message]", speaker)
 
-	speaker.verbs |= /mob/proc/adjust_hive_range
+	add_verb(speaker,/mob/proc/adjust_hive_range) //CHOMPEdit TGPanel
 
 	if(!speaker_mask) speaker_mask = speaker.real_name
 	message = "[get_spoken_verb(message)], \"[format_message(message, get_spoken_verb(message))]\""
@@ -207,7 +207,7 @@
 	languages.Add(new_language)
 	//VOREStation Addition Start
 	if(new_language.flags & HIVEMIND)
-		verbs |= /mob/proc/adjust_hive_range
+		add_verb(src,/mob/proc/adjust_hive_range) //CHOMPEdit TGPanel
 	//VOREStation Addition End
 
 	return 1
@@ -252,13 +252,13 @@
 	if(client && client.prefs.language_prefixes && client.prefs.language_prefixes.len)
 		return client.prefs.language_prefixes[1]
 
-	return config.language_prefixes[1]
+	return CONFIG_GET(str_list/language_prefixes)[1] // CHOMPEdit
 
 /mob/proc/is_language_prefix(var/prefix)
 	if(client && client.prefs.language_prefixes && client.prefs.language_prefixes.len)
 		return prefix in client.prefs.language_prefixes
 
-	return prefix in config.language_prefixes
+	return prefix in CONFIG_GET(str_list/language_prefixes) // CHOMPEdit
 
 //TBD
 /mob/proc/check_lang_data()

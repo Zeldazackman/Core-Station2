@@ -13,13 +13,13 @@ SUBSYSTEM_DEF(media_tracks)
 	var/list/casino_tracks = list()
 	/// CHOMPstation edit end
 
-/datum/controller/subsystem/media_tracks/Initialize(timeofday)
+/datum/controller/subsystem/media_tracks/Initialize() // CHOMPEdit
 	load_tracks()
 	sort_tracks()
-	return ..()
+	return SS_INIT_SUCCESS // CHOMPEdit
 
 /datum/controller/subsystem/media_tracks/proc/load_tracks()
-	for(var/filename in config.jukebox_track_files)
+	for(var/filename in CONFIG_GET(str_list/jukebox_track_files)) // CHOMPEdit
 		report_progress("Loading jukebox track: [filename]")
 
 		if(!fexists(filename))

@@ -83,9 +83,9 @@
 	set desc = "Lay an egg that will eventually hatch into a new xenomorph larva. Life finds a way."
 	set category = "Abilities"
 
-	if(!config.aliens_allowed)
+	if(!CONFIG_GET(flag/aliens_allowed)) // CHOMPEdit
 		to_chat(src, "You begin to lay an egg, but hesitate. You suspect it isn't allowed.")
-		verbs -= /mob/living/carbon/human/proc/lay_egg
+		remove_verb(src,/mob/living/carbon/human/proc/lay_egg) //CHOMPEdit TGPanel
 		return
 
 	if(locate(/obj/structure/ghost_pod/automatic/xenomorph_egg) in get_turf(src))

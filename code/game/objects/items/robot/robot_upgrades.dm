@@ -108,8 +108,9 @@
 		to_chat(usr, "It'd be unwise to plug another vtec module in!")
 		return 0
 
-	R.verbs += /mob/living/silicon/robot/proc/toggle_vtec
-	R.speed = -1
+	add_verb(R,/mob/living/silicon/robot/proc/toggle_vtec) //CHOMPEdit
+	R.vtec_active = TRUE
+	R.hud_used.toggle_vtec_control()
 	return 1
 
 /obj/item/borg/upgrade/basic/sizeshift
@@ -127,7 +128,7 @@
 		to_chat(usr, "There's no space for another size alteration module!")
 		return 0
 
-	R.verbs += /mob/living/proc/set_size
+	add_verb(R,/mob/living/proc/set_size) //CHOMPEdit
 	return 1
 
 /obj/item/borg/upgrade/basic/syndicate

@@ -160,7 +160,7 @@
 	..()
 	if (trait_prefs?["pass_table"] || !trait_prefs)
 		H.pass_flags |= PASSTABLE
-	H.verbs |= /mob/living/proc/toggle_pass_table
+	add_verb(H,/mob/living/proc/toggle_pass_table) //CHOMPEdit TGPanel
 
 /datum/trait/positive/grappling_expert
 	name = "Grappling Expert"
@@ -321,7 +321,7 @@
 
 /datum/trait/positive/insect_sting/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
-	H.verbs |= /mob/living/proc/insect_sting
+	add_verb(H,/mob/living/proc/insect_sting) //CHOMPEdit TGPanel
 
 // TANKINESS LETS GOOOOOOOOO
 /datum/trait/positive/burn_resist_plus // Equivalent to Burn Weakness Major, cannot be taken at the same time.
@@ -419,7 +419,7 @@
 
 /datum/trait/positive/bloodsucker_plus/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
-	H.verbs |= /mob/living/carbon/human/proc/bloodsuck
+	add_verb(H,/mob/living/carbon/human/proc/bloodsuck) //CHOMPEdit TGPanel
 
 /datum/trait/positive/sonar
 	name ="Perceptive Hearing"
@@ -429,7 +429,7 @@
 
 /datum/trait/positive/sonar/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
-	H.verbs |= /mob/living/carbon/human/proc/sonar_ping
+	add_verb(H,/mob/living/carbon/human/proc/sonar_ping) //CHOMPEdit TGPanel
 
 /datum/trait/positive/toxin_gut
 	name ="Robust Gut"
