@@ -60,7 +60,7 @@
 	vore_default_contamination_flavor = "Wet"
 	vore_default_contamination_color = "grey"
 	vore_default_item_mode = IM_DIGEST
-	vore_bump_chance = 5
+	vore_bump_chance = 15
 	vore_pounce_chance = 35
 	vore_pounce_falloff = 0
 	vore_standing_too = TRUE
@@ -69,8 +69,9 @@
 //escapabale                                                  escapable
 
 /mob/living/simple_mob/vore/newdeer/init_vore()
-	..()
-
+	if(!voremob_loaded)
+		return
+	. = ..()
 	var/obj/belly/R = vore_selected
 	R.name = "rumen"
 	R.desc = "Hang on just a minute. You got eaten by a deer?! It's hot and slick, the flesh squeezing in heavily across you, slick and tight... though this chamber doesn't seem to be all that active. A stuffy, squeezing holding chamber... though you can smell the acrid scents of whatever is going on deeper inside rising up passed you... Little belches rumbling out passed you here and there while the walls cling to you. You can feel the strong, steady beating of the deer's heart thundering close by, the pulse throbbing through the flesh all around you as you are held close... stocked away for when the deer is ready for you. Kept."
@@ -165,7 +166,7 @@
 	reticulum.name = "reticulum"
 	reticulum.desc = "You sink deeper into the deer, squelching through a tight opening and on into the source of those acrid scents! You don't drop inside so much as slide through a valve and into the embrace of a cramped chamber, half full of mashed up grass and leaves! It's sticky and horribly smelly! A chamber for fermenting the things the deer eats! You are smeared in those tingling fluids, covered in the digesting gunk and squeezed here and there as the deer continues about its day. Whether fortunate or not, the chamber seems to be taking its time, leaving you to tingle and stew in the slowly softening cud. Now and then this chamber FLEXES tightly around you, and the smelly air is forced out and up, the deer belching loudly..."
 	reticulum.mode_flags = DM_FLAG_THICKBELLY | DM_FLAG_NUMBING
-	reticulum.belly_fullscreen = "multi_layer_test_tummy"
+	reticulum.belly_fullscreen = "VBO_belly8"
 	reticulum.colorization_enabled = TRUE
 	reticulum.digest_mode = DM_DIGEST
 	reticulum.digest_brute = 0

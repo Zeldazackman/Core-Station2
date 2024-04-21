@@ -125,7 +125,7 @@
 /obj/belly/flipper/maw
 	name = "Maw"
 	desc = "As you're caught off guard by the sudden movement, The AIs mechanical jaws snap shut to trap you. You find yourself inside the warm and soft mechanical maw. The interior of the maw is lined with a smooth, metallic coating that glints in the light. The tongue, lifts you up against the insides of its metallic teeth and against the ridges of its palate, which are covered in various ports and connectors. It's growled breaths gust from its back hatch, blasting you with warm air and making your body shiver. You can sense the maw is preparing to unleash you into its next stage of operation."
-	escapechance = 100
+	escapechance = 10
 	struggle_messages_inside = list(
 		"You wriggle and wrestle for purchase against the metallic tongue, which lifts and cocoons you tightly between itself and the palate.",
 		"You try to pry at the interlocked teeth, but they don't budge. The jaws snap shut once more, trapping you inside the maw.",

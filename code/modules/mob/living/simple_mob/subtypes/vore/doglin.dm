@@ -6,7 +6,7 @@
 	icon_state = "doglin"
 	icon_living = "doglin"
 	icon_dead = "doglin_dead"
-	icon_rest = "doglin_rest"	//DO a proper rest sprite later
+	icon_rest = "doglin"	//DO a proper rest sprite later
 	icon = 'icons/mob/mobx32.dmi'
 
 	faction = "dog"
@@ -37,12 +37,10 @@
 	has_hands = TRUE
 	humanoid_hands = TRUE
 
-	load_owner = "seriouslydontsavethis"	//they smort
 
 	var/static/list/overlays_cache = list()
 	var/yip_cooldown = 0
 	var/doglin_special = TRUE
-	var/picked_color = FALSE
 
 ///// VORE RELATED /////
 	vore_active = 1
@@ -271,7 +269,9 @@
 	say_got_target = list("*roarbark")
 
 /mob/living/simple_mob/vore/doglin/init_vore()
-	..()
+	if(!voremob_loaded)
+		return
+	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
 	B.desc = "You have found yourself pumping on down, down, down into this doglin. The slick touches of pulsing walls roll over you in greedy fashion as you're swallowed away, the flesh forms to your figure as in an instant the world is replaced by the hot squeeze of canine gullet. And in another moment a heavy GLLRMMPTCH seals you away, the doglin tossing its head eagerly, the way forward stretching to accommodate your shape as you are greedily guzzled down. The wrinkled, doughy walls pulse against you in time to the creature's steady heartbeat. The sounds of the outside world muffled into obscure tones as the wet, grumbling rolls of this soft creature's gut hold you, churning you tightly such that no part of you is spared from these gastric affections."
@@ -425,21 +425,8 @@
 	belly_attack = FALSE
 	intelligence_level = AI_SMART
 	threaten_delay = 30 SECONDS
-	grab_hostile = FALSE
 
 /datum/ai_holder/simple_mob/doglin/on_hear_say(mob/living/speaker, message)
-	if(holder.client)
-		return
-	var/mob/living/simple_mob/vore/doglin/D = holder
-	if(D.yip_cooldown)
-		return
-	if(findtext(message, "yip") || findtext(message, "yap"))
-		var/who = null
-		if(!istype(speaker,/mob/living/simple_mob/vore/doglin))
-			who = " [speaker]"
-		D.yapyapyap(who, speaker)
-
-/datum/ai_holder/simple_mob/doglin/on_hear_emote(mob/living/speaker, message)
 	if(holder.client)
 		return
 	var/mob/living/simple_mob/vore/doglin/D = holder
