@@ -32,6 +32,7 @@
 	has_hands = 1
 
 	can_be_drop_prey = FALSE //CHOMP Add
+	allow_mind_transfer = TRUE //CHOMPAdd
 
 // Nomnomn
 /mob/living/simple_mob/vore/weretiger

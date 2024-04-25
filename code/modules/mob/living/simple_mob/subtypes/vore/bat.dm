@@ -24,6 +24,8 @@
 
 	faction = "vampire"
 
+	allow_mind_transfer = TRUE //CHOMPAdd
+
 // Activate Noms!
 /mob/living/simple_mob/vore/bat
 	vore_active = 1
@@ -57,4 +59,3 @@
 	B.escapechance = 15
 	B.selective_preference = DM_DRAIN
 	B.escape_stun = 5
-

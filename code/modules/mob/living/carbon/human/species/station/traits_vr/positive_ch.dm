@@ -11,6 +11,8 @@
 	cost = 0
 	custom_only = FALSE
 	var_changes = list("darksight" = 4)  //CHOMP Edit
+	custom_only = FALSE
+	banned_species = list(SPECIES_TAJARAN, SPECIES_SHADEKIN_CREW, SPECIES_SHADEKIN, SPECIES_XENOHYBRID, SPECIES_VULPKANIN, SPECIES_XENO, SPECIES_XENOCHIMERA, SPECIES_VASILISSAN, SPECIES_WEREBEAST) //These species already have strong darksight by default.
 
 /datum/trait/positive/darksight_plus
 	name = "Darksight, Major"
@@ -18,6 +20,8 @@
 	cost = 0
 	custom_only = FALSE
 	var_changes = list("darksight" = 8)
+	custom_only = FALSE
+	banned_species = list(SPECIES_TAJARAN, SPECIES_SHADEKIN_CREW, SPECIES_SHADEKIN, SPECIES_XENOHYBRID, SPECIES_VULPKANIN, SPECIES_XENO, SPECIES_XENOCHIMERA, SPECIES_VASILISSAN, SPECIES_WEREBEAST) //These species already have strong darksight by default.
 
 /datum/trait/positive/densebones
 	name = "Dense Bones"
