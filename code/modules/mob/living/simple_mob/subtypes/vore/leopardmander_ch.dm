@@ -142,8 +142,8 @@
 	B.autotransferlocation = "stomach"
 	B.escapetime = 1 SECONDS
 	B.escapechance = 75
-	B.vore_absorb_chance = 0
-	B.vore_digest_chance = 0
+	B.absorbchance = 0
+	B.digestchance = 0
 	B.human_prey_swallow_time = 30
 	B.nonhuman_prey_swallow_time = 30
 
@@ -248,8 +248,8 @@
 	B.autotransferlocation = "stomach"
 	B.escapetime = 1 SECONDS
 	B.escapechance = 75
-	B.vore_absorb_chance = 0
-	B.vore_digest_chance = 0
+	B.absorbchance = 0
+	B.digestchance = 0
 	B.human_prey_swallow_time = 30
 	B.nonhuman_prey_swallow_time = 30
 
