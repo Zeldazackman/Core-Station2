@@ -1020,7 +1020,7 @@ var/global/list/selectable_speech_bubbles = list(
 // If you want someone to
 var/global/list/BUILDABLE_AREA_TYPES = list(
 	/area/space,
-	/area/mine,
+	/area/mine
 //	/area/surface/outside, 	//SC //CHOMP Comment - Actually these are causing compilation error.
 //	/area/surface/cave,		//SC
 //	/area/tether/surfacebase/outside,	//CHOMP Edit Downstreams, uncomment these if you are using these maps
@@ -1035,7 +1035,7 @@ var/global/list/BUILDABLE_AREA_TYPES = list(
 
 var/static/list/blacklisted_areas = typecacheof(list(
 	/area/space,
-	/area/mine,
+	/area/mine
 //	/area/surface/outside,	//SC //CHOMP Comment - Actually these are causing compilation error.
 //	/area/surface/cave,		//SC
 	//TETHER STUFF BELOW THIS	//CHOMP Edit Downstreams, uncomment these if you are using these maps
@@ -1067,7 +1067,8 @@ var/global/list/SPECIALS = list(
 	/turf/unsimulated/wall/planetary,
 	/area/submap/virgo2,
 	/area/submap/event,
-	/area/submap/casino_event
+	/area/submap/casino_event,
+	/area/vr //CHOMPedit
 	// /area/derelict //commented out, all hail derelict-rebuilders!
 )
 
@@ -1089,5 +1090,6 @@ var/global/list/area_or_turf_fail_types = typecacheof(list(
 	/turf/unsimulated/wall/planetary,
 	/area/submap/virgo2,
 	/area/submap/event,
-	/area/submap/casino_event
+	/area/submap/casino_event,
+	/area/vr //CHOMPedit
 	))
