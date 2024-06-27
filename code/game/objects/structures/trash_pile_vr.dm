@@ -275,6 +275,8 @@
 					prob(1);/obj/item/weapon/gun/energy/mouseray,
 					prob(1);/obj/item/clothing/accessory/collar/shock/bluespace/modified,
 					prob(4);/obj/item/clothing/accessory/collar/shock/bluespace,
+					prob(3);/obj/item/weapon/cracker,
+					prob(1);/obj/item/weapon/gun/energy/sizegun/backfire,
 					prob(3);/obj/item/weapon/gun/energy/netgun)
 
 	var/obj/item/I = new path()
