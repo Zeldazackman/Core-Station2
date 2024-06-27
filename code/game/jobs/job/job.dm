@@ -184,3 +184,8 @@
 	if(brain_type in banned_job_species)
 		return TRUE
 	*/
+
+//CHOMPAdd Start
+/datum/job/proc/update_limit(var/comperator)
+	return
+//CHOMPAdd End

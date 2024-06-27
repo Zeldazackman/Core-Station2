@@ -785,7 +785,11 @@
 				//CHOMPStation Add Start
 				/obj/item/toy/plushie/red_dragon,
 				/obj/item/toy/plushie/green_dragon,
-				/obj/item/toy/plushie/purple_dragon)
+				/obj/item/toy/plushie/purple_dragon,
+				/obj/item/toy/plushie/white_eastdragon,
+				/obj/item/toy/plushie/red_eastdragon,
+				/obj/item/toy/plushie/green_eastdragon,
+				/obj/item/toy/plushie/gold_eastdragon)
 				//CHOMPStation Add End
 
 /obj/random/plushielarge
@@ -1148,5 +1152,13 @@
 		prob(8);/obj/item/capture_crystal/random,
 		prob(10);/obj/item/weapon/bluespace_harpoon,
 		prob(10);/obj/item/weapon/bluespace_crystal,
-		prob(1);/obj/item/clothing/glasses/graviton
+		prob(1);/obj/item/clothing/glasses/graviton,
+		prob(10);/obj/item/weapon/cracker,
+		prob(1);/obj/item/weapon/cracker/shrinking,
+		prob(1);/obj/item/weapon/cracker/growing,
+		prob(1);/obj/item/weapon/cracker/invisibility,
+		prob(1);/obj/item/weapon/cracker/drugged,
+		prob(1);/obj/item/weapon/cracker/knockover,
+		prob(1);/obj/item/weapon/cracker/vore,
+		prob(1);/obj/item/weapon/cracker/money
 	)
