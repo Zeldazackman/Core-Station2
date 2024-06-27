@@ -493,7 +493,7 @@
 /mob/proc/nsay(message as text)
 	set name = "NSay"
 	set desc = "Speak into your NIF's Soulcatcher."
-	set category = "IC.NiF" //CHOMPEdit
+	set category = "IC.Nif" //CHOMPEdit
 
 	src.nsay_act(message)
 

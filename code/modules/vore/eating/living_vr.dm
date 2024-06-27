@@ -34,7 +34,7 @@
 		'sound/effects/mob_effects/xenochimera/regen_3.ogg',
 		'sound/effects/mob_effects/xenochimera/regen_5.ogg'
 	)
-	var/trash_catching = FALSE //Toggle for trash throw vore from chompstation
+	var/trash_catching = FALSE				//Toggle for trash throw vore from chompstation
 
 //
 // Hook for generic creation of stuff on new creatures
@@ -94,6 +94,7 @@
 	//Handle case: /obj/item/weapon/grab
 	if(istype(I, /obj/item/weapon/grab))
 		var/obj/item/weapon/grab/G = I
+/*		var/mob/living/carbon/victim = G.affecting */
 
 		//Has to be aggressive grab, has to be living click-er and non-silicon grabbed
 		if(G.state >= GRAB_AGGRESSIVE && (isliving(user) && !issilicon(G.affecting)))
@@ -103,6 +104,8 @@
 
 			///// If user clicked on themselves
 			if(src == G.assailant && is_vore_predator(src))
+/*				if(istype(victim) && !victim.client && !victim.ai_holder)
+					log_and_message_admins("[key_name_admin(src)] attempted to eat [key_name_admin(G.affecting)] whilst they were AFK ([G.affecting ? ADMIN_JMP(G.affecting) : "null"])") */
 				if(feed_grabbed_to_self(src, G.affecting))
 					qdel(G)
 					return TRUE
@@ -111,6 +114,8 @@
 
 			///// If user clicked on their grabbed target
 			else if((src == G.affecting) && (attacker.a_intent == I_GRAB) && (attacker.zone_sel.selecting == BP_TORSO) && (is_vore_predator(G.affecting)))
+/*				if(istype(victim) && !victim.client && !victim.ai_holder) //Check whether the victim is: A carbon mob, has no client, but has a ckey. This should indicate an SSD player.
+					log_and_message_admins("[key_name_admin(attacker)] attempted to force feed themselves to [key_name_admin(G.affecting)] whilst they were AFK ([G.affecting ? ADMIN_JMP(G.affecting) : "null"])") */
 				if(!G.affecting.feeding)
 					to_chat(user, "<span class='vnotice'>[G.affecting] isn't willing to be fed.</span>")
 					log_and_message_admins("[key_name_admin(src)] attempted to feed themselves to [key_name_admin(G.affecting)] against their prefs ([G.affecting ? ADMIN_JMP(G.affecting) : "null"])")
@@ -124,6 +129,12 @@
 
 			///// If user clicked on anyone else but their grabbed target
 			else if((src != G.affecting) && (src != G.assailant) && (is_vore_predator(src)))
+/*				if(istype(victim) && !victim.client && !victim.ai_holder)
+					log_and_message_admins("[key_name_admin(attacker)] attempted to feed [key_name_admin(G.affecting)] to [key_name_admin(src)] whilst [key_name_admin(G.affecting)] was AFK ([G.affecting ? ADMIN_JMP(G.affecting) : "null"])")
+				var/mob/living/carbon/victim_fed = src
+				if(istype(victim_fed) && !victim_fed.client && !victim_fed.ai_holder)
+					log_and_message_admins("[key_name_admin(attacker)] attempted to feed [key_name_admin(G.affecting)] to [key_name_admin(src)] whilst [key_name_admin(src)] was AFK ([G.affecting ? ADMIN_JMP(G.affecting) : "null"])")
+*/
 				if(!feeding)
 					to_chat(user, "<span class='vnotice'>[src] isn't willing to be fed.</span>")
 					log_and_message_admins("[key_name_admin(attacker)] attempted to feed [key_name_admin(G.affecting)] to [key_name_admin(src)] against predator's prefs ([src ? ADMIN_JMP(src) : "null"])")
@@ -514,7 +525,7 @@
 		var/mob/living/silicon/pred = loc.loc //Thing holding the belly!
 		var/obj/item/device/dogborg/sleeper/belly = loc //The belly!
 
-		var/confirm = tgui_alert(src, "Please feel free to press use this button at any time you are uncomfortable and in a belly. Consent is important.", "Confirmation", list("Okay", "Cancel")) //CHOMPedit
+		var/confirm = tgui_alert(src, "You're in a cyborg sleeper. Please feel free to press use this button at any time you are uncomfortable and in a belly. Consent is important.", "Confirmation", list("Okay", "Cancel"))
 		if(confirm != "Okay" || loc != belly)
 			return
 		//Actual escaping
@@ -707,6 +718,13 @@
 
 	user.update_icon()
 
+/*	var/mob/living/carbon/victim = prey // Check for afk vore
+	if(istype(victim) && !victim.client && !victim.ai_holder)
+		log_and_message_admins("[key_name_admin(pred)] ate [key_name_admin(prey)] whilst the prey was AFK ([pred ? ADMIN_JMP(pred) : "null"])")
+	var/mob/living/carbon/victim_pred = pred // Check for afk vore
+	if(istype(victim_pred) && !victim_pred.client && !victim_pred.ai_holder)
+		log_and_message_admins("[key_name_admin(pred)] ate [key_name_admin(prey)] whilst the pred was AFK ([pred ? ADMIN_JMP(pred) : "null"])")
+*/
 	// Inform Admins
 	if(pred == user)
 		add_attack_logs(pred, prey, "Eaten via [belly.name]")
@@ -935,7 +953,6 @@
 				to_chat(src, "<span class='notice'>You can taste the flavor of garbage and leftovers. Delicious?</span>")
 			else
 				to_chat(src, "<span class='notice'>You can taste the flavor of gluttonous waste of food.</span>")
-		//TFF 10/7/19 - Add custom flavour for collars for trash can trait.
 		else if (istype(I,/obj/item/clothing/accessory/collar))
 			to_chat(src, "<span class='notice'>You can taste the submissiveness in the wearer of [I]!</span>")
 		else if(iscapturecrystal(I))
@@ -1243,7 +1260,7 @@
 	icon = 'icons/mob/screen_full_colorized_vore_overlays.dmi'
 */ //Chomp DISABLE End
 
-/mob/living/verb/vorebelly_printout() //Spew the vorepanel belly messages into chat window for copypasting.
+/mob/living/verb/vorebelly_printout() //Spew the vorepanel belly messages into chat window for copypasting. //ChompEDIT proc -> verb
 	set name = "X-Print Vorebelly Settings"
 	set category = "Preferences.Vore" //CHOMPEdit
 	set desc = "Print out your vorebelly messages into chat for copypasting."
@@ -1418,7 +1435,7 @@
 		owner?.client?.screen -= screen_icon
 		UnregisterSignal(screen_icon, COMSIG_CLICK)
 		qdel_null(screen_icon)
-	remove_verb(owner,/mob/proc/insidePanel) //CHOMPEdit
+	remove_verb(owner,/mob/proc/insidePanel)  //CHOMPEdit
 	qdel_null(owner.vorePanel)
 
 /datum/component/vore_panel/proc/create_mob_button(mob/user)
