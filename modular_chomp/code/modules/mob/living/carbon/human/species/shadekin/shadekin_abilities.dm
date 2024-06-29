@@ -210,6 +210,7 @@
 		stop_pulling()
 		canmove = FALSE
 
+/*
 		//CHOMPAdd Start
 		var/list/allowed_implants = list(
 			/obj/item/weapon/implant/sizecontrol,
@@ -226,6 +227,7 @@
 		if(!has_embedded_objects())
 			clear_alert("embeddedobject")
 		//CHOMPAdd End
+*/
 
 		// change
 		ability_flags |= AB_PHASE_SHIFTED
