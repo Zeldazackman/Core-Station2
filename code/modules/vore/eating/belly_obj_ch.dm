@@ -55,6 +55,8 @@
 	var/liquid_fullness4_messages = FALSE
 	var/liquid_fullness5_messages = FALSE
 	var/vorespawn_blacklist = FALSE
+	var/vorespawn_whitelist = list()
+	var/vorespawn_absorbed = 0
 
 	var/list/fullness1_messages = list(
 		"%pred's %belly looks empty"
@@ -239,6 +241,8 @@
 		reagents.add_reagent(reagent, generated_reagents[reagent])
 	if(count_liquid_for_sprite)
 		owner.update_fullness() //This is run whenever a belly's contents are changed.
+	if(LAZYLEN(belly_surrounding))
+		SEND_SIGNAL(src, COMSIG_BELLY_UPDATE_VORE_FX, FALSE, reagents.total_volume) // Signals vore_fx() reagents updates.
 
 //////////////////////////// REAGENT_DIGEST ////////////////////////
 
@@ -654,10 +658,12 @@
 
 // Updates the belly_surrounding list variable. Called in bellymodes_vr.dm
 /obj/belly/proc/update_belly_surrounding()
-	if(!contents.len)
+	if(!contents.len && !LAZYLEN(owner.soulgem?.brainmobs))
 		belly_surrounding = list()
 		return
 	belly_surrounding = get_belly_surrounding(contents)
+	if(owner.soulgem?.linked_belly == src)
+		belly_surrounding += owner.soulgem.brainmobs
 
 // Recursive proc that returns all living mobs directly and indirectly inside a belly
 // This can also be called more generically to get all living mobs not in bellies within any contents list

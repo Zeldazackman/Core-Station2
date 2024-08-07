@@ -15,6 +15,7 @@
 	if(!istype(src,/mob/observer)) //CHOMPEdit
 		ghostize() //CHOMPEdit
 	//ChompEDIT start - fix hard qdels
+	QDEL_NULL(soulgem) //CHOMPAdd
 	QDEL_NULL(plane_holder)
 	QDEL_NULL(hud_used)
 	for(var/key in alerts) //clear out alerts
@@ -229,7 +230,7 @@
 				client.perspective = EYE_PERSPECTIVE
 				client.eye = loc
 		return TRUE
-
+/* CHOMPEdit - Moved to modular_chomp/modules/point/point.dm
 /mob/verb/pointed(atom/A as mob|obj|turf in view())
 	set name = "Point To"
 	set category = "Object"
@@ -259,7 +260,7 @@
 
 	face_atom(A)
 	return 1
-
+*/
 
 /mob/proc/ret_grab(list/L, flag)
 	return

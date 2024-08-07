@@ -233,6 +233,13 @@
 	if(!vore_active || no_vore || !voremob_loaded) //CHOMPedit: On-demand belly loading.
 		return
 
+	AddElement(/datum/element/slosh) // Sloshy element
+
+	//CHOMPAdd Start
+	if(!soulgem)
+		soulgem = new(src)
+	//CHOMPAdd End
+
 	if(LAZYLEN(vore_organs))
 		return
 
