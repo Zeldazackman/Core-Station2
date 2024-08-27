@@ -137,6 +137,7 @@
 	cost = -2
 	custom_only = FALSE
 	var_changes = list("lightweight" = 1)
+	excludes = list(/datum/trait/negative/lightweight_light) //CHOMPedit Added a lesser version of this trait
 	custom_only = FALSE
 
 /datum/trait/negative/neural_hypersensitivity
