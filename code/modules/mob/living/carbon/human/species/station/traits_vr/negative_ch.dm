@@ -200,6 +200,7 @@
 	if(ms)
 		to_chat(H, ms)
 	H.next_loneliness_time = world.time+500
+	H.fear = min((H.fear + 3), 102)
 
 /datum/trait/negative/agoraphobia/proc/handle_loneliness_message(var/mob/living/carbon/human/H)
 	var/Lonely = H.loneliness_stage
@@ -395,6 +396,7 @@
 	if(ms != "")
 		to_chat(H, ms)
 	H.next_loneliness_time = world.time+500
+	H.fear = min((H.fear + 3), 102)
 
 /datum/trait/negative/endurance_glass // Glass Cannon
 	name = "Glass Endurance"

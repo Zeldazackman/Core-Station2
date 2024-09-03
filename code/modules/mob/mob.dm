@@ -390,7 +390,7 @@
 	// Final chance to abort "respawning"
 	if(mind && timeofdeath) // They had spawned before
 		var/choice = tgui_alert(usr, "Returning to the menu will prevent your character from being revived in-round. Are you sure?", "Confirmation", list("No, wait", "Yes, leave"))
-		if(choice == "No, wait")
+		if(!choice || choice == "No, wait")
 			return
 		else if(mind.assigned_role)
 			var/extra_check = tgui_alert(usr, "Do you want to Quit This Round before you return to lobby?\
@@ -750,11 +750,11 @@
 					stat(null)
 					for(var/datum/controller/subsystem/SS in Master.subsystems)
 						SS.stat_entry()
-
-			// CHOMPedit - Ticket System
-			//if(statpanel("Tickets"))
-				//GLOB.ahelp_tickets.stat_entry()
-
+			/* CHOMPedit - Ticket System
+			if(statpanel("Tickets"))
+				if(check_rights(R_ADMIN|R_SERVER,FALSE)) //Prevents non-staff from opening the list of ahelp tickets
+					GLOB.ahelp_tickets.stat_entry()
+			*/
 
 			if(length(GLOB.sdql2_queries))
 				if(statpanel("SDQL2"))
