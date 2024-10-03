@@ -1,4 +1,4 @@
-/obj/item/weapon/RDDT
+/obj/item/RDDT
 	name = "RDDT"
 	desc = "A Research and Development Debug Tool (RDDT) that some lazy bastard most likely spawned this in, not to be confused with a similarly sounding trash-pile!"
 	icon = 'icons/obj/tools_vr.dmi'

@@ -1,4 +1,4 @@
-/obj/item/weapon/rig/medical/equipped/fluff/rune
+/obj/item/rig/medical/equipped/fluff/rune
 	name = "medical hardsuit control module"
 	desc = "A sleek and loaded hardsuit for nerds to make life easier."
 	req_access = list()
@@ -9,7 +9,7 @@
 	offline_vision_restriction = 1
 	siemens_coefficient= 0
 	seal_delay = 5
-	cell_type =  /obj/item/weapon/cell/hyper
+	cell_type =  /obj/item/cell/hyper
 
 	initial_modules = list(
 		/obj/item/rig_module/maneuvering_jets,
@@ -47,7 +47,7 @@
 	species_restricted = null
 
 
-/obj/item/weapon/rig/combat/equipped/fluff/frank
+/obj/item/rig/combat/equipped/fluff/frank
 	name = "combat hardsuit control module"
 	desc = "A sleek and dangerous hardsuit for active combat, smells faintly of violence somehow..."
 	req_access = list()
@@ -58,7 +58,7 @@
 	offline_vision_restriction = 1
 	siemens_coefficient= 0
 	seal_delay = 5
-	cell_type =  /obj/item/weapon/cell/hyper
+	cell_type =  /obj/item/cell/hyper
 
 	initial_modules = list(
 		/obj/item/rig_module/mounted,
