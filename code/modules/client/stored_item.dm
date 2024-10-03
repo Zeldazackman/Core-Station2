@@ -170,49 +170,45 @@
 
 /////LIST OF STUFF WE DON'T WANT PEOPLE STORING/////
 
-/obj/item/device/pda
+/obj/item/pda
 	persist_storable = FALSE
-/obj/item/device/communicator
+/obj/item/communicator
 	persist_storable = FALSE
-/obj/item/weapon/card
+/obj/item/card
 	persist_storable = FALSE
-/obj/item/weapon/holder
+/obj/item/holder
 	persist_storable = FALSE
-/obj/item/device/radio
+/obj/item/radio
 	persist_storable = FALSE
-/obj/item/weapon/storage			//There are lots of things that have stuff that we may not want people to just have. And this is mostly intended for a single thing.
+/obj/item/storage			//There are lots of things that have stuff that we may not want people to just have. And this is mostly intended for a single thing.
 	persist_storable = FALSE		//And it would be annoying to go through and consider all of them, so default to disabled.
-/obj/item/weapon/storage/backpack	//But we can enable some where it makes sense. Backpacks and their variants basically never start with anything in them, as an example.
+/obj/item/storage/backpack	//But we can enable some where it makes sense. Backpacks and their variants basically never start with anything in them, as an example.
 	persist_storable = TRUE
-/obj/item/weapon/reagent_containers/hypospray/vial
+/obj/item/reagent_containers/hypospray/vial
 	persist_storable = FALSE
-/obj/item/weapon/cmo_disk_holder
+/obj/item/cmo_disk_holder
 	persist_storable = FALSE
-/obj/item/weapon/grab
+/obj/item/grab
 	persist_storable = FALSE
-/obj/item/weapon/grenade
+/obj/item/grenade
 	persist_storable = FALSE
-/obj/item/weapon/backup_implanter
+/obj/item/paper
 	persist_storable = FALSE
-/obj/item/device/retail_scanner
+/obj/item/backup_implanter
 	persist_storable = FALSE
-/obj/item/organ
+/obj/item/retail_scanner
 	persist_storable = FALSE
-/obj/item/device/soulstone
+/obj/item/soulstone
 	persist_storable = FALSE
-/obj/item/device/aicard
+/obj/item/aicard
 	persist_storable = FALSE
-/obj/item/device/mmi
+/obj/item/mmi
 	persist_storable = FALSE
 /obj/item/seeds
 	persist_storable = FALSE
-/obj/item/weapon/reagent_containers/food/snacks/grown
+/obj/item/reagent_containers/food/snacks/grown
 	persist_storable = FALSE
-/obj/item/weapon/stock_parts
+/obj/item/rcd
 	persist_storable = FALSE
-/obj/item/weapon/rcd
-	persist_storable = FALSE
-/obj/item/weapon/spacecash
-	persist_storable = FALSE
-/obj/item/weapon/spacecasinocash
+/obj/item/spacecasinocash
 	persist_storable = FALSE

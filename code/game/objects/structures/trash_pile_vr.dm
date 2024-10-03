@@ -18,9 +18,10 @@
 	//These are types that can only spawn once, and then will be removed from this list.
 	//Alpha and beta lists are in their respective procs.
 	var/global/list/unique_gamma = list(
-		/obj/item/weapon/gun/projectile/pirate,
-		/obj/item/weapon/bluespace_harpoon,			/obj/item/clothing/accessory/permit/gun,
-		/obj/item/clothing/glasses/thermal/syndi,			/obj/item/clothing/gloves/black/bloodletter)
+		/obj/item/clothing/glasses/thermal/syndi,
+		/obj/item/gun/projectile/pirate, //CHOMP Add
+		/obj/item/gun/energy/mouseray/metamorphosis
+		)
 
 	var/global/list/allocated_gamma = list()
 
@@ -83,7 +84,7 @@
 		return
 
 	//VOREStation Add Start
-	if(jobban_isbanned(user, "GhostRoles"))
+	if(jobban_isbanned(user, JOB_GHOSTROLES))
 		to_chat(user, "<span class='warning'>You cannot become a mouse because you are banned from playing ghost roles.</span>")
 		return
 	//VOREStation Add End
@@ -179,113 +180,124 @@
 //Random lists
 /obj/structure/trash_pile/proc/produce_alpha_item()
 	var/path = pick(prob(1);/obj/item/clothing/gloves/rainbow,
-					prob(2);/obj/random/cigarettes,
-					prob(2);/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-					prob(3);/obj/item/weapon/spacecash/c1000,
-					prob(1);/obj/item/weapon/storage/backpack/satchel,
-					prob(1);/obj/item/weapon/storage/briefcase,
+					prob(2);/obj/item/bluespace_harpoon,
+					prob(2);/obj/item/reagent_containers/food/snacks/liquidfood,
+					prob(3);/obj/item/spacecash/c1000,
+					prob(1);/obj/item/storage/backpack/satchel,
+					prob(1);/obj/item/storage/briefcase,
 					prob(1);/obj/item/clothing/accessory/storage/webbing,
 					prob(1);/obj/item/clothing/glasses/meson,
 					prob(1);/obj/item/clothing/mask/gas,
 					prob(1);/obj/item/clothing/suit/storage/toggle/bomber,
 					prob(1);/obj/item/clothing/suit/storage/toggle/leather_jacket,
-					prob(3);/obj/item/weapon/storage/box/donkpockets,
-					prob(1);/obj/item/weapon/storage/box/mousetraps,
+					prob(1);/obj/item/storage/box/donkpockets,
+					prob(1);/obj/item/storage/box/mousetraps,
 					prob(1);/obj/item/clothing/glasses/meson/prescription,
-					prob(3);/obj/item/clothing/gloves/yellow,
+					prob(1);/obj/item/clothing/gloves/yellow,
 					prob(1);/obj/item/clothing/gloves/sterile/latex,
-					prob(2);/obj/item/clothing/head/welding,
-					prob(2);/obj/item/clothing/under/syndicate/tacticool,
+					prob(1);/obj/item/clothing/head/welding,
+					prob(1);/obj/item/clothing/under/syndicate/tacticool,
 					prob(2);/obj/item/clothing/under/hyperfiber,
-					prob(2);/obj/item/device/camera,
-					prob(2);/obj/item/weapon/cell/super,
-					prob(2);/obj/item/poster,
-					prob(3);/obj/item/weapon/storage/box/sinpockets,
-					prob(2);/obj/item/weapon/storage/secure/briefcase,
-					prob(4);/obj/item/clothing/under/fluff/latexmaid,
-					prob(2);/obj/item/toy/tennis,
-					prob(2);/obj/item/toy/tennis/red,
-					prob(2);/obj/item/toy/tennis/yellow,
-					prob(2);/obj/item/toy/tennis/green,
-					prob(2);/obj/item/toy/tennis/cyan,
-					prob(2);/obj/item/toy/tennis/blue,
-					prob(2);/obj/item/toy/tennis/purple,
-					prob(1);/obj/item/toy/baseball,
-					prob(1);/obj/item/weapon/storage/box/brainzsnax,
-					prob(1);/obj/item/weapon/storage/box/brainzsnax/red,
+					prob(1);/obj/item/camera,
+					prob(1);/obj/item/cell/super,
+					prob(1);/obj/item/poster,
+					prob(2);/obj/item/storage/box/sinpockets,
+					prob(1);/obj/item/storage/secure/briefcase,
+					prob(1);/obj/item/clothing/mask/gas/clear, //Chompadd: Proper implementation of clear gas masks
+					prob(1);/obj/item/clothing/under/fluff/latexmaid,
+					prob(2);/obj/item/bikehorn/rubberducky/blue
+					prob(2);/obj/item/bikehorn/rubberducky/pink
+					prob(1);/obj/item/bikehorn/rubberducky/grey
+					prob(1);/obj/item/bikehorn/rubberducky
+					prob(1);/obj/item/grenade/anti_photon/rubberducky/black
+					prob(1);/obj/item/bikehorn/rubberducky/white
 					prob(1);/obj/item/clothing/glasses/sunglasses,
 					prob(1);/obj/item/clothing/glasses/welding,
 					prob(1);/obj/item/clothing/head/ushanka,
-					prob(4);/obj/item/clothing/shoes/syndigaloshes,
-					prob(6);/obj/item/clothing/under/tactical,
-					prob(3);/obj/item/device/paicard,
-					prob(5);/obj/item/weapon/card/emag,
-					prob(1);/obj/item/clothing/mask/gas/voice,
-					prob(1);/obj/item/weapon/spacecash/c100,
-					prob(1);/obj/item/weapon/spacecash/c50,
-					prob(4);/obj/item/weapon/storage/backpack/dufflebag/syndie,
-					prob(4);/obj/item/pizzavoucher,
-					prob(1);/obj/item/device/perfect_tele,
-					prob(1);/obj/item/weapon/bluespace_harpoon,
+					prob(2);/obj/item/seeds/lustflower,
+					prob(2);/obj/item/clothing/shoes/syndigaloshes,
+					prob(2);/obj/item/clothing/under/tactical,
+					prob(2);/obj/item/paicard,
+					prob(3);/obj/item/card/emag,
+					prob(2);/obj/item/clothing/mask/gas/voice,
+					prob(1);/obj/item/spacecash/c100,
+					prob(3);/obj/item/storage/backpack/dufflebag/syndie,
+					prob(3);/obj/item/pizzavoucher,
+					prob(3);/obj/item/perfect_tele,
 					prob(1);/obj/item/clothing/glasses/thermal/syndi,
-					prob(1);/obj/item/weapon/gun/energy/netgun,
-					prob(1);/obj/item/capture_crystal,
-					prob(1);/obj/item/weapon/grenade/spawnergrenade/clustaur)// CHOMPStation edit
+					prob(2);/obj/item/gun/energy/netgun,
+					prob(1);/obj/item/capture_crystal/basic,
+					prob(2);/obj/item/capture_crystal/great,
+					prob(2);/obj/item/capture_crystal/ultra,
+					prob(2);/obj/item/capture_crystal/master,
+					prob(1);/obj/item/capture_crystal/random,
+					prob(1);/obj/item/storage/box/brainzsnax,
+					prob(1);/obj/item/storage/box/brainzsnax/red,
+					prob(1);/obj/item/clothing/glasses/sunglasses,
+					prob(1);/obj/item/clothing/glasses/sunglasses/bigshot,
+					prob(1);/obj/item/clothing/accessory/permit/gun,
+					prob(1);/obj/item/clothing/mask/gas/voice,
+					prob(1);/obj/item/spacecash/c50,
+					prob(1);/obj/item/grenade/spawnergrenade/clustaur)// CHOMPStation edit
 
 	var/obj/item/I = new path()
 	return I
 
 /obj/structure/trash_pile/proc/produce_beta_item()
-	var/path = pick(prob(6);/obj/item/weapon/storage/pill_bottle/paracetamol,
-					prob(4);/obj/item/weapon/storage/pill_bottle/happy,
-					prob(4);/obj/item/weapon/storage/pill_bottle/zoom,
+	var/path = pick(prob(6);/obj/item/storage/pill_bottle/paracetamol,
+					prob(4);/obj/item/storage/pill_bottle/happy,
+					prob(4);/obj/item/storage/pill_bottle/zoom,
 					prob(1);/obj/item/seeds/ambrosiavulgarisseed,
-					prob(4);/obj/item/weapon/gun/energy/sizegun,
-					prob(4);/obj/item/device/slow_sizegun,
-					prob(1);/obj/item/weapon/material/butterfly,
-					prob(1);/obj/item/weapon/material/butterfly/switchblade,
-					prob(3);/obj/item/clothing/gloves/heavy_engineer,
-					prob(3);/obj/item/weapon/reagent_containers/syringe/drugs,
-					prob(2);/obj/item/weapon/implanter/sizecontrol,
-					prob(2);/obj/item/weapon/handcuffs/fuzzy,
-					prob(1);/obj/item/weapon/handcuffs/legcuffs/fuzzy,
-					prob(1);/obj/item/weapon/storage/box/syndie_kit/spy,
-					prob(1);/obj/item/weapon/grenade/anti_photon,
+					prob(4);/obj/item/gun/energy/sizegun,
+					prob(4);/obj/item/slow_sizegun,
+					prob(2);/obj/item/clothing/accessory/collar/shock/bluespace,
+					prob(3);/obj/item/cracker,
+					prob(1);/obj/item/material/butterfly,
+					prob(1);/obj/item/material/butterfly/switchblade,
+					prob(1);/obj/item/clothing/gloves/heavy_engineer,
+					prob(3);/obj/item/reagent_containers/syringe/drugs,
+					prob(2);/obj/item/implanter/sizecontrol,
+					prob(1);/obj/item/handcuffs/fuzzy,
+					prob(1);/obj/item/handcuffs/legcuffs/fuzzy,
+					prob(1);/obj/item/storage/box/syndie_kit/spy,
+					prob(2);/obj/item/grenade/anti_photon,
 					prob(2);/obj/item/clothing/under/hyperfiber/bluespace,
 					prob(2);/obj/item/selectable_item/chemistrykit/size,
 					prob(2);/obj/item/selectable_item/chemistrykit/gender,
-					prob(3);/obj/item/clothing/gloves/bluespace/emagged,
+					prob(2);/obj/item/clothing/gloves/bluespace/emagged,
 					prob(1);/obj/item/clothing/suit/storage/vest/heavy/merc,
-					prob(2);/obj/item/device/sleevemate,
-					prob(1);/obj/item/device/bodysnatcher,
-					prob(1);/obj/item/device/mindbinder, //CHOMPAdd
-					prob(1);/obj/item/weapon/cell/hyper,
-					prob(1);/obj/item/weapon/disk/nifsoft/compliance,
-					prob(1);/obj/item/weapon/implanter/compliance,
-					prob(1);/obj/item/weapon/material/knife/tacknife,
-					prob(1);/obj/item/weapon/storage/box/survival/space,
-					prob(1);/obj/item/weapon/storage/secure/briefcase/trashmoney,
-					prob(1);/obj/item/device/survivalcapsule/popcabin,
-					prob(1);/obj/item/weapon/reagent_containers/syringe/steroid,
+					prob(1);/obj/item/sleevemate,
+					prob(1);/obj/item/bodysnatcher,
+					prob(1);/obj/item/mindbinder,	//CHOMPAdd
+					prob(1);/obj/item/cell/hyper,
+					prob(1);/obj/item/disk/nifsoft/compliance,
+					prob(1);/obj/item/implanter/compliance,
+					prob(1);/obj/item/material/knife/tacknife,
+					prob(1);/obj/item/storage/box/survival/space,
+					prob(1);/obj/item/storage/secure/briefcase/trashmoney,
+					prob(1);/obj/item/survivalcapsule/popcabin,
+					prob(1);/obj/item/reagent_containers/syringe/steroid,
 					prob(2);/obj/item/capture_crystal,
-					prob(3);/obj/item/device/perfect_tele,
+					prob(1);/obj/item/perfect_tele,
 					prob(1);/obj/item/clothing/gloves/bluespace,
-					prob(2);/obj/item/weapon/reagent_containers/pill/adminordrazine,
-					prob(2);/obj/item/weapon/storage/pill_bottle/adminordrazine,
-					prob(2);/obj/item/weapon/storage/pill_bottle/vermicetol,
-					prob(2);/obj/item/weapon/storage/pill_bottle/healing_nanites,
-					prob(2);/obj/item/weapon/storage/pill_bottle/combat,
-					prob(2);/obj/item/weapon/storage/pill_bottle/assorted,
-					prob(2);/obj/item/weapon/storage/box/syndie_kit/voidsuit,
-					prob(2);/obj/item/weapon/storage/box/syndie_kit/voidsuit/fire,
-					prob(2);/obj/item/weapon/storage/box/syndie_kit/combat_armor,
-					prob(2);/obj/item/weapon/inducer/hybrid,
-					prob(1);/obj/item/weapon/gun/energy/mouseray,
+					prob(2);/obj/item/reagent_containers/pill/adminordrazine,
+					prob(2);/obj/item/storage/pill_bottle/adminordrazine,
+					prob(2);/obj/item/storage/pill_bottle/vermicetol,
+					prob(2);/obj/item/storage/pill_bottle/healing_nanites,
+					prob(2);/obj/item/storage/pill_bottle/combat,
+					prob(2);/obj/item/storage/pill_bottle/assorted,
+					prob(2);/obj/item/storage/box/syndie_kit/voidsuit,
+					prob(2);/obj/item/storage/box/syndie_kit/voidsuit/fire,
+					prob(2);/obj/item/storage/box/syndie_kit/combat_armor,
+					prob(2);/obj/item/inducer/hybrid,
+					prob(1);/obj/item/cracker/vore,
+					prob(1);/obj/item/gun/energy/mouseray,
+					prob(1);/obj/item/rig/medical/equipped/fluff/rune
+					prob(1);/obj/item/rig/medical/equipped/fluff/frank
+					prob(1);/obj/item/clothing/shoes/fart_shoes
+					prob(1);/obj/item/clothing/head/cowboy/fancy/eliz
 					prob(1);/obj/item/clothing/accessory/collar/shock/bluespace/modified,
-					prob(4);/obj/item/clothing/accessory/collar/shock/bluespace,
-					prob(3);/obj/item/weapon/cracker,
-					prob(1);/obj/item/weapon/gun/energy/sizegun/backfire,
-					prob(3);/obj/item/weapon/gun/energy/netgun)
+					prob(1);/obj/item/gun/energy/sizegun/backfire)
 
 	var/obj/item/I = new path()
 	return I
@@ -313,8 +325,8 @@
 	icon = 'icons/obj/trash_piles.dmi'
 	icon_state = "randompile"
 	spawn_types = list(
-    /mob/living/simple_mob/animal/passive/mouse= 100,
-    /mob/living/simple_mob/animal/passive/cockroach = 25)
+    /mob/living/simple_mob/animal/passive/mouse= 5,
+    /mob/living/simple_mob/animal/passive/cockroach = 5)
 	simultaneous_spawns = 1
 	destructible = 1
 	spawn_delay = 5 HOUR
