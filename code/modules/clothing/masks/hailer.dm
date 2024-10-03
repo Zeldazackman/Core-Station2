@@ -6,7 +6,7 @@
 	armor = list(melee = 10, bullet = 10, laser = 10, energy = 0, bomb = 0, bio = 55, rad = 0)
 	action_button_name = "HALT!"
 	body_parts_covered = FACE
-	var/obj/item/device/hailer/hailer
+	var/obj/item/hailer/hailer
 	var/cooldown = 0
 	var/phrase = 1
 	var/aggressiveness = 1
@@ -39,7 +39,7 @@
 
 
 /obj/item/clothing/mask/gas/sechailer/swat/warden
-	name = "\improper Warden SWAT mask"
+	name = "\improper " + JOB_WARDEN + " SWAT mask"
 	desc = "A close-fitting tactical mask with an especially aggressive Compli-o-nator 3000. It has a blue stripe."
 	icon_state = "wardenmask"
 

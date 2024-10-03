@@ -20,7 +20,7 @@
 				qdel(src)
 	return
 
-/obj/effect/spider/attackby(var/obj/item/weapon/W, var/mob/user)
+/obj/effect/spider/attackby(var/obj/item/W, var/mob/user)
 	user.setClickCooldown(user.get_attack_speed(W))
 
 	if(LAZYLEN(W.attack_verb))
@@ -31,7 +31,7 @@
 	var/damage = W.force / 4.0
 
 	if(W.has_tool_quality(TOOL_WELDER))
-		var/obj/item/weapon/weldingtool/WT = W.get_welder()
+		var/obj/item/weldingtool/WT = W.get_welder()
 
 		if(WT.remove_fuel(0, user))
 			damage = 15
@@ -82,7 +82,7 @@
 		return TRUE
 	else if(istype(mover, /mob/living))
 		if(prob(50))
-			to_chat(mover, span("warning", "You get stuck in \the [src] for a moment."))
+			to_chat(mover, span_warning("You get stuck in \the [src] for a moment."))
 			return FALSE
 	else if(istype(mover, /obj/item/projectile))
 		return prob(30)
@@ -96,7 +96,7 @@
 	var/spiders_min = 6
 	var/spiders_max = 24
 	var/spider_type = /obj/effect/spider/spiderling
-	var/faction = "spiders"
+	var/faction = FACTION_SPIDERS
 
 /obj/effect/spider/eggcluster/Initialize()
 	pixel_x = rand(3,-3)
@@ -155,7 +155,7 @@
 	var/obj/machinery/atmospherics/unary/vent_pump/entry_vent
 	var/travelling_in_vent = 0
 	var/list/grow_as = list(/mob/living/simple_mob/animal/giant_spider, /mob/living/simple_mob/animal/giant_spider/hunter)
-	var/faction = "spiders"
+	var/faction = FACTION_SPIDERS
 
 	var/stunted = FALSE
 

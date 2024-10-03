@@ -341,7 +341,7 @@
 
 		switch(href_list["implant"])
 			if("remove")
-				for(var/obj/item/weapon/implant/loyalty/I in H.contents)
+				for(var/obj/item/implant/loyalty/I in H.contents)
 					for(var/obj/item/organ/external/organs in H.organs)
 						if(I in organs.implants)
 							qdel(I)
@@ -403,7 +403,7 @@
 				memory = null//Remove any memory they may have had.
 			if("crystals")
 				if (usr.client.holder.rights & R_FUN)
-				//	var/obj/item/device/uplink/hidden/suplink = find_syndicate_uplink() No longer needed, uses stored in mind
+				//	var/obj/item/uplink/hidden/suplink = find_syndicate_uplink() No longer needed, uses stored in mind
 					var/crystals
 					crystals = tcrystals
 					crystals = tgui_input_number(usr, "Amount of telecrystals for [key]", crystals)
@@ -426,7 +426,7 @@
 	return null
 
 /datum/mind/proc/take_uplink()
-	var/obj/item/device/uplink/hidden/H = find_syndicate_uplink()
+	var/obj/item/uplink/hidden/H = find_syndicate_uplink()
 	if(H)
 		qdel(H)
 
@@ -441,10 +441,10 @@
 	var/is_currently_brigged = 0
 	if(istype(T.loc,/area/security/brig))
 		is_currently_brigged = 1
-		for(var/obj/item/weapon/card/id/card in current)
+		for(var/obj/item/card/id/card in current)
 			is_currently_brigged = 0
 			break // if they still have ID they're not brigged
-		for(var/obj/item/device/pda/P in current)
+		for(var/obj/item/pda/P in current)
 			if(P.id)
 				is_currently_brigged = 0
 				break // if they still have ID they're not brigged
@@ -515,58 +515,58 @@
 /mob/living/carbon/human/mind_initialize()
 	. = ..()
 	if(!mind.assigned_role)
-		mind.assigned_role = USELESS_JOB	//defualt //VOREStation Edit - Visitor not Assistant
+		mind.assigned_role = JOB_ALT_VISITOR	//defualt //VOREStation Edit - Visitor not Assistant
 
 //slime
 /mob/living/simple_mob/slime/mind_initialize()
 	. = ..()
-	mind.assigned_role = "slime"
+	mind.assigned_role = JOB_SLIME
 
 /mob/living/carbon/alien/larva/mind_initialize()
 	. = ..()
-	mind.special_role = "Larva"
+	mind.special_role = JOB_LARVA
 
 //AI
 /mob/living/silicon/ai/mind_initialize()
 	. = ..()
-	mind.assigned_role = "AI"
+	mind.assigned_role = JOB_AI
 
 //BORG
 /mob/living/silicon/robot/mind_initialize()
 	. = ..()
-	mind.assigned_role = "Cyborg"
+	mind.assigned_role = JOB_CYBORG
 
 //PAI
 /mob/living/silicon/pai/mind_initialize()
 	. = ..()
-	mind.assigned_role = "pAI"
+	mind.assigned_role = JOB_PAI
 	mind.special_role = ""
 
 //Animals
 /mob/living/simple_mob/mind_initialize()
 	. = ..()
-	mind.assigned_role = "Simple Mob"
+	mind.assigned_role = JOB_SIMPLE_MOB
 
 /mob/living/simple_mob/animal/passive/dog/corgi/mind_initialize()
 	. = ..()
-	mind.assigned_role = "Corgi"
+	mind.assigned_role = JOB_CORGI
 
 /mob/living/simple_mob/construct/shade/mind_initialize()
 	. = ..()
-	mind.assigned_role = "Shade"
-	mind.special_role = "Cultist"
+	mind.assigned_role = JOB_SHADE
+	mind.special_role = JOB_CULTIST
 
 /mob/living/simple_mob/construct/artificer/mind_initialize()
 	. = ..()
-	mind.assigned_role = "Artificer"
-	mind.special_role = "Cultist"
+	mind.assigned_role = JOB_ARTIFICER
+	mind.special_role = JOB_CULTIST
 
 /mob/living/simple_mob/construct/wraith/mind_initialize()
 	. = ..()
-	mind.assigned_role = "Wraith"
-	mind.special_role = "Cultist"
+	mind.assigned_role = JOB_WRAITH
+	mind.special_role = JOB_CULTIST
 
 /mob/living/simple_mob/construct/juggernaut/mind_initialize()
 	. = ..()
-	mind.assigned_role = "Juggernaut"
-	mind.special_role = "Cultist"
+	mind.assigned_role = JOB_JUGGERNAUT
+	mind.special_role = JOB_CULTIST

@@ -285,13 +285,14 @@
 	var/client_missing = 0		//How long the client has been missing
 	universal_understand = TRUE
 
-	var/obj/item/device/nif/nif
+	var/obj/item/nif/nif
 	var/datum/nifsoft/soulcatcher/soulcatcher
 	var/identifying_gender
 
 /mob/living/carbon/brain/caught_soul/Login()
 	..()
 	plane_holder.set_vis(VIS_AUGMENTED, TRUE)
+	plane_holder.set_vis(VIS_SOULCATCHER, TRUE) //CHOMPAdd
 	identifying_gender = client.prefs.identifying_gender
 
 /mob/living/carbon/brain/caught_soul/Destroy()
@@ -522,21 +523,21 @@
 	src.nsay_act(message)
 
 /mob/proc/nsay_act(message as text)
-	to_chat(src, SPAN_WARNING("You must be a humanoid with a NIF implanted to use that."))
+	to_chat(src, span_warning("You must be a humanoid with a NIF implanted to use that."))
 
 /mob/living/carbon/human/nsay_act(message as text)
 	if(stat != CONSCIOUS)
-		to_chat(src,SPAN_WARNING("You can't use NSay while unconscious."))
+		to_chat(src,span_warning("You can't use NSay while unconscious."))
 		return
 	if(!nif)
-		to_chat(src,SPAN_WARNING("You can't use NSay without a NIF."))
+		to_chat(src,span_warning("You can't use NSay without a NIF."))
 		return
 	var/datum/nifsoft/soulcatcher/SC = nif.imp_check(NIF_SOULCATCHER)
 	if(!SC)
-		to_chat(src,SPAN_WARNING("You need the Soulcatcher software to use NSay."))
+		to_chat(src,span_warning("You need the Soulcatcher software to use NSay."))
 		return
 	if(!SC.brainmobs.len)
-		to_chat(src,SPAN_WARNING("You need a loaded mind to use NSay."))
+		to_chat(src,span_warning("You need a loaded mind to use NSay."))
 		return
 	if(!message)
 		message = tgui_input_text(usr, "Type a message to say.","Speak into Soulcatcher")
@@ -552,21 +553,21 @@
 	src.nme_act(message)
 
 /mob/proc/nme_act(message as message)
-	to_chat(src, SPAN_WARNING("You must be a humanoid with a NIF implanted to use that."))
+	to_chat(src, span_warning("You must be a humanoid with a NIF implanted to use that."))
 
 /mob/living/carbon/human/nme_act(message as message)
 	if(stat != CONSCIOUS)
-		to_chat(src,SPAN_WARNING("You can't use NMe while unconscious."))
+		to_chat(src,span_warning("You can't use NMe while unconscious."))
 		return
 	if(!nif)
-		to_chat(src,SPAN_WARNING("You can't use NMe without a NIF."))
+		to_chat(src,span_warning("You can't use NMe without a NIF."))
 		return
 	var/datum/nifsoft/soulcatcher/SC = nif.imp_check(NIF_SOULCATCHER)
 	if(!SC)
-		to_chat(src,SPAN_WARNING("You need the Soulcatcher software to use NMe."))
+		to_chat(src,span_warning("You need the Soulcatcher software to use NMe."))
 		return
 	if(!SC.brainmobs.len)
-		to_chat(src,SPAN_WARNING("You need a loaded mind to use NMe."))
+		to_chat(src,span_warning("You need a loaded mind to use NMe."))
 		return
 
 	if(!message)
@@ -578,7 +579,7 @@
 ///////////////////
 //Verbs for soulbrains
 /mob/living/carbon/brain/caught_soul/verb/ar_project()
-	set name = "AR Project"
+	set name = "AR/SR Project" //CHOMPEdit
 	set desc = "Project your form into Augmented Reality for those around your predator with the appearance of your loaded character."
 	set category = "Soulcatcher"
 

@@ -228,7 +228,7 @@
 		to_chat(prey, "<span class='warning'>[pred] is unable to be dominated.</span>")
 		return
 
-	if(isrobot(pred) && jobban_isbanned(prey, "Cyborg"))
+	if(isrobot(pred) && jobban_isbanned(prey, JOB_CYBORG))
 		to_chat(prey, "<span class='warning'>Forces beyond your comprehension forbid you from taking control of [pred].</span>")
 		return
 	if(prey.prey_controlled)
@@ -237,11 +237,6 @@
 	if(pred.prey_controlled)
 		to_chat(prey, "<span class='warning'>\The [pred] is already dominated, and cannot be controlled at this time.</span>")
 		return
-	if(ishuman(pred))
-		var/mob/living/carbon/human/h = pred
-		if(h.resleeve_lock && ckey != h.resleeve_lock)
-			to_chat(src, "<span class='warning'>\The [h] cannot be impersonated!</span>")
-			return
 	if(tgui_alert(prey, "You are attempting to take over [pred], are you sure? Ensure that their preferences align with this kind of play.", "Take Over Predator",list("No","Yes")) != "Yes")
 		return
 	to_chat(prey, "<span class='notice'>You attempt to exert your control over \the [pred]...</span>")
@@ -387,7 +382,7 @@
 			else
 				continue
 	//CHOMPEdit Start - Let dominate prey work on grabbed people
-	var/obj/item/weapon/grab/G = src.get_active_hand()
+	var/obj/item/grab/G = src.get_active_hand()
 	if(istype(G))
 		var/mob/living/L = G.affecting
 		if(istype(L) && L.allow_mind_transfer)
@@ -530,7 +525,7 @@
 	if(!prey.ckey)
 		to_chat(pred, "<span class='notice'>\The [prey] cannot take control.</span>")
 		return
-	if(isrobot(pred) && jobban_isbanned(prey, "Cyborg"))
+	if(isrobot(pred) && jobban_isbanned(prey, JOB_CYBORG))
 		to_chat(pred, "<span class='warning'>Forces beyond your comprehension prevent you from giving [prey] control.</span>")
 		return
 	if(prey.prey_controlled)

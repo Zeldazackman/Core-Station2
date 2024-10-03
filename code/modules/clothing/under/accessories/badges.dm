@@ -102,19 +102,19 @@
 		return 1
 
 /obj/item/clothing/accessory/badge/holo/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if(istype(O, /obj/item/weapon/card/id) || istype(O, /obj/item/device/pda))
+	if(istype(O, /obj/item/card/id) || istype(O, /obj/item/pda))
 
-		var/obj/item/weapon/card/id/id_card = null
+		var/obj/item/card/id/id_card = null
 
-		if(istype(O, /obj/item/weapon/card/id))
+		if(istype(O, /obj/item/card/id))
 			id_card = O
 		else
-			var/obj/item/device/pda/pda = O
+			var/obj/item/pda/pda = O
 			id_card = pda.id
 
 		var/found = FALSE
 		for(var/access in valid_access)
-			if(access in id_card.access || emagged)
+			if(access in id_card.GetAccess() || emagged)
 				to_chat(user, "You imprint your ID details onto the badge.")
 				set_name(user.real_name)
 				found = TRUE
@@ -124,7 +124,7 @@
 		return
 	..()
 
-/obj/item/weapon/storage/box/holobadge
+/obj/item/storage/box/holobadge
 	name = "holobadge box"
 	desc = "A box claiming to contain holobadges."
 	starts_with = list(
@@ -135,25 +135,25 @@
 
 /obj/item/clothing/accessory/badge/holo/officer
 	name = "officer's badge"
-	desc = "A bronze corporate security badge. Stamped with the words 'Security Officer.'"
+	desc = "A bronze corporate security badge. Stamped with the words '" + JOB_SECURITY_OFFICER + ".'"
 	icon_state = "bronzebadge"
 	slot_flags = SLOT_TIE | SLOT_BELT
 
 /obj/item/clothing/accessory/badge/holo/warden
 	name = "warden's holobadge"
-	desc = "A silver corporate security badge. Stamped with the words 'Warden.'"
+	desc = "A silver corporate security badge. Stamped with the words '" + JOB_WARDEN + ".'"
 	icon_state = "silverbadge"
 	slot_flags = SLOT_TIE | SLOT_BELT
 
 /obj/item/clothing/accessory/badge/holo/hos
 	name = "head of security's holobadge"
-	desc = "An immaculately polished gold security badge. Stamped with the words 'Head of Security.'"
+	desc = "An immaculately polished gold security badge. Stamped with the words '" + JOB_HEAD_OF_SECURITY + ".'"
 	icon_state = "goldbadge"
 	slot_flags = SLOT_TIE | SLOT_BELT
 
 /obj/item/clothing/accessory/badge/holo/detective
 	name = "detective's holobadge"
-	desc = "An immaculately polished gold security badge on leather. Labeled 'Detective.'"
+	desc = "An immaculately polished gold security badge on leather. Labeled '" + JOB_DETECTIVE + ".'"
 	icon_state = "marshalbadge"
 	slot_flags = SLOT_TIE | SLOT_BELT
 
@@ -171,7 +171,7 @@
 	icon_state = "sheriff"
 	slot_flags = SLOT_TIE | SLOT_BELT
 
-/obj/item/weapon/storage/box/holobadge/hos
+/obj/item/storage/box/holobadge/hos
 	name = "holobadge box"
 	desc = "A box claiming to contain holobadges."
 	starts_with = list(

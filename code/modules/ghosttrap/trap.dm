@@ -16,7 +16,7 @@ var/list/ghost_traps
 
 /datum/ghosttrap
 	var/object = "positronic brain"
-	var/list/ban_checks = list("AI","Cyborg")
+	var/list/ban_checks = list(JOB_AI,JOB_CYBORG)
 	var/pref_check = BE_AI
 	var/ghost_trap_message = "They are occupying a positronic brain now."
 	var/ghost_trap_role = "Positronic Brain"
@@ -84,7 +84,7 @@ var/list/ghost_traps
 	to_chat(target, "<b>Use say #b to speak to other artificial intelligences.</b>")
 	var/turf/T = get_turf(target)
 	T.visible_message("<b>\The [src]</b> chimes quietly.")
-	var/obj/item/device/mmi/digital/posibrain/P = target.loc
+	var/obj/item/mmi/digital/posibrain/P = target.loc
 	if(!istype(P)) //wat
 		return
 	P.searching = 0
@@ -101,7 +101,7 @@ var/list/ghost_traps
 // Doona pods and walking mushrooms.
 /datum/ghosttrap/plant
 	object = "living plant"
-	ban_checks = list("Dionaea")
+	ban_checks = list(JOB_DIONAEA)
 	pref_check = BE_PLANT
 	ghost_trap_message = "They are occupying a living plant now."
 	ghost_trap_role = "Plant"

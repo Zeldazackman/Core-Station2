@@ -165,14 +165,14 @@
 
 	if(welded)
 		vent_icon += "weld"
-		playsound(src, stop_sound, 25, ignore_walls = FALSE, preference = /datum/client_preference/air_pump_noise)
+		playsound(src, stop_sound, 25, ignore_walls = FALSE, preference = /datum/preference/toggle/air_pump_noise)
 
 	else if(!use_power || !node || (stat & (NOPOWER|BROKEN)))
 		vent_icon += "off"
-		playsound(src, stop_sound, 25, ignore_walls = FALSE, preference = /datum/client_preference/air_pump_noise)
+		playsound(src, stop_sound, 25, ignore_walls = FALSE, preference = /datum/preference/toggle/air_pump_noise)
 	else
 		vent_icon += "[pump_direction ? "out" : "in"]"
-		playsound(src, start_sound, 25, ignore_walls = FALSE, preference = /datum/client_preference/air_pump_noise)
+		playsound(src, start_sound, 25, ignore_walls = FALSE, preference = /datum/preference/toggle/air_pump_noise)
 
 
 	add_overlay(icon_manager.get_atmos_icon("device", , , vent_icon))
@@ -391,7 +391,7 @@
 
 /obj/machinery/atmospherics/unary/vent_pump/attackby(obj/item/W, mob/user)
 	if(W.has_tool_quality(TOOL_WELDER))
-		var/obj/item/weapon/weldingtool/WT = W.get_welder()
+		var/obj/item/weldingtool/WT = W.get_welder()
 		if (WT.remove_fuel(0,user))
 			to_chat(user, "<span class='notice'>Now welding the vent.</span>")
 			if(do_after(user, 20 * WT.toolspeed))
@@ -428,7 +428,7 @@
 	if(old_stat != stat)
 		update_icon()
 
-/obj/machinery/atmospherics/unary/vent_pump/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+/obj/machinery/atmospherics/unary/vent_pump/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	if (!W.has_tool_quality(TOOL_WRENCH))
 		return ..()
 	if (!(stat & NOPOWER) && use_power)

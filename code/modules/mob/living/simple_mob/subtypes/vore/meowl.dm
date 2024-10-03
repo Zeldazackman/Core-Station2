@@ -8,7 +8,7 @@
 	icon_living = "meowl"
 	icon_state = "meowl"
 	icon_rest = "meowl_rest"
-	faction = "meowl"
+	faction = FACTION_MEOWL
 	friendly = list("nudges", "sniffs on", "rumbles softly at", "nuzzles")
 	response_help = "pets"
 	response_disarm = "shoves"
@@ -103,7 +103,7 @@
 		"Strain as you might, you can't keep up the effort long enough before you sink back into %pred's %belly.")
 
 /mob/living/simple_mob/vore/meowl/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if(istype(O, /obj/item/weapon/reagent_containers/food))
+	if(istype(O, /obj/item/reagent_containers/food))
 		if(health <= 0)
 			return
 		user.visible_message("<span class='notice'>\The [src] happily gulps down \the [O] right out of \the [user]'s hand, it seems pretty content now.</span>","<span class='notice'>\The [src] happily gulps down \the [O] right out of your hand, it seems pretty content now.</span>")
@@ -139,6 +139,8 @@
 
 /datum/ai_holder/simple_mob/vore/meowl
 	var/last_friend_time = 0
+	violent_breakthrough = FALSE
+	destructive = FALSE
 
 /datum/ai_holder/simple_mob/vore/meowl/engage_target()
 	ai_log("engage_target() : Entering.", AI_LOG_DEBUG)

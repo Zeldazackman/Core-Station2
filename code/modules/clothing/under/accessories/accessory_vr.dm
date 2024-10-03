@@ -342,11 +342,11 @@
 	if(istype(src,/obj/item/clothing/accessory/collar/holo))
 		return
 
-	if(istype(I,/obj/item/weapon/tool/screwdriver))
+	if(istype(I,/obj/item/tool/screwdriver))
 		update_collartag(user, I, "scratched out", "scratch out", "engraved")
 		return
 
-	if(istype(I,/obj/item/weapon/pen))
+	if(istype(I,/obj/item/pen))
 		update_collartag(user, I, "crossed out", "cross out", "written")
 		return
 
@@ -520,7 +520,7 @@
 		user.drop_from_inventory(src)
 		qdel(src)
 		return
-	if (!istype(component,/obj/item/device/assembly/signaler))
+	if (!istype(component,/obj/item/assembly/signaler))
 		..()
 		return
 	to_chat(user, "<span class='notice'>You wire the signaler into the [src].</span>")
@@ -551,7 +551,7 @@
 		user.drop_from_inventory(src)
 		qdel(src)
 		return
-	if (!istype(component,/obj/item/device/assembly/signaler))
+	if (!istype(component,/obj/item/assembly/signaler))
 		..()
 		return
 	to_chat(user, "<span class='notice'>There is already a signaler wired to the [src].</span>")
@@ -671,7 +671,7 @@
 	var/currently_shrinking = 0
 
 /obj/item/clothing/accessory/collar/shock/bluespace/malfunctioning/attackby(var/obj/item/component, mob/user as mob)
-	if (!istype(component,/obj/item/device/assembly/signaler))
+	if (!istype(component,/obj/item/assembly/signaler))
 		..()
 		return
 	to_chat(user, "<span class='notice'>The signaler doesn't respond to the connection attempt [src].</span>")
@@ -800,7 +800,7 @@
 	icon_state = "holster_machete"
 	slot = ACCESSORY_SLOT_WEAPON
 	concealed_holster = 0
-	can_hold = list(/obj/item/weapon/material/knife/machete, /obj/item/weapon/kinetic_crusher/machete)
+	can_hold = list(/obj/item/material/knife/machete, /obj/item/kinetic_crusher/machete)
 	//sound_in = 'sound/effects/holster/sheathin.ogg'
 	//sound_out = 'sound/effects/holster/sheathout.ogg'
 
@@ -980,13 +980,13 @@
 
 /obj/item/clothing/accessory/poncho/roles/cloak/mantle/hop
 	name = "head of personnel mantle"
-	desc = "A shoulder mantle bearing the colors of the Head of Personnel's uniform, featuring the typical royal blue contrasted by authoritative red."
+	desc = "A shoulder mantle bearing the colors of the " + JOB_HEAD_OF_PERSONNEL + "'s uniform, featuring the typical royal blue contrasted by authoritative red."
 	icon_state = "hopmantle"
 	item_state = "hopmantle"
 
 /obj/item/clothing/accessory/poncho/roles/cloak/mantle/cap
 	name = "site manager mantle"
-	desc = "A shoulder mantle bearing the colors usually found on a Site Manager, a commanding blue with regal gold inlay."
+	desc = "A shoulder mantle bearing the colors usually found on a " + JOB_SITE_MANAGER + ", a commanding blue with regal gold inlay."
 	icon_state = "capmantle"
 	item_state = "capmantle"
 
@@ -1200,3 +1200,31 @@
 		flags_inv = HIDEHOLSTER
 		to_chat(user, "You adjust your poncho.")
 	update_clothing_icon()
+
+/obj/item/clothing/accessory/belt
+	name = "Thin Belt"
+	desc = "A thin belt for holding your pants up."
+	icon = 'icons/inventory/accessory/item.dmi'
+	icon_override = 'icons/inventory/accessory/mob.dmi'
+	icon_state = "belt_thin"
+	item_state = "belt_thin"
+	slot_flags = SLOT_TIE | SLOT_BELT
+	slot = ACCESSORY_SLOT_DECOR
+
+/obj/item/clothing/accessory/belt/thick
+	name = "Thick Belt"
+	desc = "A thick belt for holding your pants up."
+	icon_state = "belt_thick"
+	item_state = "belt_thick"
+
+/obj/item/clothing/accessory/belt/strap
+	name = "Strap Belt"
+	desc = "A belt with no bucklet for holding your pants up."
+	icon_state = "belt_strap"
+	item_state = "belt_strap"
+
+/obj/item/clothing/accessory/belt/studded
+	name = "Studded Belt"
+	desc = "A studded belt for holding your pants up and looking cool."
+	icon_state = "belt_studded"
+	item_state = "belt_studded"

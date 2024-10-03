@@ -101,7 +101,7 @@
 		else if(species.name != "Human")
 			name_ender = ", <b><font color='[species.get_flesh_colour(src)]'>\a [species.get_examine_name()]!</font></b>[species.get_additional_examine_text(src)]"
 
-	var/list/msg = list("<span class='info'>*---------*","This is [icon2html(src, user.client)] <EM>[src.name]</EM>[name_ender]")
+	var/list/msg = list("<span class='info'>","This is [icon2html(src, user.client)] <EM>[src.name]</EM>[name_ender]")
 
 	//uniform
 	if(w_uniform && !(skip_gear & EXAMINE_SKIPJUMPSUIT) && w_uniform.show_examine)
@@ -194,7 +194,7 @@
 
 	//handcuffed?
 	if(handcuffed && handcuffed.show_examine)
-		if(istype(handcuffed, /obj/item/weapon/handcuffs/cable))
+		if(istype(handcuffed, /obj/item/handcuffs/cable))
 			msg += "<span class='warning'>[T.He] [T.is] [icon2html(handcuffed,user.client)] restrained with cable!</span>"
 		else
 			msg += "<span class='warning'>[T.He] [T.is] [icon2html(handcuffed,user.client)] handcuffed!</span>"
@@ -222,7 +222,7 @@
 	//mask
 	if(wear_mask && !(skip_gear & EXAMINE_SKIPMASK) && wear_mask.show_examine)
 		var/descriptor = "on [T.his] face"
-		if(istype(wear_mask, /obj/item/weapon/grenade) && check_has_mouth())
+		if(istype(wear_mask, /obj/item/grenade) && check_has_mouth())
 			descriptor = "in [T.his] mouth"
 
 		if(wear_mask.blood_DNA)
@@ -392,11 +392,11 @@
 		var/criminal = "None"
 
 		if(wear_id)
-			if(istype(wear_id, /obj/item/weapon/card/id))
-				var/obj/item/weapon/card/id/I = wear_id
+			if(istype(wear_id, /obj/item/card/id))
+				var/obj/item/card/id/I = wear_id
 				perpname = I.registered_name
-			else if(istype(wear_id, /obj/item/device/pda))
-				var/obj/item/device/pda/P = wear_id
+			else if(istype(wear_id, /obj/item/pda))
+				var/obj/item/pda/P = wear_id
 				perpname = P.owner
 
 		for (var/datum/data/record/R in data_core.security)
@@ -411,11 +411,11 @@
 		var/medical = "None"
 
 		if(wear_id)
-			if(istype(wear_id, /obj/item/weapon/card/id))
-				var/obj/item/weapon/card/id/I = wear_id
+			if(istype(wear_id, /obj/item/card/id))
+				var/obj/item/card/id/I = wear_id
 				perpname = I.registered_name
-			else if(istype(wear_id, /obj/item/device/pda))
-				var/obj/item/device/pda/P = wear_id
+			else if(istype(wear_id, /obj/item/pda))
+				var/obj/item/pda/P = wear_id
 				perpname = P.owner
 
 		for (var/datum/data/record/R in data_core.medical)
@@ -441,7 +441,7 @@
 		msg += "OOC Notes: <a href='?src=\ref[src];ooc_notes=1'>\[View\]</a> - <a href='?src=\ref[src];print_ooc_notes_to_chat=1'>\[Print\]</a>"
 	msg += "<a href='?src=\ref[src];vore_prefs=1'>\[Mechanical Vore Preferences\]</a>"
 	// VOREStation End
-	msg += "*---------*</span>"
+	msg += "</span>"
 	if(applying_pressure)
 		msg += applying_pressure
 

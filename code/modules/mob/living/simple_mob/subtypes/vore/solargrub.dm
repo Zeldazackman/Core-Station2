@@ -32,7 +32,7 @@ var/global/moth_amount = 0 // Chompstation Addition, Rykka waz here. *pawstamp*
 	var/adult_forms = "/mob/living/simple_mob/vore/solarmoth" // CHOMPEDIT VAR that decides what mob the queen form is. ex /mob/living/simple_mob/subtypes/vore/solarmoth
 	// CHOMPEDIT End, Rykka waz here. *pawstamp*
 
-	faction = "grubs"
+	faction = FACTION_GRUBS
 	maxHealth = 50 //grubs can take a lot of harm
 	health = 50
 
@@ -41,7 +41,7 @@ var/global/moth_amount = 0 // Chompstation Addition, Rykka waz here. *pawstamp*
 
 	movement_cooldown = 3
 
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/grubmeat
+	meat_type = /obj/item/reagent_containers/food/snacks/meat/grubmeat
 	meat_amount = 6
 
 	response_help = "pokes"

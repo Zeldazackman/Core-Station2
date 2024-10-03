@@ -517,8 +517,8 @@
 	if(internal)
 		//Because rigs store their tanks out of reach of contents.Find(), a check has to be made to make
 		//sure the rig is still worn, still online, and that its air supply still exists.
-		var/obj/item/weapon/tank/rig_supply
-		var/obj/item/weapon/rig/Rig = get_rig()
+		var/obj/item/tank/rig_supply
+		var/obj/item/rig/Rig = get_rig()
 
 		if(Rig)
 			rig_supply = Rig.air_supply
@@ -1221,7 +1221,7 @@
 	if(noisy == TRUE && nutrition < 250 && prob(10)) //VOREStation edit for hunger noises.
 		var/sound/growlsound = sound(get_sfx("hunger_sounds"))
 		var/growlmultiplier = 100 - (nutrition / 250 * 100)
-		playsound(src, growlsound, vol = growlmultiplier, vary = 1, falloff = 0.1, ignore_walls = TRUE, preference = /datum/client_preference/digestion_noises)
+		playsound(src, growlsound, vol = growlmultiplier, vary = 1, falloff = 0.1, ignore_walls = TRUE, preference = /datum/preference/toggle/digestion_noises)
 	// VOREStation Edit End
 	//CHOMPEdit Begin
 	if(nutrition > 500 && noisy_full == TRUE)
@@ -1312,7 +1312,7 @@
 
 		if(fear)
 			fear = (fear - 1)
-			if(fear >= 80 && is_preference_enabled(/datum/client_preference/play_ambiance))
+			if(fear >= 80 && client?.prefs?.read_preference(/datum/preference/toggle/play_ambience))
 				if(last_fear_sound + 51 SECONDS <= world.time)
 					src << sound('sound/effects/Heart Beat.ogg',0,0,0,25)
 					last_fear_sound = world.time
@@ -1360,8 +1360,8 @@
 
 		//Eyes
 		//Check rig first because it's two-check and other checks will override it.
-		if(istype(back,/obj/item/weapon/rig))
-			var/obj/item/weapon/rig/O = back
+		if(istype(back,/obj/item/rig))
+			var/obj/item/rig/O = back
 			if(O.helmet && O.helmet == head && (O.helmet.body_parts_covered & EYES))
 				if((O.offline && O.offline_vision_restriction == 2) || (!O.offline && O.vision_restriction == 2))
 					blinded = 1
@@ -1668,8 +1668,8 @@
 					var/obj/item/clothing/head/welding/O = head
 					if(!O.up)
 						found_welder = 1
-				if(!found_welder && istype(back, /obj/item/weapon/rig))
-					var/obj/item/weapon/rig/O = back
+				if(!found_welder && istype(back, /obj/item/rig))
+					var/obj/item/rig/O = back
 					if(O.helmet && O.helmet == head && (O.helmet.body_parts_covered & EYES))
 						if((O.offline && O.offline_vision_restriction == 1) || (!O.offline && O.vision_restriction == 1))
 							found_welder = 1
@@ -1726,7 +1726,7 @@
 			see_invisible = see_in_dark>2 ? SEE_INVISIBLE_LEVEL_ONE : see_invisible_default
 
 		var/glasses_processed = 0
-		var/obj/item/weapon/rig/rig = get_rig()
+		var/obj/item/rig/rig = get_rig()
 		if(istype(rig) && rig.visor && !looking_elsewhere)
 			if(!rig.helmet || (head && rig.helmet == head))
 				if(rig.visor && rig.visor.vision && rig.visor.active && rig.visor.vision.glasses)
@@ -2070,7 +2070,7 @@
 	if(!H || (H.robotic >= ORGAN_ROBOT))
 		return
 
-	if(pulse >= PULSE_2FAST || shock_stage >= 10 || (istype(get_turf(src), /turf/space) && is_preference_enabled(/datum/client_preference/play_ambiance)))
+	if(pulse >= PULSE_2FAST || shock_stage >= 10 || (istype(get_turf(src), /turf/space) && read_preference(/datum/preference/toggle/play_ambience)))
 		//PULSE_THREADY - maximum value for pulse, currently it 5.
 		//High pulse value corresponds to a fast rate of heartbeat.
 		//Divided by 2, otherwise it is too slow.
@@ -2151,7 +2151,7 @@ End Chomp edit */
 	if (BITTEST(hud_updateflag, ID_HUD))
 		var/image/holder = grab_hud(ID_HUD)
 		if(wear_id)
-			var/obj/item/weapon/card/id/I = wear_id.GetID()
+			var/obj/item/card/id/I = wear_id.GetID()
 			if(I)
 				holder.icon_state = "hud[ckey(I.GetJobName())]"
 			else
@@ -2168,7 +2168,7 @@ End Chomp edit */
 		holder.icon_state = "hudblank"
 		var/perpname = name
 		if(wear_id)
-			var/obj/item/weapon/card/id/I = wear_id.GetID()
+			var/obj/item/card/id/I = wear_id.GetID()
 			if(I)
 				perpname = I.registered_name
 
@@ -2203,14 +2203,14 @@ End Chomp edit */
 		holder2.icon_state = "hudblank"
 		holder3.icon_state = "hudblank"
 
-		for(var/obj/item/weapon/implant/I in src)
+		for(var/obj/item/implant/I in src)
 			if(I.implanted)
 				if(!I.malfunction)
-					if(istype(I,/obj/item/weapon/implant/tracking))
+					if(istype(I,/obj/item/implant/tracking))
 						holder1.icon_state = "hud_imp_tracking"
-					if(istype(I,/obj/item/weapon/implant/loyalty))
+					if(istype(I,/obj/item/implant/loyalty))
 						holder2.icon_state = "hud_imp_loyal"
-					if(istype(I,/obj/item/weapon/implant/chem))
+					if(istype(I,/obj/item/implant/chem))
 						holder3.icon_state = "hud_imp_chem"
 
 		apply_hud(IMPTRACK_HUD, holder1)

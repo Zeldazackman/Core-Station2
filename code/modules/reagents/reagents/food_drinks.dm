@@ -106,7 +106,7 @@
 			data["cooked"] = 0
 		return
 	data["cooked"] = 0
-	if (holder && holder.my_atom && istype(holder.my_atom,/obj/item/weapon/reagent_containers/food/snacks))
+	if (holder && holder.my_atom && istype(holder.my_atom,/obj/item/reagent_containers/food/snacks))
 		data["cooked"] = 1
 		name = cooked_name
 
@@ -1243,7 +1243,8 @@
 			if(O.status & ORGAN_BROKEN)
 				O.mend_fracture()
 				H.custom_pain("You feel the agonizing power of calcium mending your bones!",60)
-				H.AdjustWeakened(1)
+				H.adjustHalLoss(60) // CHOMPAdd - Get hallos damaged
+				H.AdjustStunned(1) // CHOMPEdit - Crawling again, weakened to stunned
 				break // Only mend one bone, whichever comes first in the list
 	//VOREStation Edit End
 
@@ -3117,7 +3118,7 @@
 /datum/reagent/ethanol/bananahonk
 	name = "Banana Mama"
 	id = "bananahonk"
-	description = "A drink from Clown Heaven."
+	description = "A drink from " + JOB_CLOWN + " Heaven."
 	taste_description = "bananas and sugar"
 	nutriment_factor = 1
 	color = "#FFFF91"
@@ -3643,7 +3644,7 @@
 /datum/reagent/ethanol/silencer
 	name = "Silencer"
 	id = "silencer"
-	description = "A drink from Mime Heaven."
+	description = "A drink from " + JOB_MIME + " Heaven."
 	taste_description = "a pencil eraser"
 	taste_mult = 1.2
 	nutriment_factor = 1

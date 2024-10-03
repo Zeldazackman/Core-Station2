@@ -55,9 +55,9 @@
 	var/fancy_vore = FALSE					// Using the new sounds?
 	var/is_wet = TRUE						// Is this belly's insides made of slimy parts?
 	var/wet_loop = TRUE						// Does the belly have a fleshy loop playing?
-	var/obj/item/weapon/storage/vore_egg/ownegg	// Is this belly creating an egg?
+	var/obj/item/storage/vore_egg/ownegg	// Is this belly creating an egg?
 	var/egg_type = "Egg"					// Default egg type and path.
-	var/egg_path = /obj/item/weapon/storage/vore_egg
+	var/egg_path = /obj/item/storage/vore_egg
 	var/egg_name = null						// CHOMPAdd. Custom egg name
 	var/egg_size = 0						// CHOMPAdd. Custom egg size
 	var/list/list/emote_lists = list()			// Idle emotes that happen on their own, depending on the bellymode. Contains lists of strings indexed by bellymode
@@ -359,6 +359,7 @@
 	"transferchance_secondary",
 	"transferlocation",
 	"transferlocation_secondary",
+	"belchchance",	//CHOMPAdd
 	"bulge_size",
 	"display_absorbed_examine",
 	"shrink_grow_size",
@@ -507,6 +508,7 @@
 	"noise_freq",
 	"private_struggle",
 	"item_digest_logs",
+	"show_fullness_messages",
 	"digest_max", //CHOMP end of variables from CHOMP
 	"egg_type",
 	"save_digest_mode",
@@ -569,7 +571,7 @@
 		// var/turf/simulated/T = owner.loc // CHOMPEdit
 		var/S = pick(GLOB.slosh) //ChompEDIT
 		if(S)
-			playsound(owner.loc, S, sound_volume * (reagents.total_volume / 100), FALSE, frequency = noise_freq, preference = /datum/client_preference/digestion_noises) //CHOMPEdit
+			playsound(owner.loc, S, sound_volume * (reagents.total_volume / 100), FALSE, frequency = noise_freq, preference = /datum/preference/toggle/digestion_noises) //CHOMPEdit
 			cycle_sloshed = TRUE
 	thing.belly_cycles = 0 //reset cycle count
 	if(istype(thing, /mob/observer)) //Ports CHOMPStation PR#3072
@@ -583,7 +585,7 @@
 		return
 	if(OldLoc in contents)
 		return //Someone dropping something (or being stripdigested)
-	if(istype(OldLoc, /mob/observer) || istype(OldLoc, /obj/item/device/mmi)) // Prevent reforming causing a lot of log spam/sounds
+	if(istype(OldLoc, /mob/observer) || istype(OldLoc, /obj/item/mmi)) // Prevent reforming causing a lot of log spam/sounds
 		return //Someone getting reformed most likely (And if not, uh... shouldn't happen anyways?)
 	//CHOMPEdit end
 
@@ -602,7 +604,7 @@
 		if(special_entrance_sound) //CHOMPEdit: Custom sound set by mob's init_vore or ingame varedits.
 			soundfile = special_entrance_sound
 		if(soundfile)
-			playsound(src, soundfile, vol = sound_volume, vary = 1, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/client_preference/eating_noises, volume_channel = VOLUME_CHANNEL_VORE) //CHOMPEdit
+			playsound(src, soundfile, vol = sound_volume, vary = 1, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/preference/toggle/eating_noises, volume_channel = VOLUME_CHANNEL_VORE) //CHOMPEdit
 			recent_sound = TRUE
 
 	if(reagents.total_volume >= 5 && !isliving(thing) && (item_digest_mode == IM_DIGEST || item_digest_mode == IM_DIGEST_PARALLEL)) //CHOMPAdd
@@ -1118,7 +1120,7 @@
 		else
 			soundfile = fancy_release_sounds[release_sound]
 		if(soundfile)
-			playsound(src, soundfile, vol = sound_volume, vary = 1, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/client_preference/eating_noises, volume_channel = VOLUME_CHANNEL_VORE) //CHOMPEdit
+			playsound(src, soundfile, vol = sound_volume, vary = 1, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/preference/toggle/eating_noises, volume_channel = VOLUME_CHANNEL_VORE) //CHOMPEdit
 
 	return count
 
@@ -1137,7 +1139,7 @@
 		L.muffled = FALSE
 		L.forced_psay = FALSE
 
-	for(var/obj/item/weapon/holder/H in M.contents)
+	for(var/obj/item/holder/H in M.contents)
 		H.held_mob.muffled = FALSE
 		H.held_mob.forced_psay = FALSE
 
@@ -1206,7 +1208,7 @@
 		else
 			soundfile = fancy_release_sounds[release_sound]
 		if(soundfile)
-			playsound(src, soundfile, vol = sound_volume, vary = 1, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/client_preference/eating_noises, volume_channel = VOLUME_CHANNEL_VORE) //CHOMPEdit
+			playsound(src, soundfile, vol = sound_volume, vary = 1, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/preference/toggle/eating_noises, volume_channel = VOLUME_CHANNEL_VORE) //CHOMPEdit
 	//Should fix your view not following you out of mobs sometimes!
 	if(ismob(M))
 		var/mob/ourmob = M
@@ -1622,14 +1624,14 @@
 	if(is_vore_predator(M))
 		M.release_vore_contents(include_absorbed = TRUE, silent = TRUE)
 
-	var/obj/item/device/mmi/hasMMI // CHOMPEdit - Adjust how MMI's are handled
+	var/obj/item/mmi/hasMMI // CHOMPEdit - Adjust how MMI's are handled
 
 	//Drop all items into the belly.
 	if(CONFIG_GET(flag/items_survive_digestion)) // CHOMPEdit
 		for(var/obj/item/W in M)
 			if(istype(W, /obj/item/organ/internal/mmi_holder/posibrain))
 				var/obj/item/organ/internal/mmi_holder/MMI = W
-				var/obj/item/device/mmi/brainbox = MMI.removed()
+				var/obj/item/mmi/brainbox = MMI.removed()
 				if(brainbox)
 					items_preserved += brainbox
 					hasMMI = brainbox // CHOMPEdit - Adjust how MMI's are handled
@@ -1641,7 +1643,7 @@
 						I.gurgle_contaminate(contents, contamination_flavor, contamination_color) //We do an initial contamination pass to get stuff like IDs wet.
 					if(item_digest_mode == IM_HOLD)
 						items_preserved |= I
-					else if(item_digest_mode == IM_DIGEST_FOOD && !(istype(I,/obj/item/weapon/reagent_containers/food) || istype(I,/obj/item/organ)))
+					else if(item_digest_mode == IM_DIGEST_FOOD && !(istype(I,/obj/item/reagent_containers/food) || istype(I,/obj/item/organ)))
 						items_preserved |= I
 
 	//Reagent transfer
@@ -1677,7 +1679,7 @@
 			else
 				R.mmi.loc = src
 				items_preserved += R.mmi
-				var/obj/item/weapon/robot_module/MB = locate() in R.contents
+				var/obj/item/robot_module/MB = locate() in R.contents
 				if(MB)
 					R.mmi.brainmob.languages = MB.original_languages
 				else
@@ -1987,11 +1989,12 @@
 				struggle_snuggle = sound(get_sfx("classic_struggle_sounds"))
 			else
 				struggle_snuggle = sound(get_sfx("fancy_prey_struggle"))
-			playsound(src, struggle_snuggle, vary = 1, vol = 75, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/client_preference/digestion_noises, volume_channel = VOLUME_CHANNEL_VORE) //CHOMPEdit
+			playsound(src, struggle_snuggle, vary = 1, vol = 75, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/preference/toggle/digestion_noises, volume_channel = VOLUME_CHANNEL_VORE) //CHOMPEdit
 		else
-			playsound(src, struggle_rustle, vary = 1, vol = 75, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/client_preference/digestion_noises, volume_channel = VOLUME_CHANNEL_VORE) //CHOMPEdit
+			playsound(src, struggle_rustle, vary = 1, vol = 75, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/preference/toggle/digestion_noises, volume_channel = VOLUME_CHANNEL_VORE) //CHOMPEdit
+	if(prob(belchchance))//Unsure if this should go in escapable or not, leaving it here for now.
+		owner.emote("belch")
 	//CHOMPEdit End
-
 	if(escapable) //If the stomach has escapable enabled.
 		if(prob(escapechance)) //Let's have it check to see if the prey escapes first.
 			to_chat(R, escape_attempt_prey_message)
@@ -2281,9 +2284,9 @@
 				struggle_snuggle = sound(get_sfx("classic_struggle_sounds"))
 			else
 				struggle_snuggle = sound(get_sfx("fancy_prey_struggle"))
-			playsound(src, struggle_snuggle, vary = 1, vol = 75, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/client_preference/digestion_noises, volume_channel = VOLUME_CHANNEL_VORE) //CHOMPEdit
+			playsound(src, struggle_snuggle, vary = 1, vol = 75, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/preference/toggle/digestion_noises, volume_channel = VOLUME_CHANNEL_VORE) //CHOMPEdit
 		else
-			playsound(src, struggle_rustle, vary = 1, vol = 75, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/client_preference/digestion_noises, volume_channel = VOLUME_CHANNEL_VORE) //CHOMPEdit
+			playsound(src, struggle_rustle, vary = 1, vol = 75, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/preference/toggle/digestion_noises, volume_channel = VOLUME_CHANNEL_VORE) //CHOMPEdit
 	//CHOMPEdit End
 
 	//absorb resists
@@ -2403,7 +2406,7 @@
 		ourmob.reset_view(owner)
 	if(isitem(content))
 		var/obj/item/I = content
-		if(istype(I,/obj/item/weapon/card/id))
+		if(istype(I,/obj/item/card/id))
 			I.gurgle_contaminate(target.contents, target.contamination_flavor, target.contamination_color)
 		if(I.gurgled && target.contaminates)
 			I.decontaminate()
@@ -2547,9 +2550,9 @@
 		if(blacklist & autotransfer_flags_list_items["Trash"])
 			if(istype(prey, /obj/item/trash)) return FALSE
 		if(blacklist & autotransfer_flags_list_items["Eggs"])
-			if(istype(prey, /obj/item/weapon/storage/vore_egg)) return FALSE
+			if(istype(prey, /obj/item/storage/vore_egg)) return FALSE
 		if(blacklist & autotransfer_flags_list_items["Remains"])
-			if(istype(prey, /obj/item/weapon/digestion_remains)) return FALSE
+			if(istype(prey, /obj/item/digestion_remains)) return FALSE
 		if(blacklist & autotransfer_flags_list_items["Indigestible Items"])
 			if(prey in items_preserved) return FALSE
 		if(blacklist & autotransfer_flags_list_items["Recyclable Items"])
@@ -2557,20 +2560,20 @@
 				var/obj/item/I = prey
 				if(I.matter) return FALSE
 		if(blacklist & autotransfer_flags_list_items["Ores"])
-			if(istype(prey, /obj/item/weapon/ore)) return FALSE
+			if(istype(prey, /obj/item/ore)) return FALSE
 		if(blacklist & autotransfer_flags_list_items["Clothes and Bags"])
-			if(istype(prey, /obj/item/clothing) || istype(prey, /obj/item/weapon/storage)) return FALSE
+			if(istype(prey, /obj/item/clothing) || istype(prey, /obj/item/storage)) return FALSE
 		if(blacklist & autotransfer_flags_list_items["Food"])
-			if(istype(prey, /obj/item/weapon/reagent_containers/food)) return FALSE
+			if(istype(prey, /obj/item/reagent_containers/food)) return FALSE
 		if(whitelist == 0) return TRUE
 		if(whitelist & autotransfer_flags_list_items["Items"])
 			if(isitem(prey)) return TRUE
 		if(whitelist & autotransfer_flags_list_items["Trash"])
 			if(istype(prey, /obj/item/trash)) return TRUE
 		if(whitelist & autotransfer_flags_list_items["Eggs"])
-			if(istype(prey, /obj/item/weapon/storage/vore_egg)) return TRUE
+			if(istype(prey, /obj/item/storage/vore_egg)) return TRUE
 		if(whitelist & autotransfer_flags_list_items["Remains"])
-			if(istype(prey, /obj/item/weapon/digestion_remains)) return TRUE
+			if(istype(prey, /obj/item/digestion_remains)) return TRUE
 		if(whitelist & autotransfer_flags_list_items["Indigestible Items"])
 			if(prey in items_preserved) return TRUE
 		if(whitelist & autotransfer_flags_list_items["Recyclable Items"])
@@ -2578,11 +2581,11 @@
 				var/obj/item/I = prey
 				if(I.matter) return TRUE
 		if(whitelist & autotransfer_flags_list_items["Ores"])
-			if(istype(prey, /obj/item/weapon/ore)) return TRUE
+			if(istype(prey, /obj/item/ore)) return TRUE
 		if(whitelist & autotransfer_flags_list_items["Clothes and Bags"])
-			if(istype(prey, /obj/item/clothing) || istype(prey, /obj/item/weapon/storage)) return TRUE
+			if(istype(prey, /obj/item/clothing) || istype(prey, /obj/item/storage)) return TRUE
 		if(whitelist & autotransfer_flags_list_items["Food"])
-			if(istype(prey, /obj/item/weapon/reagent_containers/food)) return TRUE
+			if(istype(prey, /obj/item/reagent_containers/food)) return TRUE
 	return FALSE //CHOMPEdit end
 
 // Belly copies and then returns the copy
@@ -2698,6 +2701,8 @@
 	dupe.entrance_logs = entrance_logs
 	dupe.noise_freq = noise_freq
 	dupe.item_digest_logs = item_digest_logs
+	dupe.show_fullness_messages = show_fullness_messages
+	dupe.belchchance = belchchance
 	dupe.digest_max = digest_max //CHOMP end of variables from CHOMP
 
 	dupe.belly_fullscreen = belly_fullscreen

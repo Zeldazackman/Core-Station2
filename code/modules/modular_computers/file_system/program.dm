@@ -115,13 +115,13 @@
 	if(!istype(user))
 		return 0
 
-	var/obj/item/weapon/card/id/I = user.GetIdCard()
+	var/obj/item/card/id/I = user.GetIdCard()
 	if(!I)
 		if(loud)
 			to_chat(user, "<span class='notice'>\The [computer] flashes an \"RFID Error - Unable to scan ID\" warning.</span>")
 		return 0
 
-	if(access_to_check in I.access)
+	if(access_to_check in I.GetAccess())
 		return 1
 	else if(loud)
 		to_chat(user, "<span class='notice'>\The [computer] flashes an \"Access Denied\" warning.</span>")

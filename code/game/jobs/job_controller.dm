@@ -10,7 +10,7 @@ var/global/datum/controller/occupations/job_master
 		//Cache of icons for job info window
 	var/list/job_icons = list()
 
-/datum/controller/occupations/proc/SetupOccupations(var/faction = "Station")
+/datum/controller/occupations/proc/SetupOccupations(var/faction = FACTION_STATION)
 	occupations = list()
 	//var/list/all_jobs = typesof(/datum/job)
 	var/list/all_jobs = list(/datum/job/assistant) | using_map.allowed_jobs
@@ -140,7 +140,7 @@ var/global/datum/controller/occupations/job_master
 		if(job.is_species_banned(player.client.prefs.species, player.client.prefs.organ_data["brain"]) == TRUE)
 			continue
 
-		if(istype(job, GetJob(USELESS_JOB))) // We don't want to give him assistant, that's boring! //VOREStation Edit - Visitor not Assistant
+		if(istype(job, GetJob(JOB_ALT_VISITOR))) // We don't want to give him assistant, that's boring! //VOREStation Edit - Visitor not Assistant
 			continue
 
 		if(SSjob.is_job_in_department(job.title, DEPARTMENT_COMMAND)) //If you want a command position, select it!
@@ -242,7 +242,7 @@ var/global/datum/controller/occupations/job_master
 	//Holder for Triumvirate is stored in the ticker, this just processes it
 	if(ticker && ticker.triai)
 		for(var/datum/job/A in occupations)
-			if(A.title == "AI")
+			if(A.title == JOB_AI)
 				A.spawn_positions = 3
 				break
 
@@ -266,7 +266,7 @@ var/global/datum/controller/occupations/job_master
 	Debug("AC1, Candidates: [assistant_candidates.len]")
 	for(var/mob/new_player/player in assistant_candidates)
 		Debug("AC1 pass, Player: [player]")
-		AssignRole(player, USELESS_JOB) //VOREStation Edit - Visitor not Assistant
+		AssignRole(player, JOB_ALT_VISITOR) //VOREStation Edit - Visitor not Assistant
 		assistant_candidates -= player
 	Debug("DO, AC1 end")
 
@@ -353,7 +353,7 @@ var/global/datum/controller/occupations/job_master
 	for(var/mob/new_player/player in unassigned)
 		if(player.client.prefs.alternate_option == BE_ASSISTANT)
 			Debug("AC2 Assistant located, Player: [player]")
-			AssignRole(player, USELESS_JOB) //VOREStation Edit - Visitor not Assistant
+			AssignRole(player, JOB_ALT_VISITOR) //VOREStation Edit - Visitor not Assistant
 
 	//For ones returning to lobby
 	for(var/mob/new_player/player in unassigned)
@@ -428,7 +428,7 @@ var/global/datum/controller/occupations/job_master
 
 				// Implants get special treatment
 				if(G.slot == "implant")
-					var/obj/item/weapon/implant/I = G.spawn_item(H, H.client.prefs.gear[G.display_name])
+					var/obj/item/implant/I = G.spawn_item(H, H.client.prefs.gear[G.display_name])
 					I.invisibility = 100
 					I.implant_loadout(H)
 					continue
@@ -512,14 +512,14 @@ var/global/datum/controller/occupations/job_master
 			return H
 
 		// TWEET PEEP
-		if(rank == "Site Manager" && announce)
+		if(rank == JOB_SITE_MANAGER && announce)
 			var/sound/announce_sound = (ticker.current_state <= GAME_STATE_SETTING_UP) ? null : sound('sound/misc/boatswain.ogg', volume=20)
-			captain_announcement.Announce("All hands, [alt_title ? alt_title : "Site Manager"] [H.real_name] on deck!", new_sound = announce_sound, zlevel = H.z)
+			captain_announcement.Announce("All hands, [alt_title ? alt_title : JOB_SITE_MANAGER] [H.real_name] on deck!", new_sound = announce_sound, zlevel = H.z)
 
 		//Deferred item spawning.
 		if(spawn_in_storage && spawn_in_storage.len)
-			var/obj/item/weapon/storage/B
-			for(var/obj/item/weapon/storage/S in H.contents)
+			var/obj/item/storage/B
+			for(var/obj/item/storage/S in H.contents)
 				B = S
 				break
 
@@ -535,7 +535,7 @@ var/global/datum/controller/occupations/job_master
 	if(istype(H)) //give humans wheelchairs, if they need them.
 		var/obj/item/organ/external/l_foot = H.get_organ("l_foot")
 		var/obj/item/organ/external/r_foot = H.get_organ("r_foot")
-		var/obj/item/weapon/storage/S = locate() in H.contents
+		var/obj/item/storage/S = locate() in H.contents
 		var/obj/item/wheelchair/R
 		if(S)
 			R = locate() in S.contents
@@ -555,7 +555,7 @@ var/global/datum/controller/occupations/job_master
 	if(job.supervisors)
 		to_chat(H, "<span class='filter_notice'><b>As the [alt_title ? alt_title : rank] you answer directly to [job.supervisors]. Special circumstances may change this.</b></span>")
 	if(job.has_headset)
-		H.equip_to_slot_or_del(new /obj/item/device/radio/headset(H), slot_l_ear)
+		H.equip_to_slot_or_del(new /obj/item/radio/headset(H), slot_l_ear)
 		to_chat(H, "<span class='filter_notice'><b>To speak on your department's radio channel use :h. For the use of other channels, examine your headset.</b></span>")
 
 	if(job.req_admin_notify)

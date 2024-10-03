@@ -550,9 +550,9 @@
 	if(pulling)
 		if(ishuman(pulling))
 			var/mob/living/carbon/human/H = pulling
-			visible_message(SPAN_WARNING("\The [src] lets go of \the [H]."), SPAN_NOTICE("You let go of \the [H]."), exclude_mobs = list(H))
+			visible_message(span_warning("\The [src] lets go of \the [H]."), span_notice("You let go of \the [H]."), exclude_mobs = list(H))
 			if(!H.stat)
-				to_chat(H, SPAN_WARNING("\The [src] lets go of you."))
+				to_chat(H, span_warning("\The [src] lets go of you."))
 		pulling.pulledby = null
 		pulling = null
 		if(pullin)
@@ -592,7 +592,7 @@
 		if(M.grabbed_by.len)
 			// Only start pulling when nobody else has a grab on them
 			. = 1
-			for(var/obj/item/weapon/grab/G in M.grabbed_by)
+			for(var/obj/item/grab/G in M.grabbed_by)
 				if(G.assailant != usr)
 					. = 0
 				else
@@ -628,13 +628,13 @@
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		if(H.lying) // If they're on the ground we're probably dragging their arms to move them
-			visible_message(SPAN_WARNING("\The [src] leans down and grips \the [H]'s arms."), SPAN_NOTICE("You lean down and grip \the [H]'s arms."), exclude_mobs = list(H))
+			visible_message(span_warning("\The [src] leans down and grips \the [H]'s arms."), span_notice("You lean down and grip \the [H]'s arms."), exclude_mobs = list(H))
 			if(!H.stat)
-				to_chat(H, SPAN_WARNING("\The [src] leans down and grips your arms."))
+				to_chat(H, span_warning("\The [src] leans down and grips your arms."))
 		else //Otherwise we're probably just holding their arm to lead them somewhere
-			visible_message(SPAN_WARNING("\The [src] grips \the [H]'s arm."), SPAN_NOTICE("You grip \the [H]'s arm."), exclude_mobs = list(H))
+			visible_message(span_warning("\The [src] grips \the [H]'s arm."), span_notice("You grip \the [H]'s arm."), exclude_mobs = list(H))
 			if(!H.stat)
-				to_chat(H, SPAN_WARNING("\The [src] grips your arm."))
+				to_chat(H, span_warning("\The [src] grips your arm."))
 		playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25) //Quieter than hugging/grabbing but we still want some audio feedback
 
 		if(H.pull_damage())
@@ -675,7 +675,7 @@
 	return stat == DEAD
 
 /mob/proc/is_mechanical()
-	if(mind && (mind.assigned_role == "Cyborg" || mind.assigned_role == "AI"))
+	if(mind && (mind.assigned_role == JOB_CYBORG || mind.assigned_role == JOB_AI))
 		return 1
 	return istype(src, /mob/living/silicon) || get_species() == "Machine"
 
@@ -1010,7 +1010,7 @@
 			to_chat(U, "<span class='filter_notice'>[src] has nothing stuck in their wounds that is large enough to remove.</span>")
 		return
 
-	var/obj/item/weapon/selection = tgui_input_list(usr, "What do you want to yank out?", "Embedded objects", valid_objects)
+	var/obj/item/selection = tgui_input_list(usr, "What do you want to yank out?", "Embedded objects", valid_objects)
 
 	if(self)
 		to_chat(src, "<span class='warning'>You attempt to get a good grip on [selection] in your body.</span>")
@@ -1062,7 +1062,7 @@
 	selection.forceMove(get_turf(src))
 	U.put_in_hands(selection)
 
-	for(var/obj/item/weapon/O in pinned)
+	for(var/obj/item/O in pinned)
 		if(O == selection)
 			pinned -= O
 		if(!pinned.len)
@@ -1204,6 +1204,7 @@
 /mob/proc/set_viewsize(var/new_view = world.view)
 	if (client && new_view != client.view)
 		client.view = new_view
+		client.attempt_auto_fit_viewport()
 		return TRUE
 	return FALSE
 
@@ -1224,7 +1225,19 @@
 	src.in_throw_mode = 1
 	if(src.throw_icon && !issilicon(src)) // Silicon use this for something else. Do not overwrite their HUD icon
 		src.throw_icon.icon_state = "act_throw_on"
+/* CHOMPedit removal begin
+/mob/verb/spacebar_throw_on()
+	set name = ".throwon"
+	set hidden = TRUE
+	set instant = TRUE
+	throw_mode_on()
 
+/mob/verb/spacebar_throw_off()
+	set name = ".throwoff"
+	set hidden = TRUE
+	set instant = TRUE
+	throw_mode_off()
+ChompEdit removal end*/
 /mob/proc/isSynthetic()
 	return 0
 
@@ -1316,20 +1329,18 @@
 	return TRUE
 
 /mob/MouseEntered(location, control, params)
-	if(usr != src && usr.is_preference_enabled(/datum/client_preference/mob_tooltips) && src.will_show_tooltip())
-		openToolTip(user = usr, tip_src = src, params = params, title = get_nametag_name(usr), content = get_nametag_desc(usr))
-
-	..()
+	if(usr != src && will_show_tooltip())
+		if(usr?.read_preference(/datum/preference/toggle/mob_tooltips))
+			openToolTip(usr, src, params, title = get_nametag_name(usr), content = get_nametag_desc(usr))
+	. = ..()
 
 /mob/MouseDown()
 	closeToolTip(usr) //No reason not to, really
-
-	..()
+	. = ..()
 
 /mob/MouseExited()
 	closeToolTip(usr) //No reason not to, really
-
-	..()
+	. = ..()
 
 // Manages a global list of mobs with clients attached, indexed by z-level.
 /mob/proc/update_client_z(new_z) // +1 to register, null to unregister.

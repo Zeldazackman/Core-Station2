@@ -69,7 +69,7 @@
 	icon_dead = "guard_dead"
 	has_eye_glow = TRUE
 	minbodytemp = 175 //yw edit, Makes mobs survive cryogaia temps
-	faction = "awaymission" //yw edit, Makes away mobs be on the same fuckin' side.
+	faction = FACTION_AWAYMISSION //yw edit, Makes away mobs be on the same fuckin' side.
 	maxHealth = 200
 	health = 200
 	pass_flags = PASSTABLE
@@ -99,14 +99,14 @@
 	speak_emote = list("chitters")
 
 	meat_amount = 5
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/xenomeat/spidermeat
+	meat_type = /obj/item/reagent_containers/food/snacks/xenomeat/spidermeat
 
 	say_list_type = /datum/say_list/spider
 
 	tame_items = list(
-	/obj/item/weapon/reagent_containers/food/snacks/xenomeat = 10,
-	/obj/item/weapon/reagent_containers/food/snacks/crabmeat = 40,
-	/obj/item/weapon/reagent_containers/food/snacks/meat = 20
+	/obj/item/reagent_containers/food/snacks/xenomeat = 10,
+	/obj/item/reagent_containers/food/snacks/crabmeat = 40,
+	/obj/item/reagent_containers/food/snacks/meat = 20
 	)
 
 	var/poison_type = "spidertoxin"	// The reagent that gets injected when it attacks.

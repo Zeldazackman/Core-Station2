@@ -3,7 +3,7 @@
  * Patches. A subtype of pills, in order to inherit the possible future produceability within chem-masters, and dissolving.
  */
 
-/obj/item/weapon/reagent_containers/pill/patch
+/obj/item/reagent_containers/pill/patch
 	name = "patch"
 	desc = "A patch."
 	icon = 'icons/obj/chemical.dmi'
@@ -19,7 +19,7 @@
 
 	var/pierce_material = FALSE	// If true, the patch can be used through thick material.
 
-/obj/item/weapon/reagent_containers/pill/patch/attack(mob/M as mob, mob/user as mob)
+/obj/item/reagent_containers/pill/patch/attack(mob/M as mob, mob/user as mob)
 	var/mob/living/L = user
 
 	if(M == L)
@@ -40,7 +40,7 @@
 			to_chat(H, "<span class='notice'>\The [src] is placed on your [affecting].</span>")
 			M.drop_from_inventory(src) //icon update
 			if(reagents.total_volume)
-				reagents.trans_to_mob(M, reagents.total_volume, CHEM_BLOOD) //CHEM_TOUCH
+				reagents.trans_to_mob(M, reagents.total_volume, CHEM_TOUCH) //CHEM_TOUCH //CHOMPEdit
 			qdel(src)
 			return 1
 
@@ -74,7 +74,7 @@
 		M.drop_from_inventory(src) //icon update
 
 		if(reagents.total_volume)
-			reagents.trans_to_mob(M, reagents.total_volume, CHEM_BLOOD)	//CHEM_TOUCH
+			reagents.trans_to_mob(M, reagents.total_volume, CHEM_TOUCH)	//CHEM_TOUCH //CHOMPEdit
 		qdel(src)
 
 		return 1

@@ -70,7 +70,7 @@
 			AI.hostile = !AI.hostile
 			if(!AI.hostile)
 				AI.set_stance(STANCE_IDLE)
-			to_chat(M, span("notice", "\The [bound_mob] is now [AI.hostile ? "hostile" : "passive"]."))
+			to_chat(M, span_notice("\The [bound_mob] is now [AI.hostile ? "hostile" : "passive"]."))
 			log_admin("[key_name_admin(M)] set [bound_mob] to [AI.hostile].")
 	else if(bound_mob.client)
 		var/transmit_msg = tgui_input_text(usr, "What is your command?", "Command")
@@ -323,7 +323,7 @@
 
 //Handles checking relevent bans, preferences, and asking the player if they want to be caught
 /obj/item/capture_crystal/proc/capture_player(mob/living/M, mob/living/U)
-	if(jobban_isbanned(M, "GhostRoles"))
+	if(jobban_isbanned(M, JOB_GHOSTROLES))
 		to_chat(U, "<span class='warning'>This creature is not suitable for capture.</span>")
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
 	else if(!M.capture_crystal || M.capture_caught)

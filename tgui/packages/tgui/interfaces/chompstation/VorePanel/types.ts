@@ -177,6 +177,7 @@ export type interactData = {
   transferlocation_secondary: string;
   absorbchance: number;
   digestchance: number;
+  belchchance: number;
 };
 
 export type autotransferData = {
@@ -283,6 +284,7 @@ export type prefData = {
   weight_message_visible: BooleanLike;
   weight_messages: string[];
   eating_privacy_global: BooleanLike;
+  allow_mimicry: BooleanLike;
   belly_rub_target: string | null;
   vore_sprite_color: { stomach: string; 'taur belly': string };
   vore_sprite_multiply: { stomach: BooleanLike; 'taur belly': BooleanLike };
@@ -300,15 +302,16 @@ export type soulcatcherData = {
   selected_soul: string;
   interior_design: string;
   catch_self: BooleanLike;
+  taken_over: BooleanLike;
   catch_prey: BooleanLike;
   catch_drain: BooleanLike;
   catch_ghost: BooleanLike;
   ext_hearing: BooleanLike;
   ext_vision: BooleanLike;
   mind_backups: BooleanLike;
-  ar_projecting: BooleanLike;
+  sr_projecting: BooleanLike;
   show_vore_sfx: BooleanLike;
-  taken_over: BooleanLike;
+  see_sr_projecting: BooleanLike;
 };
 
 export type DropdownEntry = {
@@ -347,6 +350,7 @@ export type localPrefs = {
   examine_weight: preferenceData;
   strippref: preferenceData;
   eating_privacy_global: preferenceData;
+  allow_mimicry: preferenceData;
   autotransferable: preferenceData;
   liquid_receive: preferenceData;
   liquid_give: preferenceData;

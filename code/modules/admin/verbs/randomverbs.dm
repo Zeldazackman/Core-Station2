@@ -9,7 +9,7 @@
 		return
 
 	for(var/obj/item/W in M)
-		if(istype(W, /obj/item/weapon/implant/backup) || istype(W, /obj/item/device/nif))	//VOREStation Edit - There's basically no reason to remove either of these
+		if(istype(W, /obj/item/implant/backup) || istype(W, /obj/item/nif))	//VOREStation Edit - There's basically no reason to remove either of these
 			continue	//VOREStation Edit
 		M.drop_from_inventory(W)
 
@@ -432,8 +432,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			return
 		if(samejob == "Yes")
 			charjob = record_found.fields["real_rank"]
-		else if(samejob == USELESS_JOB) //VOREStation Edit - Visitor not Assistant
-			charjob = USELESS_JOB //VOREStation Edit - Visitor not Assistant
+		else if(samejob == JOB_ALT_VISITOR) //VOREStation Edit - Visitor not Assistant
+			charjob = JOB_ALT_VISITOR //VOREStation Edit - Visitor not Assistant
 	else
 		records = tgui_alert(src,"No data core entry detected. Would you like add them to the manifest, and sec/med/HR records?","Records",list("No", "Yes", "Cancel"))
 		if(!records || records == "Cancel")

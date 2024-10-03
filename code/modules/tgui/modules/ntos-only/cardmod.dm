@@ -41,7 +41,7 @@
 	data["target_owner"] = null
 	data["target_name"] = null
 	if(program && program.computer && program.computer.card_slot)
-		var/obj/item/weapon/card/id/id_card = program.computer.card_slot.stored_card
+		var/obj/item/card/id/id_card = program.computer.card_slot.stored_card
 		data["has_modify"] = !!id_card
 		data["account_number"] = id_card ? id_card.associated_account_number : null
 		data["id_rank"] = id_card && id_card.assignment ? id_card.assignment : "Unassigned"
@@ -64,13 +64,13 @@
 	var/list/all_centcom_access = list()
 	var/list/regions = list()
 	if(program.computer.card_slot && program.computer.card_slot.stored_card)
-		var/obj/item/weapon/card/id/id_card = program.computer.card_slot.stored_card
+		var/obj/item/card/id/id_card = program.computer.card_slot.stored_card
 		if(is_centcom)
 			for(var/access in get_all_centcom_access())
 				all_centcom_access.Add(list(list(
 					"desc" = replacetext(get_centcom_access_desc(access), " ", "&nbsp;"),
 					"ref" = access,
-					"allowed" = (access in id_card.access) ? 1 : 0)))
+					"allowed" = (access in id_card.GetAccess()) ? 1 : 0)))
 			data["all_centcom_access"] = all_centcom_access
 		else
 			for(var/i in ACCESS_REGION_SECURITY to ACCESS_REGION_SUPPLY)
@@ -80,7 +80,7 @@
 						accesses.Add(list(list(
 							"desc" = replacetext(get_access_desc(access), " ", "&nbsp;"),
 							"ref" = access,
-							"allowed" = (access in id_card.access) ? 1 : 0)))
+							"allowed" = (access in id_card.GetAccess()) ? 1 : 0)))
 
 				regions.Add(list(list(
 					"name" = get_region_accesses_name(i),
@@ -97,7 +97,7 @@
 	if(!istype(program))
 		return null
 
-	var/obj/item/weapon/card/id/id_card = program.computer.card_slot ? program.computer.card_slot.stored_card : null
+	var/obj/item/card/id/id_card = program.computer.card_slot ? program.computer.card_slot.stored_card : null
 	var/list/formatted = list()
 	for(var/job in jobs)
 		formatted.Add(list(list(
@@ -119,8 +119,8 @@
 	if(!istype(computer))
 		return TRUE
 
-	var/obj/item/weapon/card/id/user_id_card = usr.GetIdCard()
-	var/obj/item/weapon/card/id/id_card
+	var/obj/item/card/id/user_id_card = usr.GetIdCard()
+	var/obj/item/card/id/id_card
 	if(computer.card_slot)
 		id_card = computer.card_slot.stored_card
 
@@ -143,7 +143,7 @@
 								"}
 
 						var/known_access_rights = get_access_ids(ACCESS_TYPE_STATION|ACCESS_TYPE_CENTCOM)
-						for(var/A in id_card.access)
+						for(var/A in id_card.GetAccess())
 							if(A in known_access_rights)
 								contents += "  [get_access_desc(A)]"
 
@@ -231,4 +231,3 @@
 
 	if(id_card)
 		id_card.name = text("[id_card.registered_name]'s ID Card ([id_card.assignment])")
-

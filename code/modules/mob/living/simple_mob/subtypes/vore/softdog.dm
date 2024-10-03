@@ -15,7 +15,7 @@
 	icon_rest = "woof_rest"
 	icon = 'icons/mob/vore.dmi'
 
-	faction = "dog"
+	faction = FACTION_DOG
 	maxHealth = 600
 	health = 600
 	movement_cooldown = -1
@@ -174,7 +174,7 @@
 	icon_rest = "cass_rest"
 	ic_revivable = 0
 
-	faction = "theatre"
+	faction = FACTION_THEATRE
 	gender = PLURAL
 	ai_holder_type = /datum/ai_holder/simple_mob/woof/cass
 
@@ -203,7 +203,7 @@
 		var/mob/living/L = A
 		if(prob(knockdown_chance))
 			L.Weaken(3)
-			L.visible_message(span("danger", "\The [src] pounces on \the [L]!"))
+			L.visible_message(span_danger("\The [src] pounces on \the [L]!"))
 
 /mob/living/simple_mob/vore/woof/hostile/melee
 
