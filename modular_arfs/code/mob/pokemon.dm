@@ -25,7 +25,7 @@
 	movement_cooldown = 2
 	meat_amount = 3
 	makes_dirt = FALSE
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+	meat_type = /obj/item/reagent_containers/food/snacks/meat
 	melee_damage_lower = 3
 	melee_damage_upper = 9
 	universal_understand = TRUE 	//Until we can fix the inability to tell who is talking over radios and similar bugs, this will work
@@ -169,9 +169,9 @@
 	cut_overlay(r_hand_sprite)	//Hand sprites don't line up with the mob, just hide them
 	cut_overlay(l_hand_sprite)
 	//update_icon is called when you pick something up or drop it anyways, so this goes here
-	if(istype(r_hand,/obj/item/weapon/card/id))
+	if(istype(r_hand,/obj/item/card/id))
 		myid = r_hand
-	else if(istype(l_hand,/obj/item/weapon/card/id))
+	else if(istype(l_hand,/obj/item/card/id))
 		myid = l_hand
 	else
 		myid = null
@@ -592,11 +592,11 @@
 	if(!stat && (M_SHOCK in active_moves))
 		electrocute_mob(user, get_area(src), src, 1)
 
-/mob/living/simple_mob/animal/passive/pokemon/attackby(obj/item/weapon/W, mob/user, params)
+/mob/living/simple_mob/animal/passive/pokemon/attackby(obj/item/W, mob/user, params)
 	if(M_SHOCK in active_moves)
 		electrocute_mob(user, get_area(src), src, W.siemens_coefficient)
-		if(!stat && istype(W, /obj/item/weapon/cell))
-			var/obj/item/weapon/cell/C = W
+		if(!stat && istype(W, /obj/item/cell))
+			var/obj/item/cell/C = W
 			if(move_cooldown)
 				to_chat(user,"<span class='red'>\the [src.name] is recharging!</span>")
 				return
@@ -706,7 +706,7 @@
 			udder.add_reagent("milk", rand(5, 10))
 
 /mob/living/simple_mob/animal/passive/pokemon/miltank/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	var/obj/item/weapon/reagent_containers/glass/G = O
+	var/obj/item/reagent_containers/glass/G = O
 	if(stat == CONSCIOUS && istype(G) && G.is_open_container())
 		user.visible_message("<span class='notice'>[user] milks [src] using \the [O].</span>")
 		var/transfered = udder.trans_id_to(G, "milk", rand(5,10))

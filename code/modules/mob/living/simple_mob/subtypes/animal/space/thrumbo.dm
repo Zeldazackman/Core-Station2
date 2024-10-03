@@ -25,7 +25,7 @@
 	attack_sharp = TRUE //It is a pretty sharp horn.
 	attack_edge = TRUE
 	meat_amount = 20
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+	meat_type = /obj/item/reagent_containers/food/snacks/meat
 	butchery_loot = list(/obj/item/stack/animalhide = 6)
 
 	ai_holder_type = /datum/ai_holder/simple_mob/horing

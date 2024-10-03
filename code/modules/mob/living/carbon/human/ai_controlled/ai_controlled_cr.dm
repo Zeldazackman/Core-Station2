@@ -12,7 +12,7 @@
 	to_wear_helmet = null
 	to_wear_glasses = null
 	to_wear_mask = null
-	to_wear_l_radio = /obj/item/device/radio/headset/headset_rob
+	to_wear_l_radio = /obj/item/radio/headset/headset_rob
 	to_wear_r_radio = null
 	to_wear_uniform = /obj/item/clothing/under/fluff/latexmaid
 	to_wear_suit = null

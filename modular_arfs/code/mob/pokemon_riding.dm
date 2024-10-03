@@ -1,5 +1,5 @@
 /datum/riding/pokemon
-	keytype = /obj/item/weapon/material/twohanded/riding_crop
+	keytype = /obj/item/material/twohanded/riding_crop
 	nonhuman_key_exemption = FALSE
 	key_name = "a riding crop"
 	only_one_driver = TRUE

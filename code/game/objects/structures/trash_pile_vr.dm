@@ -205,12 +205,12 @@
 					prob(1);/obj/item/storage/secure/briefcase,
 					prob(1);/obj/item/clothing/mask/gas/clear, //Chompadd: Proper implementation of clear gas masks
 					prob(1);/obj/item/clothing/under/fluff/latexmaid,
-					prob(2);/obj/item/bikehorn/rubberducky/blue
-					prob(2);/obj/item/bikehorn/rubberducky/pink
-					prob(1);/obj/item/bikehorn/rubberducky/grey
-					prob(1);/obj/item/bikehorn/rubberducky
-					prob(1);/obj/item/grenade/anti_photon/rubberducky/black
-					prob(1);/obj/item/bikehorn/rubberducky/white
+					prob(2);/obj/item/bikehorn/rubberducky/blue,
+					prob(2);/obj/item/bikehorn/rubberducky/pink,
+					prob(1);/obj/item/bikehorn/rubberducky/grey,
+					prob(1);/obj/item/bikehorn/rubberducky,
+					prob(1);/obj/item/grenade/anti_photon/rubberducky/black,
+					prob(1);/obj/item/bikehorn/rubberducky/white,
 					prob(1);/obj/item/clothing/glasses/sunglasses,
 					prob(1);/obj/item/clothing/glasses/welding,
 					prob(1);/obj/item/clothing/head/ushanka,
@@ -292,10 +292,10 @@
 					prob(2);/obj/item/inducer/hybrid,
 					prob(1);/obj/item/cracker/vore,
 					prob(1);/obj/item/gun/energy/mouseray,
-					prob(1);/obj/item/rig/medical/equipped/fluff/rune
-					prob(1);/obj/item/rig/medical/equipped/fluff/frank
-					prob(1);/obj/item/clothing/shoes/fart_shoes
-					prob(1);/obj/item/clothing/head/cowboy/fancy/eliz
+					prob(1);/obj/item/rig/medical/equipped/fluff/rune,
+					prob(1);/obj/item/rig/combat/equipped/fluff/frank,
+					prob(1);/obj/item/clothing/shoes/fart_shoes,
+					prob(1);/obj/item/clothing/head/cowboy/fancy/eliz,
 					prob(1);/obj/item/clothing/accessory/collar/shock/bluespace/modified,
 					prob(1);/obj/item/gun/energy/sizegun/backfire)
 
