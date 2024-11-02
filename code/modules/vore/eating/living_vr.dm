@@ -21,7 +21,7 @@
 //	var/list/voice_sounds_list = list()	// The sound list containing our voice sounds!	CHOMPEdit - Moved to modular_chomp/code/modules/mob/mob.dm
 	var/next_preyloop					// For Fancy sound internal loop
 	var/stuffing_feeder = FALSE			// Can feed foods to others whole, like trash eater can eat them on their own.
-	var/adminbus_trash = FALSE			// For abusing trash eater for event shenanigans.
+	var/adminbus_trash = TRUE			// For abusing trash eater for event shenanigans.
 	var/adminbus_eat_minerals = FALSE	// This creature subsists on a diet of pure adminium.
 	var/vis_height = 32					// Sprite height used for resize features.
 	var/appendage_color = "#e03997" //Default pink. Used for the 'long_vore' trait.
@@ -124,7 +124,7 @@
 			///// If user clicked on themselves
 			if(src == G.assailant && is_vore_predator(src))
 				if(istype(victim) && !victim.client && !victim.ai_holder)
-					log_and_message_admins("[key_name_admin(src)] attempted to eat [key_name_admin(G.affecting)] whilst they were AFK ([G.affecting ? ADMIN_JMP(G.affecting) : "null"])")
+					log_admin("[key_name_admin(src)] attempted to eat [key_name_admin(G.affecting)] whilst they were AFK ([G.affecting ? ADMIN_JMP(G.affecting) : "null"])")
 				if(feed_grabbed_to_self(src, G.affecting))
 					qdel(G)
 					return TRUE
@@ -134,10 +134,10 @@
 			///// If user clicked on their grabbed target
 			else if((src == G.affecting) && (attacker.a_intent == I_GRAB) && (attacker.zone_sel.selecting == BP_TORSO) && (is_vore_predator(G.affecting)))
 				if(istype(victim) && !victim.client && !victim.ai_holder) //Check whether the victim is: A carbon mob, has no client, but has a ckey. This should indicate an SSD player.
-					log_and_message_admins("[key_name_admin(attacker)] attempted to force feed themselves to [key_name_admin(G.affecting)] whilst they were AFK ([G.affecting ? ADMIN_JMP(G.affecting) : "null"])")
+					log_admin("[key_name_admin(attacker)] attempted to force feed themselves to [key_name_admin(G.affecting)] whilst they were AFK ([G.affecting ? ADMIN_JMP(G.affecting) : "null"])")
 				if(!G.affecting.feeding)
 					to_chat(user, span_vnotice("[G.affecting] isn't willing to be fed."))
-					log_and_message_admins("[key_name_admin(src)] attempted to feed themselves to [key_name_admin(G.affecting)] against their prefs ([G.affecting ? ADMIN_JMP(G.affecting) : "null"])")
+					log_admin("[key_name_admin(src)] attempted to feed themselves to [key_name_admin(G.affecting)] against their prefs ([G.affecting ? ADMIN_JMP(G.affecting) : "null"])")
 					return FALSE
 
 				if(attacker.feed_self_to_grabbed(attacker, G.affecting))
@@ -149,18 +149,18 @@
 			///// If user clicked on anyone else but their grabbed target
 			else if((src != G.affecting) && (src != G.assailant) && (is_vore_predator(src)))
 				if(istype(victim) && !victim.client && !victim.ai_holder)
-					log_and_message_admins("[key_name_admin(attacker)] attempted to feed [key_name_admin(G.affecting)] to [key_name_admin(src)] whilst [key_name_admin(G.affecting)] was AFK ([G.affecting ? ADMIN_JMP(G.affecting) : "null"])")
+					log_admin("[key_name_admin(attacker)] attempted to feed [key_name_admin(G.affecting)] to [key_name_admin(src)] whilst [key_name_admin(G.affecting)] was AFK ([G.affecting ? ADMIN_JMP(G.affecting) : "null"])")
 				var/mob/living/carbon/victim_fed = src
 				if(istype(victim_fed) && !victim_fed.client && !victim_fed.ai_holder)
-					log_and_message_admins("[key_name_admin(attacker)] attempted to feed [key_name_admin(G.affecting)] to [key_name_admin(src)] whilst [key_name_admin(src)] was AFK ([G.affecting ? ADMIN_JMP(G.affecting) : "null"])")
+					log_admin("[key_name_admin(attacker)] attempted to feed [key_name_admin(G.affecting)] to [key_name_admin(src)] whilst [key_name_admin(src)] was AFK ([G.affecting ? ADMIN_JMP(G.affecting) : "null"])")
 
 				if(!feeding)
 					to_chat(user, span_vnotice("[src] isn't willing to be fed."))
-					log_and_message_admins("[key_name_admin(attacker)] attempted to feed [key_name_admin(G.affecting)] to [key_name_admin(src)] against predator's prefs ([src ? ADMIN_JMP(src) : "null"])")
+					log_admin("[key_name_admin(attacker)] attempted to feed [key_name_admin(G.affecting)] to [key_name_admin(src)] against predator's prefs ([src ? ADMIN_JMP(src) : "null"])")
 					return FALSE
 				if(!(G.affecting.devourable))
 					to_chat(user, span_vnotice("[G.affecting] isn't able to be devoured."))
-					log_and_message_admins("[key_name_admin(attacker)] attempted to feed [key_name_admin(G.affecting)] to [key_name_admin(src)] against prey's prefs ([G.affecting ? ADMIN_JMP(G.affecting) : "null"])")
+					log_admin("[key_name_admin(attacker)] attempted to feed [key_name_admin(G.affecting)] to [key_name_admin(src)] against prey's prefs ([G.affecting ? ADMIN_JMP(G.affecting) : "null"])")
 					return FALSE
 				if(attacker.feed_grabbed_to_other(attacker, G.affecting, src))
 					qdel(G)
@@ -624,9 +624,7 @@
 		muffled = FALSE		//Removes Muffling
 		forceMove(get_turf(src)) //Just move me up to the turf, let's not cascade through bellies, there's been a problem, let's just leave.
 		SetSleeping(0) //Wake up instantly if asleep
-		for(var/mob/living/simple_mob/SA in range(10))
-			LAZYSET(SA.prey_excludes, src, world.time)
-		log_and_message_admins("[key_name(src)] used the OOC escape button to get out of [key_name(B.owner)] ([B.owner ? "<a href='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[B.owner.x];Y=[B.owner.y];Z=[B.owner.z]'>JMP</a>" : "null"])")
+		log_admin("[key_name(src)] used the OOC escape button to get out of [key_name(B.owner)] ([B.owner ? "<a href='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[B.owner.x];Y=[B.owner.y];Z=[B.owner.z]'>JMP</a>" : "null"])")
 
 		B.owner.update_fullness() //CHOMPEdit - This is run whenever a belly's contents are changed.
 		if(!ishuman(B.owner))
@@ -641,14 +639,14 @@
 		if(confirm != "Okay" || loc != belly)
 			return
 		//Actual escaping
-		log_and_message_admins("[key_name(src)] used the OOC escape button to get out of [key_name(pred)] (BORG) ([pred ? "<a href='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[pred.x];Y=[pred.y];Z=[pred.z]'>JMP</a>" : "null"])")
+		log_admin("[key_name(src)] used the OOC escape button to get out of [key_name(pred)] (BORG) ([pred ? "<a href='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[pred.x];Y=[pred.y];Z=[pred.z]'>JMP</a>" : "null"])")
 		belly.go_out(src) //Just force-ejects from the borg as if they'd clicked the eject button.
 
 	//You're in an AI hologram!
 	else if(istype(loc, /obj/effect/overlay/aiholo))
 		var/obj/effect/overlay/aiholo/holo = loc
 		holo.drop_prey() //Easiest way
-		log_and_message_admins("[key_name(src)] used the OOC escape button to get out of [key_name(holo.master)] (AI HOLO) ([holo ? "<a href='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[holo.x];Y=[holo.y];Z=[holo.z]'>JMP</a>" : "null"])")
+		log_admin("[key_name(src)] used the OOC escape button to get out of [key_name(holo.master)] (AI HOLO) ([holo ? "<a href='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[holo.x];Y=[holo.y];Z=[holo.z]'>JMP</a>" : "null"])")
 
 	//You're in a capture crystal! ((It's not vore but close enough!))
 	else if(iscapturecrystal(loc))
@@ -657,46 +655,46 @@
 		crystal.bound_mob = null
 		crystal.bound_mob = capture_crystal = 0
 		clear_fullscreen(ATOM_BELLY_FULLSCREEN) // CHOMPedit
-		log_and_message_admins("[key_name(src)] used the OOC escape button to get out of [crystal] owned by [crystal.owner]. [ADMIN_FLW(src)]")
+		log_admin("[key_name(src)] used the OOC escape button to get out of [crystal] owned by [crystal.owner]. [ADMIN_FLW(src)]")
 
 	//You've been turned into an item!
 	else if(tf_mob_holder && istype(src, /mob/living/voice) && istype(src.loc, /obj/item))
 		var/obj/item/item_to_destroy = src.loc //If so, let's destroy the item they just TF'd out of.
 		if(istype(src.loc, /obj/item/clothing)) //Are they in clothes? Delete the item then revert them.
 			qdel(item_to_destroy)
-			log_and_message_admins("[key_name(src)] used the OOC escape button to revert back to their original form from being TFed into an object.")
+			log_admin("[key_name(src)] used the OOC escape button to revert back to their original form from being TFed into an object.")
 			revert_mob_tf()
 		else //Are they in any other type of object? If qdel is done first, the mob is deleted from the world.
 			forceMove(get_turf(src))
 			qdel(item_to_destroy)
-			log_and_message_admins("[key_name(src)] used the OOC escape button to revert back to their original form from being TFed into an object.")
+			log_admin("[key_name(src)] used the OOC escape button to revert back to their original form from being TFed into an object.")
 			revert_mob_tf()
 
 	//You've been turned into a mob!
 	else if(tf_mob_holder)
-		log_and_message_admins("[key_name(src)] used the OOC escape button to revert back to their original form from being TFed into another mob.")
+		log_admin("[key_name(src)] used the OOC escape button to revert back to their original form from being TFed into another mob.")
 		revert_mob_tf()
 
 	else if(istype(loc, /obj/item/holder/micro) && (istype(loc.loc, /obj/machinery/microwave)))
 		forceMove(get_turf(src))
-		log_and_message_admins("[key_name(src)] used the OOC escape button to get out of a microwave.")
+		log_admin("[key_name(src)] used the OOC escape button to get out of a microwave.")
 
 	//CHOMPEdit - petrification (again not vore but hey- ooc escape)
 	else if(istype(loc, /obj/structure/gargoyle) && loc:was_rayed)
 		var/obj/structure/gargoyle/G = loc
 		G.can_revert = TRUE
 		qdel(G)
-		log_and_message_admins("[key_name(src)] used the OOC escape button to revert back from being petrified.")
+		log_admin("[key_name(src)] used the OOC escape button to revert back from being petrified.")
 
 	//CHOMPEdit - In-shoe OOC escape. Checking voices as precaution if something akin to obj TF or possession happens
 	else if(!istype(src, /mob/living/voice) && istype(src.loc, /obj/item/clothing/shoes))
 		var/obj/item/clothing/shoes/S = src.loc
 		forceMove(get_turf(src))
-		log_and_message_admins("[key_name(src)] used the OOC escape button to escape from of a pair of shoes. [ADMIN_FLW(src)] - Shoes [ADMIN_VV(S)]")
+		log_admin("[key_name(src)] used the OOC escape button to escape from of a pair of shoes. [ADMIN_FLW(src)] - Shoes [ADMIN_VV(S)]")
 
 	else if(istype(loc, /obj/item/holder/micro) && (istype(loc.loc, /obj/machinery/microwave)))
 		forceMove(get_turf(src))
-		log_and_message_admins("[key_name(src)] used the OOC escape button to get out of a microwave.")
+		log_admin("[key_name(src)] used the OOC escape button to get out of a microwave.")
 
 	//You are in food and for some reason can't resist out
 	else if(istype(loc, /obj/item/reagent_containers/food))
@@ -704,7 +702,7 @@
 		if(F.food_inserted_micros)
 			F.food_inserted_micros -= src
 		src.forceMove(get_turf(F))
-		log_and_message_admins("[key_name(src)] used the OOC escape button to get out of a food item.")
+		log_admin("[key_name(src)] used the OOC escape button to get out of a food item.")
 
 	//Don't appear to be in a vore situation
 	else
@@ -767,7 +765,7 @@
 
 	if(!prey.devourable)
 		to_chat(user, span_vnotice("They aren't able to be devoured."))
-		log_and_message_admins("[key_name_admin(src)] attempted to devour [key_name_admin(prey)] against their prefs ([prey ? ADMIN_JMP(prey) : "null"])")
+		log_admin("[key_name_admin(src)] attempted to devour [key_name_admin(prey)] against their prefs ([prey ? ADMIN_JMP(prey) : "null"])")
 		return FALSE
 	if(prey.absorbed || pred.absorbed)
 		to_chat(user, span_vwarning("They aren't aren't in a state to be devoured."))
@@ -841,10 +839,10 @@
 
 	var/mob/living/carbon/victim = prey // Check for afk vore
 	if(istype(victim) && !victim.client && !victim.ai_holder && victim.ckey)
-		log_and_message_admins("[key_name_admin(pred)] ate [key_name_admin(prey)] whilst the prey was AFK ([pred ? ADMIN_JMP(pred) : "null"])")
+		log_admin("[key_name_admin(pred)] ate [key_name_admin(prey)] whilst the prey was AFK ([pred ? ADMIN_JMP(pred) : "null"])")
 	var/mob/living/carbon/victim_pred = pred // Check for afk vore
 	if(istype(victim_pred) && !victim_pred.client && !victim_pred.ai_holder && victim_pred.ckey)
-		log_and_message_admins("[key_name_admin(pred)] ate [key_name_admin(prey)] whilst the pred was AFK ([pred ? ADMIN_JMP(pred) : "null"])")
+		log_admin("[key_name_admin(pred)] ate [key_name_admin(prey)] whilst the pred was AFK ([pred ? ADMIN_JMP(pred) : "null"])")
 
 	// Inform Admins
 	if(pred == user)

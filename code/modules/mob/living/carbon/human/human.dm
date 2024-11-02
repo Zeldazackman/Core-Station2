@@ -67,7 +67,7 @@
 		dna.ready_dna(src)
 		dna.real_name = real_name
 		sync_organ_dna()
-
+	verbs |= /mob/living/proc/toggle_selfsurgery
 	AddComponent(/datum/component/personal_crafting)
 
 /mob/living/carbon/human/Destroy()

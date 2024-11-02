@@ -16,7 +16,7 @@
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
 	matter = list(MAT_STEEL = 2000)
 	projectile_type = /obj/item/projectile/beam/midlaser
-	one_handed_penalty = 30
+	one_handed_penalty = 5
 
 	firemodes = list(
 		list(mode_name="normal", fire_delay=8, projectile_type=/obj/item/projectile/beam/midlaser, charge_cost = 240),
@@ -81,7 +81,7 @@
 	slot_flags = SLOT_BELT
 	w_class = ITEMSIZE_NORMAL
 	projectile_type = /obj/item/projectile/beam
-	fire_delay = 10 //old technology
+	fire_delay = 5 //old technology
 
 /obj/item/gun/energy/retro/mounted
 	self_recharge = 1
@@ -130,14 +130,14 @@
 	icon = 'icons/obj/gun.dmi' // CHOMPStation Edit: Override back to base gun.dmi
 	icon_state = "alienpistol"
 	item_state = "alienpistol"
-	fire_delay = 9 //CHOMPedit changed cooldown from 10 to 9.
-	charge_cost = 380 // CHOMPedit changed from 480 to 380. Aka five shots to six shots.
+	fire_delay = 3 //CHOMPedit changed cooldown from 10 to 9.
+	charge_cost = 120 //CHOMPedit changed from 480 to 380. Aka five shots to six shots.
 
 	projectile_type = /obj/item/projectile/beam/precursor //CHOMPedit changed beam type
 	cell_type = /obj/item/cell/device/weapon/recharge/alien // Self charges.
 	origin_tech = list(TECH_COMBAT = 8, TECH_MAGNET = 7)
 	modifystate = "alienpistol"
-	battery_lock = 1 //CHOMPedit adds battery lock.
+	battery_lock = 0 //CHOMPedit adds battery lock.
 	move_delay = 0 // CHOMPEdit: Pistols have move_delay of 0
 
 
@@ -281,10 +281,10 @@
 	projectile_type = /obj/item/projectile/beam/heavylaser/cannon
 	battery_lock = 0  //ChompEdit  This thing is worthless with this.
 	fire_delay = 20
-	w_class = ITEMSIZE_HUGE //CHOMP Edit. Lol a cannon used to be just large size? Are you kidding me? A CANNON.  Deserves this.
-	one_handed_penalty = 90 // The thing's heavy and huge.
+	w_class = ITEMSIZE_LARGE //CHOMP Edit. Lol a cannon used to be just large size? Are you kidding me? A CANNON.  Deserves this.
+	one_handed_penalty = 10 // The thing's heavy and huge.
 	accuracy = 45
-	charge_cost = 400 //CHOMP Edit. Let's give this thing some more shots, seeing as it needs to be recharged at a charger - Most everything else is cheaper on charge cost now or smaller, this can stay the same, but with replacable batteries.
+	charge_cost = 100 //CHOMP Edit. Let's give this thing some more shots, seeing as it needs to be recharged at a charger - Most everything else is cheaper on charge cost now or smaller, this can stay the same, but with replacable batteries.
 
 /obj/item/gun/energy/lasercannon/mounted
 	name = "mounted laser cannon"
@@ -294,8 +294,8 @@
 	accuracy = 0 // Mounted cannons are just fine the way they are.
 	one_handed_penalty = 0 // Not sure if two-handing gets checked for mounted weapons, but better safe than sorry.
 	projectile_type = /obj/item/projectile/beam/heavylaser
-	charge_cost = 400
-	fire_delay = 20
+	charge_cost = 100
+	fire_delay = 10
 
 /*
  * X-ray
@@ -309,7 +309,7 @@
 	item_state = "xray"
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 3, TECH_MAGNET = 2)
 	projectile_type = /obj/item/projectile/beam/xray
-	charge_cost = 200
+	charge_cost = 100
 	w_class = ITEMSIZE_LARGE //CHOMP Edit. - huge is too big, this thing hits for 25
 
 /*
@@ -332,13 +332,13 @@
 	actions_types = list(/datum/action/item_action/use_scope)
 	//Begin CHOMPstation Edit for making this thing not trash
 	//battery_lock = 0
-	charge_cost = 360
-	fire_delay = 40
+	charge_cost = 120
+	fire_delay = 10
 	force = 10
-	w_class = ITEMSIZE_HUGE // So it can't fit in a backpack.
-	accuracy = -30 //shooting at the hip
+	w_class = ITEMSIZE_LARGE // So it can't fit in a backpack.
+	accuracy = 50 //shooting at the hip
 	scoped_accuracy = 100
-	one_handed_penalty = 60 // The weapon itself is heavy, and the long barrel makes it hard to hold steady with just one hand.
+	one_handed_penalty = 20 // The weapon itself is heavy, and the long barrel makes it hard to hold steady with just one hand.
 	//End CHOMP Edit.
 
 /obj/item/gun/energy/sniperrifle/ui_action_click(mob/user, actiontype)
@@ -404,7 +404,7 @@
 	projectile_type = /obj/item/projectile/beam/mininglaser
 
 	firemodes = list(
-		list(mode_name="mining", fire_delay=8, projectile_type=/obj/item/projectile/beam/mininglaser, charge_cost = 200),
+		list(mode_name="mining", fire_delay=8, projectile_type=/obj/item/projectile/beam/mininglaser, charge_cost = 50),
 		list(mode_name="deter", fire_delay=5, projectile_type=/obj/item/projectile/beam/weaklaser, charge_cost = 80),
 		)
 
@@ -440,12 +440,12 @@
 	projectile_type = /obj/item/projectile/beam/sniper
 	slot_flags = SLOT_BACK
 	actions_types = list(/datum/action/item_action/aim_down_sights)
-	charge_cost = 2400
-	fire_delay = 20
+	charge_cost = 600
+	fire_delay = 5
 	force = 8
 	w_class = ITEMSIZE_HUGE //CHOMP Edit.
-	accuracy = 10
-	scoped_accuracy = 15
+	accuracy = 50
+	scoped_accuracy = 100
 	charge_meter = FALSE
 	var/scope_multiplier = 1.5
 
@@ -466,7 +466,7 @@
 	antique mono-rifle design that was dubbed the 'Rainy Day Special' by many of its users."
 	icon_state = "cmono"
 	item_state = "cshotgun"
-	charge_cost = 1200
+	charge_cost = 200
 	force = 12
 	accuracy = 0
-	scoped_accuracy = 20
+	scoped_accuracy = 100

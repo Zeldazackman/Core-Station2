@@ -172,6 +172,9 @@
 GLOBAL_LIST_INIT(vore_words_goo, list("muck","goo","sludge","slime","mire","ectoplasm","quagmire","glop","jelly","ooze","slush","mush","quicksand"))//%goo
 GLOBAL_LIST_INIT(vore_words_hbellynoises, list("gurgle","gloorp","squelch","gloosh","squish","groan","grrrrrrn","sloooooOrp","slooosh","grrrbles","worbles"))//%happybelly
 GLOBAL_LIST_INIT(vore_words_fat, list("love handles","fat","pudge","plumpness","squish","chunk","meat","softness","blubber","flab","paunch","hip dip","mass","dough","chub","marshmellowy goodness","girth","fluff","thickness","jello","adipose "))//%fat
+GLOBAL_LIST_INIT(vore_words_dick, list("package","rod","shaft","length","cock","dick","tool","member"))//%dick
+GLOBAL_LIST_INIT(vore_words_boob, list("breast","boob","bra stuffer","airbag","dairy pillow","hooter","howitzer","bazooka","rack","watermellon","twins","zepplin"))//%boob
+GLOBAL_LIST_INIT(vore_words_pussy, list("snatch","mound","slit","entrance","lips","canal","vagina","cavern","sex","muff","pussy"))//%pussy
 GLOBAL_LIST_INIT(vore_words_grip, list("grip","grasp","clutch","hold"))//%grip
 GLOBAL_LIST_INIT(vore_words_cozyholdingwords, list("soft","cozy","comfortable","gentle","snug","safe","restful","snuggly","intimate","secure"))//%cozy
 GLOBAL_LIST_INIT(vore_words_angry, list("hated","unsafe","angry"))//%angry
@@ -224,6 +227,9 @@ GLOBAL_LIST_INIT(vore_words_snake, list("snake","serpent","reptilian","noodle","
 	. = replacetext(., "%goo", use_first_only ? GLOB.vore_words_goo[1] : pick(GLOB.vore_words_goo))
 	. = replacetext(., "%happybelly", use_first_only ? GLOB.vore_words_hbellynoises[1] : pick(GLOB.vore_words_hbellynoises))
 	. = replacetext(., "%fat", use_first_only ? GLOB.vore_words_fat[1] : pick(GLOB.vore_words_fat))
+	. = replacetext(., "%dick", use_first_only ? GLOB.vore_words_dick[1] : pick(GLOB.vore_words_dick))
+	. = replacetext(., "%boob", use_first_only ? GLOB.vore_words_boob[1] : pick(GLOB.vore_words_boob))
+	. = replacetext(., "%pussy", use_first_only ? GLOB.vore_words_pussy[1] : pick(GLOB.vore_words_pussy))
 	. = replacetext(., "%grip", use_first_only ? GLOB.vore_words_grip[1] : pick(GLOB.vore_words_grip))
 	. = replacetext(., "%cozy", use_first_only ? GLOB.vore_words_cozyholdingwords[1] : pick(GLOB.vore_words_cozyholdingwords))
 	. = replacetext(., "%angry", use_first_only ? GLOB.vore_words_angry[1] : pick(GLOB.vore_words_angry))

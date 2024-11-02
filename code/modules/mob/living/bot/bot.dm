@@ -3,6 +3,7 @@
 	health = 9020
 	maxHealth = 9020
 	icon = 'icons/obj/aibots.dmi'
+	alpha = 100 //Let's not let the space carp endlessly attack them shall we?
 	layer = MOB_LAYER
 	universal_speak = 1
 	density = FALSE

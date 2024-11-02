@@ -223,11 +223,41 @@
 /datum/belly_overlays/vboanim_taurbelly1
 	belly_icon = 'modular_chomp/icons/mob/vore_fullscreens/VBOanim_taurbelly1.dmi'
 
+/datum/belly_overlays/a_bright_tumby
+	belly_icon = 'modular_chomp/icons/mob/vore_fullscreens/a_bright_tumby.dmi'
+
 /datum/belly_overlays/a_tumby
 	belly_icon = 'modular_chomp/icons/mob/vore_fullscreens/a_tumby.dmi'
 
+/datum/belly_overlays/acid
+	belly_icon = 'modular_chomp/icons/mob/vore_fullscreens/acid.dmi'
+
+/datum/belly_overlays/anibelly
+	belly_icon = 'modular_chomp/icons/mob/vore_fullscreens/anibelly.dmi'
+
+/datum/belly_overlays/another_tumby
+	belly_icon = 'modular_chomp/icons/mob/vore_fullscreens/another_tumby.dmi'
+
+/datum/belly_overlays/arfs_internals
+	belly_icon = 'modular_chomp/icons/mob/vore_fullscreens/arfs_internals.dmi'
+
+/datum/belly_overlays/arfs_internals_2
+	belly_icon = 'modular_chomp/icons/mob/vore_fullscreens/arfs_internals_2.dmi'
+
+/datum/belly_overlays/arfs_internals_3
+	belly_icon = 'modular_chomp/icons/mob/vore_fullscreens/arfs_internals_3.dmi'
+
+/datum/belly_overlays/aylium
+	belly_icon = 'modular_chomp/icons/mob/vore_fullscreens/aylium.dmi'
+
+/datum/belly_overlays/ayliumred
+	belly_icon = 'modular_chomp/icons/mob/vore_fullscreens/ayliumred.dmi'
+
 /datum/belly_overlays/base
 	belly_icon = 'modular_chomp/icons/mob/vore_fullscreens/base.dmi'
+
+/datum/belly_overlays/beefy
+	belly_icon = 'modular_chomp/icons/mob/vore_fullscreens/beefy.dmi'
 
 /datum/belly_overlays/brown_internals
 	belly_icon = 'modular_chomp/icons/mob/vore_fullscreens/brown_internals.dmi'
@@ -235,11 +265,44 @@
 /datum/belly_overlays/brown_internals_hole
 	belly_icon = 'modular_chomp/icons/mob/vore_fullscreens/brown_internals_hole.dmi'
 
+/datum/belly_overlays/bubbly
+	belly_icon = 'modular_chomp/icons/mob/vore_fullscreens/bubbly.dmi'
+
 /datum/belly_overlays/da_tumby
 	belly_icon = 'modular_chomp/icons/mob/vore_fullscreens/da_tumby.dmi'
 
 /datum/belly_overlays/dark
 	belly_icon = 'modular_chomp/icons/mob/vore_fullscreens/dark.dmi'
+
+/datum/belly_overlays/enzyme
+	belly_icon = 'modular_chomp/icons/mob/vore_fullscreens/enzyme.dmi'
+
+/datum/belly_overlays/enzymeclear
+	belly_icon = 'modular_chomp/icons/mob/vore_fullscreens/enzymeclear.dmi'
+
+/datum/belly_overlays/exotic_squish
+	belly_icon = 'modular_chomp/icons/mob/vore_fullscreens/exotic_squish.dmi'
+
+/datum/belly_overlays/further_mawful
+	belly_icon = 'modular_chomp/icons/mob/vore_fullscreens/further_mawful.dmi'
+
+/datum/belly_overlays/glurk
+	belly_icon = 'modular_chomp/icons/mob/vore_fullscreens/glurk.dmi'
+
+/datum/belly_overlays/gushy
+	belly_icon = 'modular_chomp/icons/mob/vore_fullscreens/gushy.dmi'
+
+/datum/belly_overlays/gushyclear
+	belly_icon = 'modular_chomp/icons/mob/vore_fullscreens/gushyclear.dmi'
+
+/datum/belly_overlays/PLEBBIT
+	belly_icon = 'modular_chomp/icons/mob/vore_fullscreens/PLEBBIT.dmi'
+
+/datum/belly_overlays/squishy
+	belly_icon = 'modular_chomp/icons/mob/vore_fullscreens/squishy.dmi'
+
+/datum/belly_overlays/squishyclear
+	belly_icon = 'modular_chomp/icons/mob/vore_fullscreens/squishyclear.dmi'
 
 /datum/belly_overlays/synth_flesh_mono
 	belly_icon = 'modular_chomp/icons/mob/vore_fullscreens/synth_flesh_mono.dmi'
@@ -247,8 +310,14 @@
 /datum/belly_overlays/synth_flesh_mono_hole
 	belly_icon = 'modular_chomp/icons/mob/vore_fullscreens/synth_flesh_mono_hole.dmi'
 
+/datum/belly_overlays/totally_mawful
+	belly_icon = 'modular_chomp/icons/mob/vore_fullscreens/totally_mawful.dmi'
+
 /datum/belly_overlays/yet_another_tumby
 	belly_icon = 'modular_chomp/icons/mob/vore_fullscreens/yet_another_tumby.dmi'
+
+/datum/belly_overlays/you_know_what_this_is_b
+	belly_icon = 'modular_chomp/icons/mob/vore_fullscreens/you_know_what_this_is_b.dmi'
 
 //Compatibility assets due to renames...
 /datum/belly_overlays/anim_belly
