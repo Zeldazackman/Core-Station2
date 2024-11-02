@@ -59,7 +59,7 @@
 			SStgui.update_uis(src)
 			update_icon()
 		else if(card)
-			to_chat(user, "<span class='warning'>There is already ID card inside.</span>")
+			to_chat(user, span_warning("There is already ID card inside."))
 		return
 	. = ..()
 
@@ -102,7 +102,7 @@
 				"timeoff_factor" = job.timeoff_factor,
 				"pto_department" = job.pto_type
 			)
-		if(CONFIG_GET(flag/time_off) && CONFIG_GET(flag/pto_job_change)) // CHOMPEdit
+		if(CONFIG_GET(flag/time_off) && CONFIG_GET(flag/pto_job_change))
 			data["allow_change_job"] = TRUE
 			if(job && job.timeoff_factor < 0) // Currently are Off Duty, so gotta lookup what on-duty jobs are open
 				data["job_choices"] = getOpenOnDutyJobs(user, job.pto_type)
@@ -240,18 +240,18 @@
 /obj/machinery/computer/timeclock/proc/checkFace()
 	var/turf/location = get_turf(src) // CHOMPedit: Needed for admin logs.
 	if(!card)
-		to_chat(usr, "<span class='notice'>No ID is inserted.</span>")
+		to_chat(usr, span_notice("No ID is inserted."))
 		return FALSE
 /* CHOMPedit start. Allows anyone to change people's IDs.
 	var/mob/living/carbon/human/H = usr
 	if(!(istype(H)))
-		to_chat(usr, "<span class='warning'>Invalid user detected. Access denied.</span>")
+		to_chat(usr, span_warning("Invalid user detected. Access denied."))
 		return FALSE
 	else if((H.wear_mask && (H.wear_mask.flags_inv & HIDEFACE)) || (H.head && (H.head.flags_inv & HIDEFACE)))	//Face hiding bad
-		to_chat(usr, "<span class='warning'>Facial recognition scan failed due to physical obstructions. Access denied.</span>")
+		to_chat(usr, span_warning("Facial recognition scan failed due to physical obstructions. Access denied."))
 		return FALSE
 	else if(H.get_face_name() == "Unknown" || !(H.real_name == card.registered_name))
-		to_chat(usr, "<span class='warning'>Facial recognition scan failed. Access denied.</span>")
+		to_chat(usr, span_warning("Facial recognition scan failed. Access denied."))
 		return FALSE
 CHOMPedit end. */
 	else

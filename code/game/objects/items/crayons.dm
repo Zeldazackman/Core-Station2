@@ -111,7 +111,7 @@
 			to_chat(user, "You finish drawing.")
 
 			var/msg = "[user.client.key] ([user]) has drawn [drawtype] (with [src]) at [target.x],[target.y],[target.z]."
-			if(CONFIG_GET(flag/log_graffiti)) // CHOMPEdit
+			if(CONFIG_GET(flag/log_graffiti))
 				message_admins(msg)
 			log_game(msg) //We will log it anyways.
 
@@ -119,7 +119,7 @@
 			if(uses)
 				uses--
 				if(!uses)
-					to_chat(user, "<span class='warning'>You used up your crayon!</span>")
+					to_chat(user, span_warning("You used up your crayon!"))
 					qdel(src)
 	return
 
@@ -131,7 +131,7 @@
 		if(uses)
 			uses -= 5
 			if(uses <= 0)
-				to_chat(user, "<span class='warning'>You ate your crayon!</span>")
+				to_chat(user, span_warning("You ate your crayon!"))
 				qdel(src)
 	else
 		..()
@@ -217,7 +217,7 @@
 		if(uses)
 			uses -= 5
 			if(uses <= 0)
-				to_chat(user, "<span class='warning'>You ate the marker!</span>")
+				to_chat(user, span_warning("You ate the marker!"))
 				qdel(src)
 	else
 		..()

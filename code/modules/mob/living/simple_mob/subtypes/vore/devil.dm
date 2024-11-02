@@ -32,30 +32,31 @@
 	vore_digest_chance = 50
 	vore_escape_chance = 5
 	vore_pounce_chance = 1000
-	vore_standing_too = TRUE
 	vore_active = 1
 	vore_icons = 1
 	vore_icons = SA_ICON_LIVING | SA_ICON_REST
 	vore_capacity = 1
 	swallowTime = 50
 	vore_ignores_undigestable = TRUE
-	vore_default_mode = DM_HOLD
+	vore_default_mode = DM_DIGEST
 	vore_pounce_maxhealth = 1000
 	vore_bump_emote = "pounces on"
 
 /mob/living/simple_mob/vore/devil/init_vore()
+ 	//CHOMPEdit Start
 	if(!voremob_loaded)
 		return
-	. = ..()
+	.=..()
+	//CHOMPEdit End
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
 	B.desc = "It turns out that this was not just any old statue, but some form of android waiting for its chance to ambush you. The moment that it laid its hands on you, your fate was decided. The jaws of the machine parted, if you could call them that, and immediately enveloped your head. The inside was hot and slick, but dry. The textures were startlingly realistic, the base was clearly a tongue, the top palate of the mouth was hard but somewhat pliable. Not that you had time to admire it before the rest of your body was stuffed inside. Through a short passage down through a rubbery tube of a gullet, mechanical contractions squeezing you down from behind, you're quickly deposited in something much resembling a stomach. Amid the sounds of mechanical whirrs, you can heard glorping, gurgling and burbling from unknown sources. The walls wrap firmly around your body, deliberately dramping you up into the smallest space that the machine can crush you into, whilst the synthetic lining around you ripples across your hunched up form. You can even see yourself, the gut itself is backlit by some eerie red glow, just enough to tell exactly what is happening to you. It doesn't help that you can see the drooling fluids glistening in the dim light."
 	B.mode_flags = DM_FLAG_THICKBELLY
-	B.belly_fullscreen = "synth_flesh_mono_hole"
+	B.belly_fullscreen = "a_synth_flesh_mono_hole"
 	B.digest_brute = 2
 	B.digest_burn = 2
 	B.digest_oxy = 1
-	B.digestchance = 50
+	B.digestchance = 100
 	B.absorbchance = 0
 	B.escapechance = 5
 	B.selective_preference = DM_DIGEST
@@ -74,9 +75,9 @@
 	vore_pounce_cooldown = world.time + 1 SECONDS // don't attempt another pounce for a while
 	if(prob(successrate)) // pounce success!
 		M.Weaken(5)
-		M.visible_message("<span class='danger'>\The [src] pounces on \the [M]!</span>!")
+		M.visible_message(span_danger("\The [src] pounces on \the [M]!"))
 	else // pounce misses!
-		M.visible_message("<span class='danger'>\The [src] attempts to pounce \the [M] but misses!</span>!")
+		M.visible_message(span_danger("\The [src] attempts to pounce \the [M] but misses!"))
 		playsound(src, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 
 	if(will_eat(M) && (!M.canmove || vore_standing_too)) //if they're edible then eat them too

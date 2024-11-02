@@ -126,23 +126,23 @@
 /obj/machinery/injector_maker/examine(mob/user)
 	. = ..()
 	if(!in_range(user, src) && !issilicon(user) && !isobserver(user))
-		. += "<span class='warning'>You're too far away to examine [src]'s contents and display!</span>"
+		. += span_warning("You're too far away to examine [src]'s contents and display!")
 		return
 
 	if(beaker)
-		. += "<span class='notice'>\The [src] contains:</span>"
+		. += span_notice("\The [src] contains:")
 		if(beaker)
-			. += "<span class='notice'>- \A [beaker].</span>"
+			. += span_notice("- \A [beaker].")
 
-	. += "<span class ='notice'>\The [src] contains [src.count_small_injector] small injectors and [src.count_large_injector] large injectors.\n </span>"
-	. += "<span class ='notice'> It can hold [capacity_small_injector] small and [capacity_large_injector] large injectors respectively.\n </span>"
-	. += "<span class ='notice'> \The [src] contains [src.count_plastic] units of plastic. It can hold up to [capacity_plastic] units.\n </span>"
+	. += span_notice("\The [src] contains [src.count_small_injector] small injectors and [src.count_large_injector] large injectors.") + "\n"
+	. += span_notice("It can hold [capacity_small_injector] small and [capacity_large_injector] large injectors respectively.") + "\n"
+	. += span_notice("\The [src] contains [src.count_plastic] units of plastic. It can hold up to [capacity_plastic] units.") + "\n"
 
 	if(!(stat & (NOPOWER|BROKEN)))
-		. += "<span class='notice'>The status display reads the following reagents:</span>\n"
+		. += span_notice("The status display reads the following reagents:") + "\n"
 		if(beaker)
 			for(var/datum/reagent/R in beaker.reagents.reagent_list)
-				. += "<span class='notice'>- [R.volume] units of [R.name].</span>"
+				. += span_notice("- [R.volume] units of [R.name].")
 
 /obj/machinery/injector_maker/attack_hand(mob/user as mob)
 	interact(user)

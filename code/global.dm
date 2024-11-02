@@ -88,8 +88,6 @@ var/list/reverse_dir = list( // reverse_dir[dir] = reverse of dir
 )
 var/global/const/SQRT_TWO = 1.41421356237
 
-// var/datum/configuration/config      = null // CHOMPEdit
-
 var/list/combatlog = list()
 var/list/IClog     = list()
 var/list/OOClog    = list()
@@ -145,7 +143,8 @@ var/list/emergency_module_types = list(
 )
 // List of modules available to AI shells
 var/list/shell_module_types = list(
-	"Standard", "Service", "Clerical"
+	"Standard", "Engineering", "Surgeon", "Crisis",
+	"Miner", "Janitor", "Service", "Clerical", "Security", "Research"
 )
 // List of whitelisted modules
 var/list/whitelisted_module_types = list(

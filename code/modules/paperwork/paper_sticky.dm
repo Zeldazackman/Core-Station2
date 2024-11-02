@@ -37,7 +37,7 @@
 		var/text = sanitizeSafe(tgui_input_text(usr, "What would you like to write?", null, null, writing_space), writing_space)
 		if(!text || thing.loc != user || (!Adjacent(user) && loc != user) || user.incapacitated())
 			return
-		user.visible_message("<b>\The [user]</b> jots a note down on \the [src].")
+		user.visible_message(span_infoplain(span_bold("\The [user]") + " jots a note down on \the [src]."))
 		written_by = user.ckey
 		if(written_text)
 			written_text = "[written_text] [text]"
@@ -76,10 +76,10 @@
 				if (H.hand)
 					temp = H.organs_by_name["l_hand"]
 				if(temp && !temp.is_usable())
-					to_chat(user, "<span class='notice'>You try to move your [temp.name], but cannot!</span>")
+					to_chat(user, span_notice("You try to move your [temp.name], but cannot!"))
 					return
 
-				to_chat(user, "<span class='notice'>You pick up the [src].</span>")
+				to_chat(user, span_notice("You pick up the [src]."))
 				user.put_in_hands(src)
 
 	return

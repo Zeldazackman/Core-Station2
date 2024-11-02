@@ -116,7 +116,7 @@
 			. *= 0.5
 		. -= chem_effects[CE_SPEEDBOOST]	// give 'em a buff on top.
 
-	. = max(HUMAN_LOWEST_SLOWDOWN, . + CONFIG_GET(number/human_delay))	// Minimum return should be the same as force_max_speed // CHOMPEdit
+	. = max(HUMAN_LOWEST_SLOWDOWN, . + CONFIG_GET(number/human_delay))	// Minimum return should be the same as force_max_speed
 	. += ..()
 
 /mob/living/carbon/human/Moved()
@@ -279,14 +279,14 @@
 	if(m_intent == "run" && step_count++ % 2 != 0)
 		check_vorefootstep(m_intent, T) //CHOMPstation edit: sloshing reagent belly walk system
 	*/
-	if(shoes && loc == T && has_gravity(loc) && !flying)
+	if(shoes && loc == T && get_gravity(loc) && !flying)
 		if(SEND_SIGNAL(shoes, COMSIG_SHOES_STEP_ACTION, m_intent))	//CHOMPEdit - Shoe step comsig
 			return
 	/*
 	if(step_count % 2 == 0)	//CHOMPAdd, since I removed the returns up above, need this to track each odd step.
 		return
 
-	var/volume = CONFIG_GET(number/footstep_volume) // CHOMPEdit
+	var/volume = CONFIG_GET(number/footstep_volume)
 
 	// Reduce volume while walking or barefoot
 	if(!shoes || m_intent == "walk")
@@ -302,7 +302,7 @@
 	if(buckled || lying || throwing)
 		return // people flying, lying down or sitting do not step
 
-	if(!has_gravity(src) && prob(75))
+	if(!get_gravity(src) && prob(75))
 		return // Far less likely to make noise in no gravity
 
 	playsound(T, S, volume, FALSE)

@@ -57,8 +57,8 @@
 /mob/living/simple_mob/vore/woof/New()
 	..()
 
-	add_verb(src,/mob/living/proc/ventcrawl) //CHOMPEdit TGPanel
-	add_verb(src,/mob/living/proc/hide) //CHOMPEdit TGPanel
+	add_verb(src, /mob/living/proc/ventcrawl)
+	add_verb(src, /mob/living/proc/hide)
 
 /datum/say_list/softdog
 	speak = list("Woof~", "Woof!", "Yip!", "Yap!", "Yip~", "Yap~", "Awoooooo~", "Awoo!", "AwooooooooooOOOOOOoOooOoooOoOOoooo!")
@@ -281,25 +281,25 @@
 /mob/living/simple_mob/vore/woof/hostile/aweful/death()
 	. = ..()
 	if(killswitch)
-		visible_message("<span class='notice'>\The [src] evaporates into nothing...</span>")
+		visible_message(span_notice("\The [src] evaporates into nothing..."))
 		qdel(src)
 		return
 	var/thismany = rand(0,3)
 	var/list/possiblewoofs = list(/mob/living/simple_mob/vore/woof/hostile/aweful/melee, /mob/living/simple_mob/vore/woof/hostile/aweful/ranged)
 	if(thismany == 0)
-		visible_message("<span class='notice'>\The [src] evaporates into nothing...</span>")
+		visible_message(span_notice("\The [src] evaporates into nothing..."))
 	if(thismany >= 1)
 		var/thiswoof = pick(possiblewoofs)
 		new thiswoof(loc, src)
-		visible_message("<span class='warning'>Another [src] appears!</span>")
+		visible_message(span_warning("Another [src] appears!"))
 	if(thismany >= 2)
 		var/thiswoof = pick(possiblewoofs)
 		new thiswoof(loc, src)
-		visible_message("<span class='warning'>Another [src] appears!</span>")
+		visible_message(span_warning("Another [src] appears!"))
 	if(thismany >= 3)
 		var/thiswoof = pick(possiblewoofs)
 		new thiswoof(loc, src)
-		visible_message("<span class='warning'>Another [src] appears!</span>")
+		visible_message(span_warning("Another [src] appears!"))
 	qdel(src)
 
 /mob/living/simple_mob/vore/woof/hostile/aweful/melee

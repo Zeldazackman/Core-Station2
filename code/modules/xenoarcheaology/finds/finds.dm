@@ -28,16 +28,16 @@
 	pixel_y = rand(0,8)-8
 
 	if(inside_item_type)
-		new /obj/item/archaeological_find(src, new_item_type = inside_item_type)
+		new /obj/item/archaeological_find(src, inside_item_type) // CHOMPEdit
 
 /obj/item/strangerock/attackby(var/obj/item/I, var/mob/user)
 	if(istype(I, /obj/item/pickaxe/brush))
 		var/obj/item/inside = locate() in src
 		if(inside)
 			inside.loc = get_turf(src)
-			visible_message("<span class='info'>\The [src] is brushed away, revealing \the [inside].</span>")
+			visible_message(span_info("\The [src] is brushed away, revealing \the [inside]."))
 		else
-			visible_message("<span class='info'>\The [src] is brushed away into nothing.</span>")
+			visible_message(span_info("\The [src] is brushed away into nothing."))
 		qdel(src)
 		return
 
@@ -48,13 +48,13 @@
 				var/obj/item/inside = locate() in src
 				if(inside)
 					inside.loc = get_turf(src)
-					visible_message("<span class='info'>\The [src] burns away revealing \the [inside].</span>")
+					visible_message(span_info("\The [src] burns away revealing \the [inside]."))
 				else
-					visible_message("<span class='info'>\The [src] burns away into nothing.</span>")
+					visible_message(span_info("\The [src] burns away into nothing."))
 				qdel(src)
 				W.remove_fuel(2)
 			else
-				visible_message("<span class='info'>A few sparks fly off \the [src], but nothing else happens.</span>")
+				visible_message(span_info("A few sparks fly off \the [src], but nothing else happens."))
 				W.remove_fuel(1)
 			return
 
@@ -66,5 +66,5 @@
 	..()
 
 	if(prob(33))
-		src.visible_message("<span class='warning'>[src] crumbles away, leaving some dust and gravel behind.</span>")
+		src.visible_message(span_warning("[src] crumbles away, leaving some dust and gravel behind."))
 		qdel(src)

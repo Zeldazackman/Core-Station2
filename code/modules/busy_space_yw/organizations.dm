@@ -1234,7 +1234,7 @@
 	acronym = "SFI"
 	desc = "Founded in 2437 by Astara Junea, StarFlight Incorporated is now one of the biggest passenger liner businesses in human-occupied space and has even begun breaking into alien markets -  all despite a rocky start, and several high-profile ship disappearances and shipjackings. With space traffic at an all-time high, it's a depressing reality that SFI's incidents are just a tiny drop in the bucket compared to everything else going on. \
 	<br><br> \
-	SFI's fleet is, somewhat endearingly, named after various species of bird, though the designation <i>Pigeon</i> was removed from the lineup after a particularly unusual chain of events involving a business liner. For reasons that have continued to remain unclear since the company's foundation, SFI vessels are permitted to use the same high-level identifier pattern as governmental vessels."
+	SFI's fleet is, somewhat endearingly, named after various species of bird, though the designation " + span_italics("Pigeon") + " was removed from the lineup after a particularly unusual chain of events involving a business liner. For reasons that have continued to remain unclear since the company's foundation, SFI vessels are permitted to use the same high-level identifier pattern as governmental vessels."
 	history = ""
 	work = "luxury, business, and economy passenger flights"
 	headquarters = "Spin Aerostat, Jupiter"
@@ -2608,7 +2608,7 @@
 	acronym = "SAARE"
 	desc = "SAARE consistently have the worst reputation of any paramilitary group. This is because they specialize in deniability and secrecy. Although publically they work in asset recovery, they have a substantiated reputation for info-theft and piracy that has lead to them butting heads with the law on more than one occasion. Nonetheless, they are an invaluable part of the Solar economy, and other TSCs and small colonial governments keep them in business.\
 	<br><br>\
-	For the purposes of plausible deniability, SAARE designates their ships using a series of rotating identifiers, with ships on a specific operation or in a particular area all using the same initial designation (<i>e.g.</i> 'Sledgehammer') and having a different numerical identifier, with the most important ships involved bearing a unique additional codename (such as 'Actual' for Command \& Control ships). As ships are shuffled in and out of operating areas, it can be difficult to pin down exactly which ship in SAARE's fleet was responsible for which act. SAARE's misdirection is multilayered, including elements such as extensive use of repainting, false IFFs, bribes, forged documents, intimidation, camouflage, and all manner of other underhanded tactics."
+	For the purposes of plausible deniability, SAARE designates their ships using a series of rotating identifiers, with ships on a specific operation or in a particular area all using the same initial designation (" + span_italics("e.g.") + " 'Sledgehammer') and having a different numerical identifier, with the most important ships involved bearing a unique additional codename (such as 'Actual' for Command \& Control ships). As ships are shuffled in and out of operating areas, it can be difficult to pin down exactly which ship in SAARE's fleet was responsible for which act. SAARE's misdirection is multilayered, including elements such as extensive use of repainting, false IFFs, bribes, forged documents, intimidation, camouflage, and all manner of other underhanded tactics."
 	history = ""
 	work = "mercenary contractors"
 	headquarters = ""

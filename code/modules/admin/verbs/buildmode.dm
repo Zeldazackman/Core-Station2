@@ -91,17 +91,17 @@
 	switch(master.cl.buildmode)
 
 		if(BUILDMODE_BASIC)
-			to_chat(usr, "<span class='notice'>***********************************************************<br>\
+			to_chat(usr, span_notice("***********************************************************<br>\
 							Left Mouse Button        = Construct / Upgrade<br>\
 							Right Mouse Button       = Deconstruct / Delete / Downgrade<br>\
 							Left Mouse Button + ctrl = R-Window<br>\
 							Left Mouse Button + alt  = Airlock<br><br>\
 							Use the button in the upper left corner to<br>\
 							change the direction of built objects.<br>\
-							***********************************************************</span>")
+							***********************************************************"))
 
 		if(BUILDMODE_ADVANCED)
-			to_chat(usr, "<span class='notice'>***********************************************************<br>\
+			to_chat(usr, span_notice("***********************************************************<br>\
 							Right Mouse Button on buildmode button = Set object type<br>\
 							Middle Mouse Button on buildmode button= On/Off object type saying<br>\
 							Middle Mouse Button on turf/obj        = Capture object type<br>\
@@ -110,49 +110,49 @@
 							Mouse Button + ctrl                    = Copy object type<br><br>\
 							Use the button in the upper left corner to<br>\
 							change the direction of built objects.<br>\
-							***********************************************************</span>")
+							***********************************************************"))
 
 		if(BUILDMODE_EDIT)
-			to_chat(usr, "<span class='notice'>***********************************************************<br>\
+			to_chat(usr, span_notice("***********************************************************<br>\
 							Right Mouse Button on buildmode button = Select var(type) & value<br>\
 							Left Mouse Button on turf/obj/mob      = Set var(type) & value<br>\
 							Right Mouse Button on turf/obj/mob     = Reset var's value<br>\
-							***********************************************************</span>")
+							***********************************************************"))
 
 		if(BUILDMODE_THROW)
-			to_chat(usr, "<span class='notice'>***********************************************************<br>\
+			to_chat(usr, span_notice("***********************************************************<br>\
 							Left Mouse Button on turf/obj/mob      = Select<br>\
 							Right Mouse Button on turf/obj/mob     = Throw<br>\
-							***********************************************************</span>")
+							***********************************************************"))
 
 		if(BUILDMODE_ROOM)
-			to_chat(usr, "<span class='notice'>***********************************************************<br>\
+			to_chat(usr, span_notice("***********************************************************<br>\
 							Left Mouse Button on turf              = Select as point A<br>\
 							Right Mouse Button on turf             = Select as point B<br>\
 							Right Mouse Button on buildmode button = Change floor/wall type/area name<br>\
-							***********************************************************</span>")
+							***********************************************************"))
 
 		if(BUILDMODE_LADDER)
-			to_chat(usr, "<span class='notice'>***********************************************************<br>\
+			to_chat(usr, span_notice("***********************************************************<br>\
 							Left Mouse Button on turf              = Set as upper ladder loc<br>\
 							Right Mouse Button on turf             = Set as lower ladder loc<br>\
-							***********************************************************</span>")
+							***********************************************************"))
 
 		if(BUILDMODE_CONTENTS)
-			to_chat(usr, "<span class='notice'>***********************************************************<br>\
+			to_chat(usr, span_notice("***********************************************************<br>\
 							Left Mouse Button on turf/obj/mob      = Select<br>\
 							Right Mouse Button on turf/obj/mob     = Move into selection<br>\
-							***********************************************************</span>")
+							***********************************************************"))
 
 		if(BUILDMODE_LIGHTS)
-			to_chat(usr, "<span class='notice'>***********************************************************<br>\
+			to_chat(usr, span_notice("***********************************************************<br>\
 							Left Mouse Button on turf/obj/mob      = Make it glow<br>\
 							Right Mouse Button on turf/obj/mob     = Reset glowing<br>\
 							Right Mouse Button on buildmode button = Change glow properties<br>\
-							***********************************************************</span>")
+							***********************************************************"))
 
 		if(BUILDMODE_AI)
-			to_chat(usr, "<span class='notice'>***********************************************************<br>\
+			to_chat(usr, span_notice("***********************************************************<br>\
 							Left Mouse Button drag box             = Select only mobs in box<br>\
 							Left Mouse Button drag box + shift     = Select additional mobs in area<br>\
 							Left Mouse Button on non-mob           = Deselect all mobs<br>\
@@ -171,17 +171,17 @@
 							Right Mouse Button on tile             = Command selected mobs to move to tile (will cancel if enemies are seen)<br>\
 							Right Mouse Button + shift on tile     = Command selected mobs to reposition to tile (will not be interrupted by enemies)<br>\
 							Right Mouse Button + alt on obj/turfs  = Command selected mobs to attack obj/turf<br>\
-							***********************************************************</span>")
+							***********************************************************"))
 
 		if(BUILDMODE_DROP)
-			to_chat(usr, "<span class='notice'>***********************************************************<br>\
+			to_chat(usr, span_notice("***********************************************************<br>\
 							Right Mouse Button on buildmode button = Set object type<br>\
 							Middle Mouse Button on buildmode button= On/Off object type saying<br>\
 							Middle Mouse Button on turf/obj        = Capture object type<br>\
 							Left Mouse Button on turf/obj          = Drop objects safely<br>\
 							Right Mouse Button                     = Drop objects unsafely<br>\
 							Mouse Button + ctrl                    = Copy object type<br><br>\
-							***********************************************************</span>")
+							***********************************************************"))
 	return 1
 
 /obj/effect/bmode/buildquit
@@ -301,7 +301,7 @@
 						area_enabled = 1
 						area_name = tgui_input_text(usr, "New area name", "Room Buildmode", max_length = MAX_NAME_LEN)
 						if(isnull(area_name))
-							to_chat(usr, "<span class='notice'>You must enter a non-null name.</span>")
+							to_chat(usr, span_notice("You must enter a non-null name."))
 							area_enabled = 0
 							return
 						area_name = sanitize(area_name,MAX_NAME_LEN)
@@ -418,7 +418,7 @@ CHOMP Remove end */
 					qdel(object)
 			else if(pa.Find("ctrl"))
 				holder.buildmode.objholder = object.type
-				to_chat(user, "<span class='notice'>[object]([object.type]) copied to buildmode.</span>")
+				to_chat(user, span_notice("[object]([object.type]) copied to buildmode."))
 			if(pa.Find("middle"))
 				holder.buildmode.objholder = text2path("[object.type]")
 				if(holder.buildmode.objsay)
@@ -430,13 +430,13 @@ CHOMP Remove end */
 					log_admin("[key_name(usr)] modified [object.name]'s [holder.buildmode.varholder] to [holder.buildmode.valueholder]")
 					object.vars[holder.buildmode.varholder] = holder.buildmode.valueholder
 				else
-					to_chat(user, "<span class='danger'>[initial(object.name)] does not have a var called '[holder.buildmode.varholder]'</span>")
+					to_chat(user, span_danger("[initial(object.name)] does not have a var called '[holder.buildmode.varholder]'"))
 			if(pa.Find("right"))
 				if(object.vars.Find(holder.buildmode.varholder))
 					log_admin("[key_name(usr)] modified [object.name]'s [holder.buildmode.varholder] to [holder.buildmode.valueholder]")
 					object.vars[holder.buildmode.varholder] = initial(object.vars[holder.buildmode.varholder])
 				else
-					to_chat(user, "<span class='danger'>[initial(object.name)] does not have a var called '[holder.buildmode.varholder]'</span>")
+					to_chat(user, span_danger("[initial(object.name)] does not have a var called '[holder.buildmode.varholder]'"))
 
 		if(BUILDMODE_THROW)
 			if(pa.Find("left"))
@@ -450,19 +450,19 @@ CHOMP Remove end */
 		if(BUILDMODE_ROOM)
 			if(pa.Find("left"))
 				holder.buildmode.coordA = get_turf(object)
-				to_chat(user, "<span class='notice'>Defined [object] ([object.type]) as point A.</span>")
+				to_chat(user, span_notice("Defined [object] ([object.type]) as point A."))
 
 			if(pa.Find("right"))
 				holder.buildmode.coordB = get_turf(object)
-				to_chat(user, "<span class='notice'>Defined [object] ([object.type]) as point B.</span>")
+				to_chat(user, span_notice("Defined [object] ([object.type]) as point B."))
 
 			if(holder.buildmode.coordA && holder.buildmode.coordB)
 				if(isnull(holder.buildmode.area_name))
-					to_chat(user, "<span class='notice'>ERROR: Insert area name before use.</span>")
+					to_chat(user, span_notice("ERROR: Insert area name before use."))
 					holder.buildmode.coordA = null
 					holder.buildmode.coordB = null
 					return
-				to_chat(user, "<span class='notice'>A and B set, creating rectangle.</span>")
+				to_chat(user, span_notice("A and B set, creating rectangle."))
 				holder.buildmode.make_rectangle(
 					holder.buildmode.coordA,
 					holder.buildmode.coordB,
@@ -476,14 +476,14 @@ CHOMP Remove end */
 		if(BUILDMODE_LADDER)
 			if(pa.Find("left"))
 				holder.buildmode.coordA = get_turf(object)
-				to_chat(user, "<span class='notice'>Defined [object] ([object.type]) as upper ladder location.</span>")
+				to_chat(user, span_notice("Defined [object] ([object.type]) as upper ladder location."))
 
 			if(pa.Find("right"))
 				holder.buildmode.coordB = get_turf(object)
-				to_chat(user, "<span class='notice'>Defined [object] ([object.type]) as lower ladder location.</span>")
+				to_chat(user, span_notice("Defined [object] ([object.type]) as lower ladder location."))
 
 			if(holder.buildmode.coordA && holder.buildmode.coordB)
-				to_chat(user, "<span class='notice'>Ladder locations set, building ladders.</span>")
+				to_chat(user, span_notice("Ladder locations set, building ladders."))
 				var/obj/structure/ladder/A = new /obj/structure/ladder/up(holder.buildmode.coordA)
 				var/obj/structure/ladder/B = new /obj/structure/ladder(holder.buildmode.coordB)
 				A.target_up = B
@@ -655,7 +655,7 @@ CHOMP Remove end */
 
 		if(BUILDMODE_DROP)
 			if(ispath(holder.buildmode.objholder,/turf))
-				to_chat(user, "<span class='warning'>Cannot use turfs with this mode.</span>")
+				to_chat(user, span_warning("Cannot use turfs with this mode."))
 				return
 			if(pa.Find("left") && !pa.Find("ctrl"))
 				if(ispath(holder.buildmode.objholder))
@@ -667,7 +667,7 @@ CHOMP Remove end */
 					FE.crushing = TRUE
 			else if(pa.Find("ctrl"))
 				holder.buildmode.objholder = object.type
-				to_chat(user, "<span class='notice'>[object]([object.type]) copied to buildmode.</span>")
+				to_chat(user, span_notice("[object]([object.type]) copied to buildmode."))
 			if(pa.Find("middle"))
 				holder.buildmode.objholder = text2path("[object.type]")
 				if(holder.buildmode.objsay)

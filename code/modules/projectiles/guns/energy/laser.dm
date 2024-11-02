@@ -11,7 +11,7 @@
 	wielded_item_state = "laser-wielded"
 	fire_delay = 8
 	slot_flags = SLOT_BELT|SLOT_BACK
-	w_class = ITEMSIZE_NORMAL //CHOMP Edit - huge was dumb for this.
+	w_class = ITEMSIZE_LARGE //CHOMP Edit - huge was dumb for this.
 	force = 10
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
 	matter = list(MAT_STEEL = 2000)
@@ -131,13 +131,13 @@
 	icon_state = "alienpistol"
 	item_state = "alienpistol"
 	fire_delay = 9 //CHOMPedit changed cooldown from 10 to 9.
-	charge_cost = 240 // CHOMPedit changed from 480 to 380. Ten shots.
+	charge_cost = 380 // CHOMPedit changed from 480 to 380. Aka five shots to six shots.
 
 	projectile_type = /obj/item/projectile/beam/precursor //CHOMPedit changed beam type
 	cell_type = /obj/item/cell/device/weapon/recharge/alien // Self charges.
 	origin_tech = list(TECH_COMBAT = 8, TECH_MAGNET = 7)
 	modifystate = "alienpistol"
-	battery_lock = 0 //CHOMPedit adds battery lock.
+	battery_lock = 1 //CHOMPedit adds battery lock.
 	move_delay = 0 // CHOMPEdit: Pistols have move_delay of 0
 
 
@@ -159,7 +159,7 @@
 	projectile_type = /obj/item/projectile/beam
 	origin_tech = null
 	fire_delay = 10		//Old pistol
-	charge_cost = 240	//to compensate a bit for self-recharging
+	charge_cost = 480	//to compensate a bit for self-recharging
 	cell_type = /obj/item/cell/device/weapon/recharge/captain
 	battery_lock = 1
 /* 	var/remainingshots = 0 //you may get a limited number of shots regardless of the charge //CHOMPedit: no
@@ -206,7 +206,7 @@
 	power_supply.charge = 0
 	power_supply.maxcharge = 1 //just to avoid div/0 runtimes
 	desc = "A rare weapon, produced by the Lunar Arms Company around 2105 - one of humanity's first wholly extra-terrestrial weapon designs. It looks to have completely burned out."
-	user.visible_message("<span class='warning'>\The [src] erupts in a shower of sparks!</span>", "<span class='danger'>\the [src] bursts into a shower of sparks!</span>")
+	user.visible_message(span_warning("\The [src] erupts in a shower of sparks!"), span_danger("\the [src] bursts into a shower of sparks!"))
 	var/turf/T = get_turf(src)
 	var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 	sparks.set_up(2, 1, T)
@@ -223,7 +223,7 @@
 			sparks.set_up(2, 1, T)
 			sparks.start()
 			update_icon()
-			user.visible_message("<span class='warning'>\The [src] shorts out!</span>", "<span class='danger'>\the [src] shorts out!</span>")
+			user.visible_message(span_warning("\The [src] shorts out!"), span_danger("\the [src] shorts out!"))
 			failurechance += rand(1,5)
 			return
 		if(6 to 7) //20% chance of weakening the beam type, possibly to uselessness
@@ -243,18 +243,18 @@
 					projectile_type = /obj/item/projectile/beam/heavylaser
 				if(81 to 100) //pulse becomes cannon
 					projectile_type = /obj/item/projectile/beam/heavylaser/cannon
-			user.visible_message("<span class='warning'>\The [src] dims slightly!</span>", "<span class='danger'>\the [src] dims slightly!</span>")
+			user.visible_message(span_warning("\The [src] dims slightly!"), span_danger("\the [src] dims slightly!"))
 			return
 		if(8) //10% chance of reducing the number of shots you have left, or giving you a limit if there isn't one
 			if(!remainingshots)
 				remainingshots = rand(1,40)
 			else
 				remainingshots = min(1, round(remainingshots/2))
-			user.visible_message("<span class='warning'>\The [src] lets out a faint pop.</span>", "<span class='danger'>\the [src] lets out a faint pop.</span>")
+			user.visible_message(span_warning("\The [src] lets out a faint pop."), span_danger("\the [src] lets out a faint pop."))
 		if(9) //10% chance of permanently reducing the cell's max charge
 			power_supply.maxcharge = power_supply.maxcharge/2
 			power_supply.charge = min(power_supply.charge, power_supply.maxcharge)
-			user.visible_message("<span class='warning'>\The [src] sparks,letting off a puff of smoke!</span>", "<span class='danger'>\the [src] sparks,letting off a puff of smoke!</span>")
+			user.visible_message(span_warning("\The [src] sparks,letting off a puff of smoke!"), span_danger("\the [src] sparks,letting off a puff of smoke!"))
 			var/turf/T = get_turf(src)
 			var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 			sparks.set_up(2, 1, T)
@@ -276,15 +276,15 @@
 	icon_state = "lasercannon"
 	item_state = null
 	wielded_item_state = "mhdhowitzer-wielded" //Placeholder
-	origin_tech = list(TECH_COMBAT = 7, TECH_MATERIAL = 7, TECH_POWER = 7)  //ChompEdit improved.
+	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 6, TECH_POWER = 6)  //ChompEdit improved.
 	slot_flags = SLOT_BELT|SLOT_BACK
 	projectile_type = /obj/item/projectile/beam/heavylaser/cannon
 	battery_lock = 0  //ChompEdit  This thing is worthless with this.
 	fire_delay = 20
-	w_class = ITEMSIZE_LARGE //CHOMP Edit. Lol a cannon used to be just large size? Are you kidding me? A CANNON.  Deserves this.
-	one_handed_penalty = 40 // The thing's heavy and huge.
+	w_class = ITEMSIZE_HUGE //CHOMP Edit. Lol a cannon used to be just large size? Are you kidding me? A CANNON.  Deserves this.
+	one_handed_penalty = 90 // The thing's heavy and huge.
 	accuracy = 45
-	charge_cost = 300 //CHOMP Edit. Let's give this thing some more shots, seeing as it needs to be recharged at a charger - Most everything else is cheaper on charge cost now or smaller, this can stay the same, but with replacable batteries.
+	charge_cost = 400 //CHOMP Edit. Let's give this thing some more shots, seeing as it needs to be recharged at a charger - Most everything else is cheaper on charge cost now or smaller, this can stay the same, but with replacable batteries.
 
 /obj/item/gun/energy/lasercannon/mounted
 	name = "mounted laser cannon"
@@ -294,8 +294,8 @@
 	accuracy = 0 // Mounted cannons are just fine the way they are.
 	one_handed_penalty = 0 // Not sure if two-handing gets checked for mounted weapons, but better safe than sorry.
 	projectile_type = /obj/item/projectile/beam/heavylaser
-	charge_cost = 50
-	fire_delay = 10
+	charge_cost = 400
+	fire_delay = 20
 
 /*
  * X-ray
@@ -310,7 +310,7 @@
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 3, TECH_MAGNET = 2)
 	projectile_type = /obj/item/projectile/beam/xray
 	charge_cost = 200
-	w_class = ITEMSIZE_NORMAL //CHOMP Edit. - huge is too big, this thing hits for 25
+	w_class = ITEMSIZE_LARGE //CHOMP Edit. - huge is too big, this thing hits for 25
 
 /*
  * Marksman Rifle
@@ -326,22 +326,22 @@
 	item_state = "sniper"
 	item_state_slots = list(slot_r_hand_str = "lsniper", slot_l_hand_str = "lsniper")
 	wielded_item_state = "lsniper-wielded"
-	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 7, TECH_POWER = 6)
+	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 5, TECH_POWER = 4)
 	projectile_type = /obj/item/projectile/beam/sniper
 	slot_flags = SLOT_BACK
-	action_button_name = "Use Scope"
+	actions_types = list(/datum/action/item_action/use_scope)
 	//Begin CHOMPstation Edit for making this thing not trash
 	//battery_lock = 0
-	charge_cost = 200 
-	fire_delay = 10
+	charge_cost = 360
+	fire_delay = 40
 	force = 10
-	w_class = ITEMSIZE_LARGE // So it can't fit in a backpack.
-	accuracy = 50
+	w_class = ITEMSIZE_HUGE // So it can't fit in a backpack.
+	accuracy = -30 //shooting at the hip
 	scoped_accuracy = 100
-	one_handed_penalty = 20 // The weapon itself is heavy, and the long barrel makes it hard to hold steady with just one hand.
+	one_handed_penalty = 60 // The weapon itself is heavy, and the long barrel makes it hard to hold steady with just one hand.
 	//End CHOMP Edit.
 
-/obj/item/gun/energy/sniperrifle/ui_action_click()
+/obj/item/gun/energy/sniperrifle/ui_action_click(mob/user, actiontype)
 	scope()
 
 /obj/item/gun/energy/sniperrifle/verb/scope()
@@ -363,7 +363,7 @@
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 1, TECH_MATERIAL = 4)
 
 	projectile_type = /obj/item/projectile/scatter/laser
-	w_class = ITEMSIZE_LARGE //CHOMP Edit.
+	w_class = ITEMSIZE_HUGE //CHOMP Edit.
 	slot_flags = SLOT_BELT|SLOT_BACK //CHOMP Edit because you can still holster it despite it not fitting in a backpack.
 
 
@@ -397,15 +397,15 @@
 	item_state = "mininglaser"
 	fire_delay = 8
 	slot_flags = SLOT_BELT|SLOT_BACK
-	w_class = ITEMSIZE_NORMAL
+	w_class = ITEMSIZE_LARGE
 	force = 15
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
 	matter = list(MAT_STEEL = 2000)
 	projectile_type = /obj/item/projectile/beam/mininglaser
 
 	firemodes = list(
-		list(mode_name="mining", fire_delay=8, projectile_type=/obj/item/projectile/beam/mininglaser, charge_cost = 100),
-		list(mode_name="deter", fire_delay=5, projectile_type=/obj/item/projectile/beam/weaklaser, charge_cost = 40),
+		list(mode_name="mining", fire_delay=8, projectile_type=/obj/item/projectile/beam/mininglaser, charge_cost = 200),
+		list(mode_name="deter", fire_delay=5, projectile_type=/obj/item/projectile/beam/weaklaser, charge_cost = 80),
 		)
 
 /*
@@ -439,17 +439,17 @@
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 4, TECH_POWER = 3)
 	projectile_type = /obj/item/projectile/beam/sniper
 	slot_flags = SLOT_BACK
-	action_button_name = "Aim Down Sights"
-	charge_cost = 400
-	fire_delay = 5
+	actions_types = list(/datum/action/item_action/aim_down_sights)
+	charge_cost = 2400
+	fire_delay = 20
 	force = 8
-	w_class = ITEMSIZE_NORMAL //CHOMP Edit.
-	accuracy = 50
-	scoped_accuracy = 100
+	w_class = ITEMSIZE_HUGE //CHOMP Edit.
+	accuracy = 10
+	scoped_accuracy = 15
 	charge_meter = FALSE
 	var/scope_multiplier = 1.5
 
-/obj/item/gun/energy/monorifle/ui_action_click()
+/obj/item/gun/energy/monorifle/ui_action_click(mob/user, actiontype)
 	sights()
 
 /obj/item/gun/energy/monorifle/verb/sights()
@@ -466,7 +466,7 @@
 	antique mono-rifle design that was dubbed the 'Rainy Day Special' by many of its users."
 	icon_state = "cmono"
 	item_state = "cshotgun"
-	charge_cost = 200
+	charge_cost = 1200
 	force = 12
-	accuracy = 75
-	scoped_accuracy = 100
+	accuracy = 0
+	scoped_accuracy = 20

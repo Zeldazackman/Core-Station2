@@ -136,16 +136,12 @@
 		"The drake's thick tongue presses against your form, smothering you with thick, gooey saliva as it pushes you around in it's maw.",
 		"The exotic drake lets out a deep rumble as it idly maws over you, shifting you in a warm, slimy embrace as it passively prepares to send you into a deeper embrace."
 	)
-	B.autotransferchance = 50
 	B.autotransfer_enabled = TRUE
+	B.autotransferchance = 30
 	B.autotransferwait = 5
 	B.autotransferlocation = "stomach"
 	B.escapetime = 1 SECONDS
 	B.escapechance = 75
-	B.absorbchance = 0
-	B.digestchance = 0
-	B.human_prey_swallow_time = 30
-	B.nonhuman_prey_swallow_time = 30
 
 /datum/say_list/leopardmander
 	speak = list("Prurr.", "Rrrhf.", "Rrrrrll.", "Mrrrrph.")
@@ -242,16 +238,10 @@
 		"The drake's thick tongue presses against your form, smothering you with thick, gooey saliva as it pushes you around in it's maw.",
 		"The exotic drake lets out a deep rumble as it idly maws over you, shifting you in a warm, slimy embrace as it passively prepares to send you into a deeper embrace."
 	)
-	B.autotransferchance = 50
-	B.autotransfer_enabled = TRUE
 	B.autotransferwait = 5
 	B.autotransferlocation = "stomach"
 	B.escapetime = 1 SECONDS
 	B.escapechance = 75
-	B.absorbchance = 0
-	B.digestchance = 0
-	B.human_prey_swallow_time = 30
-	B.nonhuman_prey_swallow_time = 30
 
 /obj/random/mob/leopardmander/item_to_spawn() //Random map spawner
 	return pick(prob(89);/mob/living/simple_mob/vore/leopardmander,
