@@ -16,7 +16,7 @@
 
 /obj/belly
 	name = "belly"							// Name of this location
-	desc = "It's a belly! You're in it!"	// Flavor text description of inside sight/sound/smells/feels.
+	desc = "Warm, wet, and quite slimy with all the %goo in here. It's a belly and you've found yourself inside of %pred's %griping %belly as it lets out a sloppy %happybelly, however the faint groans and barely contained %hot %acid threatens to turn you into %pred's next %snack and %fat if you squirm around too much..."	// Flavor text description of inside sight/sound/smells/feels.
 	var/message_mode = FALSE				// If all options for messages are shown
 	var/vore_sound = "Gulp"					// Sound when ingesting someone
 	var/vore_verb = "ingest"				// Verb for eating with this in messages
@@ -25,19 +25,19 @@
 	var/nonhuman_prey_swallow_time = 30		// Time in deciseconds to swallow anything else
 	var/nutrition_percent = 100				// Nutritional percentage per tick in digestion mode
 	var/digest_max = 36						// CHOMPEdit; maximum total damage across all types
-	var/digest_brute = 0.5					// Brute damage per tick in digestion mode
-	var/digest_burn = 0.5					// Burn damage per tick in digestion mode
+	var/digest_brute = 1.5					// Brute damage per tick in digestion mode
+	var/digest_burn = 1.5					// Burn damage per tick in digestion mode
 	var/digest_oxy = 0						// Oxy damage per tick in digestion mode
 	var/digest_tox = 0						// Toxins damage per tick in digestion mode
 	var/digest_clone = 0					// Clone damage per tick in digestion mode
 	var/immutable = FALSE					// Prevents this belly from being deleted
-	var/escapable = FALSE					// Belly can be resisted out of at any time
-	var/escapetime = 10 SECONDS				// Deciseconds, how long to escape this belly
-	var/selectchance = 0					// % Chance of stomach switching to selective mode if prey struggles
-	var/digestchance = 0					// % Chance of stomach beginning to digest if prey struggles
-	var/absorbchance = 0					// % Chance of stomach beginning to absorb if prey struggles
-	var/escapechance = 0 					// % Chance of prey beginning to escape if prey struggles.
-	var/escapechance_absorbed = 0			// % Chance of absorbed prey finishing an escape. Requires a successful escape roll against the above as well.
+	var/escapable = TRUE					// Belly can be resisted out of at any time
+	var/escapetime = 30 SECONDS				// Deciseconds, how long to escape this belly
+	var/selectchance = 5					// % Chance of stomach switching to selective mode if prey struggles
+	var/digestchance = 10					// % Chance of stomach beginning to digest if prey struggles
+	var/absorbchance = 5					// % Chance of stomach beginning to absorb if prey struggles
+	var/escapechance = 20 					// % Chance of prey beginning to escape if prey struggles.
+	var/escapechance_absorbed = 20			// % Chance of absorbed prey finishing an escape. Requires a successful escape roll against the above as well.
 	var/escape_stun = 0						// AI controlled mobs with a number here will be weakened by the provided var when someone escapes, to prevent endless nom loops
 	var/transferchance = 0 					// % Chance of prey being trasnsfered, goes from 0-100%
 	var/transferchance_secondary = 0 		// % Chance of prey being transfered to transferchance_secondary, also goes 0-100%
@@ -51,7 +51,7 @@
 	var/transferlocation_secondary			// Secondary location that prey is released to.
 	var/transferlocation_absorb				// Location that prey is moved to if they get absorbed.
 	var/release_sound = "Splatter"			// Sound for letting someone out. Replaced from True/false
-	var/mode_flags = 0						// Stripping, numbing, etc.
+	var/mode_flags = 12						// Stripping, numbing, etc.
 	var/fancy_vore = FALSE					// Using the new sounds?
 	var/is_wet = TRUE						// Is this belly's insides made of slimy parts?
 	var/wet_loop = TRUE						// Does the belly have a fleshy loop playing?
@@ -61,7 +61,7 @@
 	var/egg_name = null						// CHOMPAdd. Custom egg name
 	var/egg_size = 0						// CHOMPAdd. Custom egg size
 	var/list/list/emote_lists = list()			// Idle emotes that happen on their own, depending on the bellymode. Contains lists of strings indexed by bellymode
-	var/emote_time = 60						// How long between stomach emotes at prey (in seconds)
+	var/emote_time = 40						// How long between stomach emotes at prey (in seconds)
 	var/emote_active = TRUE					// Are we even giving emotes out at all or not?
 	var/next_emote = 0						// When we're supposed to print our next emote, as a world.time
 	var/selective_preference = DM_DIGEST	// Which type of selective bellymode do we default to?

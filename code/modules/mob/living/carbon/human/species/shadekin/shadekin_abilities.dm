@@ -199,9 +199,9 @@
 
 		//CHOMPEdit start - Add back light destruction
 		if(SK.get_shadekin_eyecolor(src) == RED_EYES)
-			destroy_lights = 80
+			destroy_lights = 10
 		else if(SK.get_shadekin_eyecolor(src) == PURPLE_EYES)
-			destroy_lights = 25
+			destroy_lights = 5
 		//CHOMPEdit end
 
 		//CHOMPEdit start - Add gentle phasing
