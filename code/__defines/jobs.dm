@@ -206,6 +206,7 @@
 	#define JOB_ALT_CONSTRUCTION_ENGINEER "Construction Engineer"
 	#define JOB_ALT_ENGINEERING_CONTRACTOR "Engineering Contractor"
 	#define JOB_ALT_COMPUTER_TECHNICIAN "Computer Technician"
+	#define JOB_ALT_SALVAGE_TECHNICIAN "Salvage Technician"
 
 #define JOB_ATMOSPHERIC_TECHNICIAN "Atmospheric Technician"
 	// Atmospheric Technician alt titles
@@ -442,3 +443,4 @@
 #define JOB_XENOMORPH "Xenomorph"
 #define JOB_BORER "Borer"
 #define JOB_EMERGENCY_RESPONSE_TEAM "Emergency Response Team"
+#define JOB_MAINT_LURKER "Maintenance Lurker"

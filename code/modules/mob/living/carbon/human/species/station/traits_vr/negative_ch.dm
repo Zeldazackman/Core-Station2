@@ -481,3 +481,5 @@
 	cost = -1
 	custom_only = FALSE
 	var_changes = list("chem_strength_tox" = 1.25)
+
+#undef GAUSSIAN_RANDOM

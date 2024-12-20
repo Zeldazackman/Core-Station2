@@ -62,7 +62,7 @@
 	for(var/obj/item/stock_parts/matter_bin/M in component_parts)
 		mb_rating += M.rating
 	storage_capacity[MAT_STEEL] = mb_rating  * 16000
-	storage_capacity["glass"] = mb_rating  * 8000
+	storage_capacity[MAT_GLASS] = mb_rating  * 8000
 	var/T = 0
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		T += M.rating
@@ -212,7 +212,7 @@
 	switch(material)
 		if(MAT_STEEL)
 			mattype = /obj/item/stack/material/steel
-		if("glass")
+		if(MAT_GLASS)
 			mattype = /obj/item/stack/material/glass
 		else
 			return
@@ -297,7 +297,7 @@
 	if(..())
 		return TRUE
 
-	add_fingerprint(usr)
+	add_fingerprint(ui.user)
 	switch(action)
 		// Queue management can be done even while busy
 		if("queue")
@@ -331,7 +331,7 @@
 			return TRUE
 
 	if(busy)
-		to_chat(usr, span_notice("[src] is busy. Please wait for completion of previous operation."))
+		to_chat(ui.user, span_notice("[src] is busy. Please wait for completion of previous operation."))
 		return
 
 	switch(action)

@@ -39,11 +39,9 @@
 		/obj/item/storage/secure/safe,
 		/obj/machinery/iv_drip,
 		/obj/structure/medical_stand, //VOREStation Add,
-		/obj/machinery/disease2/incubator,
 		/obj/machinery/disposal,
 		/mob/living/simple_mob/animal/passive/cow,
 		/mob/living/simple_mob/animal/goat,
-		/obj/machinery/computer/centrifuge,
 		/obj/machinery/sleeper,
 		/obj/machinery/smartfridge/,
 		/obj/machinery/biogenerator,
@@ -51,6 +49,7 @@
 		/obj/machinery/radiocarbon_spectrometer,
 		/obj/machinery/portable_atmospherics/powered/reagent_distillery,
 		/obj/machinery/feeder,
+		/obj/machinery/computer/pandemic,
 		/obj/machinery/chemical_synthesizer, //CHOMPedit,
 		/obj/machinery/food_replicator // CHOMPAdd
 		)
@@ -299,10 +298,10 @@
 
 /obj/item/reagent_containers/glass/beaker/cryoxadone
 	name = "beaker (cryoxadone)"
-	prefill = list("cryoxadone" = 30)
+	prefill = list(REAGENT_ID_CRYOXADONE = 30)
 
 /obj/item/reagent_containers/glass/beaker/sulphuric
-	prefill = list("sacid" = 60)
+	prefill = list(REAGENT_ID_SACID = 60)
 
 /obj/item/reagent_containers/glass/beaker/stopperedbottle
 	name = "stoppered bottle"

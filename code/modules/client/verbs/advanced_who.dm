@@ -8,7 +8,7 @@
 
 	var/list/Lines = list()
 
-	if(holder)
+	if(check_rights(R_ADMIN|R_SERVER|R_MOD,FALSE,src))
 		for(var/client/C in GLOB.clients)
 			var/entry = "<tr><td>[C.key]"
 			if(C.holder && C.holder.fakekey)
@@ -68,7 +68,7 @@
 				entry += "[seconds % 60] seconds)"
 
 			entry += "</td><td>"
-			entry += " (<A HREF='?_src_=holder;[HrefToken()];adminmoreinfo=\ref[C.mob]'>?</A>)"
+			entry += " (<A href='byond://?_src_=holder;[HrefToken()];adminmoreinfo=\ref[C.mob]'>?</A>)"
 			entry += "</td></tr>"
 
 			Lines += entry

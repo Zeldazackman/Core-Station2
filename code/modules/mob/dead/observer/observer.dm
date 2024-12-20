@@ -187,6 +187,27 @@ Works together with spawning an observer, noted above.
 
 	handle_regular_hud_updates()
 	handle_vision()
+	check_area()	//RS Port #658
+
+//RS Port #658 Start
+/mob/observer/dead/proc/check_area()
+	if(client?.holder)
+		return
+	if(!isturf(loc))
+		return
+	var/area/A = get_area(src)
+	if(A.flag_check(AREA_BLOCK_GHOSTS))
+		to_chat(src, span_warning("Ghosts can't enter this location."))
+		return_to_spawn()
+
+/mob/observer/dead/proc/return_to_spawn()
+	if(following)
+		stop_following()
+	var/obj/O = locate("landmark*Observer-Start")
+	if(istype(O))
+		to_chat(src, span_notice("Now teleporting."))
+		forceMove(O.loc)
+//RS Port #658 End
 
 /mob/proc/ghostize(var/can_reenter_corpse = 1)
 	if(key)
@@ -223,7 +244,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		announce_ghost_joinleave(ghostize(1))
 	else
 		var/response
-		if(src.client && src.client.holder)
+		if(check_rights(R_ADMIN|R_SERVER|R_MOD,FALSE,src)) //No need to sanity check for client and holder here as that is part of check_rights
 			response = tgui_alert(src, "You have the ability to Admin-Ghost. The regular Ghost verb will announce your presence to dead chat. Both variants will allow you to return to your body using 'aghost'.\n\nWhat do you wish to do?", "Are you sure you want to ghost?", list("Admin Ghost", "Ghost", "Stay in body"))
 			if(response == "Admin Ghost")
 				if(!src.client)
@@ -237,9 +258,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		var/turf/location = get_turf(src)
 		var/special_role = check_special_role()
 		if(!istype(loc,/obj/machinery/cryopod))
-			log_and_message_admins("has ghosted outside cryo[special_role ? " as [special_role]" : ""]. (<A HREF='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)",usr)
+			log_and_message_admins("has ghosted outside cryo[special_role ? " as [special_role]" : ""]. (<A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)",usr)
 		else if(special_role)
-			log_and_message_admins("has ghosted in cryo as [special_role]. (<A HREF='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)",usr)
+			log_and_message_admins("has ghosted in cryo as [special_role]. (<A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)",usr)
 		var/mob/observer/dead/ghost = ghostize(0)	// 0 parameter is so we can never re-enter our body, "Charlie, you can never come baaaack~" :3
 		if(ghost)
 			ghost.timeofdeath = world.time 	// Because the living mob won't have a time of death and we want the respawn timer to work properly.
@@ -431,6 +452,14 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			stop_following()
 		return
 
+	//RS Port #658 Start
+	var/area/A = get_area(destination)
+	if(A.flag_check(AREA_BLOCK_GHOSTS))
+		to_chat(src,span_warning("Sorry, that area does not allow ghosts."))
+		if(following)
+			stop_following()
+		return
+	//RS Port #658 End
 	return ..()
 
 /mob/observer/dead/Move(atom/newloc, direct = 0, movetime)
@@ -1052,7 +1081,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		to_chat(src, span_ghostalert("<font size=4>[message]</font>"))
 		if(source)
 			throw_alert("\ref[source]_notify_revive", /obj/screen/alert/notify_cloning, new_master = source)
-	to_chat(src, span_ghostalert("<a href=?src=[REF(src)];reenter=1>(Click to re-enter)</a>"))
+	to_chat(src, span_ghostalert("<a href='byond://?src=[REF(src)];reenter=1'>(Click to re-enter)</a>"))
 	if(sound)
 		SEND_SOUND(src, sound(sound))
 

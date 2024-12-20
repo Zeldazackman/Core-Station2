@@ -129,18 +129,6 @@
 
 		href_list["datumrefresh"] = href_list["give_wound_internal"]
 
-
-	else if(href_list["give_disease2"])
-		if(!check_rights(R_ADMIN|R_FUN|R_EVENT))	return
-
-		var/mob/M = locate(href_list["give_disease2"])
-		if(!istype(M))
-			to_chat(usr, "This can only be used on instances of type /mob")
-			return
-
-		src.give_disease2(M)
-		href_list["datumrefresh"] = href_list["give_spell"]
-
 	else if(href_list["godmode"])
 		if(!check_rights(R_REJUVINATE))	return
 
@@ -584,7 +572,7 @@
 		if(!thing)
 			to_chat(usr, span_warning("The object you tried to expose to [C] no longer exists (GC'd)"))
 			return
-		message_admins("[key_name_admin(usr)] Showed [key_name_admin(C)] a <a href='?_src_=vars;[HrefToken(TRUE)];datumrefresh=\ref[thing]'>VV window</a>")
+		message_admins("[key_name_admin(usr)] Showed [key_name_admin(C)] a <a href='byond://?_src_=vars;[HrefToken(TRUE)];datumrefresh=\ref[thing]'>VV window</a>")
 		log_admin("Admin [key_name(usr)] Showed [key_name(C)] a VV window of a [src]")
 		to_chat(C, "[holder.fakekey ? "an Administrator" : "[usr.client.key]"] has granted you access to view a View Variables window")
 		C.debug_variables(thing)

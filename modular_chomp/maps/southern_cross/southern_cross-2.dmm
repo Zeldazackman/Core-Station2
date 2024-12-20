@@ -14441,9 +14441,21 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/obj/machinery/chemical_dispenser/full{
-	density = 1
+/obj/item/reagent_containers/glass/bottle/diethylamine{
+	pixel_x = 5
 	},
+/obj/item/reagent_containers/glass/bottle/diethylamine{
+	pixel_x = -5
+	},
+/obj/item/reagent_containers/glass/bottle/mutagen{
+	pixel_y = 10;
+	pixel_x = -5
+	},
+/obj/item/reagent_containers/glass/bottle/mutagen{
+	pixel_x = 5;
+	pixel_y = 10
+	},
+/obj/structure/table/standard,
 /turf/simulated/floor/tiled/hydro,
 /area/rnd/xenobiology/xenoflora)
 "dZe" = (
@@ -18503,7 +18515,7 @@
 	},
 /obj/structure/closet/secure_closet/cargotech{
 	name = "mailman's locker";
-	starts_with = list(/obj/item/clothing/under/rank/mailman,/obj/item/clothing/head/mailman,/obj/item/clothing/shoes/black,/obj/item/radio/headset/headset_cargo,/obj/item/radio/headset/headset_cargo/alt,/obj/item/storage/bag/mail,/obj/item/destTagger)
+	starts_with = list(/obj/item/clothing/under/rank/mailman,/obj/item/clothing/head/mailman,/obj/item/clothing/shoes/black,/obj/item/radio/headset/cargo,/obj/item/radio/headset/alt/cargo,/obj/item/storage/bag/mail,/obj/item/destTagger)
 	},
 /obj/item/mail_scanner,
 /obj/item/mail_scanner,
@@ -26119,9 +26131,6 @@
 /area/rnd/xenobiology)
 "pPP" = (
 /obj/structure/table/standard,
-/obj/machinery/chemical_dispenser/full{
-	density = 1
-	},
 /obj/machinery/camera/network/research{
 	c_tag = "SCI - Xenobiology Fore Port"
 	},
@@ -33196,7 +33205,7 @@
 	dir = 8
 	},
 /obj/item/stack/material/phoron{
-	amount = 10
+	amount = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
