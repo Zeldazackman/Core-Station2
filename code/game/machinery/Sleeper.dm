@@ -150,9 +150,7 @@
 		if(man_rating >= 4) // Alien tech.
 			var/reag_ID = pickweight(list(
 				REAGENT_ID_HEALINGNANITES = 10,
-				REAGENT_ID_SHREDDINGNANITES = 5,
-				REAGENT_ID_IRRADIATEDNANITES = 5,
-				REAGENT_ID_NEUROPHAGENANITES = 2)
+				REAGENT_ID_ADMINORDRAZINE = 2) //Again, why are you like this?
 				)
 			new_chemicals[reag_ID] = "Nanite"
 		if(man_rating >= 3) // Anomalous tech.
