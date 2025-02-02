@@ -23,7 +23,7 @@
 	// Prevents carrying of open laptops inhand.
 	// While they work inhand, i feel it'd make tablets lose some of their high-mobility advantage they have over laptops now.
 	if(!istype(loc, /turf/))
-		to_chat(usr, "\The [src] has to be on a stable surface first!")
+		to_chat(user, "\The [src] has to be on a stable surface first!")
 		return
 	anchored = !anchored
 	screen_on = anchored
