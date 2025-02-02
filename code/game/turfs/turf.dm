@@ -164,7 +164,7 @@
 		return
 	if(istype(O, /obj/screen))
 		return
-	if(user.restrained() || user.stat || user.stunned || user.paralysis || (!user.lying && !istype(user, /mob/living/silicon/robot)))
+	if(user.restrained() || user.stat || user.stunned || user.paralysis || (!user.lying && !isrobot(user)))
 		return
 	if((!(istype(O, /atom/movable)) || O.anchored || !Adjacent(user) || !Adjacent(O) || !user.Adjacent(O)))
 		return
@@ -427,6 +427,11 @@
 		return TRUE
 	return FALSE
 */
+
+/turf/occult_act(mob/living/user)
+	to_chat(user, span_cult("You consecrate the floor."))
+	ChangeTurf(/turf/simulated/floor/cult, preserve_outdoors = TRUE)
+	return TRUE
 
 // We're about to be the A-side in a turf translation
 /turf/proc/pre_translate_A(var/turf/B)

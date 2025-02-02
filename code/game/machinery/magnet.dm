@@ -171,7 +171,7 @@
 					step_towards(M, center)
 
 			for(var/mob/living/silicon/S in orange(magnetic_field, center))
-				if(istype(S, /mob/living/silicon/ai)) continue
+				if(isAI(S)) continue
 				step_towards(S, center)
 
 		use_power(electricity_level * 5)
@@ -262,7 +262,7 @@
 	dat += "Moving: <a href='byond://?src=\ref[src];operation=togglemoving'>[moving ? "Enabled":"Disabled"]</a>"
 
 
-	user << browse(dat, "window=magnet;size=400x500")
+	user << browse("<html>[dat]</html>", "window=magnet;size=400x500")
 	onclose(user, "magnet")
 
 /obj/machinery/magnetic_controller/Topic(href, href_list)

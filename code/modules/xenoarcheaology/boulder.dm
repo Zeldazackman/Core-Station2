@@ -12,9 +12,9 @@
 	var/last_act = 0
 
 /obj/structure/boulder/Initialize()
+	. = ..()
 	icon_state = "boulder[rand(1,4)]"
 	excavation_level = rand(5, 50)
-	. = ..()
 
 /obj/structure/boulder/attackby(var/obj/item/I, var/mob/user)
 	if(istype(I, /obj/item/core_sampler))
@@ -63,12 +63,6 @@
 		to_chat(user, span_notice("You finish [P.drill_verb] [src]."))
 		excavation_level += P.excavation_amount
 
-		if(excavation_level > 100)
-			//failure
-			user.visible_message(span_warning("\The [src] suddenly crumbles away."), span_warning("\The [src] has disintegrated under your onslaught, any secrets it was holding are long gone."))
-			qdel(src)
-			return
-
 		if(prob(excavation_level))
 			//success
 			if(artifact_find)
@@ -86,7 +80,7 @@
 
 /obj/structure/boulder/Bumped(AM)
 	. = ..()
-	if(istype(AM,/mob/living/carbon/human))
+	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		var/obj/item/pickaxe/P = H.get_inactive_hand()
 		if(istype(P))

@@ -9,7 +9,7 @@
 /obj/machinery/door/airlock
 	name = "Airlock"
 	description_info = "If you hold left alt whilst left-clicking on an airlock, you can ring the doorbell to announce your presence to anyone on the other side! Alternately if you are on HARM intent when doing this, you will bang loudly on the door!<br><br>AIs and Cyborgs can also quickly open/close, bolt/unbolt, and electrify/de-electrify doors at a distance by holding left shift, left control, or left alt respectively whilst left-clicking."
-	icon = 'icons/obj/doors/Doorint.dmi'
+	icon = 'icons/obj/doors/doorint.dmi'
 	icon_state = "door_closed"
 	power_channel = ENVIRON
 
@@ -88,7 +88,7 @@
 	..()
 
 /obj/machinery/door/airlock/attack_alien(var/mob/user) //Familiar, right? Doors. -Mechoid
-	if(istype(user, /mob/living/carbon/human))
+	if(ishuman(user))
 		var/mob/living/carbon/human/X = user
 		if(istype(X.species, /datum/species/xenos))
 			if(src.locked || src.welded)
@@ -169,7 +169,7 @@
 
 /obj/machinery/door/airlock/medical
 	name = "Medical Airlock"
-	icon = 'icons/obj/doors/Doormed.dmi'
+	icon = 'icons/obj/doors/doormed.dmi'
 	req_one_access = list(access_medical)
 	assembly_type = /obj/structure/door_assembly/door_assembly_med
 	open_sound_powered = 'sound/machines/door/hall1o.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
@@ -387,7 +387,7 @@
 
 /obj/machinery/door/airlock/glass_medical
 	name = "Medical Airlock"
-	icon = 'icons/obj/doors/Doormedglass.dmi'
+	icon = 'icons/obj/doors/doormedglass.dmi'
 	hitsound = 'sound/effects/Glasshit.ogg'
 	maxhealth = 300
 	explosion_resistance = 5
@@ -424,7 +424,7 @@
 
 /obj/machinery/door/airlock/research
 	name = "Research Airlock"
-	icon = 'icons/obj/doors/Doorresearch.dmi'
+	icon = 'icons/obj/doors/doorresearch.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_research
 	open_sound_powered = 'sound/machines/door/hall1o.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
 	close_sound_powered = 'sound/machines/door/hall1c.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
@@ -434,7 +434,7 @@
 
 /obj/machinery/door/airlock/glass_research
 	name = "Research Airlock"
-	icon = 'icons/obj/doors/Doorresearchglass.dmi'
+	icon = 'icons/obj/doors/doorresearchglass.dmi'
 	hitsound = 'sound/effects/Glasshit.ogg'
 	maxhealth = 300
 	explosion_resistance = 5
@@ -555,7 +555,7 @@
 
 /obj/machinery/door/airlock/science
 	name = "Research Airlock"
-	icon = 'icons/obj/doors/Doorsci.dmi'
+	icon = 'icons/obj/doors/doorsci.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_science
 	req_one_access = list(access_research)
 	open_sound_powered = 'sound/machines/door/hall1o.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
@@ -566,7 +566,7 @@
 
 /obj/machinery/door/airlock/glass_science
 	name = "Glass Airlocks"
-	icon = 'icons/obj/doors/Doorsciglass.dmi'
+	icon = 'icons/obj/doors/doorsciglass.dmi'
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_science
 	glass = 1
@@ -999,7 +999,7 @@ About the new airlock wires panel:
 		else
 			to_chat(user, span_warning("[hold_open] is holding \the [src] open!"))
 
-	if(istype(user, /mob/living/carbon/human))
+	if(ishuman(user))
 		var/mob/living/carbon/human/X = user
 		if(istype(X.species, /datum/species/xenos))
 			src.attack_alien(user)
@@ -1012,7 +1012,8 @@ About the new airlock wires panel:
 		..(user)
 	return
 
-/obj/machinery/door/airlock/AltClick(mob/user as mob)
+//CHOMPEdit Start - Moved custom doorbell interaction to Ctrl-click
+/*/obj/machinery/door/airlock/AltClick(mob/user as mob)
 
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(!Adjacent(user))
@@ -1040,13 +1041,41 @@ About the new airlock wires panel:
 		src.visible_message("[user] knocks on \the [src].", "Someone knocks on \the [src].")
 		src.add_fingerprint(user)
 		playsound(src, knock_unpowered_sound, 50, 0, 3)
-	return
+	return*/
 
-/obj/machinery/door/airlock/CtrlClick(mob/user as mob) //Hold door open
+/obj/machinery/door/airlock/CtrlClick(mob/user) //Hold door open
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(!Adjacent(user))
 		return
-	src.hold_open = user
-	src.attack_hand(user)
+	if(user.a_intent == I_HURT)
+		visible_message(span_warning("[user] hammers on \the [src]!"), span_warning("Someone hammers loudly on \the [src]!"))
+		add_fingerprint(user)
+		if(icon_state == "door_closed" && arePowerSystemsOn())
+			flick("door_deny", src)
+		playsound(src, knock_hammer_sound, 50, 0, 3)
+	else if(user.a_intent == I_GRAB) //Hold door open
+		hold_open = user
+		visible_message(span_info("[user] begins holding \the [src] open."), span_info("Someone has started holding \the [src] open."))
+		attack_hand(user)
+	else if(arePowerSystemsOn()) //ChompEDIT - removed intent check
+		if(isElectrified())
+			visible_message(span_warning("[user] presses the door bell on \the [src], making it violently spark!"), span_warning("\The [src] sparks!"))
+			add_fingerprint(user)
+			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+			s.set_up(5, 1, src)
+			s.start()
+		else
+			visible_message(span_info("[user] presses the door bell on \the [src]."), span_info("\The [src]'s bell rings."))
+			add_fingerprint(user)
+		if(icon_state == "door_closed")
+			flick("door_deny", src)
+		playsound(src, knock_sound, 50, 0, 3)
+	else //ChompEDIT - removed intent check
+		visible_message(span_info("[user] knocks on \the [src]."), span_info("Someone knocks on \the [src]."))
+		add_fingerprint(user)
+		playsound(src, knock_unpowered_sound, 50, 0, 3)
+	return
+//CHOMPEdit End
 
 /obj/machinery/door/airlock/tgui_act(action, params, datum/tgui/ui)
 	if(..())
@@ -1169,7 +1198,7 @@ About the new airlock wires panel:
 
 	src.add_fingerprint(user)
 	if (attempt_vr(src,"attackby_vr",list(C, user))) return
-	if(istype(C, /mob/living))
+	if(isliving(C))
 		..()
 		return
 	 //VOREstation Edit: Removing material cost from repair requirements

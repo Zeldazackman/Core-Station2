@@ -111,12 +111,15 @@
 	var/rock_climbing = FALSE //If true, allows climbing cliffs using click drag for single Z, walls if multiZ
 	var/climbing_delay = 1 //If rock_climbing, lower better.
 
-/obj/item/Initialize(mapload) //CHOMPedit I stg I'm going to overwrite these many uncommented edits.
+/obj/item/Initialize(mapload)
 	. = ..()
+
 	for(var/path in actions_types)
 		add_item_action(path)
+
 	if(islist(origin_tech))
 		origin_tech = typelist(NAMEOF(src, origin_tech), origin_tech)
+
 	if(embed_chance < 0)
 		if(sharp)
 			embed_chance = max(5, round(force/w_class))
@@ -379,7 +382,8 @@
 		playsound(src, drop_sound, 30, preference = /datum/preference/toggle/drop_sounds)
 
 // apparently called whenever an item is removed from a slot, container, or anything else.
-/obj/item/proc/dropped(mob/user as mob)
+/obj/item/proc/dropped(mob/user)
+	SHOULD_CALL_PARENT(TRUE)
 	if(zoom)
 		zoom() //binoculars, scope, etc
 	appearance_flags &= ~NO_CLIENT_COLOR
@@ -798,7 +802,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	var/cannotzoom
 
-	if((M.stat && !zoom) || !(istype(M,/mob/living/carbon/human)))
+	if((M.stat && !zoom) || !(ishuman(M)))
 		to_chat(M, span_filter_notice("You are unable to focus through the [devicename]."))
 		cannotzoom = 1
 	else if(!zoom && (global_hud.darkMask[1] in M.client.screen))

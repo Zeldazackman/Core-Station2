@@ -107,7 +107,7 @@
 	set desc = "Toggle your augment menu."
 	set category = "Augments"
 
-	enable_augments(usr)
+	enable_augments(src)
 
 /mob/living/carbon/human/proc/enable_augments(var/mob/living/user)
 	var/list/options = list()
@@ -183,6 +183,6 @@
 		playsound(src, 'sound/items/change_jaws.ogg', 30, 1)
 
 	if(equipping.loc != src)
-		equipping.dropped()
+		equipping.dropped(src)
 
 	return 1
