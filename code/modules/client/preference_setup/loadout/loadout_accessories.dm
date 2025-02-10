@@ -46,7 +46,7 @@
 /datum/gear/accessory/clutch
 	display_name = "clutch bag"
 	path = /obj/item/storage/briefcase/clutch
-	cost = 2
+	cost = 1
 
 /datum/gear/accessory/clutch/New()
 	..()
@@ -55,7 +55,7 @@
 /datum/gear/accessory/purse
 	display_name = "purse"
 	path = /obj/item/storage/backpack/purse
-	cost = 3
+	cost = 1
 
 /datum/gear/accessory/purse/New()
 	..()
@@ -165,7 +165,7 @@
 	display_name = "webbing selector"
 	description = "Select from a number of load-bearing webbings and vests. Includes the bluespace badge."
 	path = /obj/item/clothing/accessory/storage/bluespace
-	cost = 2
+	cost = 1
 
 /datum/gear/accessory/webbing_selector/New()
 	..()
@@ -184,7 +184,7 @@
 
 /datum/gear/accessory/fannypack
 	display_name = "fannypack selection"
-	cost = 2
+	cost = 1
 	path = /obj/item/storage/belt/fannypack
 
 /datum/gear/accessory/fannypack/New()

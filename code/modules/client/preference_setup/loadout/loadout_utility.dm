@@ -125,7 +125,7 @@
 /datum/gear/utility/umbrella
 	display_name = "umbrella"
 	path = /obj/item/melee/umbrella
-	cost = 1
+	cost = 0
 
 /datum/gear/utility/umbrella/New()
 	..()
@@ -235,31 +235,31 @@ modular computers
 	display_name = "saddle bag, horse"
 	path = /obj/item/storage/backpack/saddlebag
 	slot = slot_back
-	cost = 2
+	cost = 0
 
 /datum/gear/utility/saddlebag_common
 	display_name = "saddle bag, common"
 	path = /obj/item/storage/backpack/saddlebag_common
 	slot = slot_back
-	cost = 2
+	cost = 0
 
 /datum/gear/utility/saddlebag_common/robust
 	display_name = "saddle bag, robust"
 	path = /obj/item/storage/backpack/saddlebag_common/robust
 	slot = slot_back
-	cost = 2
+	cost = 0
 
 /datum/gear/utility/saddlebag_common/vest
 	display_name = "taur duty vest (backpack)"
 	path = /obj/item/storage/backpack/saddlebag_common/vest
 	slot = slot_back
-	cost = 1
+	cost = 0
 
 /datum/gear/utility/dufflebag
 	display_name = "dufflebag"
 	path = /obj/item/storage/backpack/dufflebag
 	slot = slot_back
-	cost = 2
+	cost = 0
 
 /datum/gear/utility/dufflebag/black
 	display_name = "black dufflebag"
@@ -301,19 +301,19 @@ modular computers
 /datum/gear/utility/ID
 	display_name = "contractor identification card"
 	path = /obj/item/card/id/event/polymorphic/altcard
-	cost = 1
+	cost = 0
 
 /datum/gear/utility/bs_bracelet
 	display_name = "bluespace bracelet"
 	path = /obj/item/clothing/gloves/bluespace
-	cost = 1
+	cost = 0
 
 /datum/gear/utility/bs_bracelet_deluxe
 	display_name = "deluxe bluespace bracelet"
 	path = /obj/item/clothing/gloves/bluespace/deluxe
-	cost = 3
+	cost = 0
 
 /datum/gear/utility/walkpod
 	display_name = "podzu music player"
 	path = /obj/item/walkpod
-	cost = 2
+	cost = 0

@@ -2,7 +2,7 @@
 /datum/gear/gloves
 	display_name = "gloves, black"
 	path = /obj/item/clothing/gloves/black
-	cost = 1
+	cost = 0
 	slot = slot_gloves
 	sort_category = "Gloves and Handwear"
 
@@ -31,12 +31,12 @@
 /datum/gear/gloves/latex
 	display_name = "gloves, latex"
 	path = /obj/item/clothing/gloves/sterile/latex
-	cost = 2
+	cost = 0
 
 /datum/gear/gloves/nitrile
 	display_name = "gloves, nitrile"
 	path = /obj/item/clothing/gloves/sterile/nitrile
-	cost = 2
+	cost = 0
 
 /datum/gear/gloves/evening
 	display_name = "evening gloves"
@@ -49,7 +49,7 @@
 /datum/gear/gloves/duty
 	display_name = "gloves, work"
 	path = /obj/item/clothing/gloves/duty
-	cost = 3
+	cost = 0
 
 /datum/gear/gloves/forensic
 	display_name = "gloves, forensic"
@@ -76,7 +76,7 @@
 	display_name = "ring selection"
 	description = "Choose from a number of rings."
 	path = /obj/item/clothing/accessory/ring
-	cost = 1
+	cost = 0
 
 /datum/gear/gloves/ring/New()
 	..()
