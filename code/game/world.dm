@@ -14,11 +14,11 @@
 	debug_log = start_log("[log_path]-debug.log")
 	//VOREStation Edit End
 
-	//changelog_hash = md5('html/changelog.html') //used for telling if the changelog has changed recently //Chomp REMOVE
-	//ChompADD Start - Better Changelogs
-	var/latest_changelog = file("html/changelogs_ch/archive/" + time2text(world.timeofday, "YYYY-MM") + ".yml")
-	changelog_hash = fexists(latest_changelog) ? md5(latest_changelog) : 0 //for telling if the changelog has changed recently
-	//Newsfile
+	var/latest_changelog = file("[global.config.directory]/../html/changelogs_ch/archive/" + time2text(world.timeofday, "YYYY-MM") + ".yml") // CHOMPEdit - changelogs_ch
+	GLOB.changelog_hash = fexists(latest_changelog) ? md5(latest_changelog) : "" //for telling if the changelog has changed recently
+	to_world_log("Changelog Hash: '[GLOB.changelog_hash]' ([latest_changelog])")
+
+	//ChompADD Start - Newsfile
 	var/savefile/F = new(NEWSFILE)
 	if(F)
 		var/title
@@ -280,7 +280,8 @@ var/world_topic_spam_protect_time = world.timeofday
 
 	else if(copytext(T,1,5) == "info")
 		var/input[] = params2list(T)
-		if(input["key"] != CONFIG_GET(string/comms_password))
+		var/password = CONFIG_GET(string/comms_password)
+		if(!password || input["key"] != password)
 			if(world_topic_spam_protect_ip == addr && abs(world_topic_spam_protect_time - world.time) < 50)
 
 				spawn(50)
@@ -367,7 +368,8 @@ var/world_topic_spam_protect_time = world.timeofday
 
 
 		var/input[] = params2list(T)
-		if(input["key"] != CONFIG_GET(string/comms_password))
+		var/password = CONFIG_GET(string/comms_password)
+		if(!password || input["key"] != password)
 			if(world_topic_spam_protect_ip == addr && abs(world_topic_spam_protect_time - world.time) < 50)
 
 				spawn(50)
@@ -417,7 +419,8 @@ var/world_topic_spam_protect_time = world.timeofday
 				2. validationkey = the key the bot has, it should match the gameservers commspassword in it's configuration.
 		*/
 		var/input[] = params2list(T)
-		if(input["key"] != CONFIG_GET(string/comms_password))
+		var/password = CONFIG_GET(string/comms_password)
+		if(!password || input["key"] != password)
 			if(world_topic_spam_protect_ip == addr && abs(world_topic_spam_protect_time - world.time) < 50)
 
 				spawn(50)
@@ -432,7 +435,8 @@ var/world_topic_spam_protect_time = world.timeofday
 
 	else if(copytext(T,1,4) == "age")
 		var/input[] = params2list(T)
-		if(input["key"] != CONFIG_GET(string/comms_password))
+		var/password = CONFIG_GET(string/comms_password)
+		if(!password || input["key"] != password)
 			if(world_topic_spam_protect_ip == addr && abs(world_topic_spam_protect_time - world.time) < 50)
 				spawn(50)
 					world_topic_spam_protect_time = world.time

@@ -226,9 +226,7 @@
 	//CONNECT//
 	///////////
 /client/New(TopicData)
-	// TODO: Remove version check with 516
-	if(byond_version >= 516) // Enable 516 compat browser storage mechanisms
-		winset(src, null, "browser-options=[DEFAULT_CLIENT_BROWSER_OPTIONS]")
+	winset(src, null, "browser-options=[DEFAULT_CLIENT_BROWSER_OPTIONS]")
 
 	TopicData = null							//Prevent calls to client.Topic from connect
 
@@ -335,13 +333,11 @@
 		void = new()
 	screen += void
 
-	// CHOMPAdd Start
-	if((prefs.lastchangelog != changelog_hash) && isnewplayer(src.mob)) //bolds the changelog button on the interface so we know there are updates.
+	if((prefs?.read_preference(/datum/preference/text/lastchangelog) != GLOB.changelog_hash) && isnewplayer(src.mob)) //bolds the changelog button on the interface so we know there are updates.
 		to_chat(src, span_info("You have unread updates in the changelog."))
 		winset(src, "rpane.changelog", "background-color=#eaeaea;font-style=bold")
 		if(CONFIG_GET(flag/aggressive_changelog))
 			src.changes()
-	// CHOMPAdd End
 
 	if(CONFIG_GET(flag/paranoia_logging))
 		var/alert = FALSE //VOREStation Edit start.
@@ -360,11 +356,9 @@
 	fully_created = TRUE
 	attempt_auto_fit_viewport()
 
-	// TODO: Remove version check with 516
-	if(byond_version >= 516)
-		// Now that we're fully initialized, use our prefs
-		if(prefs?.read_preference(/datum/preference/toggle/browser_dev_tools))
-			winset(src, null, "browser-options=[DEFAULT_CLIENT_BROWSER_OPTIONS],devtools")
+	// Now that we're fully initialized, use our prefs
+	if(prefs?.read_preference(/datum/preference/toggle/browser_dev_tools))
+		winset(src, null, "browser-options=[DEFAULT_CLIENT_BROWSER_OPTIONS],devtools")
 
 	//////////////
 	//DISCONNECT//
@@ -671,18 +665,6 @@
 	window_flash(src)
 	src << browse("<html>[message]</html>","window=dropmessage;size=480x360;can_close=1")
 	qdel(src)
-
-/// Keydown event in a tgui window this client has open. Has keycode passed to it.
-/client/verb/TguiKeyDown(keycode as text)
-	set name = "TguiKeyDown"
-	set hidden = TRUE
-	return // stub
-
-/// Keyup event in a tgui window this client has open. Has keycode passed to it.
-/client/verb/TguiKeyUp(keycode as text) // Doesn't seem to currently fire?
-	set name = "TguiKeyUp"
-	set hidden = TRUE
-	return // stub
 
 /client/verb/toggle_fullscreen()
 	set name = "Toggle Fullscreen"

@@ -348,9 +348,7 @@
 /area/awaymission/snowfield/engineering/monitor_room)
 "arr" = (
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_mob/construct/harvester{
-	devourable = 0
-	},
+/mob/living/simple_mob/construct/harvester,
 /turf/simulated/floor/cult,
 /area/awaymission/snowfield/command/gateway)
 "art" = (
@@ -1390,9 +1388,7 @@
 /obj/structure/lattice,
 /obj/item/reagent_containers/food/drinks/cans/waterbottle,
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_mob/construct/artificer{
-	devourable = 0
-	},
+/mob/living/simple_mob/construct/artificer,
 /turf/simulated/mineral/floor/cave,
 /area/awaymission/snowfield/dorms/panicroom)
 "bqA" = (
@@ -2739,7 +2735,6 @@
 /obj/machinery/door/airlock/glass_medical{
 	id_tag = "MedbayFoyer";
 	name = "Medbay";
-	req_access = null;
 	req_one_access = null
 	},
 /turf/simulated/floor/tiled/neutral,
@@ -2958,9 +2953,7 @@
 /area/awaymission/snowfield/service/kitchen)
 "cPO" = (
 /obj/item/card/id/gateway/snowfield/class5E,
-/mob/living/simple_mob/construct/artificer/caster{
-	devourable = 0
-	},
+/mob/living/simple_mob/construct/artificer/caster,
 /turf/simulated/floor/gorefloor2,
 /area/awaymission/snowfield/command/bridge)
 "cQg" = (
@@ -3593,9 +3586,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_mob/construct/artificer/caster{
-	devourable = 0
-	},
+/mob/living/simple_mob/construct/artificer/caster,
 /turf/simulated/floor/cult,
 /area/awaymission/snowfield/command/gateway)
 "dtS" = (
@@ -4137,9 +4128,7 @@
 /area/awaymission/snowfield/engineering/locker_room)
 "dLU" = (
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_mob/construct/artificer{
-	devourable = 0
-	},
+/mob/living/simple_mob/construct/artificer,
 /turf/simulated/floor/cult,
 /area/awaymission/snowfield/command/gateway)
 "dMv" = (
@@ -4215,7 +4204,6 @@
 	opacity = 0
 	},
 /obj/machinery/door/airlock/engineering{
-	req_access = null;
 	req_one_access = list(1,10)
 	},
 /turf/simulated/floor/tiled/techfloor,
@@ -5185,8 +5173,7 @@
 /area/awaymission/snowfield/command/server)
 "eFM" = (
 /obj/machinery/door/airlock{
-	name = "Custodial Closet";
-	req_access = null
+	name = "Custodial Closet"
 	},
 /turf/simulated/floor/tiled/freezer,
 /area/awaymission/snowfield/public/publicrestroom)
@@ -5898,7 +5885,6 @@
 	},
 /obj/machinery/door/airlock{
 	name = "Hydroponics";
-	req_access = null;
 	req_one_access = list(1,28)
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -6255,9 +6241,7 @@
 	},
 /obj/item/circuitboard/broken,
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_mob/construct/harvester{
-	devourable = 0
-	},
+/mob/living/simple_mob/construct/harvester,
 /turf/simulated/floor/tiled/techfloor,
 /area/awaymission/snowfield/command/monitorroom)
 "fLg" = (
@@ -6984,9 +6968,7 @@
 /area/awaymission/snowfield/dorms/dorm7)
 "gqO" = (
 /obj/structure/catwalk,
-/mob/living/simple_mob/construct/harvester{
-	devourable = 0
-	},
+/mob/living/simple_mob/construct/harvester,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/awaymission/snowfield/command/bridge)
@@ -7482,9 +7464,7 @@
 /obj/effect/floor_decal/industrial/danger{
 	dir = 8
 	},
-/mob/living/simple_mob/construct/artificer{
-	devourable = 0
-	},
+/mob/living/simple_mob/construct/artificer,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/awaymission/snowfield/command/bsa)
 "gLD" = (
@@ -7566,9 +7546,7 @@
 	icon_state = "1-2"
 	},
 /obj/structure/catwalk,
-/mob/living/simple_mob/construct/juggernaut{
-	devourable = 0
-	},
+/mob/living/simple_mob/construct/juggernaut,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/awaymission/snowfield/command/bridge)
 "gPW" = (
@@ -7729,9 +7707,7 @@
 /area/awaymission/snowfield/security/security_lockerroom)
 "gWN" = (
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_mob/construct/wraith/jaunt_spam{
-	devourable = 0
-	},
+/mob/living/simple_mob/construct/wraith/jaunt_spam,
 /turf/simulated/floor/cult,
 /area/awaymission/snowfield/command/gateway)
 "gXo" = (
@@ -8121,9 +8097,7 @@
 	dir = 4
 	},
 /obj/structure/catwalk,
-/mob/living/simple_mob/construct/harvester/greater{
-	devourable = 0
-	},
+/mob/living/simple_mob/construct/harvester/greater,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/awaymission/snowfield/command/sub_chamber)
 "hmS" = (
@@ -8354,7 +8328,6 @@
 	},
 /obj/machinery/door/airlock/medical{
 	name = "Morgue";
-	req_access = null;
 	req_one_access = list(1,6)
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -9760,7 +9733,6 @@
 "iJQ" = (
 /obj/machinery/door/airlock/glass{
 	name = "Hydroponics";
-	req_access = null;
 	req_one_access = list(1,28)
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -9845,8 +9817,7 @@
 /area/awaymission/snowfield/security/security_cell_hallway)
 "iMC" = (
 /obj/machinery/door/airlock{
-	name = "Custodial Closet";
-	req_access = null
+	name = "Custodial Closet"
 	},
 /turf/simulated/floor/tiled/freezer,
 /area/awaymission/snowfield/public/cafeteria_restroom)
@@ -11664,9 +11635,7 @@
 /area/awaymission/snowfield/outside)
 "knS" = (
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_mob/construct/wraith{
-	devourable = 0
-	},
+/mob/living/simple_mob/construct/wraith,
 /turf/simulated/floor/cult,
 /area/awaymission/snowfield/command/gateway)
 "kpg" = (
@@ -11993,13 +11962,6 @@
 /area/awaymission/snowfield/medical/storage_room)
 "kEv" = (
 /obj/structure/table/rack/shelf/steel,
-/obj/structure/bed/chair/wheelchair,
-/obj/structure/bed/chair/wheelchair,
-/obj/structure/bed/chair/wheelchair,
-/obj/structure/bed/chair/wheelchair,
-/obj/structure/bed/chair/wheelchair,
-/obj/structure/bed/chair/wheelchair,
-/obj/structure/bed/chair/wheelchair,
 /obj/structure/bed/chair/wheelchair,
 /obj/item/cane,
 /obj/item/cane,
@@ -12733,7 +12695,6 @@
 "llk" = (
 /obj/machinery/door/airlock/glass_medical{
 	name = "Chemistry Laboratory";
-	req_access = null;
 	req_one_access = list(1,33)
 	},
 /obj/structure/cable/yellow{
@@ -12923,9 +12884,7 @@
 /turf/simulated/floor/outdoors/snow/sif/planetuse,
 /area/awaymission/snowfield/outside)
 "lry" = (
-/mob/living/simple_mob/construct/artificer{
-	devourable = 0
-	},
+/mob/living/simple_mob/construct/artificer,
 /turf/simulated/floor/cult,
 /area/awaymission/snowfield/public/toolstroage2)
 "lsi" = (
@@ -13648,8 +13607,7 @@
 /area/awaymission/snowfield/hallway/commandhallway)
 "mbK" = (
 /obj/machinery/door/airlock{
-	name = "Custodial Closet";
-	req_access = null
+	name = "Custodial Closet"
 	},
 /turf/simulated/floor/tiled/freezer,
 /area/awaymission/snowfield/medical/patient_restroom)
@@ -14215,9 +14173,7 @@
 "mDd" = (
 /obj/structure/catwalk,
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_mob/construct/artificer/caster{
-	devourable = 0
-	},
+/mob/living/simple_mob/construct/artificer/caster,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/awaymission/snowfield/command/sub_chamber)
 "mDr" = (
@@ -14278,14 +14234,6 @@
 	},
 /turf/simulated/floor/tiled/neutral,
 /area/awaymission/snowfield/medical/staff_room)
-"mFY" = (
-/obj/machinery/power/solar,
-/obj/machinery/power/solar,
-/obj/structure/cable/yellow{
-	icon_state = "0-2"
-	},
-/turf/simulated/floor,
-/area/awaymission/snowfield/outside)
 "mGG" = (
 /obj/structure/bed,
 /turf/simulated/floor/tiled/steel,
@@ -15090,9 +15038,7 @@
 /turf/simulated/floor/outdoors/rocks,
 /area/awaymission/snowfield/outside)
 "nrv" = (
-/mob/living/simple_mob/construct/harvester{
-	devourable = 0
-	},
+/mob/living/simple_mob/construct/harvester,
 /turf/simulated/floor/cult,
 /area/awaymission/snowfield/command/monitorroom)
 "nrK" = (
@@ -16021,9 +15967,7 @@
 /area/awaymission/snowfield/command/bridge)
 "ofJ" = (
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_mob/construct/artificer/caster{
-	devourable = 0
-	},
+/mob/living/simple_mob/construct/artificer/caster,
 /turf/simulated/floor/tiled/steel_grid,
 /area/awaymission/snowfield/command/bridge)
 "ofN" = (
@@ -16190,14 +16134,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/awaymission/snowfield/security/security_lockerroom)
-"olD" = (
-/obj/machinery/power/solar,
-/obj/machinery/power/solar,
-/obj/structure/cable/yellow{
-	icon_state = "0-2"
-	},
-/turf/simulated/floor/outdoors/snow/sif/planetuse,
-/area/awaymission/snowfield/outside)
 "olY" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -17244,13 +17180,6 @@
 /obj/structure/window/reinforced/full{
 	health = 1e+006
 	},
-/obj/machinery/door/blast/regular{
-	density = 0;
-	icon_state = "pdoor0";
-	id = "snowfieldenglockdown";
-	name = "Engineering Lockdown";
-	opacity = 0
-	},
 /turf/simulated/floor,
 /area/awaymission/snowfield/hallway/frontgate_substation)
 "pse" = (
@@ -17907,9 +17836,7 @@
 /area/awaymission/snowfield/dorms/dorm13)
 "pQv" = (
 /obj/structure/catwalk,
-/mob/living/simple_mob/construct/harvester{
-	devourable = 0
-	},
+/mob/living/simple_mob/construct/harvester,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/awaymission/snowfield/command/bridge)
 "pQF" = (
@@ -17938,9 +17865,7 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/awaymission/snowfield/hallway/northhallway)
 "pTk" = (
-/mob/living/simple_mob/construct/artificer{
-	devourable = 0
-	},
+/mob/living/simple_mob/construct/artificer,
 /turf/simulated/floor/cult,
 /area/awaymission/snowfield/command/bsa)
 "pTp" = (
@@ -18131,9 +18056,7 @@
 /turf/simulated/floor,
 /area/awaymission/snowfield/security/security_cell)
 "qcb" = (
-/mob/living/simple_mob/construct/artificer/caster{
-	devourable = 0
-	},
+/mob/living/simple_mob/construct/artificer/caster,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/awaymission/snowfield/hallway/commandhallway)
 "qcy" = (
@@ -18684,7 +18607,6 @@
 	id = "snowfieldenglockdown";
 	name = "Engineering Lockdown";
 	pixel_x = -5;
-	req_access = null;
 	req_one_access = list(1,10)
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals5{
@@ -18729,7 +18651,6 @@
 	icon_state = "door_locked";
 	id_tag = "emergency path";
 	locked = 1;
-	req_access = null;
 	req_one_access = null
 	},
 /turf/simulated/floor,
@@ -19205,9 +19126,7 @@
 	dir = 8
 	},
 /obj/structure/catwalk,
-/mob/living/simple_mob/construct/artificer{
-	devourable = 0
-	},
+/mob/living/simple_mob/construct/artificer,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/awaymission/snowfield/command/bsa)
 "qZp" = (
@@ -19629,9 +19548,7 @@
 /obj/structure/cable/heavyduty{
 	icon_state = "1-2"
 	},
-/mob/living/simple_mob/construct/harvester{
-	devourable = 0
-	},
+/mob/living/simple_mob/construct/harvester,
 /turf/simulated/floor/cult,
 /area/awaymission/snowfield/hallway/commandhallway)
 "rrm" = (
@@ -19807,9 +19724,7 @@
 	icon_state = "4-8"
 	},
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_mob/construct/wraith{
-	devourable = 0
-	},
+/mob/living/simple_mob/construct/wraith,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/awaymission/snowfield/command/bridge)
 "rIs" = (
@@ -20117,7 +20032,6 @@
 	},
 /obj/machinery/door/airlock/glass_medical{
 	name = "Medbay Equipment";
-	req_access = null;
 	req_one_access = list(1,5)
 	},
 /turf/simulated/floor/tiled/neutral,
@@ -20447,9 +20361,7 @@
 /area/awaymission/snowfield/command/bsa)
 "sum" = (
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_mob/construct/juggernaut{
-	devourable = 0
-	},
+/mob/living/simple_mob/construct/juggernaut,
 /turf/simulated/floor/cult,
 /area/awaymission/snowfield/command/bridge)
 "suv" = (
@@ -20644,7 +20556,6 @@
 /area/awaymission/snowfield/medical/chemistry)
 "sFU" = (
 /obj/effect/floor_decal/corner/lightgrey/diagonal,
-/obj/structure/bed/chair/office/light,
 /obj/structure/bed/chair/office/light,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/steel,
@@ -22691,8 +22602,7 @@
 /area/awaymission/snowfield/outside)
 "uyz" = (
 /obj/machinery/door/airlock{
-	name = "Custodial Closet";
-	req_access = null
+	name = "Custodial Closet"
 	},
 /turf/simulated/floor/tiled/freezer,
 /area/awaymission/snowfield/medical/medical_restroom)
@@ -22973,7 +22883,6 @@
 	icon_state = "door_locked";
 	id_tag = "emergency path";
 	locked = 1;
-	req_access = null;
 	req_one_access = null
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
@@ -23281,9 +23190,7 @@
 "vaM" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/machinery/light/flicker,
-/mob/living/simple_mob/construct/juggernaut{
-	devourable = 0
-	},
+/mob/living/simple_mob/construct/juggernaut,
 /turf/simulated/floor/tiled/techfloor,
 /area/awaymission/snowfield/command/gateway)
 "vaV" = (
@@ -23643,9 +23550,7 @@
 /turf/simulated/floor,
 /area/awaymission/snowfield/hallway/frontgate_substation)
 "vnj" = (
-/mob/living/simple_mob/construct/harvester/greater{
-	devourable = 0
-	},
+/mob/living/simple_mob/construct/harvester/greater,
 /turf/simulated/floor/cult,
 /area/awaymission/snowfield/command/gateway)
 "vny" = (
@@ -23690,9 +23595,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/awaymission/snowfield/public/toolstroage2)
 "vrJ" = (
-/mob/living/simple_mob/construct/wraith{
-	devourable = 0
-	},
+/mob/living/simple_mob/construct/wraith,
 /turf/simulated/floor/cult,
 /area/awaymission/snowfield/command/bsa)
 "vrX" = (
@@ -24703,9 +24606,6 @@
 /obj/structure/window/reinforced,
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/machinery/iv_drip,
-/obj/machinery/iv_drip,
-/obj/machinery/iv_drip,
-/obj/machinery/iv_drip,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/awaymission/snowfield/medical/storage_room)
 "wnX" = (
@@ -25227,7 +25127,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/airlock/engineering{
-	req_access = null;
 	req_one_access = list(1,10)
 	},
 /obj/machinery/door/blast/regular{
@@ -25262,14 +25161,11 @@
 	pixel_y = -24;
 	start_charge = 0
 	},
-/mob/living/simple_mob/construct/artificer/caster{
-	devourable = 0
-	},
+/mob/living/simple_mob/construct/artificer/caster,
 /turf/simulated/floor/tiled/techfloor,
 /area/awaymission/snowfield/hallway/commandhallway)
 "wNO" = (
 /obj/machinery/door/airlock/engineering{
-	req_access = null;
 	req_one_access = list(1,10)
 	},
 /obj/structure/cable/yellow{
@@ -25778,7 +25674,6 @@
 	},
 /obj/machinery/door/airlock{
 	name = "Kitchen";
-	req_access = null;
 	req_one_access = list(1,28)
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -26396,9 +26291,7 @@
 /obj/machinery/light/flicker{
 	dir = 4
 	},
-/mob/living/simple_mob/construct/artificer/caster{
-	devourable = 0
-	},
+/mob/living/simple_mob/construct/artificer/caster,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/awaymission/snowfield/command/gateway)
 "xxj" = (
@@ -26696,9 +26589,7 @@
 /area/awaymission/snowfield/security/hallway)
 "xLF" = (
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_mob/construct/harvester/greater{
-	devourable = 0
-	},
+/mob/living/simple_mob/construct/harvester/greater,
 /turf/simulated/floor/cult,
 /area/awaymission/snowfield/hallway/commandhallway)
 "xMi" = (
@@ -26773,9 +26664,7 @@
 /turf/simulated/floor/tiled/white,
 /area/awaymission/snowfield/security/detective)
 "xOb" = (
-/mob/living/simple_mob/construct/harvester{
-	devourable = 0
-	},
+/mob/living/simple_mob/construct/harvester,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/awaymission/snowfield/command/bridge)
 "xPb" = (
@@ -32293,7 +32182,7 @@ pun
 imC
 pun
 pun
-mFY
+weG
 pgn
 iNn
 pun
@@ -32551,7 +32440,7 @@ pun
 pun
 imC
 pun
-olD
+qbN
 mwo
 iNn
 pun
@@ -32809,7 +32698,7 @@ pun
 pun
 pun
 pun
-mFY
+weG
 cGS
 iNn
 pun
@@ -33067,7 +32956,7 @@ pun
 pun
 pun
 pun
-olD
+qbN
 mwo
 iNn
 pun
@@ -33325,7 +33214,7 @@ pun
 pun
 pun
 pun
-mFY
+weG
 mwo
 sRm
 pun
@@ -33583,7 +33472,7 @@ pun
 pun
 pun
 pun
-olD
+qbN
 xgl
 sRm
 pun
@@ -33841,7 +33730,7 @@ pun
 pun
 pun
 pun
-olD
+qbN
 xgl
 sRm
 pun
@@ -34099,7 +33988,7 @@ pun
 pun
 pun
 pun
-mFY
+weG
 cGS
 iNn
 pun
@@ -34357,7 +34246,7 @@ pun
 pun
 pun
 pun
-olD
+qbN
 mwo
 iNn
 pun
@@ -34615,7 +34504,7 @@ pun
 pun
 pun
 pun
-olD
+qbN
 xgl
 iNn
 pun
@@ -34873,7 +34762,7 @@ pun
 pun
 imC
 pun
-olD
+qbN
 xgl
 sRm
 pun
@@ -35131,7 +35020,7 @@ pun
 pun
 pun
 pun
-olD
+qbN
 xgl
 sRm
 pun
@@ -35389,7 +35278,7 @@ pun
 pun
 pun
 pun
-mFY
+weG
 cGS
 iNn
 pun
@@ -35647,7 +35536,7 @@ pun
 pun
 pun
 pun
-mFY
+weG
 cGS
 iNn
 pun
@@ -35905,7 +35794,7 @@ pun
 pun
 pun
 pun
-mFY
+weG
 cGS
 sRm
 pun
@@ -41839,7 +41728,7 @@ pun
 pun
 pun
 pun
-olD
+qbN
 xgl
 sRm
 pun
@@ -42097,7 +41986,7 @@ pun
 pun
 pun
 pun
-olD
+qbN
 mwo
 iNn
 pun
@@ -42355,7 +42244,7 @@ pun
 pun
 pun
 pun
-olD
+qbN
 mwo
 sRm
 pun
@@ -42613,7 +42502,7 @@ pun
 pun
 pun
 pun
-olD
+qbN
 cGS
 iNn
 pun
@@ -42871,7 +42760,7 @@ pun
 pun
 pun
 pun
-olD
+qbN
 mwo
 iNn
 pun
@@ -43129,7 +43018,7 @@ pun
 pun
 pun
 pun
-mFY
+weG
 cGS
 iNn
 pun
@@ -43387,7 +43276,7 @@ pun
 pun
 pun
 pun
-olD
+qbN
 cGS
 iNn
 pun
@@ -43645,7 +43534,7 @@ pun
 pun
 pun
 pun
-mFY
+weG
 cGS
 sRm
 pun
@@ -43903,7 +43792,7 @@ pun
 pun
 imC
 pun
-mFY
+weG
 mwo
 sRm
 pun
@@ -44161,7 +44050,7 @@ pun
 pun
 pun
 pun
-olD
+qbN
 xgl
 sRm
 pun
@@ -44419,7 +44308,7 @@ pun
 pun
 pun
 pun
-olD
+qbN
 xgl
 iNn
 pun
@@ -44677,7 +44566,7 @@ pun
 pun
 pun
 pun
-olD
+qbN
 cGS
 iNn
 pun
@@ -44935,7 +44824,7 @@ pun
 pun
 pun
 pun
-mFY
+weG
 cGS
 iNn
 pun
@@ -45967,7 +45856,7 @@ pun
 pun
 pun
 pun
-mFY
+weG
 iKO
 sRm
 pun
@@ -46225,7 +46114,7 @@ pun
 pun
 pun
 pun
-olD
+qbN
 szW
 sRm
 pun
@@ -46483,7 +46372,7 @@ pun
 pun
 pun
 pun
-olD
+qbN
 szW
 iNn
 pun
@@ -46741,7 +46630,7 @@ pun
 bUb
 pun
 pun
-olD
+qbN
 tPK
 iNn
 pun
@@ -46999,7 +46888,7 @@ pun
 pun
 pun
 pun
-olD
+qbN
 iKO
 iNn
 pun
@@ -47257,7 +47146,7 @@ pun
 pun
 pun
 pun
-olD
+qbN
 iKO
 sRm
 pun
@@ -47515,7 +47404,7 @@ pun
 pun
 pun
 pun
-mFY
+weG
 tPK
 sRm
 pun
@@ -47773,7 +47662,7 @@ bUb
 pun
 pun
 pun
-mFY
+weG
 szW
 sRm
 pun
@@ -48031,7 +47920,7 @@ pun
 pun
 pun
 pun
-mFY
+weG
 szW
 sRm
 pun
@@ -48289,7 +48178,7 @@ pun
 pun
 pun
 pun
-olD
+qbN
 szW
 sRm
 pun
@@ -48547,7 +48436,7 @@ pun
 pun
 pun
 pun
-olD
+qbN
 szW
 iNn
 pun
@@ -48805,7 +48694,7 @@ pun
 pun
 pun
 pun
-mFY
+weG
 iKO
 iNn
 pun
@@ -49063,7 +48952,7 @@ pun
 pun
 pun
 pun
-mFY
+weG
 iKO
 iNn
 pun
@@ -49321,7 +49210,7 @@ pun
 pun
 pun
 pun
-mFY
+weG
 iKO
 iNn
 pun
@@ -49579,7 +49468,7 @@ pun
 pun
 pun
 pun
-mFY
+weG
 qxb
 sRm
 pun
