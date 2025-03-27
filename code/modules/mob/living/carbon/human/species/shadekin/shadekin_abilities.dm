@@ -62,15 +62,15 @@
 
 	var/watcher = 0
 	//CHOMPEdit Start - Nerf to phasing
-	for(var/thing in orange(7, src))
+	for(var/thing in orange(3, src))
 		if(istype(thing, /mob/living/carbon/human))
 			var/mob/living/carbon/human/watchers = thing
-			if((watchers in oviewers(7,src)) && watchers.species != SPECIES_SHADEKIN)	// And they can see us... (And aren't themselves a shadekin)
+			if((watchers in oviewers(3,src)) && watchers.species != SPECIES_SHADEKIN)	// And they can see us... (And aren't themselves a shadekin)
 				if(!(watchers.stat) && !isbelly(watchers.loc) && !istype(watchers.loc, /obj/item/holder))	// And they are alive and not being held by someone...
 					watcher++	// They are watching us!
 		else if(istype(thing, /mob/living/silicon/robot))
 			var/mob/living/silicon/robot/watchers = thing
-			if(watchers in oviewers(7,src))
+			if(watchers in oviewers(3,src))
 				if(!watchers.stat && !isbelly(watchers.loc))
 					watcher++	//The robot is watching us!
 		else if(istype(thing, /obj/machinery/camera))
@@ -200,9 +200,9 @@
 
 	//CHOMPEdit Start - Add back light destruction & gentle phasing (Port upstream but replace with my variable toggle for full 100% control over chance, color, etc ~Diana)
 	if(SK.get_shadekin_eyecolor(src) == RED_EYES)
-		destroy_lights = 80
+		destroy_lights = 10
 	else if(SK.get_shadekin_eyecolor(src) == PURPLE_EYES)
-		destroy_lights = 25
+		destroy_lights = 5
 
 	// Add gentle phasing
 	if(SK.phase_gentle) // gentle case: No light destruction. Flicker in 4 tile radius once.
@@ -256,7 +256,7 @@
 		throwpass = TRUE
 		automatic_custom_emote(VISIBLE_MESSAGE,"phases out!")
 		name = get_visible_name()
-
+/*
 		//CHOMPEdit Start - Unequipping slots when phasing in, and preventing pulling stuff while phased.
 		if(l_hand)
 			unEquip(l_hand)
@@ -264,7 +264,7 @@
 			unEquip(r_hand)
 		if(back)
 			unEquip(back)
-
+*/
 		can_pull_size = 0
 		can_pull_mobs = MOB_PULL_NONE
 		hovering = TRUE

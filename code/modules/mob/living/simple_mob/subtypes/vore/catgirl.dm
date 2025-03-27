@@ -61,7 +61,9 @@
 /mob/living/simple_mob/vore/catgirl/init_vore()
 	if(!voremob_loaded)
 		return
-	.=..()
+	if(LAZYLEN(vore_organs))
+		return
+	. = ..()
 	var/obj/belly/B = vore_selected
 	B.vore_sound = "Tauric Swallow"
 	B.release_sound = "Pred Escape"

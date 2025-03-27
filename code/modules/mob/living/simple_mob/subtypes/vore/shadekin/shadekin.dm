@@ -148,7 +148,7 @@
 		return
 	if(LAZYLEN(vore_organs))
 		return
-
+	. = ..()
 	var/obj/belly/B = new /obj/belly(src)
 	vore_selected = B
 	B.immutable = 1

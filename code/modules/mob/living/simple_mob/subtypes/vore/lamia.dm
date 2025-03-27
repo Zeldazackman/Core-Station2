@@ -41,34 +41,21 @@
 	// Meaningful stats
 	vore_default_mode = DM_HOLD
 	vore_digest_chance = 0
-	vore_pounce_chance = 75
+	vore_pounce_chance = 65
 	vore_bump_chance = 50
 	vore_standing_too = TRUE
 	vore_escape_chance = 25
 
 	// Special lamia vore tags
-	var/vore_upper_transfer_chance = 30
-	var/vore_tail_digest_chance = 20
-	var/vore_tail_absorb_chance = 5
-	var/vore_tail_transfer_chance = 30
+	var/vore_upper_transfer_chance = 50
+	var/vore_tail_digest_chance = 25
+	var/vore_tail_absorb_chance = 0
+	var/vore_tail_transfer_chance = 50
 
 	say_list_type = /datum/say_list/lamia
 	ai_holder_type = /datum/ai_holder/simple_mob/passive
 
 	can_be_drop_prey = FALSE //CHOMP Add
-
-/* CHOMPEdit - now handled by new belly features.
-/mob/living/simple_mob/vore/lamia/update_fullness()
-	var/new_fullness = 0
-	// We only want to count our upper_stomach towards capacity
-	for(var/obj/belly/B as anything in vore_organs)
-		if(B.name == "upper stomach")
-			for(var/mob/living/M in B)
-				new_fullness += M.size_multiplier
-	new_fullness /= size_multiplier
-	new_fullness = round(new_fullness, 1)
-	vore_fullness = min(vore_capacity, new_fullness)
-*/
 
 /mob/living/simple_mob/vore/lamia/update_icon()
 	. = ..()
@@ -80,25 +67,6 @@
 		// And copper_vore_1_0 is full upper stomach, but empty tail stomach
 		// For unconscious: [icon_rest]_vore_[upper]_[tail]
 		// For dead, it doesn't show.
-		/* CHOMPEdit - Handled differently now.
-		var/upper_shows = FALSE
-		var/tail_shows = FALSE
-
-		for(var/obj/belly/B as anything in vore_organs)
-			if(!(B.name in list("upper stomach", "tail stomach")))
-				continue
-			var/belly_fullness = 0
-			for(var/mob/living/M in B)
-				belly_fullness += M.size_multiplier
-			belly_fullness /= size_multiplier
-			belly_fullness = round(belly_fullness, 1)
-
-			if(belly_fullness)
-				if(B.name == "upper stomach")
-					upper_shows = TRUE
-				else if(B.name == "tail stomach")
-					tail_shows = TRUE
-		*/
 		var/upper_shows = vore_fullness_ex["stomach"]
 		var/tail_shows = vore_fullness_ex["tail"]
 
@@ -114,6 +82,8 @@
 /mob/living/simple_mob/vore/lamia/init_vore()
 	if(!voremob_loaded)
 		return
+	if(LAZYLEN(vore_organs))
+		return
 	. = ..()
 	var/obj/belly/B = vore_selected
 
@@ -122,7 +92,7 @@
 
 	var/obj/belly/tail = new /obj/belly(src)
 	tail.immutable = TRUE
-	tail.affects_vore_sprites = TRUE //CHOMPEdit - vore sprites enabled for simplemobs!
+	tail.affects_vore_sprites = TRUE
 	tail.name = "tail stomach"
 	tail.desc = "You slide out into the narrow, constricting tube of flesh that is the lamia's snake half, heated walls and strong muscles all around clinging to your form with every slither."
 	tail.digest_mode = vore_default_mode
@@ -140,10 +110,14 @@
 	tail.human_prey_swallow_time = swallowTime
 	tail.nonhuman_prey_swallow_time = swallowTime
 	tail.vore_verb = "stuff"
-	tail.belly_sprite_to_affect = "tail" //CHOMPEdit - So that tail belly affects tail vore sprite.
+	tail.belly_sprite_to_affect = "tail"
+	// CHOMPEdit Start
+	tail.belly_fullscreen = "VBOanim_snakebelly1"
+	tail.belly_fullscreen_color = "#823232"
+	tail.belly_fullscreen_color2 = "#232300"
+	// CHOMPEdit End
 
-	//These were so well written that I just had to add them here, as lamias can always use some spice.
-	//RS ADD START - Belly Lines for RS, by killerdragn (@kilo.ego on discord)
+	// Belly Lines by killerdragn (@kilo.ego on discord) from Rogue Star
 	B.emote_lists[DM_HOLD] = list(
 		"You could feel the %pred drum their fingertips atop your head from outside, the walls ever so subtly clenching inwards to smear you in more of that weakly tingling slime inside.",
 		"Ugh, this place wasn't as roomy as you wish it could be, pushing your hands out you found little yield in any direction, but at least you were only along for the ride.",
@@ -225,13 +199,11 @@
 		"The lamia seemed satisfied from their prey giving them a massage from the inside, a blissed out look on their face when someones hands pushed out and then slipped out of sight.",
 		"Someone rolled and turned inside %preds lower body trying to find the way out, making no progress."
 	)
-
 	tail.digest_messages_prey = list(
 		"You were burbling and bubbling inside this lethal sleeping bag for longer than you ought to be, the only option now was to sleep in forever, barely able to keep your eyes open while your body refused to respond to any input the lamia's %belly had done an efficient job of rendering your entire body down. You didn't have long to think before even your consciousness began to spread out and fill the lamia's lengthy lower stomach in a nutritious puddle left to be squeezed and piped through the rest of their digestive system and sent right onto their body.",
 		"It was a grueling feat to go through the many stages of digestion inside a lamia's %belly, forced to lay there and submit to a lethargic digestion and feel yourself break down steadily, for all your efforts and struggling you just couldn't overcome the power of this half-serpent breaking you down over the next few hours, it hurt at first but now it was all just a dull hot swaddling blanket of chyme welcoming you to your new existence as bellysoup.",
 		"You kicked, squirmed, twisted, rolled and voiced all your frustrations but none of them would stop %pred from digesting you completely, everything you were and could be reduced to a disgusting caloric sludge inside the lamia's %belly. None of your weak struggles from here on out mattered, you twitched and lurched- pushing your hands out weakly hoping someone could rescue you at this last moment but alas your strength failed and you were forced to become food, thoughts drifting off as your meaty self was squeezed and churned down totally after you lost consciousness."
 	)
-//RS ADD END
 
 // FFTA Bra
 /mob/living/simple_mob/vore/lamia/bra

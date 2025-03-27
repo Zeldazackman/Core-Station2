@@ -94,7 +94,9 @@
 /mob/living/simple_mob/animal/passive/deer/kyle/init_vore()
 	if(!voremob_loaded)
 		return
-	.=..()
+	if(LAZYLEN(vore_organs))
+		return
+	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "Stomach"
 	B.desc = "You somehow managed to wind up curled inside Kyle's belly, and he doesnt seem very quite eager about the idea judging from all the bleating... Best not squirm around too much, since your bashful pred isn't digesting you... yet."

@@ -48,11 +48,11 @@
 	allow_mind_transfer = TRUE
 
 // Pepe is love, not hate.
-/mob/living/simple_mob/vore/aggressive/frog/New()
+/mob/living/simple_mob/vore/aggressive/frog/Initialize(mapload)
+	. = ..()
 	if(rand(1,100) == 1)
 		name = "rare Pepe"
 		desc = "You found a rare Pepe. Screenshot for good luck."
-	..()
 
 /mob/living/simple_mob/vore/aggressive/frog/do_special_attack(atom/A)
 	set_AI_busy(TRUE)
@@ -73,6 +73,7 @@
 /mob/living/simple_mob/vore/aggressive/frog
 	vore_active = 1
 	vore_pounce_chance = 40
+	vore_pounce_chance = 50
 	vore_icons = SA_ICON_LIVING
 
 /mob/living/simple_mob/vore/aggressive/frog/init_vore()

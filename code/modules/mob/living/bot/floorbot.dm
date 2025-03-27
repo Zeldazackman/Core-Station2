@@ -12,7 +12,7 @@
 	wait_if_pulled = 1
 	min_target_dist = 0
 
-	var/vocal = 1
+	var/vocal = 0
 	var/amount = 10 // 1 for tile, 2 for lattice
 	var/maxAmount = 60
 	var/tilemake = 0 // When it reaches 100, bot makes a tile

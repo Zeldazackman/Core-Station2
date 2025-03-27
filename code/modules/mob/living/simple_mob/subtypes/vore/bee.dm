@@ -63,7 +63,9 @@
 /mob/living/simple_mob/vore/bee/init_vore()
 	if(!voremob_loaded)
 		return
-	.=..()
+	if(LAZYLEN(vore_organs))
+		return
+	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "Honey pouch"
 	B.desc = "You have been swallowed down by a ravenous bee, the hungry insect pressing you into a tight ball and leaving you surrounded by rippling flesh. It clings fast to your form, slathering you in a sticky substance that strangely smells sweet...It seems these bees have truely adapted to space without flowers, from the feel and smell they can turn creatures into honey, which includes you!"

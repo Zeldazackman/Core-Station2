@@ -71,6 +71,8 @@
 /mob/living/simple_mob/vore/newdeer/init_vore()
 	if(!voremob_loaded)
 		return
+	if(LAZYLEN(vore_organs))
+		return
 	. = ..()
 	var/obj/belly/R = vore_selected
 	R.name = "rumen"

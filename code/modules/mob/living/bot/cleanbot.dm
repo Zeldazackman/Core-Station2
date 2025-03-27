@@ -12,7 +12,7 @@
 	min_target_dist = 0
 
 	var/cTimeMult = 1 // A multiplier for how long it should take to clean. Anything bigger than one will increase time, less than one will make it faster.
-	var/vocal = 1
+	var/vocal = 0
 	var/cleaning = 0
 	var/wet_floors = 0
 	var/spray_blood = 0
@@ -30,8 +30,7 @@
 
 /mob/living/bot/cleanbot/handleIdle()
 	if(!wet_floors && !spray_blood && vocal && prob(2))
-		automatic_custom_emote(AUDIBLE_MESSAGE, "makes an excited booping sound!")
-		playsound(src, 'sound/machines/synth_yes.ogg', 50, 0)
+		playsound(src, 'sound/machines/synth_yes.ogg', 10, 0)
 
 	if(wet_floors && prob(5)) // Make a mess
 		if(istype(loc, /turf/simulated))

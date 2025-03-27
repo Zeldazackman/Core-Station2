@@ -13,7 +13,7 @@
 	target_speed = 6
 	cTimeMult = 0.3 // Big bois should be big fast :3
 
-	vocal = 1
+	vocal = 0
 	cleaning = 0
 	var/red_switch = 0
 	var/blue_switch = 0
@@ -27,8 +27,7 @@
 
 /mob/living/bot/cleanbot/edCLN/handleIdle()
 	if(vocal && prob(10))
-		automatic_custom_emote(AUDIBLE_MESSAGE, "makes a less than thrilled beeping sound.")
-		playsound(src, 'sound/machines/synth_yes.ogg', 50, 0)
+		playsound(src, 'sound/machines/synth_yes.ogg', 10, 0)
 
 	if(red_switch && !blue_switch && !green_switch && prob(10) || src.emagged)
 		if(istype(loc, /turf/simulated))
