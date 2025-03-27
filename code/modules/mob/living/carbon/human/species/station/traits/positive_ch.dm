@@ -2,6 +2,7 @@
 	name = "Master Linguist"
 	desc = "You are a master of languages! For whatever reason you might have, you are able to learn many more languages than others. Your language cap is 12 slots."
 	cost = 0
+	custom_only = FALSE
 	var_changes = list("num_alternate_languages" = 15)
 	var_changes_pref = list("extra_languages" = 12)
 
@@ -9,7 +10,6 @@
 	name = "Darksight"
 	desc = "Allows you to see a short distance in the dark. (Half the screen)."
 	cost = 0
-	custom_only = FALSE
 	var_changes = list("darksight" = 4)  //CHOMP Edit
 	custom_only = FALSE
 	banned_species = list(SPECIES_TAJARAN, SPECIES_SHADEKIN_CREW, SPECIES_SHADEKIN, SPECIES_XENOHYBRID, SPECIES_VULPKANIN, SPECIES_XENO, SPECIES_XENOCHIMERA, SPECIES_VASILISSAN, SPECIES_WEREBEAST) //These species already have strong darksight by default.
@@ -18,7 +18,6 @@
 	name = "Darksight, Major"
 	desc = "Allows you to see in the dark for the whole screen."
 	cost = 0
-	custom_only = FALSE
 	var_changes = list("darksight" = 8)
 	custom_only = FALSE
 	banned_species = list(SPECIES_TAJARAN, SPECIES_SHADEKIN_CREW, SPECIES_SHADEKIN, SPECIES_XENOHYBRID, SPECIES_VULPKANIN, SPECIES_XENO, SPECIES_XENOCHIMERA, SPECIES_VASILISSAN, SPECIES_WEREBEAST) //These species already have strong darksight by default.
@@ -40,7 +39,7 @@
 /datum/trait/positive/lowpressureresminor // Same as original trait with cost reduced, much more useful as filler.
 	name = "Low Pressure Resistance, Minor"
 	desc = "Your body is more resistant to low pressures and you can breathe better in those conditions. Pretty simple."
-	cost = 1
+	cost = 0
 	custom_only = FALSE
 	var_changes = list("hazard_low_pressure" = HAZARD_LOW_PRESSURE*0.66, "warning_low_pressure" = WARNING_LOW_PRESSURE*0.66, "minimum_breath_pressure" = 16*0.66)
 	excludes = list(/datum/trait/positive/lowpressureresmajor,/datum/trait/positive/pressureres,/datum/trait/positive/pressureresmajor)
@@ -48,7 +47,7 @@
 /datum/trait/positive/lowpressureresmajor // Still need an oxygen tank, otherwise you'll suffocate.
 	name = "Low Pressure Resistance, Major"
 	desc = "Your body is immune to low pressures and you can breathe significantly better in low-pressure conditions, though you'll still need an oxygen supply."
-	cost = 2
+	cost = 0
 	custom_only = FALSE
 	var_changes = list("hazard_low_pressure" = HAZARD_LOW_PRESSURE*0, "warning_low_pressure" = WARNING_LOW_PRESSURE*0, "minimum_breath_pressure" = 16*0.33)
 	excludes = list(/datum/trait/positive/lowpressureresminor,/datum/trait/positive/pressureres,/datum/trait/positive/pressureresmajor)
@@ -56,7 +55,7 @@
 /datum/trait/positive/highpressureresminor // Increased high pressure cap as previous amount was neglible.
 	name = "High Pressure Resistance, Minor"
 	desc = "Your body is more resistant to high pressures. Pretty simple."
-	cost = 1
+	cost = 0
 	custom_only = FALSE
 	var_changes = list("hazard_high_pressure" = HAZARD_HIGH_PRESSURE*2, "warning_high_pressure" = WARNING_HIGH_PRESSURE*2)
 	excludes = list(/datum/trait/positive/highpressureresmajor,/datum/trait/positive/pressureres,/datum/trait/positive/pressureresmajor)
@@ -64,7 +63,7 @@
 /datum/trait/positive/highpressureresmajor
 	name = "High Pressure Resistance, Major"
 	desc = "Your body is significantly more resistant to high pressures. Pretty simple."
-	cost = 2
+	cost = 0
 	custom_only = FALSE
 	var_changes = list("hazard_high_pressure" = HAZARD_HIGH_PRESSURE*4, "warning_high_pressure" = WARNING_HIGH_PRESSURE*4)
 	excludes = list(/datum/trait/positive/highpressureresminor,/datum/trait/positive/pressureres,/datum/trait/positive/pressureresmajor)
@@ -72,7 +71,7 @@
 /datum/trait/positive/pressureres
 	name = "General Pressure Resistance"
 	desc = "Your body is much more resistant to both high and low pressures. Pretty simple."
-	cost = 3
+	cost = 0
 	custom_only = FALSE
 	var_changes = list("hazard_high_pressure" = HAZARD_HIGH_PRESSURE*3,
 					   "warning_high_pressure" = WARNING_HIGH_PRESSURE*3,
@@ -85,7 +84,7 @@
 /datum/trait/positive/pressureresmajor // If they have the points and want more freedom with atmos, let them.
 	name = "General Pressure Resistance, Major"
 	desc = "Your body is significantly more resistant to high pressures and immune to low pressures, though you'll still need an oxygen supply."
-	cost = 2
+	cost = 0
 	custom_only = FALSE
 	var_changes = list("hazard_high_pressure" = HAZARD_HIGH_PRESSURE*4,
 					   "warning_high_pressure" = WARNING_HIGH_PRESSURE*4,
@@ -95,39 +94,10 @@
 					   )
 	excludes = list(/datum/trait/positive/lowpressureresminor,/datum/trait/positive/lowpressureresmajor,/datum/trait/positive/highpressureresminor,/datum/trait/positive/highpressureresmajor,/datum/trait/positive/pressureres)
 
-/datum/trait/positive/photosynth
-	name = "Photosynthesis"
-	desc = "Your body is able to produce nutrition from being in light."
-	cost = 0
-	custom_only = FALSE
-	var_changes = list("photosynthesizing" = TRUE)
-	can_take = ORGANICS|SYNTHETICS //Synths actually use nutrition, just with a fancy covering.
-
-/datum/trait/positive/rad_resistance
-	name = "Radiation Resistance"
-	desc = "You are generally more resistant to radiation, and it dissipates faster from your body."
-	cost = 1
-	custom_only = FALSE
-	var_changes = list("radiation_mod" = 0.65, "rad_removal_mod" = 3.5, "rad_levels" = list("safe" = 20, "danger_1" = 75, "danger_2" = 100, "danger_3" = 200))
-
-/datum/trait/positive/rad_resistance_extreme
-	name = "Radiation Resistance, Major"
-	desc = "You are much more resistant to radiation, and it dissipates much faster from your body."
-	cost = 2
-	custom_only = FALSE
-	var_changes = list("radiation_mod" = 0.5, "rad_removal_mod" = 5, "rad_levels" = list("safe" = 40, "danger_1" = 100, "danger_2" = 150, "danger_3" = 250))
-
-/datum/trait/positive/rad_immune
-	name = "Radiation Immunity"
-	desc = "For whatever reason, be it a more dense build or some quirk of your genetic code, your body is completely immune to radiation."
-	cost = 2
-	custom_only = FALSE
-	var_changes = list("radiation_mod" = 0.0, "rad_removal_mod" = 10, "rad_levels" = list("safe" = 300, "danger_1" = 300, "danger_2" = 300, "danger_3" = 300))
-
 /datum/trait/positive/more_blood
 	name = "Blood Volume, High"
 	desc = "You have 50% more blood."
-	cost = 1
+	cost = 0
 	custom_only = FALSE
 	var_changes = list("blood_volume" = 840)
 	excludes = list(/datum/trait/positive/more_blood_extreme,/datum/trait/negative/less_blood,/datum/trait/negative/less_blood_extreme)
@@ -136,7 +106,7 @@
 /datum/trait/positive/more_blood_extreme
 	name = "Blood Volume, Very High"
 	desc = "You have 150% more blood."
-	cost = 2
+	cost = 0
 	custom_only = FALSE
 	var_changes = list("blood_volume" = 1400)
 	excludes = list(/datum/trait/positive/more_blood,/datum/trait/negative/less_blood,/datum/trait/negative/less_blood_extreme)
@@ -145,7 +115,7 @@
 /datum/trait/positive/heavyweight
 	name = "Heavyweight"
 	desc = "You are more heavyweight or otherwise more sturdy than most species, and as such, more resistant to knockdown effects and stuns. Stuns are only half as effective on you, and neither players nor mobs can trade places with you or bump you out of the way."
-	cost = 1
+	cost = 0
 	custom_only = FALSE
 	var_changes = list("stun_mod" = 0.5, "weaken_mod" = 0.5) // Stuns are 50% as effective - a stun of 3 seconds will be 2 seconds due to rounding up. Set to 0.5 to be in-line with the trait's description. (Weaken is used alongside stun to prevent aiming.)
 
@@ -154,22 +124,10 @@
 	H.mob_size = MOB_LARGE
 	H.mob_bump_flag = HEAVY
 
-/datum/trait/positive/table_passer
-	name = "Table Passer"
-	desc = "You move over or under tables with ease of a Teshari."
-	cost = 1
-	custom_only = FALSE
-
-/datum/trait/positive/table_passer/apply(var/datum/species/S,var/mob/living/carbon/human/H, var/list/trait_prefs)
-	..()
-	if (trait_prefs?["pass_table"] || !trait_prefs)
-		H.pass_flags |= PASSTABLE
-	add_verb(H,/mob/living/proc/toggle_pass_table) //CHOMPEdit TGPanel
-
 /datum/trait/positive/grappling_expert
 	name = "Grappling Expert"
 	desc = "Your grabs are much harder to escape from, and you are better at escaping from other's grabs!"
-	cost = 2
+	cost = 0
 	custom_only = FALSE
 	var_changes = list("grab_resist_divisor_victims" = 1.5, "grab_resist_divisor_self" = 0.5, "grab_power_victims" = -1, "grab_power_self" = 1)
 
@@ -238,7 +196,7 @@
 /datum/trait/positive/adrenaline_rush
 	name = "Adrenaline Rush"
 	desc = "When you get critically damaged, you'll have an adrenaline rush before going down, giving you another chance to finish the fight, or get to safety."
-	cost = 2
+	cost = 0
 	custom_only = FALSE
 	special_env = TRUE
 	can_take = ORGANICS
@@ -320,8 +278,7 @@
 /datum/trait/positive/insect_sting
 	name = "Insect Sting"
 	desc = "Allows you to sting your victim with a smalll amount of poison"
-	cost = 1
-	custom_only = FALSE
+	cost = 0
 
 /datum/trait/positive/insect_sting/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
@@ -330,24 +287,24 @@
 // TANKINESS LETS GOOOOOOOOO
 /datum/trait/positive/burn_resist_plus // Equivalent to Burn Weakness Major, cannot be taken at the same time.
 	name = "Burn Resist, Major"
-	desc = "Adds 60% resistance to burn damage sources."
-	cost = 2 // Exact Opposite of Burn Weakness Major, except Weakness Major is 50% incoming, this is -40% incoming.
+	desc = "Adds 40% resistance to burn damage sources."
+	cost = 0 // Exact Opposite of Burn Weakness Major, except Weakness Major is 50% incoming, this is -40% incoming.
 	custom_only = FALSE
-	var_changes = list("burn_mod" = 0.4)
+	var_changes = list("burn_mod" = 0.6)
 	excludes = list(/datum/trait/positive/burn_resist, /datum/trait/positive/minor_burn_resist)
 
 /datum/trait/positive/brute_resist_plus // Equivalent to Brute Weakness Major, cannot be taken at the same time.
 	name = "Brute Resist, Major"
-	desc = "Adds 60% resistance to brute damage sources."
-	cost = 2 // Exact Opposite of Brute Weakness Major, except Weakness Major is 50% incoming, this is -40% incoming.
+	desc = "Adds 40% resistance to brute damage sources."
+	cost = 0 // Exact Opposite of Brute Weakness Major, except Weakness Major is 50% incoming, this is -40% incoming.
 	custom_only = FALSE
-	var_changes = list("brute_mod" = 0.4)
+	var_changes = list("brute_mod" = 0.6)
 	excludes = list(/datum/trait/positive/brute_resist, /datum/trait/positive/minor_brute_resist)
 
 /datum/trait/positive/endurance_very_high
 	name = "High Endurance, Major"
 	desc = "Increases your maximum total hitpoints to 150. You require 300 damage in total to die, compared to 200 normally. You will still go into crit after losing 150 HP, compared to crit at 100 HP."
-	cost = 2 // This should cost a LOT, because your total health becomes 300 to be fully dead, rather than 200 normally, or 250 for High Endurance. HE costs 3, double it here.
+	cost = 0 // This should cost a LOT, because your total health becomes 300 to be fully dead, rather than 200 normally, or 250 for High Endurance. HE costs 3, double it here.
 	custom_only = FALSE
 	var_changes = list("total_health" = 150)
 	excludes = list(/datum/trait/positive/endurance_high, /datum/trait/positive/endurance_extremely_high)
@@ -360,7 +317,8 @@
 /datum/trait/positive/endurance_extremely_high
 	name = "High Endurance, Extreme"
 	desc = "Increases your maximum total hitpoints to 175. You require 350 damage in total to die, compared to 200 normally. You will still go into crit after losing 175 HP, compared to crit at 100 HP."
-	cost = 4 // This should cost a LOT, because your total health becomes 350 to be fully dead, rather than 200 normally, or 250 for High Endurance. HE costs 3, this costs 3x it.
+	cost = 9 // This should cost a LOT, because your total health becomes 350 to be fully dead, rather than 200 normally, or 250 for High Endurance. HE costs 3, this costs 3x it.
+	custom_only = FALSE
 	var_changes = list("total_health" = 175)
 	excludes = list(/datum/trait/positive/endurance_high, /datum/trait/positive/endurance_very_high)
 
@@ -379,14 +337,14 @@
 /datum/trait/positive/pain_tolerance
 	name = "Pain Tolerance"
 	desc = "You are noticeably more resistant to pain than most, and experience 20% less pain from all sources."
-	cost = 1
+	cost = 0
 	custom_only = FALSE
 	var_changes = list("pain_mod" = 0.8)
 
 /datum/trait/positive/pain_tolerance_advanced // High Pain Intolerance is 50% incoming pain, but this is 40% reduced incoming pain.
 	name = "Pain Tolerance, Major"
 	desc = "You are extremely resistant to pain sources, and experience 40% less pain from all sources."
-	cost = 2 // Equivalent to High Pain Intolerance, but less pain resisted for balance reasons.
+	cost = 0 // Equivalent to High Pain Intolerance, but less pain resisted for balance reasons.
 	custom_only = FALSE
 	var_changes = list("pain_mod" = 0.6)
 
@@ -394,24 +352,24 @@
 /datum/trait/positive/improved_biocompat
 	name = "Improved Biocompatibility"
 	desc = "Your body is naturally (or artificially) more receptive to healing chemicals without being vulnerable to the 'bad stuff'. You heal more efficiently from most chemicals, with no other drawbacks. Remember to note this down in your medical records! Chems heal for 20% more."
-	cost = 1
+	cost = 0
 	custom_only = FALSE
 	var_changes = list("chem_strength_heal" = 1.2)
 
 /datum/trait/positive/photoresistant_plus // YW added Trait
 	name = "Photoresistance, Major"
 	desc = "Decreases stun duration from flashes and other light-based stuns and disabilities by 50%."
-	cost = 1
+	cost = 0
 	custom_only = FALSE
 	var_changes = list("flash_mod" = 0.5)
 
 /datum/trait/positive/hardy_extreme
 	name = "Hardy, Extreme"
 	desc = "Allows you to carry heavy equipment with no slowdown at all."
-	cost = 1
+	cost = 0
 	custom_only = FALSE
 	var_changes = list("item_slowdown_mod" = 0.0)
-	excludes = list(/datum/trait/positive/hardy,/datum/trait/positive/hardy_plus)
+	excludes = list(/datum/trait/positive/speed_fast,/datum/trait/positive/hardy,/datum/trait/positive/hardy_plus)
 
 /datum/trait/positive/bloodsucker_plus
 	name = "Evolved Bloodsucker"
@@ -428,7 +386,7 @@
 /datum/trait/positive/sonar
 	name ="Perceptive Hearing"
 	desc = "You can hear slight vibrations in the air very easily, if you focus."
-	cost = 1
+	cost = 0
 	custom_only = FALSE
 
 /datum/trait/positive/sonar/apply(var/datum/species/S,var/mob/living/carbon/human/H)
@@ -438,7 +396,7 @@
 /datum/trait/positive/toxin_gut
 	name ="Robust Gut"
 	desc = "You are immune to ingested toxins. Does not protect from possible harm caused by other drugs, meds, allergens etc."
-	cost = 1
+	cost = 0
 	custom_only = FALSE
 
 /datum/trait/positive/toxin_gut/apply(var/datum/species/S,var/mob/living/carbon/human/H)
@@ -458,7 +416,8 @@
 					/datum/trait/positive/light_breather,
 					/datum/trait/negative/deep_breather
 )
-	cost = 6
+	cost = 0
+	custom_only = FALSE
 
 /datum/trait/positive/nobreathe/apply(var/datum/species/S, var/mob/living/carbon/human/H)
 	..()
