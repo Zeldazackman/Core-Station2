@@ -183,7 +183,7 @@ var/global/list/obj/item/pda/PDAs = list()
 	start_program(find_program(/datum/data/pda/app/main_menu))
 
 //ChompEDIT START - move icon ops to initialize
-/obj/item/pda/Initialize()
+/obj/item/pda/Initialize(mapload)
 	. = ..()
 	add_overlay("pda-pen")
 //ChompEDIT END
@@ -517,8 +517,8 @@ var/global/list/obj/item/pda/PDAs = list()
 	icon = 'icons/obj/pda_vr.dmi'			//VOREStation edit
 	icon_state = "pdabox"
 
-/obj/item/storage/box/PDAs/New()
-	..()
+/obj/item/storage/box/PDAs/Initialize(mapload)
+	. = ..()
 	new /obj/item/pda(src)
 	new /obj/item/pda(src)
 	new /obj/item/pda(src)

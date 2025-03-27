@@ -180,7 +180,7 @@
 */
 
 /**
- * Attempt to scoop up this mob up into H's hands, if the size difference is large enough.
+ * Attempt to scoop up this mob up into M's hands, if the size difference is large enough.
  * @return false if normal code should continue, 1 to prevent normal code.
  */
 /mob/living/proc/attempt_to_scoop(mob/living/M, mob/living/G, ignore_size = FALSE) //second one is for the Grabber, only exists for animals to self-grab
@@ -217,7 +217,6 @@
  * @return false if normal code should continue, true to prevent normal code.
  */
 /mob/living/proc/handle_micro_bump_helping(mob/living/tmob)
-	// CHOMPAdd - Phased
 	if(is_incorporeal() || tmob.is_incorporeal())
 		return FALSE
 	//Riding and being moved to us or something similar
@@ -279,7 +278,6 @@
 	//We can't be stepping on anyone
 	if(!canmove || buckled)
 		return
-	// CHOMPAdd - Phased
 	if(is_incorporeal() || tmob.is_incorporeal())
 		return
 

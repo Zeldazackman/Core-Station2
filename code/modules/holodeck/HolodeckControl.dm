@@ -33,16 +33,16 @@
 	"Desert" 			= new/datum/holodeck_program(/area/holodeck/source_desert,
 													list(
 														'sound/ambience/desert/desertnight1.ogg',
-											 			'sound/ambience/desert/desertnight2.ogg',
-											 			'sound/ambience/desert/desertnight3.ogg',
+														'sound/ambience/desert/desertnight2.ogg',
+														'sound/ambience/desert/desertnight3.ogg',
 														'sound/ambience/desert/desertnight4.ogg'
-												 		)
-		 											),
+														)
+													),
 	"Snowfield" 		= new/datum/holodeck_program(/area/holodeck/source_snowfield,
 													list(
 														'sound/effects/weather/snowstorm/snowstorm_loop.ogg'
-												 		)
-		 											),
+														)
+													),
 	"Space" 			= new/datum/holodeck_program(/area/holodeck/source_space,
 													list(
 														'sound/ambience/ambispace.ogg',
@@ -180,8 +180,8 @@
 		if (last_to_emag)
 			C.friends = list(last_to_emag)
 
-/obj/machinery/computer/HolodeckControl/New()
-	..()
+/obj/machinery/computer/HolodeckControl/Initialize(mapload)
+	. = ..()
 	current_program = powerdown_program
 	linkedholodeck = locate(projection_area)
 	if(!linkedholodeck)
@@ -190,7 +190,7 @@
 //This could all be done better, but it works for now.
 /obj/machinery/computer/HolodeckControl/Destroy()
 	emergencyShutdown()
-	..()
+	. = ..()
 
 /obj/machinery/computer/HolodeckControl/ex_act(severity)
 	emergencyShutdown()

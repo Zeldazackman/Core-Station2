@@ -57,7 +57,7 @@
 	var/selected_cat
 
 // The hidden uplink MUST be inside an obj/item's contents.
-/obj/item/uplink/hidden/Initialize()
+/obj/item/uplink/hidden/Initialize(mapload)
 	. = ..()
 	if(!isitem(loc))
 		return INITIALIZE_HINT_QDEL
@@ -133,8 +133,8 @@
 		for(var/datum/data/record/L in data_core.locked)
 			if(L.fields["id"] == exploit_id)
 				data["exploit"] = list()  // Setting this to equal L.fields passes it's variables that are lists as reference instead of value.
-								 // We trade off being able to automatically add shit for more control over what gets passed to json
-								 // and if it's sanitized for html.
+								// We trade off being able to automatically add shit for more control over what gets passed to json
+								// and if it's sanitized for html.
 				data["exploit"]["nanoui_exploit_record"] = html_encode(L.fields["exploit_record"])                         		// Change stuff into html
 				data["exploit"]["nanoui_exploit_record"] = replacetext(data["exploit"]["nanoui_exploit_record"], "\n", "<br>")    // change line breaks into <br>
 				data["exploit"]["name"] =  html_encode(L.fields["name"])
@@ -174,7 +174,7 @@
 				"items" = (category == selected_cat ? list() : null)
 			)
 		for(var/datum/uplink_item/item in category.items)
-			var/cost = item.cost(src, user) || "???"
+			var/cost = item.cost(src, user.mind.tcrystals) || "???"
 			cat["items"] += list(list(
 				"name" = item.name,
 				"cost" = cost,
@@ -217,8 +217,8 @@
 //
 // Includes normal radio uplink, multitool uplink,
 // implant uplink (not the implant tool) and a preset headset uplink.
-/obj/item/radio/uplink/Initialize()
-	..()
+/obj/item/radio/uplink/Initialize(mapload)
+	. = ..()
 	hidden_uplink = new(src)
 	icon_state = "radio"
 
@@ -226,8 +226,8 @@
 	if(hidden_uplink)
 		hidden_uplink.trigger(user)
 
-/obj/item/multitool/uplink/New()
-	..()
+/obj/item/multitool/uplink/Initialize(mapload)
+	. = ..()
 	hidden_uplink = new(src)
 
 /obj/item/multitool/uplink/attack_self(mob/user as mob)
@@ -237,6 +237,6 @@
 /obj/item/radio/headset/uplink
 	traitor_frequency = 1445
 
-/obj/item/radio/headset/uplink/Initialize()
+/obj/item/radio/headset/uplink/Initialize(mapload)
 	. = ..()
 	hidden_uplink = new(src)

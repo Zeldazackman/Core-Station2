@@ -30,7 +30,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	//Linked bluespace radios
 	var/list/linked_radios_weakrefs = list()
 
-/obj/machinery/telecomms/processor/Initialize()
+/obj/machinery/telecomms/processor/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
 
@@ -121,7 +121,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	// In case message_delay is left on 1, otherwise it won't reset the list and people can't say the same thing twice anymore.
 	if(message_delay)
 		message_delay = 0
-	..()
+	. = ..()
 
 
 /*
@@ -516,8 +516,8 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 		//End of research and feedback code.
 
-	 /* ###### Send the message ###### */
-	  	/* --- Process all the mobs that heard a masked voice (understood) --- */
+		/* ###### Send the message ###### */
+		/* --- Process all the mobs that heard a masked voice (understood) --- */
 		if(length(heard_masked))
 			for (var/mob/R in heard_masked)
 				R.hear_radio(message_pieces, verbage, part_a, part_b, part_c, part_d, part_e, M, 0, name)
@@ -702,7 +702,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 		//End of research and feedback code.
 
-	 /* ###### Send the message ###### */
+		/* ###### Send the message ###### */
 
 		/* --- Process all the mobs that heard the voice normally (understood) --- */
 
@@ -737,7 +737,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 /atom/proc/test_telecomms()
 	var/datum/signal/signal = src.telecomms_process()
 	var/pos_z = get_z(src)
-	return (pos_z in signal.data["level"] && signal.data["done"])
+	return ((pos_z in signal.data["level"]) && signal.data["done"])
 
 /atom/proc/telecomms_process(var/do_sleep = 1)
 

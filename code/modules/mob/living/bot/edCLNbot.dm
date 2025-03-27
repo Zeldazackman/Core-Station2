@@ -27,7 +27,8 @@
 
 /mob/living/bot/cleanbot/edCLN/handleIdle()
 	if(vocal && prob(10))
-		playsound(src, 'sound/machines/synth_yes.ogg', 200, 0)
+		automatic_custom_emote(AUDIBLE_MESSAGE, "makes a less than thrilled beeping sound.")
+		playsound(src, 'sound/machines/synth_yes.ogg', 50, 0)
 
 	if(red_switch && !blue_switch && !green_switch && prob(10) || src.emagged)
 		if(istype(loc, /turf/simulated))

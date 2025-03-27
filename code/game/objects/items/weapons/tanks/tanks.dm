@@ -57,7 +57,7 @@ var/list/global/tank_gauge_cache = list()
 	src.proxyassembly = proxy
 
 
-/obj/item/tank/Initialize()
+/obj/item/tank/Initialize(mapload)
 	. = ..()
 
 	src.init_proxy()
@@ -563,30 +563,26 @@ var/list/global/tank_gauge_cache = list()
 	add_overlay("bomb_assembly")
 
 
-/obj/item/tank/phoron/onetankbomb/New()
-	..()
-	src.onetankbomb()
+/obj/item/tank/phoron/onetankbomb/Initialize(mapload, var/amount = 1)
+	. = ..()
+	onetankbomb(amount)
 
-/obj/item/tank/oxygen/onetankbomb/New()
-	..()
-	src.onetankbomb()
+/obj/item/tank/oxygen/onetankbomb/Initialize(mapload, var/amount = 1)
+	. = ..()
+	onetankbomb(amount)
 
 
-/obj/item/tank/phoron/onetankbomb/full/New()
-	..()
-	src.onetankbomb(2)
+/obj/item/tank/phoron/onetankbomb/full/Initialize(mapload)
+	. = ..(mapload, 2)
 
-/obj/item/tank/oxygen/onetankbomb/full/New()
-	..()
-	src.onetankbomb(2)
+/obj/item/tank/oxygen/onetankbomb/full/Initialize(mapload)
+	. = ..(mapload, 2)
 
-/obj/item/tank/phoron/onetankbomb/small/New()
-	..()
-	src.onetankbomb(0)
+/obj/item/tank/phoron/onetankbomb/small/Initialize(mapload)
+	. = ..(mapload, 0)
 
-/obj/item/tank/oxygen/onetankbomb/small/New()
-	..()
-	src.onetankbomb(0)
+/obj/item/tank/oxygen/onetankbomb/small/Initialize(mapload)
+	. = ..(mapload, 0)
 
 /////////////////////////////////
 ///Pulled from rewritten bomb.dm
@@ -661,7 +657,6 @@ var/list/global/tank_gauge_cache = list()
 		tank.update_icon()
 		tank.cut_overlay("bomb_assembly")
 
-// CHOMPEdit Start
 /obj/item/tankassemblyproxy/HasProximity(turf/T, datum/weakref/WF, old_loc)
 	SIGNAL_HANDLER
 	if(isnull(WF))
@@ -671,11 +666,11 @@ var/list/global/tank_gauge_cache = list()
 		log_debug("DEBUG: HasProximity called without reference on [src].")
 		return
 	assembly?.HasProximity(T, WEAKREF(AM), old_loc)
-// CHOMPEdit End
+
 /obj/item/tankassemblyproxy/Moved(old_loc, direction, forced)
 	if(isturf(old_loc))
-		unsense_proximity(callback = TYPE_PROC_REF(/atom,HasProximity), center = old_loc) // CHOMPEdit
+		unsense_proximity(callback = TYPE_PROC_REF(/atom,HasProximity), center = old_loc)
 	if(isturf(loc))
-		sense_proximity(callback = TYPE_PROC_REF(/atom,HasProximity)) // CHOMPEdit
+		sense_proximity(callback = TYPE_PROC_REF(/atom,HasProximity))
 
 #undef TANK_IDEAL_PRESSURE

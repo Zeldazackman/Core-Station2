@@ -76,6 +76,26 @@
 	icon_state = "steel"
 	},
 /area/centcom/terminal)
+"aan" = (
+/obj/structure/fans/tiny,
+/obj/machinery/door/airlock/external{
+	icon_state = "door_locked";
+	locked = 1;
+	name = "Shuttle Hatch";
+	req_access = list(13)
+	},
+/turf/simulated/shuttle/floor,
+/area/shuttle/escape/centcom)
+"aao" = (
+/obj/machinery/door/airlock/external{
+	icon_state = "door_locked";
+	locked = 1;
+	name = "Shuttle Hatch";
+	req_access = list(13)
+	},
+/obj/structure/fans/tiny,
+/turf/simulated/shuttle/floor,
+/area/shuttle/escape/centcom)
 "aar" = (
 /obj/effect/floor_decal/carpet,
 /turf/unsimulated/floor{
@@ -3354,12 +3374,6 @@
 /obj/effect/floor_decal/milspec/cargo,
 /turf/simulated/floor/tiled/techmaint,
 /area/shadekin)
-"cyH" = (
-/obj/structure/table/woodentable/holotable,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/holofloor/desert,
-/area/holodeck/source_picnicarea)
 "cyR" = (
 /obj/effect/floor_decal/sign/small_a{
 	icon = 'icons/turf/flooring/decals.dmi'
@@ -9557,17 +9571,6 @@
 	icon_state = "vault"
 	},
 /area/wizard_station)
-"hZt" = (
-/obj/structure/bed/chair/oldsofa{
-	dir = 4
-	},
-/obj/effect/floor_decal/spline/fancy/wood{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/holofloor/desert,
-/area/holodeck/source_picnicarea)
 "hZH" = (
 /obj/effect/floor_decal/corner/white/diagonal,
 /obj/structure/table/marble,
@@ -23903,7 +23906,7 @@
 	pixel_x = 15;
 	pixel_y = -4
 	},
-/obj/item/toy/plushie/squid/green{
+/obj/item/toy/plushie/squid{
 	pixel_x = -10;
 	pixel_y = 6
 	},
@@ -24478,11 +24481,6 @@
 /obj/item/clothing/head/pin/flower/blue,
 /obj/item/clothing/head/pin/flower/orange,
 /obj/item/clothing/head/pin/flower/pink,
-/obj/item/clothing/head/justice,
-/obj/item/clothing/head/justice/blue,
-/obj/item/clothing/head/justice/green,
-/obj/item/clothing/head/justice/pink,
-/obj/item/clothing/head/justice/yellow,
 /obj/item/clothing/head/philosopher_wig,
 /obj/item/clothing/head/plaguedoctorhat,
 /obj/item/clothing/head/xenos,
@@ -35438,15 +35436,15 @@ qNq
 vFi
 dmo
 uTl
-aFI
-aFI
+aao
+aan
 uTl
 boQ
 boQ
 boQ
 uTl
-aFI
-aFI
+aan
+aan
 uTl
 dmo
 dmo
@@ -91408,7 +91406,7 @@ jGe
 nKo
 wtL
 kVS
-hZt
+kVS
 jjb
 uXj
 hMz
@@ -91924,7 +91922,7 @@ nKo
 nKo
 ofF
 ppq
-cyH
+trv
 gpC
 nbf
 hMz

@@ -25,8 +25,8 @@
 /obj/item/defib_kit/get_cell()
 	return bcell
 
-/obj/item/defib_kit/Initialize() //starts without a cell for rnd //ChompEDIT New --> Initialize
-	..()
+/obj/item/defib_kit/Initialize(mapload) //starts without a cell for rnd
+	. = ..()
 	if(ispath(paddles))
 		paddles = new paddles(src, src)
 	else
@@ -272,11 +272,7 @@
 
 //Checks for various conditions to see if the mob is revivable
 /obj/item/shockpaddles/proc/can_defib(mob/living/carbon/human/H) //This is checked before doing the defib operation
-	//CHOMPEdit Begin - Vox can be revived with jumper cables
-	if(H.get_species() == SPECIES_VOX && use_on_synthetic)
-		// Will silently continue to the other two checks.
-	//CHOMPEdit End - Edit included the else on the next line.
-	else if((H.species.flags & NO_DEFIB))
+	if((H.species.flags & NO_DEFIB))
 		return "buzzes, \"Incompatible physiology. Operation aborted.\""
 	else if(H.isSynthetic() && !use_on_synthetic)
 		return "buzzes, \"Synthetic Body. Operation aborted.\""
@@ -597,9 +593,9 @@
 /obj/item/shockpaddles/linked
 	var/obj/item/defib_kit/base_unit
 
-/obj/item/shockpaddles/linked/New(newloc, obj/item/defib_kit/defib)
+/obj/item/shockpaddles/linked/Initialize(mapload, obj/item/defib_kit/defib)
+	. = ..()
 	base_unit = defib
-	..(newloc)
 
 /obj/item/shockpaddles/linked/Destroy()
 	if(base_unit)

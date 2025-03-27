@@ -106,8 +106,8 @@
 	var/obj/item/storage/backpack/rig_storage
 	permeability_coefficient = 0  //Protect the squishies, after all this shit should be waterproof.
 
-/obj/item/rig/New()
-	..()
+/obj/item/rig/Initialize(mapload)
+	. = ..()
 
 	suit_state = icon_state
 	item_state = icon_state
@@ -176,6 +176,8 @@
 	chest = null
 	cell = null
 	air_supply = null
+	for(var/obj/item/rig_module/module in installed_modules)
+		qdel(module)
 	STOP_PROCESSING(SSobj, src)
 	qdel(wires)
 	wires = null
@@ -273,14 +275,17 @@
 	toggle_piece("chest", loc, ONLY_RETRACT, TRUE)
 	update_icon(1)
 
-/obj/item/rig/proc/toggle_seals(var/mob/living/carbon/human/M,var/instant)
+/obj/item/rig/proc/toggle_seals(mob/living/carbon/human/M, instant, destructive)
 
 	if(sealing) return
 
 	if(!check_power_cost(M))
 		return 0
 
-	deploy(M,instant)
+	//NOTE: DESTRUCTIVE SHOULD ONLY BE CALLED ONCE (DURING THE INITIAL DEPLOYMENT)
+	//DESTRUCTIVE WILL DELETE ANY CLOTHING THAT WOULD OTHERWISE BE BLOCKING IT.
+	//IF DESTRUCTIVE IS CALLED WHILE THE RIG IS ALREADY DEPLOYED, THE RIG WILL DELETE ITSELF.
+	deploy(M,destructive)
 
 	var/seal_target = !canremove
 	var/failed_to_seal
@@ -577,7 +582,7 @@
 		var/mob/living/carbon/human/H = user
 		if(istype(H) && (H.back != src && H.belt != src))
 			fail_msg = span_warning("You must be wearing \the [src] to do this.")
-		else if(user.incorporeal_move)
+		else if(user.is_incorporeal())
 			fail_msg = span_warning("You must be solid to do this.")
 	if(sealing)
 		fail_msg = span_warning("The hardsuit is in the process of adjusting seals and cannot be activated.")
@@ -753,7 +758,7 @@
 	if(piece == "helmet" && helmet?.light_system == STATIC_LIGHT)
 		helmet.update_light()
 
-/obj/item/rig/proc/deploy(mob/M,var/sealed)
+/obj/item/rig/proc/deploy(mob/M,destructive)
 
 	var/mob/living/carbon/human/H = M
 
@@ -762,7 +767,7 @@
 	if(H.back != src && H.belt != src)
 		return
 
-	if(sealed)
+	if(destructive)
 		if(H.head)
 			var/obj/item/garbage = H.head
 			H.drop_from_inventory(garbage)
@@ -1012,6 +1017,15 @@
 		return back
 	else if(istype(belt, /obj/item/rig))
 		return belt
+	else
+		return null
+
+/atom/proc/get_voidsuit()
+	return null
+
+/mob/living/carbon/human/get_voidsuit()
+	if(istype(wear_suit, /obj/item/clothing/suit/space/void))
+		return wear_suit
 	else
 		return null
 

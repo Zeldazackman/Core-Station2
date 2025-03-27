@@ -35,7 +35,6 @@ var/const/star_name		= "Virgo-Erigone"
 var/const/starsys_name	= "Virgo-Erigone"
 */
 //CHOMPStation Removal End
-var/const/game_version	= "CHOMPStation"	//CHOMPStation Edit TFF 24/12/19 - Chompers
 var/servernews_hash		= "" //ChompADD - news hash gen
 var/game_year			= (text2num(time2text(world.realtime, "YYYY")) + 544) //YW EDIT
 var/round_progressing = 1
@@ -83,7 +82,7 @@ var/list/cornerdirs  = list(NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
 var/list/cornerdirsz = list(NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST, NORTH|UP, EAST|UP, WEST|UP, SOUTH|UP, NORTH|DOWN, EAST|DOWN, WEST|DOWN, SOUTH|DOWN)
 var/list/alldirs     = list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
 var/list/reverse_dir = list( // reverse_dir[dir] = reverse of dir
-	 2,  1,  3,  8, 10,  9, 11,  4,  6,  5,  7, 12, 14, 13, 15, 32, 34, 33, 35, 40, 42,
+	2,  1,  3,  8, 10,  9, 11,  4,  6,  5,  7, 12, 14, 13, 15, 32, 34, 33, 35, 40, 42,
 	41, 43, 36, 38, 37, 39, 44, 46, 45, 47, 16, 18, 17, 19, 24, 26, 25, 27, 20, 22, 21,
 	23, 28, 30, 29, 31, 48, 50, 49, 51, 56, 58, 57, 59, 52, 54, 53, 55, 60, 62, 61, 63
 )
@@ -128,9 +127,9 @@ var/global/list/alphabet_uppercase = list("A","B","C","D","E","F","G","H","I","J
 
 // Used by robots and robot preferences for regular modules.
 var/list/robot_module_types = list(
-	"Standard", "Engineering",/* "Surgeon",*/  "Crisis", //CHOMPedit: Combining Surgeon and Crisis.
-	"Miner",    "Janitor",     "Service",      "Clerical", "Security",
-	"Research"
+	"Standard", "Engineering", /* "Surgeon",*/ "Crisis", "Miner",
+	"Janitor", "Service", "Clown", "Clerical", "Security",
+	"Research", "Command", "Exploration" //CHOMPedit: Enables Exploration borg.
 )
 // L
 // List of modules added during code red
@@ -139,8 +138,9 @@ var/list/emergency_module_types = list(
 )
 // List of modules available to AI shells
 var/list/shell_module_types = list(
-	"Standard", "Engineering", "Surgeon", "Crisis",
-	"Miner", "Janitor", "Service", "Clerical", "Security", "Research"
+	"Standard", "Engineering", "Surgeon", "Crisis", "Miner",
+	"Janitor", "Service", "Clown", "Clerical", "Security",
+	"Research", "Command", "Exploration"
 )
 // List of whitelisted modules
 var/list/whitelisted_module_types = list(
@@ -166,10 +166,10 @@ var/static/list/scarySounds = list(
 	'sound/machines/door/old_airlock.ogg',
 	'sound/effects/clownstep1.ogg',
 	'sound/effects/clownstep2.ogg',
-	'sound/voice/teppi/roar.ogg',	//VOREStation Add
-	'sound/voice/moth/scream_moth.ogg',	//VOREStation Add
-	'sound/voice/nya.ogg',	//VOREStation Add
-	'sound/voice/succlet_shriek.ogg'	//VOREStation Add
+	'sound/voice/teppi/roar.ogg',
+	'sound/voice/moth/scream_moth.ogg',
+	'sound/voice/nya.ogg',
+	'sound/voice/succlet_shriek.ogg'
 )
 
 // Bomb cap!

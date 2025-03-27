@@ -8,7 +8,7 @@
 	desc = "A cold blooded, genderless, parasitic eel from the more distant and stranger areas of the cosmos. Plain, white, perpetually grinning and possessing a hunger as enthusiastic and endless as humanity's sense of exploration."
 	tt_desc = "synxus pergulus"
 
-	 //Synx species belongs to ChimeraSynx , Base sprites made by: SpitefulCrow
+	//Synx species belongs to ChimeraSynx , Base sprites made by: SpitefulCrow
 	icon = 'icons/mob/synx.dmi'//giving synxes their own DMI file!
 	icon_state = "synx_living"
 	icon_living = "synx_living"
@@ -110,6 +110,8 @@
 /mob/living/simple_mob/animal/synx/init_vore()
 	if(!voremob_loaded)
 		return
+	if(LAZYLEN(vore_organs))
+		return
 	.=..()
 	var/obj/belly/B = vore_selected
 	//B.human_prey_swallow_time = 6 SECONDS //doesnt work
@@ -140,6 +142,8 @@
 
 /mob/living/simple_mob/animal/synx/ai/pet/asteri/init_vore()
 	if(!voremob_loaded)
+		return
+	if(LAZYLEN(vore_organs))
 		return
 	.=..()
 	var/obj/belly/B = vore_selected
@@ -558,6 +562,8 @@
 /mob/living/simple_mob/animal/synx/ai/pet/init_vore()
 	if(!voremob_loaded)
 		return
+	if(LAZYLEN(vore_organs))
+		return
 	.=..()
 	var/obj/belly/B = vore_selected
 	B.vore_verb = "swallow"
@@ -566,6 +572,8 @@
 
 /mob/living/simple_mob/animal/synx/ai/pet/holo/init_vore()
 	if(!voremob_loaded)
+		return
+	if(LAZYLEN(vore_organs))
 		return
 	.=..()
 	var/obj/belly/B = vore_selected

@@ -47,8 +47,8 @@
 	w_class = ITEMSIZE_NORMAL
 	max_w_class = ITEMSIZE_NORMAL
 
-/obj/item/storage/secure/briefcase/nsfw_pack/New()
-	..()
+/obj/item/storage/secure/briefcase/nsfw_pack/Initialize(mapload)
+	. = ..()
 	new /obj/item/gun/projectile/cell_loaded/combat(src)
 	new /obj/item/ammo_magazine/cell_mag/combat(src)
 	for(var/path in subtypesof(/obj/item/ammo_casing/microbattery/combat))
@@ -60,8 +60,8 @@
 	w_class = ITEMSIZE_NORMAL
 	max_w_class = ITEMSIZE_NORMAL
 
-/obj/item/storage/secure/briefcase/nsfw_pack_hos/New()
-	..()
+/obj/item/storage/secure/briefcase/nsfw_pack_hos/Initialize(mapload)
+	. = ..()
 	new /obj/item/gun/projectile/cell_loaded/combat(src)
 	new /obj/item/ammo_magazine/cell_mag/combat(src)
 	new /obj/item/ammo_magazine/cell_mag/combat(src)

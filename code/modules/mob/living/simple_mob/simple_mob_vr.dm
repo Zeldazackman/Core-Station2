@@ -111,12 +111,10 @@
 	if(src == M) //Don't eat YOURSELF dork
 		//ai_log("vr/won't eat [M] because it's me!", 3) //VORESTATION AI TEMPORARY REMOVAL
 		return 0
-	//CHOMPSTATION add
-	if(!M.devourable)	//Why was there never a check for edibility to begin with
+	if(!M.devourable)	// Why was there never a check for edibility to begin with
 		return 0
-	if(M.is_incorporeal()) // CHOMPADD - No eating the phased ones
+	if(M.is_incorporeal()) // No eating the phased ones
 		return 0
-	//CHOMPSTATION add end
 	if(vore_ignores_undigestable && !M.digestable) //Don't eat people with nogurgle prefs
 		//ai_log("vr/wont eat [M] because I am picky", 3) //VORESTATION AI TEMPORARY REMOVAL
 		return 0
@@ -160,10 +158,8 @@
 /mob/living/simple_mob/proc/CanPounceTarget(var/mob/living/M) //returns either FALSE or a %chance of success
 	if(!M.canmove || issilicon(M) || world.time < vore_pounce_cooldown) //eliminate situations where pouncing CANNOT happen
 		return FALSE
-	// CHOMPADD Start - No pouncing on the shades
 	if(M.is_incorporeal())
 		return FALSE
-	// CHOMPADD End
 	if(!prob(vore_pounce_chance) || !will_eat(M)) //mob doesn't want to pounce
 		return FALSE
 	if(vore_standing_too) //100% chance of hitting people we can eat on the spot
@@ -222,24 +218,16 @@
 
 	AddElement(/datum/element/slosh) // Sloshy element
 
-	//CHOMPAdd Start
 	if(!soulgem)
 		soulgem = new(src)
-	//CHOMPAdd End
-
-	/* CHOMPRemove Start, handled with the vore_active var
-	if(!IsAdvancedToolUser())
-		add_verb(src, /mob/living/simple_mob/proc/animal_nom)
-		add_verb(src, /mob/living/proc/shred_limb)
-	*/// CHOMPRemove End
-
-	if(LAZYLEN(vore_organs))
-		return
 
 	// Since they have bellies, add verbs to toggle settings on them.
 	add_verb(src, /mob/living/simple_mob/proc/toggle_digestion)
 	add_verb(src, /mob/living/simple_mob/proc/toggle_fancygurgle)
 	add_verb(src, /mob/living/proc/vertical_nom)
+
+	if(LAZYLEN(vore_organs))
+		return
 
 	//A much more detailed version of the default /living implementation
 	var/obj/belly/B = new /obj/belly(src)
