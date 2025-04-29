@@ -49,8 +49,8 @@
 	w_class = ITEMSIZE_NORMAL
 	max_w_class = ITEMSIZE_NORMAL
 
-/obj/item/storage/secure/briefcase/nerd_pack_med/New()
-	..()
+/obj/item/storage/secure/briefcase/nerd_pack_med/Initialize(mapload)
+	. = ..()
 	new /obj/item/gun/projectile/cell_loaded/medical(src)
 	new /obj/item/ammo_magazine/cell_mag/medical(src)
 	new /obj/item/ammo_casing/microbattery/medical/brute(src)
@@ -64,8 +64,8 @@
 	w_class = ITEMSIZE_NORMAL
 	max_w_class = ITEMSIZE_NORMAL
 
-/obj/item/storage/secure/briefcase/nerd_pack_cmo/New()
-	..()
+/obj/item/storage/secure/briefcase/nerd_pack_cmo/Initialize(mapload)
+	. = ..()
 	new /obj/item/gun/projectile/cell_loaded/medical/cmo(src)
 	new /obj/item/ammo_magazine/cell_mag/medical(src)
 	new /obj/item/ammo_casing/microbattery/medical/brute(src)

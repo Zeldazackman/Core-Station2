@@ -62,12 +62,7 @@
 
 	// has_glowing_eyes = TRUE			//Applicable through neutral taits.
 
-	//death_message = "phases to somewhere far away!" //CHOMPEdit Removed
-	// male_cough_sounds = null
-	// female_cough_sounds = null
-	// male_sneeze_sound = null
-	// female_sneeze_sound = null
-
+	//death_message = "phases to somewhere far away!"  //CHOMPEdit Removed
 	speech_bubble_appearance = "ghost"
 
 	genders = list(MALE, FEMALE, PLURAL, NEUTER)
@@ -141,10 +136,7 @@
 	var/area/current_area = get_area(H)
 	if((H.ability_flags & AB_DARK_RESPITE) || H.has_modifier_of_type(/datum/modifier/dark_respite) || current_area.flag_check(AREA_LIMIT_DARK_RESPITE))
 		return
-	var/list/floors = list()
-	for(var/turf/unsimulated/floor/dark/floor in get_area_turfs(/area/shadekin))
-		floors.Add(floor)
-	if(!LAZYLEN(floors))
+	if(!LAZYLEN(GLOB.latejoin_thedark))
 		log_and_message_admins("[H] died outside of the dark but there were no valid floors to warp to")
 		return
 
@@ -180,7 +172,7 @@
 		var/obj/belly/belly = H.loc
 		add_attack_logs(belly.owner, H, "Digested in [lowertext(belly.name)]")
 		to_chat(belly.owner, span_notice("\The [H.name] suddenly vanishes within your [belly.name]"))
-		H.forceMove(pick(floors))
+		H.forceMove(pick(GLOB.latejoin_thedark))
 		if(H.ability_flags & AB_PHASE_SHIFTED)
 			H.phase_shift()
 		else
@@ -206,7 +198,7 @@
 		H.add_modifier(/datum/modifier/dark_respite, 25 MINUTES)
 
 		spawn(1 SECOND)
-			H.forceMove(pick(floors))
+			H.forceMove(pick(GLOB.latejoin_thedark))
 			if(H.ability_flags & AB_PHASE_SHIFTED)
 				H.phase_shift()
 			else
@@ -396,7 +388,7 @@
 		var/l_icon = 0
 		var/e_icon = 0
 
-		H.shadekin_display.invisibility = 0
+		H.shadekin_display.invisibility = INVISIBILITY_NONE
 		if(T)
 			var/brightness = T.get_lumcount() //Brightness in 0.0 to 1.0
 			var/darkness = 1-brightness //Invert

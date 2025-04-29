@@ -28,7 +28,7 @@
 			log_unit_test("[Rpath]: Reagents - Reagent ID must be all lowercase.")
 			failed = TRUE
 
-		if(collection_name[R.name])
+		if(collection_name[R.name] && !(R.wiki_flag & WIKI_SPOILER)) // If wiki hidden it's probably intentional!
 			log_unit_test("[Rpath]: Reagents - WARNING - reagent name \"[R.name]\" is not unique, used first in [collection_name[R.name]]. Is this intentional?")
 		collection_name[R.name] = R.type
 
@@ -280,6 +280,7 @@
 	return TRUE
 
 /datum/unit_test/chemical_reactions_shall_not_conflict/get_signal_data(atom/source, list/data = list())
+	SIGNAL_HANDLER
 	result_reactions.Add(data[1]) // Append the reactions that happened, then use that to check their inhibitors
 
 

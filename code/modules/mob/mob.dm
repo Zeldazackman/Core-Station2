@@ -80,7 +80,7 @@
 	. = ..()
 	//return QDEL_HINT_HARDDEL_NOW Just keep track of mob references. They delete SO much faster now.
 
-/mob/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2) //CHOMPEdit show_message() moved to /atom/movable
+/mob/show_message(msg, type, alt, alt_type)
 
 	if(!client && !teleop)	return
 
@@ -132,7 +132,7 @@
 /atom/proc/drain_power(var/drain_check,var/surge, var/amount = 0)
 	return -1
 
- // used for petrification machines
+// used for petrification machines
 /atom/proc/get_ultimate_mob()
 	var/mob/ultimate_mob
 	var/atom/to_check = loc
@@ -389,7 +389,7 @@
 			"Quit This Round",list("Quit Round","No"))
 			if(extra_check == "Quit Round")
 				//Update any existing objectives involving this mob.
-				for(var/datum/objective/O in all_objectives)
+				for(var/datum/objective/O in GLOB.all_objectives)
 					if(O.target == mind)
 						if(O.owner && O.owner.current)
 							to_chat(O.owner.current,span_warning("You get the feeling your target is no longer within your reach..."))
@@ -409,15 +409,15 @@
 					mind.special_role = null
 
 				//Cut the PDA manifest (ugh)
-				if(PDA_Manifest.len)
-					PDA_Manifest.Cut()
-				for(var/datum/data/record/R in data_core.medical)
+				if(GLOB.PDA_Manifest.len)
+					GLOB.PDA_Manifest.Cut()
+				for(var/datum/data/record/R in GLOB.data_core.medical)
 					if((R.fields["name"] == real_name))
 						qdel(R)
-				for(var/datum/data/record/T in data_core.security)
+				for(var/datum/data/record/T in GLOB.data_core.security)
 					if((T.fields["name"] == real_name))
 						qdel(T)
-				for(var/datum/data/record/G in data_core.general)
+				for(var/datum/data/record/G in GLOB.data_core.general)
 					if((G.fields["name"] == real_name))
 						qdel(G)
 
@@ -479,8 +479,8 @@
 	var/list/targets = list()
 
 
-	targets += observe_list_format(nuke_disks)
-	targets += observe_list_format(GLOB.all_singularities) //CHOMP Edit
+	targets += observe_list_format(GLOB.nuke_disks)
+	targets += observe_list_format(GLOB.all_singularities)
 	targets += getmobs()
 	targets += observe_list_format(sortAtom(mechas_list))
 	targets += observe_list_format(SSshuttles.ships)
@@ -563,7 +563,7 @@
 		to_chat(src, span_warning("It won't budge!"))
 		return
 
-	if(lying) // CHOMPAdd - No pulling while we crawl.
+	if(lying)
 		return
 
 	var/mob/M = AM
@@ -1138,19 +1138,6 @@
 	in_throw_mode = 1
 	if(throw_icon && !issilicon(src)) // Silicon use this for something else. Do not overwrite their HUD icon
 		throw_icon.icon_state = "act_throw_on"
-/* CHOMPedit removal begin
-/mob/verb/spacebar_throw_on()
-	set name = ".throwon"
-	set hidden = TRUE
-	set instant = TRUE
-	throw_mode_on()
-
-/mob/verb/spacebar_throw_off()
-	set name = ".throwoff"
-	set hidden = TRUE
-	set instant = TRUE
-	throw_mode_off()
-ChompEdit removal end*/
 /mob/proc/isSynthetic()
 	return 0
 
@@ -1175,7 +1162,6 @@ ChompEdit removal end*/
 		var/mob/exploited = exploit_for.resolve()
 		exploited?.exploit_addons -= src
 		exploit_for = null
-	// CHOMPEdit End
 	. = ..()
 
 
